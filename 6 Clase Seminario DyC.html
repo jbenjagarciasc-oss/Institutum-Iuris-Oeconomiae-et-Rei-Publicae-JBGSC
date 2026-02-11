@@ -1,0 +1,408 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seminario de Tesis - Clase 6: Hipótesis y Variables</title>
+    <style>
+        :root {
+            --azul-inst: #003366;
+            --azul-claro: #0055a5;
+            --rojo-inst: #cc0000;
+            --blanco: #ffffff;
+            --gris-fondo: #f0f2f5;
+            --texto: #2c3e50;
+            --borde-suave: 1px solid #e1e4e8;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Georgia', serif;
+            background-color: var(--gris-fondo);
+            color: var(--texto);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* CONTENEDOR PRINCIPAL */
+        .main-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            background: var(--blanco);
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            border-top: 8px solid var(--azul-inst);
+            overflow: hidden;
+        }
+
+        /* ENCABEZADO */
+        header {
+            background: linear-gradient(135deg, var(--azul-inst) 0%, var(--azul-claro) 100%);
+            color: var(--blanco);
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        header::after {
+            content: "";
+            display: block;
+            width: 60%;
+            height: 4px;
+            background-color: var(--rojo-inst);
+            margin: 20px auto 0;
+        }
+
+        h1 { margin: 0; font-size: 2.5em; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; }
+        h2 { font-family: 'Georgia', serif; font-style: italic; font-weight: normal; opacity: 0.95; margin-top: 10px; font-size: 1.4em; }
+
+        .meta-info { margin-top: 15px; font-size: 0.95em; opacity: 0.9; }
+
+        /* SECCIONES */
+        .content-section { padding: 40px; border-bottom: var(--borde-suave); }
+        
+        .section-title {
+            color: var(--azul-inst);
+            border-left: 5px solid var(--rojo-inst);
+            padding-left: 15px;
+            font-size: 1.6em;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-number {
+            background-color: var(--azul-inst);
+            color: white;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-right: 15px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        /* 1. INTRODUCCIÓN */
+        .intro-container {
+            background-color: #fffcfc;
+            border: 2px solid #f2dede;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .class-title {
+            color: var(--azul-inst);
+            font-size: 2em;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: block;
+            letter-spacing: 1px;
+            border-bottom: 2px dashed var(--rojo-inst);
+            padding-bottom: 10px;
+        }
+        .socratic-question {
+            font-size: 1.3em;
+            color: var(--rojo-inst);
+            font-weight: bold;
+            display: block;
+            margin-bottom: 15px;
+            font-family: 'Georgia', serif;
+            font-style: italic;
+        }
+        
+        /* 2. ARBOL DE IDEAS */
+        .tree-diagram-container { display: flex; flex-direction: column; align-items: center; margin: 20px 0; }
+        .tree-node {
+            padding: 15px; border-radius: 8px; color: white; text-align: center; width: 80%; margin: 5px 0;
+            position: relative; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s;
+        }
+        .branches-row { display: flex; justify-content: space-between; width: 90%; gap: 15px; }
+        .branch-law { background: linear-gradient(135deg, var(--azul-inst), var(--azul-claro)); width: 48%; }
+        .branch-crim { background: linear-gradient(135deg, var(--rojo-inst), #e63946); width: 48%; }
+        .trunk { background: linear-gradient(135deg, #2c3e50, #4a6fa5); width: 60%; margin-top: 10px; }
+        .root { background: linear-gradient(135deg, #5d4037, #795548); border-top: 5px solid #8d6e63; width: 60%; }
+
+        /* 3. VARIABLES TÉCNICAS */
+        .variable-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .var-card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            background: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+        .var-header {
+            font-weight: bold;
+            text-transform: uppercase;
+            color: white;
+            padding: 5px 15px;
+            display: inline-block;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+        .var-law { border-left: 5px solid var(--azul-inst); }
+        .var-crim { border-left: 5px solid var(--rojo-inst); }
+
+        /* 4. PRAXIS */
+        .exercise-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .exercise-card { background: #fff; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; }
+        .card-header { padding: 15px; color: white; font-weight: bold; text-transform: uppercase; }
+        .header-law { background-color: var(--azul-inst); }
+        .header-crim { background-color: var(--rojo-inst); }
+        .card-body { padding: 20px; flex-grow: 1; }
+        .btn-reveal {
+            width: 100%; padding: 12px; background: #f1f1f1; border: none; cursor: pointer; font-weight: bold;
+            color: var(--azul-inst); transition: 0.3s; margin-top: 10px; border-top: 1px solid #ddd;
+        }
+        .btn-reveal:hover { background: #e0e0e0; color: var(--rojo-inst); }
+        .answer-content { display: none; padding: 15px; background: #f8f9fa; border-top: 1px solid #ddd; border-left: 4px solid var(--azul-inst); }
+
+        /* 5. LÉXICO */
+        .vocab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; }
+        .vocab-card { background: #fff; border: 1px solid #ddd; padding: 15px; border-top: 3px solid var(--azul-claro); }
+        .vocab-term { color: var(--azul-inst); font-weight: bold; font-size:1.1em; display: block; margin-bottom: 5px; border-bottom: 1px dashed #ccc;}
+        .etym-section { font-style: italic; color: var(--rojo-inst); font-size: 0.9em; display: block; }
+        .epist-section { font-size: 0.95em; color: #444; display: block; }
+
+        /* 6. TAREA Y DESPEDIDA */
+        .homework-section { border: 2px dashed var(--azul-inst); background-color: #fcfcfc; padding: 25px; border-radius: 10px; margin-bottom: 30px;}
+        .holiday-wish {
+            background: linear-gradient(135deg, #2c3e50, #000);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 10px;
+            margin-top: 40px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* 7. BIBLIOGRAFÍA */
+        .biblio-list { list-style: decimal; padding-left: 20px; margin: 0; font-size: 0.9em; }
+        .biblio-list li { margin-bottom: 5px; }
+
+        @media (max-width: 768px) {
+            .variable-box, .exercise-wrapper, .branches-row { grid-template-columns: 1fr; flex-direction: column; align-items: center; }
+            .branch-law, .branch-crim, .trunk, .root { width: 90%; margin-bottom: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="main-container">
+
+    <!-- ENCABEZADO -->
+    <header>
+        <span style="background-color: var(--rojo-inst); color: white; padding: 5px 15px; border-radius: 4px; font-weight: bold; text-transform: uppercase; font-size: 0.9em;">NOVENO SEMESTRE</span>
+        <h1>Seminario de Tesis</h1>
+        <h2>Cátedra: Magister José Benjamín García Santa Cruz</h2>
+        
+        <div style="margin-top: 15px; font-weight:bold;">
+            • Licenciatura en Ciencias Jurídicas y Sociales<br>
+            • Licenciatura en Investigación Criminal y Forense
+        </div>
+
+        <div class="meta-info">
+            Universidad Regional | Sede San Raymundo | <strong>Fecha: Sábado 28 de Marzo de 2026</strong>
+        </div>
+    </header>
+
+    <!-- 1. INTRODUCCIÓN SOCRÁTICA -->
+    <section class="content-section">
+        <div class="intro-container">
+            <span class="class-title">CLASE 6: LA APUESTA CIENTÍFICA (HIPÓTESIS Y VARIABLES)</span>
+            <span class="socratic-question">"¿Si no sabemos qué causa el fuego, cómo pretendemos apagarlo?"</span>
+            <p>
+                Caballeros, Doctos: Estamos a las puertas de la Semana Santa. Pero antes de envainar la pluma y tomar el descanso sagrado, debemos dejar plantada nuestra bandera en el territorio de la <strong>Hipótesis</strong>.
+                Hasta hoy hemos preguntado. Hoy, por primera vez, nos atreveremos a dar <strong>respuestas</strong>.
+                La Hipótesis no es una adivinanza; es una "apuesta lógica" apoyada en el Marco Teórico. Es decir: <em>"Yo apuesto que X está causando Y"</em> [Sampieri, Cap. 6]. Si ganan la apuesta, se gradúan. Si no, han descubierto una verdad por la vía negativa.
+            </p>
+        </div>
+    </section>
+
+    <!-- 2. ARBOL DE IDEAS -->
+    <section class="content-section">
+        <h3 class="section-title"><span class="section-number">2</span>MAPA MENTAL: LA ESTRUCTURA HIPOTÉTICA</h3>
+        
+        <div class="tree-diagram-container">
+            <!-- Ramas -->
+            <div class="branches-row">
+                <div class="tree-node branch-law">
+                    <strong>JURÍDICA: CAUSA-EFECTO NORMATIVO</strong><br>
+                    <span style="font-size:0.9em">Si la norma X es ineficaz (Causa),<br>entonces aumenta el fenómeno Y (Efecto).</span>
+                </div>
+                <div class="tree-node branch-crim">
+                    <strong>FORENSE: RECONSTRUCCIÓN FÁCTICA</strong><br>
+                    <span style="font-size:0.9em">Si existe el indicio X (Causa),<br>entonces el hecho ocurrió de la forma Y (Efecto).</span>
+                </div>
+            </div>
+            
+            <!-- Tronco -->
+            <div class="tree-node trunk">
+                <strong>LA HIPÓTESIS DE INVESTIGACIÓN (Hi)</strong><br>
+                Proposición tentativa sobre la relación entre variables.<br>
+                Debe ser: Clara, Medible y Lógica.
+            </div>
+
+            <!-- Raíz -->
+            <div class="tree-node root">
+                <strong>EL PROBLEMA Y LA TEORÍA</strong><br>
+                Sin Marco Teórico (Clase 5), la hipótesis es pura adivinanza.
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. MÓDULO TÉCNICO: VARIABLES -->
+    <section class="content-section" style="background-color: #fdfdfd;">
+        <h3 class="section-title"><span class="section-number">3</span>DESGLOSE TÉCNICO: LAS VARIABLES (SAMPIERI)</h3>
+        <p>Una hipótesis es un enunciado que vincula "variables". No podemos investigar conceptos etéreos; debemos aterrizarlos en elementos medibles [Hernández Sampieri, 105].</p>
+        
+        <div class="variable-box">
+            <div class="var-card var-law">
+                <span class="var-header" style="background-color: var(--azul-inst);">VARIABLE INDEPENDIENTE (X)</span>
+                <p><strong>Es la CAUSA.</strong> El fenómeno que antecede o provoca el cambio.</p>
+                <ul>
+                    <li><em>Ej. Derecho:</em> La falta de tipificación del delito informático.</li>
+                    <li><em>Ej. Criminalística:</em> El uso de bolsas plásticas para embalar ropa húmeda.</li>
+                </ul>
+            </div>
+            <div class="var-card var-crim">
+                <span class="var-header" style="background-color: var(--rojo-inst);">VARIABLE DEPENDIENTE (Y)</span>
+                <p><strong>Es el EFECTO.</strong> El resultado que observamos o medimos.</p>
+                <ul>
+                    <li><em>Ej. Derecho:</em> La impunidad en los casos de phishing.</li>
+                    <li><em>Ej. Criminalística:</em> La proliferación de hongos y destrucción de ADN.</li>
+                </ul>
+            </div>
+        </div>
+        <p style="margin-top:15px; font-size:0.9em; text-align:center; font-style:italic;">
+            <strong>Fórmula Básica:</strong> "X produce Y" o "La deficiencia en X causa el problema Y".
+        </p>
+    </section>
+
+    <!-- 4. PRAXIS -->
+    <section class="content-section">
+        <h3 class="section-title"><span class="section-number">4</span>PRAXIS: CONSTRUCCIÓN DE HIPÓTESIS</h3>
+        <p><em>Instrucción: Transforme el problema en una Hipótesis de Investigación (Hi) lógica.</em></p>
+        
+        <div class="exercise-wrapper">
+            <!-- Caso Derecho -->
+            <div class="exercise-card">
+                <div class="card-header header-law">I. DERECHO (Witker)</div>
+                <div class="card-body">
+                    <p><strong>Problema:</strong> "Los inquilinos no pagan y el juicio de desahucio tarda años."</p>
+                    <p><strong>Desafío:</strong> Construya la Hipótesis relacionando variables.</p>
+                    <button class="btn-reveal" onclick="toggle('resp1')">Revelar Hi Sugerida</button>
+                    <div id="resp1" class="answer-content">
+                        <strong>Hi:</strong> "La excesiva formalidad en las notificaciones del Código Procesal Civil (Variable X) provoca la dilación injustificada en los juicios sumarios de desahucio en San Raymundo (Variable Y)."
+                        <br><em>(Note que no culpamos a la "maldad" de la gente, sino a la norma).</em>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Caso Criminalística -->
+            <div class="exercise-card">
+                <div class="card-header header-crim">II. FORENSE (Montiel)</div>
+                <div class="card-body">
+                    <p><strong>Problema:</strong> "El cadáver tiene un orificio estrellado en la frente."</p>
+                    <p><strong>Desafío:</strong> Construya la Hipótesis Reconstructiva.</p>
+                    <button class="btn-reveal" onclick="toggle('resp2')">Revelar Hi Sugerida</button>
+                    <div id="resp2" class="answer-content">
+                        <strong>Hi:</strong> "Si el orificio de entrada presenta desgarros en forma de estrella (Variable X), entonces el disparo fue realizado con la boca del cañón apoyada firmemente sobre la piel (Boca de jarro) (Variable Y)."
+                        <br><em>(Fundamento: Efecto de gases subcutáneos [Guzmán, 372]).</em>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. LÉXICO -->
+    <section class="content-section" style="background-color: #fdfdfd;">
+        <h3 class="section-title"><span class="section-number">5</span>LÉXICO: EL LENGUAJE DE LA PREDICCIÓN</h3>
+        
+        <div class="vocab-grid">
+            <div class="vocab-card">
+                <span class="vocab-term">Hipótesis Nula (Ho)</span>
+                <div class="etym-section">Negación de la Hi.</div>
+                <div class="epist-section">Es la contrapartida. Si mi Hi dice "X causa Y", la Ho dice "X NO causa Y". En ciencia, intentamos destruir la Ho para que sobreviva la verdad [Sampieri, 137].</div>
+            </div>
+            <div class="vocab-card">
+                <span class="vocab-term">Operacionalización</span>
+                <div class="etym-section">Hacer operativo.</div>
+                <div class="epist-section">Proceso de convertir un concepto abstracto (ej. "Justicia") en algo medible (ej. "Número de sentencias revocadas"). Sin esto, no hay tesis.</div>
+            </div>
+            <div class="vocab-card">
+                <span class="vocab-term">Causalidad</span>
+                <div class="etym-section">Relación Causa-Efecto.</div>
+                <div class="epist-section">En Derecho penal es el nexo entre la acción y el resultado. En Metodología, es la relación condicional entre la Variable Independiente y la Dependiente.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. TAREA -->
+    <section class="homework-section">
+        <h3 class="section-title"><span class="section-number">6</span>LABOR DOMICILIARIA (PARA DESPUÉS DEL DESCANSO)</h3>
+        <p><strong>Entrega: Sábado 11 de Abril (Clase 7).</strong></p>
+        <p>Disfruten su feriado, pero traigan en mente su <strong>Matriz de Hipótesis</strong>:</p>
+        <ol style="margin-left:20px;">
+            <li><strong>Hipótesis de Investigación (Hi):</strong> Su respuesta tentativa (Afirmativa).</li>
+            <li><strong>Hipótesis Nula (Ho):</strong> La negación de su respuesta.</li>
+            <li><strong>Identificación de Variables:</strong> Defina claramente cuál es su Causa (X) y cuál es su Efecto (Y).</li>
+        </ol>
+        <p style="margin-top:10px; font-style:italic; color:#555;">"Una hipótesis bien planteada es la mitad de la batalla ganada."</p>
+    </section>
+
+    <!-- 7. DESPEDIDA MOTIVACIONAL -->
+    <div class="holiday-wish">
+        <h2 style="border-bottom: 1px solid #777; padding-bottom: 10px; margin-top:0;">⚔️ FELIZ DESCANSO, ESCUDEROS DE LA VERDAD ⚔️</h2>
+        <p style="font-size: 1.1em; font-style: italic;">
+            "La libertad, Sancho, es uno de los más preciosos dones que a los hombres dieron los cielos; con ella no pueden igualarse los tesoros que encierra la tierra ni el mar encubre." — Don Quijote.
+        </p>
+        <p>
+            Han luchado con honor en el Primer Parcial y en la definición de sus temas. 
+            Ahora, depongan las armas académicas por unos días. 
+            El <strong>descanso de Semana Santa (del 30 de Marzo al 5 de Abril)</strong> es merecido y necesario.
+        </p>
+        <p style="font-weight: bold; margin-top: 20px; color: #ffcc00;">
+            ¡Nos vemos en la CLASE 7 (11 de Abril) para continuar la conquista del conocimiento!
+        </p>
+    </div>
+
+    <!-- 8. BIBLIOGRAFÍA -->
+    <section class="content-section">
+        <h3 class="section-title"><span class="section-number">7</span>BIBLIOGRAFÍA DE LA CLASE</h3>
+        <ul class="biblio-list">
+            <li>Hernández Sampieri, R. (2014). <em>Metodología de la investigación</em>. (Cap. 6: Formulación de Hipótesis).</li>
+            <li>Witker Velásquez, J. (2021). <em>Metodología de la investigación jurídica</em>. (La hipótesis jurídica).</li>
+            <li>Guzmán, C. A. (2011). <em>Manual de criminalística</em>. (El método científico y la reconstrucción).</li>
+            <li>Universidad Regional. <em>Calendario Académico 2026</em>. (Fechas de asueto y parciales) [Fuente: 4].</li>
+        </ul>
+    </section>
+
+</div>
+
+<script>
+    function toggle(id) {
+        var x = document.getElementById(id);
+        if (x.style.display === "block") {
+            x.style.display = "none";
+        } else {
+            x.style.display = "block";
+        }
+    }
+</script>
+
+</body>
+</html>

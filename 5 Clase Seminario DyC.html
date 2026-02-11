@@ -1,0 +1,406 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seminario de Tesis - Clase 5: Justificación y Fundamento</title>
+    <style>
+        :root {
+            --azul-inst: #003366;
+            --azul-claro: #0055a5;
+            --rojo-inst: #cc0000;
+            --blanco: #ffffff;
+            --gris-fondo: #f0f2f5;
+            --texto: #2c3e50;
+            --borde-suave: 1px solid #e1e4e8;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Georgia', serif;
+            background-color: var(--gris-fondo);
+            color: var(--texto);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* CONTENEDOR PRINCIPAL */
+        .main-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            background: var(--blanco);
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            border-top: 8px solid var(--azul-inst);
+            overflow: hidden;
+        }
+
+        /* ENCABEZADO */
+        header {
+            background: linear-gradient(135deg, var(--azul-inst) 0%, var(--azul-claro) 100%);
+            color: var(--blanco);
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        header::after {
+            content: "";
+            display: block;
+            width: 60%;
+            height: 4px;
+            background-color: var(--rojo-inst);
+            margin: 20px auto 0;
+        }
+
+        h1 { margin: 0; font-size: 2.5em; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; }
+        h2 { font-family: 'Georgia', serif; font-style: italic; font-weight: normal; opacity: 0.95; margin-top: 10px; font-size: 1.4em; }
+
+        .meta-info { margin-top: 15px; font-size: 0.95em; opacity: 0.9; }
+
+        /* SECCIONES */
+        .content-section { padding: 40px; border-bottom: var(--borde-suave); }
+        
+        .section-title {
+            color: var(--azul-inst);
+            border-left: 5px solid var(--rojo-inst);
+            padding-left: 15px;
+            font-size: 1.6em;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-number {
+            background-color: var(--azul-inst);
+            color: white;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-right: 15px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        /* 1. RETROALIMENTACIÓN EXAMEN */
+        .post-exam-box {
+            background-color: #e8f4fd;
+            border: 2px solid #b6d4fe;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        /* 2. INTRODUCCIÓN */
+        .intro-container {
+            background-color: #fffcfc;
+            border: 2px solid #f2dede;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .class-title {
+            color: var(--azul-inst);
+            font-size: 2em;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: block;
+            letter-spacing: 1px;
+            border-bottom: 2px dashed var(--rojo-inst);
+            padding-bottom: 10px;
+        }
+        .socratic-question {
+            font-size: 1.3em;
+            color: var(--rojo-inst);
+            font-weight: bold;
+            display: block;
+            margin-bottom: 15px;
+            font-family: 'Georgia', serif;
+            font-style: italic;
+        }
+        
+        /* 3. ARBOL DE IDEAS */
+        .tree-diagram-container { display: flex; flex-direction: column; align-items: center; margin: 20px 0; }
+        .tree-node {
+            padding: 15px; border-radius: 8px; color: white; text-align: center; width: 80%; margin: 5px 0;
+            position: relative; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s;
+        }
+        .branches-row { display: flex; justify-content: space-between; width: 90%; gap: 15px; }
+        .branch-law { background: linear-gradient(135deg, var(--azul-inst), var(--azul-claro)); width: 48%; }
+        .branch-crim { background: linear-gradient(135deg, var(--rojo-inst), #e63946); width: 48%; }
+        .trunk { background: linear-gradient(135deg, #2c3e50, #4a6fa5); width: 60%; margin-top: 10px; }
+        .root { background: linear-gradient(135deg, #5d4037, #795548); border-top: 5px solid #8d6e63; width: 60%; }
+
+        /* 4. CONTENIDO TÉCNICO: CRITERIOS SAMPIERI */
+        .criteria-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; }
+        .criteria-card { 
+            background: #fff; border: 1px solid #ddd; padding: 15px; border-radius: 5px; 
+            text-align: center; transition: 0.3s;
+        }
+        .criteria-card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-color: var(--azul-inst); }
+        .criteria-icon { font-size: 2em; display: block; margin-bottom: 10px; }
+        .criteria-title { font-weight: bold; color: var(--azul-inst); display: block; margin-bottom: 5px; }
+        
+        .important-note {
+            background-color: #fff3cd;
+            color: #856404;
+            padding: 15px;
+            border-left: 5px solid #ffc107;
+            margin-top: 20px;
+            font-size: 0.95em;
+        }
+
+        /* 5. PRAXIS */
+        .exercise-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .exercise-card { background: #fff; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; }
+        .card-header { padding: 15px; color: white; font-weight: bold; text-transform: uppercase; }
+        .header-law { background-color: var(--azul-inst); }
+        .header-crim { background-color: var(--rojo-inst); }
+        .card-body { padding: 20px; flex-grow: 1; }
+        .btn-reveal {
+            width: 100%; padding: 12px; background: #f1f1f1; border: none; cursor: pointer; font-weight: bold;
+            color: var(--azul-inst); transition: 0.3s; margin-top: 10px; border-top: 1px solid #ddd;
+        }
+        .btn-reveal:hover { background: #e0e0e0; color: var(--rojo-inst); }
+        .answer-content { display: none; padding: 15px; background: #f8f9fa; border-top: 1px solid #ddd; border-left: 4px solid var(--azul-inst); }
+
+        /* 6. LÉXICO */
+        .vocab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; }
+        .vocab-card { background: #fff; border: 1px solid #ddd; padding: 15px; border-top: 3px solid var(--azul-claro); }
+        .vocab-term { color: var(--azul-inst); font-weight: bold; font-size:1.1em; display: block; margin-bottom: 5px; border-bottom: 1px dashed #ccc;}
+        .etym-section { font-style: italic; color: var(--rojo-inst); font-size: 0.9em; display: block; }
+        .epist-section { font-size: 0.95em; color: #444; display: block; }
+
+        /* 7. TAREA */
+        .homework-section { border: 2px dashed var(--azul-inst); background-color: #fcfcfc; padding: 25px; border-radius: 10px; }
+
+        /* 8. BIBLIOGRAFÍA */
+        .biblio-list { list-style: decimal; padding-left: 20px; margin: 0; font-size: 0.9em; }
+        .biblio-list li { margin-bottom: 5px; }
+
+        @media (max-width: 768px) {
+            .exercise-wrapper, .branches-row, .criteria-grid { grid-template-columns: 1fr; flex-direction: column; align-items: center; }
+            .branch-law, .branch-crim, .trunk, .root { width: 90%; margin-bottom: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="main-container">
+
+    <!-- ENCABEZADO -->
+    <header>
+        <span style="background-color: var(--rojo-inst); color: white; padding: 5px 15px; border-radius: 4px; font-weight: bold; text-transform: uppercase; font-size: 0.9em;">NOVENO SEMESTRE</span>
+        <h1>Seminario de Tesis</h1>
+        <h2>Cátedra: Magister José Benjamín García Santa Cruz</h2>
+        
+        <div style="margin-top: 15px; font-weight:bold;">
+            • Licenciatura en Ciencias Jurídicas y Sociales<br>
+            • Licenciatura en Investigación Criminal y Forense
+        </div>
+
+        <div class="meta-info">
+            Universidad Regional | Sede San Raymundo | <strong>Fecha: Sábado 21 de Marzo de 2026</strong>
+        </div>
+    </header>
+
+    <!-- 1. RETROALIMENTACIÓN DEL EXAMEN -->
+    <section class="content-section">
+        <h3 class="section-title"><span class="section-number">1</span>RETROALIMENTACIÓN: I PARCIAL</h3>
+        <div class="post-exam-box">
+            <h4 style="margin-top:0; color:var(--azul-inst);">¡INICIO DE LA FASE II!</h4>
+            <p>Señores, el Primer Parcial ha quedado atrás. Si usted demostró <strong>coherencia lógica</strong> entre Título, Pregunta y Objetivo, estará en el camino de la victoria. Si no, su edificio epistemológico está en ruinas.
+            <br>Hoy comenzamos la reconstrucción o el fortalecimiento. Hemos definido el <strong>QUÉ</strong> (El Problema) y el <strong>PARA QUÉ</strong> (El Objetivo). Hoy definiremos el <strong>POR QUÉ</strong> (Justificación).</p>
+        </div>
+    </section>
+
+    <!-- 2. INTRODUCCIÓN SOCRÁTICA -->
+    <section class="content-section">
+        <div class="intro-container">
+            <span class="class-title">CLASE 5: LA DEFENSA Y EL ESCUDO (JUSTIFICACIÓN Y MARCO TEÓRICO)</span>
+            <span class="socratic-question">"¿Por qué investigamos? ¿Por simple curiosidad o para resolver un problema real?"</span>
+            <p>
+                El investigador no es un poeta que escribe por inspiración. Es un científico que responde a una necesidad.
+                Ahora debemos responder al tribunal invisible que nos pregunta: 
+                <em>"¿Y a mí qué me importa su tesis?"</em>. 
+                Hoy aprenderemos a redactar la <strong>Justificación</strong> (Vender la idea) y a diseñar el <strong>Marco Teórico</strong> (El escudo de autoridad que protege sus argumentos). Sin esto, su tesis es solo una opinión (Doxa).
+            </p>
+        </div>
+    </section>
+
+    <!-- 3. MAPA MENTAL -->
+    <section class="content-section">
+        <h3 class="section-title"><span class="section-number">2</span>MAPA MENTAL: ESTRUCTURA DE LA DEFENSA</h3>
+        
+        <div class="tree-diagram-container">
+            <!-- Ramas -->
+            <div class="branches-row">
+                <div class="tree-node branch-law">
+                    <strong>JURÍDICA: LA DOCTRINA</strong><br>
+                    <span style="font-size:0.9em">El Marco Teórico se basa en la Dogmática y la Jurisprudencia.<br>[Witker, 59]</span>
+                </div>
+                <div class="tree-node branch-crim">
+                    <strong>FORENSE: LA TÉCNICA</strong><br>
+                    <span style="font-size:0.9em">El Marco Teórico se basa en Protocolos y Ciencias Naturales.<br>[Guzmán, 487]</span>
+                </div>
+            </div>
+            
+            <!-- Tronco -->
+            <div class="tree-node trunk">
+                <strong>LA JUSTIFICACIÓN (EL PORQUÉ)</strong><br>
+                Relevancia Social + Valor Teórico + Utilidad Práctica.<br>
+                (No es "porque quiero graduarme", es "porque es necesario").
+            </div>
+
+            <!-- Raíz -->
+            <div class="tree-node root">
+                <strong>EL PROBLEMA (YA DEFINIDO)</strong><br>
+                Base de la Fase I (Clases 1-4).
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. CONTENIDO TÉCNICO -->
+    <section class="content-section" style="background-color: #fdfdfd;">
+        <h3 class="section-title"><span class="section-number">3</span>CRITERIOS DE JUSTIFICACIÓN (SAMPIERI)</h3>
+        <p>Para que una tesis sea aprobada, debe cumplir con criterios sólidos. No basta con que el tema sea "bonito". Sampieri nos da las pautas [Hernández Sampieri, 413, 414]:</p>
+        
+        <div class="criteria-grid">
+            <div class="criteria-card">
+                <span class="criteria-icon">👥</span>
+                <span class="criteria-title">RELEVANCIA SOCIAL</span>
+                <div style="font-size:0.9em;">¿A quién beneficia? ¿Qué alcance social tiene? No escriba para usted, escriba para la sociedad.</div>
+            </div>
+            <div class="criteria-card">
+                <span class="criteria-icon">💡</span>
+                <span class="criteria-title">VALOR TEÓRICO</span>
+                <div style="font-size:0.9em;">¿Llena algún vacío de conocimiento? ¿Propone una nueva interpretación de la ley o la técnica?</div>
+            </div>
+            <div class="criteria-card">
+                <span class="criteria-icon">🛠️</span>
+                <span class="criteria-title">UTILIDAD METODOLÓGICA</span>
+                <div style="font-size:0.9em;">¿Crea un nuevo instrumento, un manual o un protocolo que otros podrán usar?</div>
+            </div>
+            <div class="criteria-card">
+                <span class="criteria-icon">💰</span>
+                <span class="criteria-title">VIABILIDAD</span>
+                <div style="font-size:0.9em;">¿Tenemos los recursos, el tiempo y el acceso a la información? Si es imposible, no es tesis.</div>
+            </div>
+        </div>
+
+        <div class="important-note">
+            <strong>⚠️ NOTA TÁCTICA (EL PRINCIPIO DE SUFICIENCIA):</strong>
+            <br>
+            ¡Ojo! Sampieri aclara que <strong>no es obligatorio cumplir con todos los criterios al mismo tiempo</strong>. A veces basta con que la tesis tenga una gran Relevancia Social (aunque no aporte teoría nueva) o un gran Valor Teórico (aunque no tenga utilidad práctica inmediata).
+            <br><em>Sin embargo, para efectos de nuestra Cátedra, intentaremos cubrir los tres primeros en el ejercicio de redacción para encontrar cuál es el "punto fuerte" de su investigación.</em>
+        </div>
+    </section>
+
+    <!-- 5. PRAXIS -->
+    <section class="content-section">
+        <h3 class="section-title"><span class="section-number">4</span>PRAXIS: DIFERENCIANDO MOTIVOS</h3>
+        <p><em>Instrucción: Distinga entre una motivación personal (inválida) y una justificación técnica (válida).</em></p>
+        
+        <div class="exercise-wrapper">
+            <!-- Caso Derecho -->
+            <div class="exercise-card">
+                <div class="card-header header-law">I. CASO DERECHO</div>
+                <div class="card-body">
+                    <p><strong>Estudiante A dice:</strong> "Investigo el divorcio porque mis papás se separaron y sufrí mucho."</p>
+                    <p><strong>Estudiante B dice:</strong> "Investigo el divorcio porque las estadísticas muestran un aumento del 40% en San Raymundo y la ley actual dilata el proceso injustificadamente."</p>
+                    <button class="btn-reveal" onclick="toggle('resp1')">Analizar</button>
+                    <div id="resp1" class="answer-content">
+                        <strong>Análisis:</strong> El Estudiante A tiene una motivación <em>subjetiva</em> (sentimental), irrelevante para la ciencia (Doxa). El Estudiante B tiene <strong>Relevancia Social y Jurídica</strong> (Episteme). Su tesis es viable y necesaria.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Caso Criminalística -->
+            <div class="exercise-card">
+                <div class="card-header header-crim">II. CASO CRIMINALÍSTICA</div>
+                <div class="card-body">
+                    <p><strong>Estudiante A dice:</strong> "Quiero estudiar balística porque me gustan las armas desde niño."</p>
+                    <p><strong>Estudiante B dice:</strong> "Quiero comparar el reactivo X y Y porque el laboratorio de la PNC usa uno que da falsos positivos en climas húmedos, afectando la justicia."</p>
+                    <button class="btn-reveal" onclick="toggle('resp2')">Analizar</button>
+                    <div id="resp2" class="answer-content">
+                        <strong>Análisis:</strong> El gusto personal (Estudiante A) no justifica una investigación. La resolución de un problema técnico real (Estudiante B) tiene <strong>Utilidad Metodológica y Práctica</strong>.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. LÉXICO -->
+    <section class="content-section" style="background-color: #fdfdfd;">
+        <h3 class="section-title"><span class="section-number">5</span>LÉXICO: EL LENGUAJE DE LA FASE II</h3>
+        
+        <div class="vocab-grid">
+            <div class="vocab-card">
+                <span class="vocab-term">Estado del Arte</span>
+                <div class="etym-section">Status Quo de la ciencia.</div>
+                <div class="epist-section">Es saber qué se ha dicho hasta hoy sobre su tema. No se puede descubrir el agua azucarada. Hay que leer lo último publicado.</div>
+            </div>
+            <div class="vocab-card">
+                <span class="vocab-term">Pertinencia</span>
+                <div class="etym-section">Del latín 'pertinere' (tocar, concernir).</div>
+                <div class="epist-section">Cualidad de ser oportuno. Una tesis sobre "El Derecho Romano en el año 100" tiene poca pertinencia social hoy; una sobre "Cibercrimen" tiene alta pertinencia.</div>
+            </div>
+            <div class="vocab-card">
+                <span class="vocab-term">Factibilidad</span>
+                <div class="etym-section">Posibilidad de hacer.</div>
+                <div class="epist-section">Disponibilidad de recursos. ¿Puede usted pagar las copias? ¿Tiene acceso a los expedientes? Si la respuesta es no, la tesis no es factible.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. TAREA -->
+    <section class="homework-section">
+        <h3 class="section-title"><span class="section-number">6</span>LABOR DOMICILIARIA: REDACCIÓN DE LA JUSTIFICACIÓN</h3>
+        <p><strong>Entrega: Sábado 28 de Marzo.</strong></p>
+        <p>Debe redactar la <strong>Justificación de su Investigación</strong> (Mínimo 1 página, Máximo 2). Debe contener 3 párrafos, intentando cubrir los tres criterios (aunque con uno baste, ejercitaremos los tres):</p>
+        <ol style="margin-left:20px;">
+            <li><strong>El Párrafo Social:</strong> ¿A quién le duele el problema? (Datos, cifras, víctimas).</li>
+            <li><strong>El Párrafo Teórico/Jurídico:</strong> ¿Qué vacío legal o técnico existe? (Citar leyes o autores).</li>
+            <li><strong>El Párrafo Práctico:</strong> ¿Qué aporta su tesis? (Un manual, una reforma, un análisis).</li>
+        </ol>
+        <p style="margin-top:10px; font-style:italic; color:#555;">"Si no logran convencerme en esta página de que su tema vale la pena, no pasaremos a la siguiente fase."</p>
+    </section>
+
+    <!-- 8. BIBLIOGRAFÍA -->
+    <section class="content-section">
+        <h3 class="section-title"><span class="section-number">7</span>BIBLIOGRAFÍA FASE II</h3>
+        <ul class="biblio-list">
+            <li>Hernández Sampieri, R. (2014). <em>Metodología de la investigación</em>. (Cap. 3: Justificación y Viabilidad).</li>
+            <li>Witker Velásquez, J. (2021). <em>Metodología de la investigación jurídica</em>. (Construcción del objeto de estudio).</li>
+            <li>Guzmán, C. A. (2011). <em>Manual de criminalística</em>. (Introducción y justificación forense).</li>
+            <li>Universidad Regional. <em>Guía General de Tesis</em>. (Formato de Justificación).</li>
+        </ul>
+    </section>
+
+    <div style="text-align:center; margin-top:40px; color:#555; font-style:italic;">
+        "Investigar es ver lo que todo el mundo ha visto, y pensar lo que nadie más ha pensado." — Albert Szent-Györgyi.
+    </div>
+
+</div>
+
+<script>
+    function toggle(id) {
+        var x = document.getElementById(id);
+        if (x.style.display === "block") {
+            x.style.display = "none";
+        } else {
+            x.style.display = "block";
+        }
+    }
+</script>
+
+</body>
+</html>
+```

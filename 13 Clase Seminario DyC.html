@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seminario de Tesis - Clase 13</title>
+    <style>
+        /* MISMOS ESTILOS QUE CLASE 8 Y 12 */
+        :root { --azul: #003366; --rojo: #cc0000; --blanco: #ffffff; --gris: #f4f4f4; }
+        body { font-family: 'Segoe UI', Georgia, serif; background-color: var(--gris); margin: 0; padding: 20px; color: #333; line-height: 1.6; }
+        .main-container { max-width: 1000px; margin: 0 auto; background: var(--blanco); box-shadow: 0 4px 10px rgba(0,0,0,0.1); border-top: 10px solid var(--azul); }
+        header { background: linear-gradient(to right, var(--azul), #004080); color: var(--blanco); padding: 30px; text-align: center; border-bottom: 4px solid var(--rojo); }
+        h1 { margin: 0; font-size: 2.2em; text-transform: uppercase; letter-spacing: 2px; }
+        h2 { font-family: 'Georgia', serif; font-style: italic; font-weight: normal; margin-top: 5px; opacity: 0.9; }
+        .meta-data { font-size: 0.9em; margin-top: 15px; color: #e0e0e0; }
+        .content-section { padding: 40px; border-bottom: 1px solid #eee; }
+        .section-title { color: var(--azul); border-left: 5px solid var(--rojo); padding-left: 15px; font-size: 1.6em; margin-bottom: 30px; text-transform: uppercase; font-weight: bold; display: block; }
+        
+        .intro-box { background-color: #fffcfc; border: 2px solid #f2dede; padding: 30px; border-radius: 8px; text-align: center; }
+        .socratic-q { font-size: 1.3em; color: var(--rojo); font-weight: bold; display: block; margin-bottom: 15px; font-family: 'Georgia', serif; font-style: italic; }
+
+        .tree-container { display: flex; flex-direction: column; align-items: center; margin: 20px 0; }
+        .tree-node { padding: 15px; border-radius: 8px; color: white; text-align: center; width: 80%; margin: 5px 0; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .branch-law { background: linear-gradient(135deg, var(--azul), #4a90e2); width: 48%; }
+        .branch-crim { background: linear-gradient(135deg, var(--rojo), #ff5252); width: 48%; }
+        .trunk { background: var(--azul); width: 60%; }
+        .root { background: #5d4037; width: 60%; }
+        .branches-row { display: flex; justify-content: space-between; width: 90%; gap: 15px; }
+
+        .praxis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .praxis-card { border: 1px solid #ddd; background: white; border-radius: 5px; overflow: hidden; }
+        .p-header { padding: 10px; color: white; text-align: center; font-weight: bold; text-transform: uppercase; }
+        .ph-law { background: var(--azul); } .ph-crim { background: var(--rojo); }
+        .p-body { padding: 15px; }
+        .btn-reveal { width: 100%; padding: 10px; background: #f0f0f0; border: none; cursor: pointer; text-align: center; font-weight: bold; color: var(--azul); border-top: 1px solid #ccc; transition: 0.2s; }
+        .btn-reveal:hover { background: #e0e0e0; }
+        .answer { display: none; padding: 15px; background: #f9f9f9; border-top: 1px solid #eee; font-size: 0.9em; color: #333; }
+
+        .homework-box { border: 3px solid var(--azul); background-color: #eef6fc; padding: 25px; border-radius: 10px; position: relative; margin-top: 20px;}
+        .badge { position: absolute; top: -15px; right: 20px; background-color: var(--rojo); color: white; padding: 5px 15px; font-weight: bold; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+<div class="main-container">
+    <header>
+        <h1>Seminario de Tesis</h1>
+        <h2>Cátedra: Magister José Benjamín García Santa Cruz</h2>
+        <div class="meta-data">Universidad Regional | Sede San Raymundo | Fecha: Sábado 30 de Mayo de 2026</div>
+    </header>
+
+    <!-- INTRODUCCIÓN -->
+    <div class="content-section">
+        <div class="intro-box">
+            <span class="section-title" style="border:none; text-align:center;">CLASE 13: EL CONSEJO TÉCNICO (RECOMENDACIONES)</span>
+            <span class="socratic-q">"No basta con señalar la herida (Conclusión), hay que recetar la cura (Recomendación). ¿De qué sirve investigar si no proponemos un cambio?"</span>
+            <p>Ya tenemos las Conclusiones. Sabemos qué está mal. Hoy cerramos el círculo metodológico proponiendo soluciones viables. Las recomendaciones no son cartas a Santa Claus; son acciones dirigidas a autoridades específicas [Fuente 52].</p>
+        </div>
+    </div>
+
+    <!-- ÁRBOL DE IDEAS -->
+    <div class="content-section">
+        <span class="section-title">1. MAPA MENTAL: LA PROPUESTA</span>
+        <div class="tree-container">
+            <div class="branches-row">
+                <div class="tree-node branch-law">DERECHO: Reforma/Reglamento<br><small>Dirigido a: Congreso, CSJ, MP.</small></div>
+                <div class="tree-node branch-crim">CRIMINALÍSTICA: Protocolo/Manual<br><small>Dirigido a: INACIF, Policía, Peritos.</small></div>
+            </div>
+            <div class="tree-node trunk">TRONCO: VIABILIDAD<br>La recomendación debe ser posible de ejecutar (Económica y legalmente).</div>
+            <div class="tree-node root">RAÍZ: LAS CONCLUSIONES (Clase 12)<br>Cada conclusión negativa genera una recomendación positiva.</div>
+        </div>
+    </div>
+
+    <!-- PRAXIS -->
+    <div class="content-section">
+        <span class="section-title">2. PRAXIS: DEL DESEO A LA TÉCNICA</span>
+        <div class="praxis-grid">
+            <div class="praxis-card">
+                <div class="p-header ph-law">CASO JURÍDICO</div>
+                <div class="p-body">
+                    <strong>Conclusión:</strong> El Art. 25 es ambiguo.<br>
+                    <strong>Recomendación del Alumno:</strong> "Que los jueces sean más justos al interpretar."<br>
+                    <strong>Error:</strong> ¿Por qué esto no sirve?
+                </div>
+                <button class="btn-reveal" onclick="toggle('r1')">VER RESPUESTA</button>
+                <div id="r1" class="answer"><strong>ES UN DESEO MORAL.</strong> No se puede legislar la bondad. Lo correcto es: "Al Congreso de la República: Reformar el Art. 25 agregando un párrafo que defina taxativamente..."</div>
+            </div>
+            <div class="praxis-card">
+                <div class="p-header ph-crim">CASO FORENSE</div>
+                <div class="p-body">
+                    <strong>Conclusión:</strong> Se contaminan las escenas por mal manejo.<br>
+                    <strong>Recomendación del Alumno:</strong> "Que la policía tenga más cuidado."<br>
+                    <strong>Error:</strong> ¿Es esto técnico?
+                </div>
+                <button class="btn-reveal" onclick="toggle('r2')">VER RESPUESTA</button>
+                <div id="r2" class="answer"><strong>VAGUEDAD.</strong> Lo correcto es: "A la Dirección de la PNC: Implementar un Manual de Primer Respondiente que obligue al uso de doble cordón de seguridad..."</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAREA -->
+    <div class="content-section">
+        <div class="homework-box">
+            <div class="badge">TAREA FINAL</div>
+            <h3 style="color:var(--azul); margin-top:0;">LA PROPUESTA FINAL</h3>
+            <p>Para la última clase (Semana 14) deben traer:</p>
+            <ul>
+                <li><strong>3 Recomendaciones:</strong> Vinculadas a sus conclusiones.</li>
+                <li><strong>Informe Completo:</strong> Unir todos los capítulos en un solo archivo PDF para la revisión final antes del examen.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <strong>BIBLIOGRAFÍA:</strong> Guía General de Tesis U.R. (Apartado de Recomendaciones) [Fuente 52, 56].
+    </div>
+</div>
+<script>function toggle(id){var x=document.getElementById(id);x.style.display=x.style.display==='block'?'none':'block';}</script>
+</body>
+</html>

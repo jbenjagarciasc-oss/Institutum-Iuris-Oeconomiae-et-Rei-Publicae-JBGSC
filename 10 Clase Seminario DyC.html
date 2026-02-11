@@ -1,0 +1,392 @@
+
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seminario de Tesis - Clase 10: Análisis de Datos</title>
+    <style>
+        :root {
+            --azul-inst: #003366;
+            --azul-claro: #0055a5;
+            --rojo-inst: #cc0000;
+            --blanco: #ffffff;
+            --gris-fondo: #f0f2f5;
+            --texto: #2c3e50;
+            --borde-suave: 1px solid #e1e4e8;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Georgia', serif;
+            background-color: var(--gris-fondo);
+            color: var(--texto);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* CONTENEDOR PRINCIPAL */
+        .main-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            background: var(--blanco);
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            border-top: 8px solid var(--azul-inst);
+            overflow: hidden;
+        }
+
+        /* ENCABEZADO */
+        header {
+            background: linear-gradient(135deg, var(--azul-inst) 0%, var(--azul-claro) 100%);
+            color: var(--blanco);
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        header::after {
+            content: "";
+            display: block;
+            width: 60%;
+            height: 4px;
+            background-color: var(--rojo-inst);
+            margin: 20px auto 0;
+        }
+
+        h1 { margin: 0; font-size: 2.5em; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; }
+        h2 { font-family: 'Georgia', serif; font-style: italic; font-weight: normal; opacity: 0.95; margin-top: 10px; font-size: 1.4em; }
+
+        .meta-info { margin-top: 15px; font-size: 0.95em; opacity: 0.9; }
+
+        /* SECCIONES */
+        .content-section { padding: 40px; border-bottom: var(--borde-suave); }
+        
+        .section-title {
+            color: var(--azul-inst);
+            border-left: 5px solid var(--rojo-inst);
+            padding-left: 15px;
+            font-size: 1.6em;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-number {
+            background-color: var(--azul-inst);
+            color: white;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-right: 15px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        /* 1. INTRODUCCIÓN */
+        .intro-container {
+            background-color: #fffcfc;
+            border: 2px solid #f2dede;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .class-title {
+            color: var(--azul-inst);
+            font-size: 2em;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: block;
+            letter-spacing: 1px;
+            border-bottom: 2px dashed var(--rojo-inst);
+            padding-bottom: 10px;
+        }
+        .socratic-question {
+            font-size: 1.3em;
+            color: var(--rojo-inst);
+            font-weight: bold;
+            display: block;
+            margin-bottom: 15px;
+            font-family: 'Georgia', serif;
+            font-style: italic;
+        }
+        
+        /* 2. ARBOL DE IDEAS */
+        .tree-diagram-container { display: flex; flex-direction: column; align-items: center; margin: 20px 0; }
+        .tree-node {
+            padding: 15px; border-radius: 8px; color: white; text-align: center; width: 80%; margin: 5px 0;
+            position: relative; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s;
+        }
+        .branches-row { display: flex; justify-content: space-between; width: 90%; gap: 15px; }
+        .branch-law { background: linear-gradient(135deg, var(--azul-inst), var(--azul-claro)); width: 48%; }
+        .branch-crim { background: linear-gradient(135deg, var(--rojo-inst), #e63946); width: 48%; }
+        .trunk { background: linear-gradient(135deg, #2c3e50, #4a6fa5); width: 60%; margin-top: 10px; }
+        .root { background: linear-gradient(135deg, #5d4037, #795548); border-top: 5px solid #8d6e63; width: 60%; }
+
+        /* 3. TABLA COMPARATIVA */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+        }
+        .comparison-table th {
+            background-color: var(--azul-inst);
+            color: white;
+            padding: 15px;
+            text-transform: uppercase;
+        }
+        .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 15px;
+            vertical-align: top;
+        }
+        .concept-cell { font-weight: bold; background-color: #f9f9f9; width: 20%; color: var(--azul-inst); }
+
+        /* 4. PRAXIS */
+        .exercise-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .exercise-card { background: #fff; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; }
+        .card-header { padding: 15px; color: white; font-weight: bold; text-transform: uppercase; }
+        .header-law { background-color: var(--azul-inst); }
+        .header-crim { background-color: var(--rojo-inst); }
+        .card-body { padding: 20px; flex-grow: 1; }
+        .btn-reveal {
+            width: 100%; padding: 12px; background: #f1f1f1; border: none; cursor: pointer; font-weight: bold;
+            color: var(--azul-inst); transition: 0.3s; margin-top: 10px; border-top: 1px solid #ddd;
+        }
+        .btn-reveal:hover { background: #e0e0e0; color: var(--rojo-inst); }
+        .answer-content { display: none; padding: 15px; background: #f8f9fa; border-top: 1px solid #ddd; border-left: 4px solid var(--azul-inst); }
+
+        /* 5. TAREA IMPORTANTE */
+        .homework-section { 
+            border: 3px solid var(--azul-inst); 
+            background-color: #eef6fc; 
+            padding: 25px; 
+            border-radius: 10px;
+            position: relative;
+        }
+        .homework-badge {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background-color: var(--rojo-inst);
+            color: white;
+            padding: 5px 15px;
+            font-weight: bold;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        /* 6. BIBLIOGRAFÍA */
+        .biblio-list { list-style: decimal; padding-left: 20px; margin: 0; font-size: 0.9em; }
+        .biblio-list li { margin-bottom: 5px; }
+
+        @media (max-width: 768px) {
+            .exercise-wrapper, .branches-row, .comparison-table th, .comparison-table td { display: block; width: 100%; box-sizing: border-box; }
+            .branch-law, .branch-crim, .trunk, .root { width: 90%; margin-bottom: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="main-container">
+
+    <!-- ENCABEZADO -->
+    <header>
+        <span style="background-color: var(--rojo-inst); color: white; padding: 5px 15px; border-radius: 4px; font-weight: bold; text-transform: uppercase; font-size: 0.9em;">NOVENO SEMESTRE</span>
+        <h1>Seminario de Tesis</h1>
+        <h2>Cátedra: Magister José Benjamín García Santa Cruz</h2>
+        
+        <div style="margin-top: 15px; font-weight:bold;">
+            • Licenciatura en Ciencias Jurídicas y Sociales<br>
+            • Licenciatura en Investigación Criminal y Forense
+        </div>
+
+        <div class="meta-info">
+            Universidad Regional | Sede San Raymundo | <strong>Fecha: Sábado 9 de Mayo de 2026</strong>
+        </div>
+    </header>
+
+    <!-- 1. RETROALIMENTACIÓN DE MUESTRA -->
+    <section class="content-section" style="background-color: #eef6ff; border-left: 5px solid var(--azul-inst); padding: 15px;">
+        <strong>1.1 RETROALIMENTACIÓN: VIABILIDAD (Clase 9)</strong><br>
+        Recordemos que un plan sin presupuesto ni cronograma es solo un deseo. Si calcularon mal sus tiempos en la Clase 9, la fase de hoy (Análisis) será un desastre. La ciencia requiere recursos y orden.
+    </section>
+
+    <!-- 2. INTRODUCCIÓN SOCRÁTICA -->
+    <section class="content-section">
+        <div class="intro-container">
+            <span class="class-title">CLASE 10: PROCESAMIENTO Y ANÁLISIS DE DATOS</span>
+            <span class="socratic-question">"Si una encuesta dice que el 90% cree que la tierra es plana, ¿la tierra se aplana? No. El dato no es la verdad, es la representación de una percepción. ¿Saben distinguir el hecho del dato?"</span>
+            <p>
+                Damas y Caballeros, hemos regresado del campo de batalla con las alforjas llenas de encuestas y fichas. Tienen en sus manos "papeles llenos", eso es <strong>Dato Bruto</strong>.
+                Un montón de ladrillos no es una casa; un montón de encuestas no es una Tesis. Hoy aprenderemos a procesar esa materia prima mediante la <strong>Codificación</strong> y la <strong>Tabulación</strong> para convertirla en <strong>Información de Inteligencia</strong> (Resultados) [Sampieri, Cap. 10].
+            </p>
+        </div>
+    </section>
+
+    <!-- 3. MAPA MENTAL -->
+    <section class="content-section">
+        <h3 class="section-title"><span class="section-number">1</span>MAPA MENTAL: EL CICLO DEL DATO</h3>
+        
+        <div class="tree-diagram-container">
+            <!-- Ramas -->
+            <div class="branches-row">
+                <div class="tree-node branch-law">
+                    <strong>JURÍDICA: INTERPRETACIÓN</strong><br>
+                    <span style="font-size:0.9em">Estadística Descriptiva (Opinión/Tendencia).<br>Hermenéutica (Análisis de Contenido).</span>
+                </div>
+                <div class="tree-node branch-crim">
+                    <strong>FORENSE: COTEJO TÉCNICO</strong><br>
+                    <span style="font-size:0.9em">Comparación de patrones (Huellas/Balas).<br>Verificación de hipótesis causal.</span>
+                </div>
+            </div>
+            
+            <!-- Tronco -->
+            <div class="tree-node trunk">
+                <strong>EL PROCESAMIENTO (LA COCINA)</strong><br>
+                1. Codificación (Asignar valores numéricos).<br>
+                2. Tabulación (Matriz de Datos).<br>
+                3. Análisis (Estadístico o Lógico).
+            </div>
+
+            <!-- Raíz -->
+            <div class="tree-node root">
+                <strong>EPISTEMOLOGÍA (EL FUNDAMENTO)</strong><br>
+                Distinción entre Dato (símbolo) y Hecho (realidad).<br>
+                Del griego <em>Ana-lysis</em> (Desatar/Descomponer).
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. CONTENIDO TÉCNICO -->
+    <section class="content-section" style="background-color: #fdfdfd;">
+        <h3 class="section-title"><span class="section-number">2</span>LA TRANSFORMACIÓN DEL DATO</h3>
+        <p>Según Hernández Sampieri, los datos deben prepararse para que la computadora (o el cerebro) los entienda. Este proceso se llama <strong>Codificación</strong>.</p>
+        
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Concepto</th>
+                    <th>Definición</th>
+                    <th>Ejemplo Jurídico</th>
+                    <th>Ejemplo Forense</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="concept-cell">CODIFICACIÓN</td>
+                    <td>Asignar un valor numérico o símbolo a una categoría de respuesta.</td>
+                    <td>Variable: ¿Está de acuerdo con la pena de muerte?<br>Sí = 1, No = 0.</td>
+                    <td>Variable: Tipo de Huella.<br>Arco = A, Presilla = P, Verticilo = V.</td>
+                </tr>
+                <tr>
+                    <td class="concept-cell">MATRIZ DE DATOS</td>
+                    <td>Tabla donde las filas son los sujetos (casos) y las columnas son las variables (ítems).</td>
+                    <td>Sábana de vaciado de 50 encuestas a jueces.</td>
+                    <td>Tabla comparativa de 10 casquillos percutidos (percusión central/anular).</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- 5. PRAXIS -->
+    <section class="content-section">
+        <h3 class="section-title"><span class="section-number">3</span>PRAXIS: INTERPRETACIÓN DE RESULTADOS</h3>
+        <p><em>Instrucción: El dato por sí solo es mudo. Usted debe hacerlo hablar (Interpretar).</em></p>
+        
+        <div class="exercise-wrapper">
+            <!-- Caso Derecho -->
+            <div class="exercise-card">
+                <div class="card-header header-law">I. CASO DERECHO</div>
+                <div class="card-body">
+                    <p><strong>Resultado:</strong> En una encuesta a 100 ciudadanos, el 85% respondió que "desconfía totalmente" del sistema de justicia.</p>
+                    <p><strong>Interpretación Errónea:</strong> "El sistema de justicia no funciona."</p>
+                    <button class="btn-reveal" onclick="toggle('resp1')">Revelar Interpretación Correcta</button>
+                    <div id="resp1" class="answer-content">
+                        <strong>Análisis Correcto:</strong> El dato mide <strong>percepción</strong> (subjetiva), no eficacia (objetiva). Lo correcto es: "Existe una crisis de legitimidad institucional, donde la percepción de desconfianza (85%) podría incentivar la justicia por mano propia, independientemente de la calidad real de las sentencias".
+                    </div>
+                </div>
+            </div>
+
+            <!-- Caso Criminalística -->
+            <div class="exercise-card">
+                <div class="card-header header-crim">II. CASO FORENSE</div>
+                <div class="card-body">
+                    <p><strong>Resultado:</strong> Al comparar el proyectil dubitado con el testigo, coinciden 4 estrías, pero 2 no son claras.</p>
+                    <p><strong>Interpretación Errónea:</strong> "Es la misma arma (Identidad positiva)."</p>
+                    <button class="btn-reveal" onclick="toggle('resp2')">Revelar Interpretación Correcta</button>
+                    <div id="resp2" class="answer-content">
+                        <strong>Análisis Correcto:</strong> Insuficiencia de características. Según Guzmán, la identidad balística requiere coincidencia en características de clase e individuales suficientes. 4 estrías pueden ser coincidencia de clase. El dictamen debe ser: "No concluyente" o "Inidóneo para cotejo" por falta de elementos suficientes.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. LÉXICO: EL LENGUAJE DE LA PRECISIÓN -->
+    <section class="content-section">
+        <h3 class="section-title"><span class="section-number">4</span>LÉXICO TÉCNICO</h3>
+        <ul style="list-style: none; padding-left: 20px;">
+            <li style="margin-bottom: 10px; border-left: 4px solid var(--azul-inst); padding-left: 10px;">
+                <strong style="color:var(--azul-inst);">Tabulación:</strong> (Del latín <em>tabula</em>). Acción de ordenar los datos en tablas o cuadros para facilitar su lectura estadística.
+            </li>
+            <li style="margin-bottom: 10px; border-left: 4px solid var(--azul-inst); padding-left: 10px;">
+                <strong style="color:var(--azul-inst);">Media (Promedio):</strong> Medida de tendencia central. El equilibrio de los datos.
+            </li>
+            <li style="margin-bottom: 10px; border-left: 4px solid var(--azul-inst); padding-left: 10px;">
+                <strong style="color:var(--azul-inst);">Moda:</strong> El valor que más se repite. En Derecho, suele ser la opinión mayoritaria.
+            </li>
+        </ul>
+    </section>
+
+    <!-- 7. TAREA IMPORTANTE -->
+    <section class="homework-section">
+        <div class="homework-badge">OBLIGATORIO</div>
+        <h3 style="color:var(--azul-inst); margin-top:0;">LA MATRIZ DE DATOS</h3>
+        <p>Para la próxima clase, deben traer <strong>PROCESADO</strong> el piloto de su instrumento:</p>
+        <ul>
+            <li><strong>1. Matriz de Datos:</strong> Una tabla (Excel o a mano) donde hayan vaciado las respuestas de las 10 encuestas/fichas que aplicaron.</li>
+            <li><strong>2. Gráfica Preliminar:</strong> Una gráfica de pastel o barras de la pregunta más importante de su tesis.</li>
+            <li><strong>3. Interpretación:</strong> Un párrafo explicando qué significa ese resultado.</li>
+        </ul>
+        <p><em>"El dato crudo no sirve; el dato cocinado (analizado) alimenta la ciencia."</em></p>
+    </section>
+
+    <!-- 8. BIBLIOGRAFÍA -->
+    <section class="content-section">
+        <h3 class="section-title"><span class="section-number">5</span>BIBLIOGRAFÍA DE LA CLASE</h3>
+        <ul class="biblio-list">
+            <li>Hernández Sampieri, R. (2014). <em>Metodología de la investigación</em>. (Cap. 10: Análisis de datos cuantitativos).</li>
+            <li>Guzmán, C. A. (2011). <em>Manual de criminalística</em>. (Identificación y cotejo).</li>
+            <li>Witker, J. (2021). <em>Metodología de la investigación jurídica</em>. (Análisis de información).</li>
+        </ul>
+    </section>
+
+    <div style="text-align:center; margin-top:40px; color:#555; font-style:italic;">
+        "Tortura a los datos hasta que confiesen, pero nunca los inventes."
+    </div>
+
+</div>
+
+<script>
+    function toggle(id) {
+        var x = document.getElementById(id);
+        if (x.style.display === "block") {
+            x.style.display = "none";
+        } else {
+            x.style.display = "block";
+        }
+    }
+</script>
+
+</body>
+</html>
+```

@@ -1,0 +1,409 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seminario de Tesis - Clase 8: Técnicas e Instrumentos</title>
+    <style>
+        :root {
+            --azul-inst: #003366;
+            --azul-claro: #0055a5;
+            --rojo-inst: #cc0000;
+            --blanco: #ffffff;
+            --gris-fondo: #f0f2f5;
+            --texto: #2c3e50;
+            --borde-suave: 1px solid #e1e4e8;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Georgia', serif;
+            background-color: var(--gris-fondo);
+            color: var(--texto);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* CONTENEDOR PRINCIPAL */
+        .main-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            background: var(--blanco);
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            border-top: 8px solid var(--azul-inst);
+            overflow: hidden;
+        }
+
+        /* ENCABEZADO */
+        header {
+            background: linear-gradient(135deg, var(--azul-inst) 0%, var(--azul-claro) 100%);
+            color: var(--blanco);
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        header::after {
+            content: "";
+            display: block;
+            width: 60%;
+            height: 4px;
+            background-color: var(--rojo-inst);
+            margin: 20px auto 0;
+        }
+
+        h1 { margin: 0; font-size: 2.5em; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; }
+        h2 { font-family: 'Georgia', serif; font-style: italic; font-weight: normal; opacity: 0.95; margin-top: 10px; font-size: 1.4em; }
+
+        .meta-info { margin-top: 15px; font-size: 0.95em; opacity: 0.9; }
+
+        /* SECCIONES */
+        .content-section { padding: 40px; border-bottom: var(--borde-suave); }
+        
+        .section-title {
+            color: var(--azul-inst);
+            border-left: 5px solid var(--rojo-inst);
+            padding-left: 15px;
+            font-size: 1.6em;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-number {
+            background-color: var(--azul-inst);
+            color: white;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-right: 15px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        /* 1. RETROALIMENTACIÓN */
+        .feedback-box {
+            background-color: #fff9c4; /* Amarillo suave */
+            border-left: 5px solid #fbc02d;
+            padding: 20px;
+            border-radius: 4px;
+            margin-bottom: 25px;
+        }
+
+        /* 2. INTRODUCCIÓN */
+        .intro-container {
+            background-color: #fffcfc;
+            border: 2px solid #f2dede;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .class-title {
+            color: var(--azul-inst);
+            font-size: 2em;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: block;
+            letter-spacing: 1px;
+            border-bottom: 2px dashed var(--rojo-inst);
+            padding-bottom: 10px;
+        }
+        .socratic-question {
+            font-size: 1.3em;
+            color: var(--rojo-inst);
+            font-weight: bold;
+            display: block;
+            margin-bottom: 15px;
+            font-family: 'Georgia', serif;
+            font-style: italic;
+        }
+        
+        /* 3. ARBOL DE IDEAS */
+        .tree-diagram-container { display: flex; flex-direction: column; align-items: center; margin: 20px 0; }
+        .tree-node {
+            padding: 15px; border-radius: 8px; color: white; text-align: center; width: 80%; margin: 5px 0;
+            position: relative; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s;
+        }
+        .branches-row { display: flex; justify-content: space-between; width: 90%; gap: 15px; }
+        .branch-law { background: linear-gradient(135deg, var(--azul-inst), var(--azul-claro)); width: 48%; }
+        .branch-crim { background: linear-gradient(135deg, var(--rojo-inst), #e63946); width: 48%; }
+        .trunk { background: linear-gradient(135deg, #2c3e50, #4a6fa5); width: 60%; margin-top: 10px; }
+        .root { background: linear-gradient(135deg, #5d4037, #795548); border-top: 5px solid #8d6e63; width: 60%; }
+
+        /* 4. TABLA COMPARATIVA */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+        }
+        .comparison-table th {
+            background-color: var(--azul-inst);
+            color: white;
+            padding: 15px;
+            text-transform: uppercase;
+        }
+        .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 15px;
+            vertical-align: top;
+        }
+        .concept-cell { font-weight: bold; background-color: #f9f9f9; width: 20%; }
+
+        /* 5. PRAXIS */
+        .exercise-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .exercise-card { background: #fff; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; }
+        .card-header { padding: 15px; color: white; font-weight: bold; text-transform: uppercase; }
+        .header-law { background-color: var(--azul-inst); }
+        .header-crim { background-color: var(--rojo-inst); }
+        .card-body { padding: 20px; flex-grow: 1; }
+        .btn-reveal {
+            width: 100%; padding: 12px; background: #f1f1f1; border: none; cursor: pointer; font-weight: bold;
+            color: var(--azul-inst); transition: 0.3s; margin-top: 10px; border-top: 1px solid #ddd;
+        }
+        .btn-reveal:hover { background: #e0e0e0; color: var(--rojo-inst); }
+        .answer-content { display: none; padding: 15px; background: #f8f9fa; border-top: 1px solid #ddd; border-left: 4px solid var(--azul-inst); }
+
+        /* 6. LÉXICO */
+        .vocab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; }
+        .vocab-card { background: #fff; border: 1px solid #ddd; padding: 15px; border-top: 3px solid var(--azul-claro); }
+        .vocab-term { color: var(--azul-inst); font-weight: bold; font-size:1.1em; display: block; margin-bottom: 5px; border-bottom: 1px dashed #ccc;}
+        .etym-section { font-style: italic; color: var(--rojo-inst); font-size: 0.9em; display: block; }
+        .epist-section { font-size: 0.95em; color: #444; display: block; }
+
+        /* 7. TAREA */
+        .homework-section { border: 2px dashed var(--azul-inst); background-color: #fcfcfc; padding: 25px; border-radius: 10px; }
+
+        /* 8. BIBLIOGRAFÍA */
+        .biblio-list { list-style: decimal; padding-left: 20px; margin: 0; font-size: 0.9em; }
+        .biblio-list li { margin-bottom: 5px; }
+
+        @media (max-width: 768px) {
+            .exercise-wrapper, .branches-row, .comparison-table th, .comparison-table td { display: block; width: 100%; box-sizing: border-box; }
+            .branch-law, .branch-crim, .trunk, .root { width: 90%; margin-bottom: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="main-container">
+
+    <!-- ENCABEZADO -->
+    <header>
+        <span style="background-color: var(--rojo-inst); color: white; padding: 5px 15px; border-radius: 4px; font-weight: bold; text-transform: uppercase; font-size: 0.9em;">NOVENO SEMESTRE</span>
+        <h1>Seminario de Tesis</h1>
+        <h2>Cátedra: Magister José Benjamín García Santa Cruz</h2>
+        
+        <div style="margin-top: 15px; font-weight:bold;">
+            • Licenciatura en Ciencias Jurídicas y Sociales<br>
+            • Licenciatura en Investigación Criminal y Forense
+        </div>
+
+        <div class="meta-info">
+            Universidad Regional | Sede San Raymundo | <strong>Fecha: Sábado 18 de Abril de 2026</strong>
+        </div>
+    </header>
+
+    <!-- 1. RETROALIMENTACIÓN DE LA CLASE ANTERIOR (CLASE 7) -->
+    <section class="content-section">
+        <h3 class="section-title"><span class="section-number">1</span>RETROALIMENTACIÓN: CONCEPTOS DE MUESTRA</h3>
+        
+        <div class="feedback-box">
+            <h4 style="margin-top:0; color:#bc5100;">ACLARACIÓN SOBRE POBLACIÓN Y MUESTRA</h4>
+            <p>Estimados estudiantes, damas y caballeros: Revisando sus fichas de la semana anterior, es necesario afinar un concepto clave para evitar confusiones futuras:</p>
+            <ul>
+                <li><strong>La confusión común:</strong> A veces se tiende a pensar que la "Muestra" se refiere exclusivamente a personas.</li>
+                <li><strong>La corrección técnica:</strong> Si usted definió su muestra solo como "personas", recuerde que en Derecho su unidad de análisis pueden ser <em>expedientes judiciales</em> o <em>sentencias</em>. En Criminalística, pueden ser <em>vainas servidas</em> u <em>objetos físicos</em>. La muestra es "qué" se va a medir, no necesariamente "quién" [Hernández Sampieri, 403, 406].</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- 2. INTRODUCCIÓN SOCRÁTICA -->
+    <section class="content-section">
+        <div class="intro-container">
+            <span class="class-title">CLASE 8: EL ARMAMENTO (TÉCNICAS E INSTRUMENTOS)</span>
+            <span class="socratic-question">"¿Puede un médico diagnosticar mirando al paciente desde la puerta, o necesita el estetoscopio para escuchar el corazón?"</span>
+            <p>
+                Bienvenidos todos. Ya han definido su estrategia (Diseño) y su blanco (Muestra). Ahora, ¿con qué armas van a extraer la verdad? 
+                No basta con decir "voy a observar"; necesito saber <strong>dónde</strong> van a anotar lo que observan. Si van a interrogar a la realidad, necesitan un <strong>Instrumento de Medición</strong> válido y confiable [Hernández Sampieri, 200, 341].
+                Hoy aprenderemos la diferencia vital entre la <strong>Técnica</strong> (el método) y el <strong>Instrumento</strong> (la herramienta física).
+            </p>
+        </div>
+    </section>
+
+    <!-- 3. MAPA MENTAL -->
+    <section class="content-section">
+        <h3 class="section-title"><span class="section-number">2</span>MAPA MENTAL: RECOLECCIÓN DE DATOS</h3>
+        
+        <div class="tree-diagram-container">
+            <!-- Ramas -->
+            <div class="branches-row">
+                <div class="tree-node branch-law">
+                    <strong>JURÍDICA: DOCUMENTAL</strong><br>
+                    <span style="font-size:0.9em">Técnica: Análisis de Contenido.<br>Instrumento: Ficha de Cotejo o Matriz de Análisis.</span>
+                </div>
+                <div class="tree-node branch-crim">
+                    <strong>FORENSE: CAMPO Y LABORATORIO</strong><br>
+                    <span style="font-size:0.9em">Técnica: Observación / Medición.<br>Instrumento: Microscopio, Cámara, Reactivos.</span>
+                </div>
+            </div>
+            
+            <!-- Tronco -->
+            <div class="tree-node trunk">
+                <strong>LOS INSTRUMENTOS (EL SOPORTE)</strong><br>
+                El medio físico donde se registran los datos.<br>
+                Requisitos: Confiabilidad y Validez.
+            </div>
+
+            <!-- Raíz -->
+            <div class="tree-node root">
+                <strong>LAS VARIABLES (CLASE 6)</strong><br>
+                El instrumento solo sirve si mide las variables de la Hipótesis.
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. CONTENIDO TÉCNICO: TÉCNICA VS INSTRUMENTO -->
+    <section class="content-section" style="background-color: #fdfdfd;">
+        <h3 class="section-title"><span class="section-number">3</span>DIFERENCIA TÁCTICA: TÉCNICA VS. INSTRUMENTO</h3>
+        <p>Según Sampieri, recolectar datos implica seleccionar un instrumento de medición. No confundan la acción con la herramienta.</p>
+        
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Concepto</th>
+                    <th>Definición</th>
+                    <th>Ejemplos Jurídicos</th>
+                    <th>Ejemplos Forenses</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="concept-cell">TÉCNICA (El Verbo)</td>
+                    <td>Es el procedimiento o método para obtener la información (Observar, Preguntar, Cotejar).</td>
+                    <td>- Encuesta<br>- Entrevista<br>- Análisis Jurisprudencial</td>
+                    <td>- Inspección Ocular<br>- Revenido Químico<br>- Lofoscopía</td>
+                </tr>
+                <tr>
+                    <td class="concept-cell">INSTRUMENTO (El Sustantivo)</td>
+                    <td>Es el soporte físico o digital donde se <strong>registran</strong> los datos. Sin esto, la técnica se pierde.</td>
+                    <td>- Cuestionario (Papel)<br>- Guía de Entrevista<br>- Matriz de Análisis de Sentencias</td>
+                    <td>- Ficha de Huellas<br>- Cámara Fotográfica [Guzmán, 524]<br>- Microscopio Comparador</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- 5. PRAXIS -->
+    <section class="content-section">
+        <h3 class="section-title"><span class="section-number">4</span>PRAXIS: SELECCIÓN DEL ARMA ADECUADA</h3>
+        <p><em>Instrucción: Si usted selecciona el instrumento incorrecto, la investigación falla. Analicemos estos casos hipotéticos.</em></p>
+        
+        <div class="exercise-wrapper">
+            <!-- Caso Derecho -->
+            <div class="exercise-card">
+                <div class="card-header header-law">I. CASO JURÍDICO</div>
+                <div class="card-body">
+                    <p><strong>Hipótesis:</strong> "Las sentencias de femicidio no aplican correctamente la reparación digna."</p>
+                    <p><strong>Si usted propone:</strong> "Hacer una encuesta a los jueces preguntándoles si aplican la ley."</p>
+                    <button class="btn-reveal" onclick="toggle('resp1')">Revelar Análisis</button>
+                    <div id="resp1" class="answer-content">
+                        <strong>Incorrecto.</strong> La encuesta mide <em>opiniones</em> subjetivas (el juez dirá que sí).<br>
+                        <strong>Lo Correcto:</strong> Usar una <em>Lista de Cotejo o Matriz de Análisis</em> aplicada directamente a los expedientes de sentencia. Verificamos el hecho objetivo (el papel), no la opinión [Witker, 100].
+                    </div>
+                </div>
+            </div>
+
+            <!-- Caso Criminalística -->
+            <div class="exercise-card">
+                <div class="card-header header-crim">II. CASO FORENSE</div>
+                <div class="card-body">
+                    <p><strong>Hipótesis:</strong> "El casquillo encontrado fue percutido por el arma sospechosa."</p>
+                    <p><strong>Si usted propone:</strong> "Mirar el casquillo a simple vista para ver si se parecen."</p>
+                    <button class="btn-reveal" onclick="toggle('resp2')">Revelar Análisis</button>
+                    <div id="resp2" class="answer-content">
+                        <strong>Incorrecto.</strong> "Mirar" no es un instrumento científico válido por sí solo.<br>
+                        <strong>Lo Correcto:</strong> Utilizar un <em>Microscopio de Comparación Balística</em> para cotejar las micro-estrías y registrarlo en un dictamen fotográfico [Guzmán, 552].
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. LÉXICO -->
+    <section class="content-section" style="background-color: #fdfdfd;">
+        <h3 class="section-title"><span class="section-number">5</span>LÉXICO: EL LENGUAJE DE LA PRECISIÓN</h3>
+        
+        <div class="vocab-grid">
+            <div class="vocab-card">
+                <span class="vocab-term">Confiabilidad</span>
+                <div class="etym-section">Consistencia.</div>
+                <div class="epist-section">Grado en que un instrumento produce resultados consistentes. Si mido la misma mesa tres veces y me da tres medidas distintas, mi cinta métrica no es confiable [Hernández Sampieri, 409].</div>
+            </div>
+            <div class="vocab-card">
+                <span class="vocab-term">Validez</span>
+                <div class="etym-section">Exactitud.</div>
+                <div class="epist-section">Grado en que un instrumento mide realmente la variable que pretende medir. Un termómetro mide temperatura, no inteligencia. Una encuesta de opinión no mide la constitucionalidad de una norma [Hernández Sampieri, 410].</div>
+            </div>
+            <div class="vocab-card">
+                <span class="vocab-term">Codificación</span>
+                <div class="etym-section">Asignar valores.</div>
+                <div class="epist-section">Proceso de asignar a los datos un valor numérico o simbólico para su análisis. Ej: Sí = 1, No = 0. Sin codificación, no hay estadística [Hernández Sampieri, 428].</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. TAREA -->
+    <section class="homework-section">
+        <h3 class="section-title"><span class="section-number">6</span>LABOR DOMICILIARIA: DISEÑO DEL INSTRUMENTO</h3>
+        <p><strong>Entrega: Sábado 25 de Abril (Clase 9 - Cierre del Plan).</strong></p>
+        <p>No basta con decirlo, hay que construirlo. Traigan el <strong>Borrador de su Instrumento Principal</strong> (mínimo 10 ítems/preguntas):</p>
+        
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px; margin-top:15px;">
+            <div style="border-left: 3px solid var(--azul-inst); padding-left:10px;">
+                <strong>Derecho (Documental):</strong>
+                <br>Una <em>Ficha de Cotejo</em> o <em>Guía de Entrevista</em> a expertos. (Ej. Pregunta 1: ¿Considera que el art. X viola la constitución? ¿Por qué?).
+            </div>
+            <div style="border-left: 3px solid var(--rojo-inst); padding-left:10px;">
+                <strong>Criminalística (Campo):</strong>
+                <br>Un <em>Protocolo de Observación</em> o <em>Lista de Chequeo</em> para la escena del crimen. (Ej. Ítem 1: ¿Se acordonó el área correctamente? Sí/No).
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. BIBLIOGRAFÍA -->
+    <section class="content-section">
+        <h3 class="section-title"><span class="section-number">7</span>BIBLIOGRAFÍA DE LA CLASE</h3>
+        <ul class="biblio-list">
+            <li>Hernández Sampieri, R. (2014). <em>Metodología de la investigación</em>. (Cap. 9: Recolección de datos cuantitativos).</li>
+            <li>Guzmán, C. A. (2011). <em>Manual de criminalística</em>. (La prueba documental y fotografía forense).</li>
+            <li>Witker Velásquez, J. (2021). <em>Metodología de la investigación jurídica</em>. (Técnicas de investigación documental).</li>
+        </ul>
+    </section>
+
+    <div style="text-align:center; margin-top:40px; color:#555; font-style:italic;">
+        "Lo que no se registra, no existe." — Principio Forense.
+    </div>
+
+</div>
+
+<script>
+    function toggle(id) {
+        var x = document.getElementById(id);
+        if (x.style.display === "block") {
+            x.style.display = "none";
+        } else {
+            x.style.display = "block";
+        }
+    }
+</script>
+
+</body>
+</html>
