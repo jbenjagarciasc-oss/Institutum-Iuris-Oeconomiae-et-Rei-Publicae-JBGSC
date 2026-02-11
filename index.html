@@ -1,67 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Institutum Iuris Oeconomiae et Rei Publicae</title>
+    <title>Institutum Iuris - J.B. García Santa Cruz</title>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            background-color: #f4f4f4;
-        }
-        header {
-            width: 100%;
-            background: linear-gradient(to right, #003366, #cc0000);
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-        h1 {
-            margin: 0;
-            font-size: 2.5em;
-        }
-        p {
-            font-size: 1.2em;
-        }
-        .button {
-            background-color: #cc0000;
-            color: white;
-            padding: 10px 20px;
-            margin: 10px;
-            border: none;
-            border-radius: 5px;
-            text-decoration: none;
-            font-size: 1em;
-            transition: background-color 0.3s;
-        }
-        .button:hover {
-            background-color: #a30000;
-        }
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 1.8em;
-            }
-            p {
-                font-size: 1em;
-            }
-        }
+        body { font-family: 'Times New Roman', serif; background-color: #f0f2f5; color: #1a1a1a; padding: 40px; }
+        .folder { max-width: 900px; margin: auto; background: #fff; padding: 40px; border-top: 10px solid #2c3e50; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        h1 { text-align: center; color: #2c3e50; text-transform: uppercase; letter-spacing: 2px; }
+        .subtitle { text-align: center; font-style: italic; color: #7f8c8d; margin-bottom: 30px; }
+        .grid-container { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .section { background: #fafafa; border: 1px solid #ddd; padding: 20px; border-radius: 4px; }
+        h3 { border-bottom: 2px solid #e67e22; color: #e67e22; padding-bottom: 5px; }
+        ul { list-style: none; padding: 0; }
+        li { margin: 10px 0; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+        a { text-decoration: none; color: #2980b9; font-weight: bold; }
+        a:hover { color: #e67e22; }
+        .footer { text-align: center; margin-top: 40px; font-size: 0.9em; border-top: 1px solid #ccc; padding-top: 20px; }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Institutum Iuris Oeconomiae et Rei Publicae</h1>
-        <p>Welcome to our institution, dedicated to excellence in legal and economic education.</p>
-    </header>
-    <div>
-        <a href="#" class="button">Seminario DyC Course</a>
-        <a href="#" class="button">Other Courses</a>
+
+<div class="folder">
+    <h1>Institutum Iuris, Oeconomiae et Rei Publicae</h1>
+    <p class="subtitle">Espacio Académico del Lic. José Benjamín García Santa Cruz</p>
+
+    <div class="grid-container">
+        <div class="section">
+            <h3>📚 Seminario de Derecho</h3>
+            <ul>
+                <li><a href="seminario-dyc/clase1.html">Clase 01: Introducción al Seminario</a></li>
+                <li><a href="seminario-dyc/clase2.html">Clase 02: Análisis Jurídico</a></li>
+                <li><a href="seminario-dyc/clase3.html">Clase 03: Teoría General</a></li>
+                <li><p><em>(Continúa hasta la clase 14...)</em></p></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h3>📝 Evaluaciones y Herramientas</h3>
+            <ul>
+                <li><a href="examen1.html">Primer Examen Parcial</a></li>
+                <li><a href="examen2.html">Segundo Examen Parcial</a></li>
+                <li><a href="examen3.html">Examen Final</a></li>
+                <li><a href="calculadora.html">Calculadora de Concejales</a></li>
+            </ul>
+        </div>
     </div>
+
+    <div class="footer">
+        <strong>José Benjamín García Santa Cruz</strong><br>
+        Abogado y Notario | Licenciado en Economía (Col. 19062)<br>
+        Magister Artium en Ciencias Jurídicas y Sociales | Doctorando en Derecho
+    </div>
+</div>
+
 </body>
 </html>
