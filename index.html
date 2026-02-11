@@ -3,80 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Institutum Iuris - J.B. García Santa Cruz</title>
+    <title>Institutum Iuris - Centro Académico</title>
+    
+    <script>
+        var password = prompt("Bienvenido al Institutum Iuris. Ingrese la clave de acceso:");
+        if (password !== "Minchito2026") { 
+            alert("Acceso denegado.");
+            window.location.href = "https://www.google.com";
+        }
+    </script>
+
     <style>
         :root {
-            --primary: #1a3a5f; /* Azul profundo académico */
-            --accent: #c5a059;  /* Dorado elegante */
-            --bg: #f8f9fa;
-            --text: #333;
+            --azul-pro: #1a3a5f;
+            --dorado: #c5a059;
+            --blanco: #ffffff;
+            --gris-claro: #f4f7f6;
         }
 
-        body { 
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
-            background-color: var(--bg); 
-            color: var(--text); 
-            margin: 0; 
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--gris-claro);
+            margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        .main-card {
-            background: white;
-            width: 90%;
-            max-width: 900px;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            border-top: 8px solid var(--primary);
+            color: #333;
         }
 
         header {
-            background: var(--primary);
+            background: var(--azul-pro);
             color: white;
-            padding: 40px 20px;
+            padding: 60px 20px;
             text-align: center;
+            border-bottom: 5px solid var(--dorado);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
 
-        h1 { 
-            margin: 0; 
-            font-size: 1.8rem; 
-            letter-spacing: 1px;
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            letter-spacing: 2px;
             text-transform: uppercase;
         }
 
-        .tagline {
-            font-style: italic;
-            opacity: 0.9;
-            margin-top: 10px;
+        .container {
+            max-width: 1100px;
+            margin: -40px auto 40px auto;
+            padding: 20px;
         }
 
-        .content-grid {
+        .grid-dashboard {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 25px;
-            padding: 30px;
         }
 
-        .section-box {
-            background: #fff;
-            border: 1px solid #e1e4e8;
-            border-radius: 10px;
-            padding: 20px;
-            transition: transform 0.3s ease;
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            border-top: 4px solid var(--dorado);
         }
 
-        .section-box:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent);
-        }
-
-        h3 {
-            color: var(--primary);
-            border-bottom: 2px solid var(--accent);
+        .card h3 {
+            color: var(--azul-pro);
+            border-bottom: 1px solid #eee;
             padding-bottom: 10px;
             margin-top: 0;
             display: flex;
@@ -84,89 +75,111 @@
             gap: 10px;
         }
 
-        ul { list-style: none; padding: 0; margin: 0; }
-
-        li { margin: 12px 0; }
-
-        a {
-            text-decoration: none;
-            color: #444;
-            font-weight: 500;
+        /* ESTILO DE LOS BOTONES */
+        .btn-link {
             display: block;
-            padding: 8px 12px;
-            border-radius: 5px;
-            background: #f1f3f5;
-            transition: all 0.2s;
+            background: #f8f9fa;
+            color: #444;
+            text-decoration: none;
+            padding: 12px 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #e1e4e8;
+            font-weight: 500;
+            transition: all 0.3s ease;
         }
 
-        a:hover {
-            background: var(--primary);
+        .btn-link:hover {
+            background: var(--azul-pro);
             color: white;
-            padding-left: 20px;
+            transform: translateX(10px);
+            box-shadow: 0 4px 12px rgba(26, 58, 95, 0.2);
+        }
+
+        .btn-especial {
+            background: #eef2f7;
+            border-left: 5px solid var(--dorado);
         }
 
         footer {
-            background: #f1f3f5;
             text-align: center;
-            padding: 25px;
-            font-size: 0.9rem;
+            padding: 40px;
             color: #666;
-            border-top: 1px dotted #ccc;
+            font-size: 0.9rem;
         }
 
-        .signature {
-            color: var(--primary);
-            font-weight: bold;
-            display: block;
-            margin-bottom: 5px;
+        .badge {
+            background: var(--dorado);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            float: right;
         }
     </style>
 </head>
 <body>
 
-<div class="main-card">
-    <header>
-        <h1>Institutum Iuris, Oeconomiae et Rei Publicae</h1>
-        <div class="tagline">Plataforma Académica Digital</div>
-    </header>
+<header>
+    <h1>Institutum Iuris</h1>
+    <p>Plataforma Académica del Lic. José Benjamín García Santa Cruz</p>
+</header>
 
-    <div class="content-grid">
-        <div class="section-box">
-            <h3>📚 Seminario DyC</h3>
-            <ul>
-                <li><a href="1%20Clase%20Seminario%20DyC.html">1. Primera Clase</a></li>
-                <li><a href="2%20Clase%20Seminario%20DyC.html">2. Segunda Clase</a></li>
-                <li><a href="3%20Clase%20Seminario%20DyC.html">3. Tercera Clase</a></li>
-                <li><a href="4%20Clase%20Seminario%20DyC.html">4. Cuarta Clase</a></li>
-                <li><a href="5%20Clase%20Seminario%20DyC.html">5. Quinta Clase</a></li>
-                <li><a href="6%20Clase%20Seminario%20DyC.html">6. Sexta Clase</a></li>
-                <li><a href="7%20Clase%20Seminario%20DyC.html">7. Séptima Clase</a></li>
-                <li><a href="8%20Clase%20Seminario%20DyC.html">8. Octava Clase</a></li>
-                <li><a href="9%20Clase%20Seminario%20DyC.html">9. Novena Clase</a></li>
-                <li><a href="10%20Clase%20Seminario%20DyC.html">10. Décima Clase</a></li>
-                <li><a href="11%20Clase%20Seminario%20DyC.html">11. Undécima Clase</a></li>
-                <li><a href="12%20Clase%20Seminario%20DyC.html">12. Duodécima Clase</a></li>
-                <li><a href="13%20Clase%20Seminario%20DyC.html">13. Decimotercera Clase</a></li>
-                <li><a href="14%20Clase%20Seminario%20DyC.html">14. Decimocuarta Clase</a></li>
-            </ul>
+<div class="container">
+    <div class="grid-dashboard">
+        
+        <div class="card">
+            <h3>🏫 Clases Seminario DyC</h3>
+            <div style="max-height: 400px; overflow-y: auto; padding-right: 10px;">
+                <a href="1%20Clase%20Seminario%20DyC.html" class="btn-link">1. Primera Clase</a>
+                <a href="2%20Clase%20Seminario%20DyC.html" class="btn-link">2. Segunda Clase</a>
+                <a href="3%20Clase%20Seminario%20DyC.html" class="btn-link">3. Tercera Clase</a>
+                <a href="4%20Clase%20Seminario%20DyC.html" class="btn-link">4. Cuarta Clase</a>
+                <a href="5%20Clase%20Seminario%20DyC.html" class="btn-link">5. Quinta Clase</a>
+                <a href="6%20Clase%20Seminario%20DyC.html" class="btn-link">6. Sexta Clase</a>
+                <a href="7%20Clase%20Seminario%20DyC.html" class="btn-link">7. Séptima Clase</a>
+                <a href="8%20Clase%20Seminario%20DyC.html" class="btn-link">8. Octava Clase</a>
+                <a href="9%20Clase%20Seminario%20DyC.html" class="btn-link">9. Novena Clase</a>
+                <a href="10%20Clase%20Seminario%20DyC.html" class="btn-link">10. Décima Clase</a>
+                <a href="11%20Clase%20Seminario%20DyC.html" class="btn-link">11. Undécima Clase</a>
+                <a href="12%20Clase%20Seminario%20DyC.html" class="btn-link">12. Duodécima Clase</a>
+                <a href="13%20Clase%20Seminario%20DyC.html" class="btn-link">13. Decimotercera Clase</a>
+                <a href="14%20Clase%20Seminario%20DyC.html" class="btn-link">14. Decimocuarta Clase</a>
+            </div>
         </div>
 
-        <div class="section-box">
-            <h3>📝 Evaluaciones</h3>
-            <ul>
-                <li><a href="Primera%20Fase%20Seminario%20DyC.html">📘 Primera Fase</a></li>
-                <li><a href="Segunda%20Fase%20Seminario%20DyC.html">📗 Segunda Fase</a></li>
-                <li><a href="Examen%20Final%20DyC.html">📙 Examen Final</a></li>
-            </ul>
+        <div class="card">
+            <h3>📝 Zona de Evaluaciones</h3>
+            <a href="Primera%20Fase%20Seminario%20DyC.html" class="btn-link btn-especial">📘 Primera Fase <span class="badge">ACTIVO</span></a>
+            <a href="Segunda%20Fase%20Seminario%20DyC.html" class="btn-link btn-especial">📗 Segunda Fase</a>
+            <a href="Examen%20Final%20DyC.html" class="btn-link btn-especial">📙 Examen Final</a>
+
+            <h3 style="margin-top: 30px;">📚 Biblioteca Digital</h3>
+            <a href="#" class="btn-link">📖 Código de Trabajo</a>
+            <a href="#" class="btn-link">📖 Ley de Amparo y Exhibición</a>
+            <a href="#" class="btn-link">📖 Constitución Política</a>
         </div>
+
+        <div class="card">
+            <h3>🛠️ Herramientas Pro</h3>
+            <a href="#" class="btn-link">🧮 Calculadora de Prestaciones</a>
+            <a href="#" class="btn-link">⚖️ Análisis de Casos PINA</a>
+            <a href="#" class="btn-link">🏛️ Recursos ANADIE</a>
+
+            <h3 style="margin-top: 30px;">💬 Atención Directa</h3>
+            <a href="https://wa.me/502XXXXXXXX" class="btn-link" style="background: #25d366; color: white; border: none; text-align: center;">WhatsApp Consultas</a>
+            <a href="mailto:tu-correo@ejemplo.com" class="btn-link" style="text-align: center;">Enviar Correo Oficial</a>
+        </div>
+
     </div>
-
-    <footer>
-        <span class="signature">José Benjamín García Santa Cruz</span>
-        Abogado y Notario | Economista | Magister Artium<br>
-        Guatemala, 2026
-    </footer>
 </div>
+
+<footer>
+    <strong>José Benjamín García Santa Cruz</strong><br>
+    Abogado y Notario | Economista Colegiado 19062<br>
+    Magister Artium | Doctorando en Derecho Procesal Constitucional<br>
+    Guatemala, 2026
+</footer>
 
 </body>
 </html>
