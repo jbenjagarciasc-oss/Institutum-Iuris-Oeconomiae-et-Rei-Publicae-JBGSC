@@ -3,181 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Institutum Iuris - Centro Académico</title>
+    <title>Institutum Iuris - Gestión Académica</title>
     
     <script>
-        var password = prompt("Bienvenido al Institutum Iuris. Ingrese la clave de acceso:");
-        if (password !== "Minchito2026") { 
+        var passGeneral = prompt("Bienvenido al Institutum Iuris.\nIngrese la clave de acceso general:");
+        if (passGeneral !== "Minchito2026") { 
             alert("Acceso denegado.");
             window.location.href = "https://www.google.com";
+        }
+
+        // FUNCIÓN PORTERO 2: EXÁMENES
+        function accesoExamen(url) {
+            var passExamen = prompt("⚠️ ÁREA RESTRINGIDA\nIngrese la clave para abrir esta evaluación:");
+            if (passExamen === "ProfePilas") {
+                window.location.href = url;
+            } else {
+                alert("Clave de examen incorrecta.");
+            }
         }
     </script>
 
     <style>
-        :root {
-            --azul-pro: #1a3a5f;
-            --dorado: #c5a059;
-            --blanco: #ffffff;
-            --gris-claro: #f4f7f6;
+        :root { --azul: #1a3a5f; --oro: #c5a059; --fondo: #f0f2f5; --texto: #2c3e50; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--fondo); margin: 0; padding: 0; color: var(--texto); }
+        
+        header { 
+            background: linear-gradient(135deg, var(--azul) 0%, #2c3e50 100%);
+            color: white; padding: 70px 20px; text-align: center; 
+            border-bottom: 6px solid var(--oro); box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--gris-claro);
-            margin: 0;
-            padding: 0;
-            color: #333;
+        .container { max-width: 1150px; margin: -50px auto 50px auto; padding: 20px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 25px; }
+        
+        .card { 
+            background: white; border-radius: 15px; padding: 30px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05); border-top: 5px solid var(--oro);
+            transition: transform 0.3s ease;
         }
+        .card:hover { transform: translateY(-5px); }
 
-        header {
-            background: var(--azul-pro);
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-            border-bottom: 5px solid var(--dorado);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        h3 { color: var(--azul); font-size: 1.4rem; border-bottom: 2px solid #f1f1f1; padding-bottom: 12px; margin-top: 0; }
+        
+        .btn { 
+            display: flex; align-items: center; background: #fdfdfd; color: var(--texto); 
+            text-decoration: none; padding: 14px; margin: 10px 0; border-radius: 10px; 
+            border: 1px solid #eee; font-weight: 600; transition: 0.3s;
         }
+        .btn:hover { background: var(--azul); color: white; border-color: var(--azul); padding-left: 25px; }
 
-        header h1 {
-            margin: 0;
-            font-size: 2.5rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
+        .btn-examen { border-left: 6px solid #e74c3c; cursor: pointer; }
+        .btn-examen:hover { background: #e74c3c; border-color: #e74c3c; }
 
-        .container {
-            max-width: 1100px;
-            margin: -40px auto 40px auto;
-            padding: 20px;
-        }
+        textarea { width: 100%; border: 2px solid #eee; border-radius: 10px; padding: 12px; margin-top: 10px; font-family: inherit; resize: vertical; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; border-radius: 10px; overflow: hidden; }
+        th { background: var(--azul); color: white; padding: 12px; }
+        td { padding: 12px; border-bottom: 1px solid #eee; background: #fff; }
 
-        .grid-dashboard {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-
-        .card {
-            background: white;
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-            border-top: 4px solid var(--dorado);
-        }
-
-        .card h3 {
-            color: var(--azul-pro);
-            border-bottom: 1px solid #eee;
-            padding-bottom: 10px;
-            margin-top: 0;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        /* ESTILO DE LOS BOTONES */
-        .btn-link {
-            display: block;
-            background: #f8f9fa;
-            color: #444;
-            text-decoration: none;
-            padding: 12px 15px;
-            margin: 10px 0;
-            border-radius: 8px;
-            border: 1px solid #e1e4e8;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .btn-link:hover {
-            background: var(--azul-pro);
-            color: white;
-            transform: translateX(10px);
-            box-shadow: 0 4px 12px rgba(26, 58, 95, 0.2);
-        }
-
-        .btn-especial {
-            background: #eef2f7;
-            border-left: 5px solid var(--dorado);
-        }
-
-        footer {
-            text-align: center;
-            padding: 40px;
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        .badge {
-            background: var(--dorado);
-            color: white;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.7rem;
-            float: right;
-        }
+        footer { text-align: center; padding: 60px; color: #7f8c8d; background: #fff; border-top: 1px solid #eee; }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Institutum Iuris</h1>
-    <p>Plataforma Académica del Lic. José Benjamín García Santa Cruz</p>
+    <h1 style="margin:0; font-size: 2.8rem; text-transform: uppercase;">Institutum Iuris</h1>
+    <p style="font-size: 1.2rem; opacity: 0.9;">Plataforma de Gestión Académica - J.B. García Santa Cruz</p>
 </header>
 
 <div class="container">
-    <div class="grid-dashboard">
-        
+    <div class="grid">
         <div class="card">
-            <h3>🏫 Clases Seminario DyC</h3>
-            <div style="max-height: 400px; overflow-y: auto; padding-right: 10px;">
-                <a href="1%20Clase%20Seminario%20DyC.html" class="btn-link">1. Primera Clase</a>
-                <a href="2%20Clase%20Seminario%20DyC.html" class="btn-link">2. Segunda Clase</a>
-                <a href="3%20Clase%20Seminario%20DyC.html" class="btn-link">3. Tercera Clase</a>
-                <a href="4%20Clase%20Seminario%20DyC.html" class="btn-link">4. Cuarta Clase</a>
-                <a href="5%20Clase%20Seminario%20DyC.html" class="btn-link">5. Quinta Clase</a>
-                <a href="6%20Clase%20Seminario%20DyC.html" class="btn-link">6. Sexta Clase</a>
-                <a href="7%20Clase%20Seminario%20DyC.html" class="btn-link">7. Séptima Clase</a>
-                <a href="8%20Clase%20Seminario%20DyC.html" class="btn-link">8. Octava Clase</a>
-                <a href="9%20Clase%20Seminario%20DyC.html" class="btn-link">9. Novena Clase</a>
-                <a href="10%20Clase%20Seminario%20DyC.html" class="btn-link">10. Décima Clase</a>
-                <a href="11%20Clase%20Seminario%20DyC.html" class="btn-link">11. Undécima Clase</a>
-                <a href="12%20Clase%20Seminario%20DyC.html" class="btn-link">12. Duodécima Clase</a>
-                <a href="13%20Clase%20Seminario%20DyC.html" class="btn-link">13. Decimotercera Clase</a>
-                <a href="14%20Clase%20Seminario%20DyC.html" class="btn-link">14. Decimocuarta Clase</a>
+            <h3>📂 Seminario DyC (Lecciones)</h3>
+            <div style="max-height: 450px; overflow-y: auto; padding-right: 5px;">
+                <a href="1%20Clase%20Seminario%20DyC.html" class="btn">📄 1 Clase Seminario DyC</a>
+                <a href="2%20Clase%20Seminario%20DyC.html" class="btn">📄 2 Clase Seminario DyC</a>
+                <a href="3%20Clase%20Seminario%20DyC.html" class="btn">📄 3 Clase Seminario DyC</a>
+                <a href="4%20Clase%20Seminario%20DyC.html" class="btn">📄 4 Clase Seminario DyC</a>
+                <a href="5%20Clase%20Seminario%20DyC.html" class="btn">📄 5 Clase Seminario DyC</a>
+                <a href="6%20Clase%20Seminario%20DyC.html" class="btn">📄 6 Clase Seminario DyC</a>
+                <a href="7%20Clase%20Seminario%20DyC.html" class="btn">📄 7 Clase Seminario DyC</a>
+                <a href="8%20Clase%20Seminario%20DyC.html" class="btn">📄 8 Clase Seminario DyC</a>
+                <a href="9%20Clase%20Seminario%20DyC.html" class="btn">📄 9 Clase Seminario DyC</a>
+                <a href="10%20Clase%20Seminario%20DyC.html" class="btn">📄 10 Clase Seminario DyC</a>
+                <a href="11%20Clase%20Seminario%20DyC.html" class="btn">📄 11 Clase Seminario DyC</a>
+                <a href="12%20Clase%20Seminario%20DyC.html" class="btn">📄 12 Clase Seminario DyC</a>
+                <a href="13%20Clase%20Seminario%20DyC.html" class="btn">📄 13 Clase Seminario DyC</a>
+                <a href="14%20Clase%20Seminario%20DyC.html" class="btn">📄 14 Clase Seminario DyC</a>
             </div>
         </div>
 
         <div class="card">
-            <h3>📝 Zona de Evaluaciones</h3>
-            <a href="Primera%20Fase%20Seminario%20DyC.html" class="btn-link btn-especial">📘 Primera Fase <span class="badge">ACTIVO</span></a>
-            <a href="Segunda%20Fase%20Seminario%20DyC.html" class="btn-link btn-especial">📗 Segunda Fase</a>
-            <a href="Examen%20Final%20DyC.html" class="btn-link btn-especial">📙 Examen Final</a>
+            <h3>🔐 Evaluaciones (Clave Requerida)</h3>
+            <p style="font-size: 0.85rem; color: #e74c3c; font-weight: bold;">Requieren token de examen individual.</p>
+            
+            <div onclick="accesoExamen('Primera%20Fase%20Seminario%20DyC.html')" class="btn btn-examen">📘 Primera Fase Seminario DyC</div>
+            <div onclick="accesoExamen('Segunda%20Fase%20Seminario%20DyC.html')" class="btn btn-examen">📗 Segunda Fase Seminario DyC</div>
+            <div onclick="accesoExamen('Examen%20Final%20DyC.html')" class="btn btn-examen">📙 Examen Final DyC</div>
 
-            <h3 style="margin-top: 30px;">📚 Biblioteca Digital</h3>
-            <a href="#" class="btn-link">📖 Código de Trabajo</a>
-            <a href="#" class="btn-link">📖 Ley de Amparo y Exhibición</a>
-            <a href="#" class="btn-link">📖 Constitución Política</a>
+            <h3 style="margin-top:30px;">📚 Biblioteca Auxiliar</h3>
+            <a href="#" class="btn">⚖️ Constitución Política</a>
+            <a href="#" class="btn">🛠️ Herramientas de Economía</a>
         </div>
+    </div>
 
-        <div class="card">
-            <h3>🛠️ Herramientas Pro</h3>
-            <a href="#" class="btn-link">🧮 Calculadora de Prestaciones</a>
-            <a href="#" class="btn-link">⚖️ Análisis de Casos PINA</a>
-            <a href="#" class="btn-link">🏛️ Recursos ANADIE</a>
-
-            <h3 style="margin-top: 30px;">💬 Atención Directa</h3>
-            <a href="https://wa.me/502XXXXXXXX" class="btn-link" style="background: #25d366; color: white; border: none; text-align: center;">WhatsApp Consultas</a>
-            <a href="mailto:tu-correo@ejemplo.com" class="btn-link" style="text-align: center;">Enviar Correo Oficial</a>
-        </div>
-
+    <div class="card" style="margin-top: 30px;">
+        <h3>📋 Registro Rápido de Estudiantes</h3>
+        <textarea id="listaNombres" rows="3" placeholder="Pegue aquí los nombres separados por comas o líneas..."></textarea>
+        <button onclick="generarTabla()" style="background: var(--azul); color: white; border: none; padding: 12px 25px; border-radius: 8px; margin-top: 15px; cursor: pointer; font-weight: bold;">⚡ Crear Cuadro de Control</button>
+        
+        <div id="contenedorTabla" style="overflow-x: auto;"></div>
     </div>
 </div>
 
+<script>
+function generarTabla() {
+    let raw = document.getElementById('listaNombres').value;
+    let nombres = raw.split(/[\n,]+/).filter(n => n.trim() !== "");
+    if (nombres.length === 0) { alert("Ingrese nombres para generar la tabla."); return; }
+    let html = `<table><thead><tr><th>No.</th><th>Estudiante</th><th>Zona</th><th>Final</th><th>Total</th><th>Asist.</th></tr></thead><tbody>`;
+    nombres.forEach((nombre, index) => {
+        html += `<tr><td>${index + 1}</td><td><b>${nombre.trim()}</b></td><td><input type="number" style="width:50px"></td><td><input type="number" style="width:50px"></td><td style="color:var(--azul); font-weight:bold;">0</td><td text-align:center><input type="checkbox"></td></tr>`;
+    });
+    html += `</tbody></table><button onclick="window.print()" style="margin-top:15px; padding: 10px; background:#2c3e50; color:white; border:none; border-radius:5px; cursor:pointer;">🖨️ Generar PDF / Imprimir</button>`;
+    document.getElementById('contenedorTabla').innerHTML = html;
+}
+</script>
+
 <footer>
-    <strong>José Benjamín García Santa Cruz</strong><br>
+    <strong style="color: var(--azul); font-size: 1.2rem;">José Benjamín García Santa Cruz</strong><br>
     Abogado y Notario | Economista Colegiado 19062<br>
-    Magister Artium | Doctorando en Derecho Procesal Constitucional<br>
+    Magister Artium en Ciencias Jurídicas y Sociales<br>
+    Doctorando en Derecho Procesal Constitucional<br>
     Guatemala, 2026
 </footer>
 
