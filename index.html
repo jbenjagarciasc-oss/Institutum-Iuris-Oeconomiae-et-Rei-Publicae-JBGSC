@@ -3,14 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Institutum Iuris - M.A. García Santa Cruz</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <title>Institutum - M.A. García Santa Cruz</title>
     
     <script>
-        var passGeneral = prompt("Bienvenido Magíster.\nClave de acceso:");
+        var passGeneral = prompt("Acceso Magíster Minchito:\nClave:");
         if (passGeneral !== "Minchito2026") { window.location.href = "https://www.google.com"; }
 
         function accesoExamen(url) {
-            var passExamen = prompt("🔐 EXAMEN RESTRINGIDO\nIngrese el Token:");
+            var passExamen = prompt("🔐 TOKEN DE EXAMEN:");
             if (passExamen === "Examen2026") { window.location.href = url; } 
             else { alert("Token incorrecto."); }
         }
@@ -28,70 +32,73 @@
 
     <style>
         :root { --azul: #1a3a5f; --oro: #c5a059; --fondo: #f4f7f6; }
-        body { font-family: 'Segoe UI', sans-serif; background: var(--fondo); margin: 0; }
-        header { background: var(--azul); color: white; padding: 30px; text-align: center; border-bottom: 5px solid var(--oro); }
-        .tab { overflow-x: auto; background: #fff; display: flex; justify-content: center; border-bottom: 2px solid #ddd; position: sticky; top: 0; z-index: 100; }
-        .tab button { background: inherit; border: none; outline: none; cursor: pointer; padding: 15px 20px; font-weight: bold; color: var(--azul); white-space: nowrap; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--fondo); margin: 0; -webkit-tap-highlight-color: transparent; }
+        header { background: var(--azul); color: white; padding: 25px; text-align: center; border-bottom: 5px solid var(--oro); }
+        
+        .tab { overflow-x: auto; background: #fff; display: flex; border-bottom: 2px solid #ddd; position: sticky; top: 0; z-index: 100; }
+        .tab button { background: inherit; border: none; outline: none; cursor: pointer; padding: 15px; font-weight: bold; color: var(--azul); flex: 1; min-width: 120px; }
         .tab button.active { border-bottom: 4px solid var(--oro); color: var(--oro); }
-        .container { max-width: 1200px; margin: 30px auto; padding: 0 20px; }
-        .tabcontent { display: none; animation: fadeIn 0.5s; }
+
+        .container { max-width: 1200px; margin: 20px auto; padding: 0 15px; }
+        .tabcontent { display: none; animation: fadeIn 0.4s; }
         @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; }
-        .card { background: white; border-radius: 12px; padding: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-top: 4px solid var(--oro); }
-        .btn { display: block; background: #fdfdfd; color: #333; text-decoration: none; padding: 12px; margin: 8px 0; border-radius: 8px; border: 1px solid #eee; font-weight: 500; transition: 0.2s; }
-        .btn:hover { background: var(--azul); color: white; transform: translateX(5px); }
-        .btn-ex { border-left: 5px solid #d9534f; }
-        footer { text-align: center; padding: 40px; background: #fff; margin-top: 50px; border-top: 1px solid #eee; }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 15px; }
+        .card { background: white; border-radius: 15px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border-top: 5px solid var(--oro); }
+        
+        .btn { display: block; background: #fdfdfd; color: #333; text-decoration: none; padding: 12px; margin: 8px 0; border-radius: 10px; border: 1px solid #eee; font-weight: 600; text-align: center; }
+        .btn:active { background: #eee; }
+        .btn-drive { background: #34a853; color: white; border: none; }
+        .btn-ai { background: #4285f4; color: white; border: none; }
+
+        footer { text-align: center; padding: 30px; font-size: 0.8rem; color: #777; }
     </style>
 </head>
 <body onload="document.getElementById('defaultOpen').click();">
 
 <header>
-    <h1>Cátedras Universidad Regional de Guatemala</h1>
-    <p>M.A. José Benjamín García Santa Cruz - Ciclo 2026</p>
+    <h2 style="margin:0;">Institutum Iuris</h2>
+    <p style="margin:5px 0 0 0; font-size:0.9rem;">M.A. José Benjamín García Santa Cruz</p>
 </header>
 
 <div class="tab">
-  <button class="tablinks" onclick="abrirCurso(event, 'URegional')" id="defaultOpen">🏛️ U. Regional (Cátedras)</button>
+  <button class="tablinks" onclick="abrirCurso(event, 'URegional')" id="defaultOpen">🏛️ U. Regional</button>
   <button class="tablinks" onclick="abrirCurso(event, 'Doctorado')">🎓 Doctorado</button>
-  <button class="tablinks" onclick="abrirCurso(event, 'Admin')">📂 Otros Recursos</button>
+  <button class="tablinks" onclick="abrirCurso(event, 'Drive')">☁️ Mi Drive</button>
 </div>
 
 <div class="container">
 
   <div id="URegional" class="tabcontent">
     <div class="grid">
-        
         <div class="card">
-            <h3>⚖️ Seminario (Jurídicas e Investigación Criminal)</h3>
-            <a href="1%20Clase%20Seminario%20DyC.html" class="btn">Clases 1 a 14</a>
-            <div onclick="accesoExamen('Primera%20Fase%20Seminario%20DyC.html')" class="btn btn-ex">📘 Primera Fase</div>
-            <div onclick="accesoExamen('Segunda%20Fase%20Seminario%20DyC.html')" class="btn btn-ex">📗 Segunda Fase</div>
-            <div onclick="accesoExamen('Examen%20Final%20DyC.html')" class="btn btn-ex">📙 EXAMEN FINAL (Recuperado)</div>
+            <h3>⚖️ Derecho e Inv. Criminal</h3>
+            <a href="1%20Clase%20Seminario%20DyC.html" class="btn">📂 Ver Clases del Ciclo</a>
+            <div onclick="accesoExamen('Primera%20Fase%20Seminario%20DyC.html')" class="btn" style="color:#d9534f">📘 Parcial 1</div>
+            <div onclick="accesoExamen('Examen%20Final%20DyC.html')" class="btn" style="color:#d9534f">📙 EXAMEN FINAL</div>
         </div>
-
         <div class="card">
-            <h3>💼 Seminario Administración de Empresas</h3>
-            <p>Contenido programático y guías de estudio.</p>
-            <a href="#" class="btn">📂 Material de Apoyo</a>
-            <div onclick="accesoExamen('examen-admin.html')" class="btn btn-ex">📝 Evaluación</div>
+            <h3>📈 Admin y Auditoría</h3>
+            <a href="#" class="btn">📂 Material Regional</a>
+            <a href="https://forms.google.com/" target="_blank" class="btn btn-drive">📝 Crear Formulario de Tareas</a>
         </div>
-
-        <div class="card">
-            <h3>💰 Derecho Tributario II (Auditoría)</h3>
-            <p>Cátedra de Contaduría Pública y Auditoría.</p>
-            <a href="#" class="btn">📜 Código Tributario Actualizado</a>
-            <div onclick="accesoExamen('examen-tributario.html')" class="btn btn-ex">📝 Evaluación</div>
-        </div>
-
     </div>
   </div>
 
   <div id="Doctorado" class="tabcontent">
     <div class="card">
-        <h2>🎓 Investigación Doctoral</h2>
-        <a href="https://notebooklm.google.com/" target="_blank" class="btn" style="background:#e8f0fe; border-color:#4285f4; color:#1967d2;">🤖 Abrir NotebookLM para Análisis</a>
-        <a href="https://github.com/" target="_blank" class="btn" style="background:#2c3e50; color:white;">➕ Subir Documentos a GitHub</a>
+        <h3>🎓 Investigación Doctoral</h3>
+        <a href="https://notebooklm.google.com/" target="_blank" class="btn btn-ai">🤖 NotebookLM (Analizar Fuentes)</a>
+        <a href="https://github.com/" target="_blank" class="btn">➕ Subir Archivos a GitHub</a>
+    </div>
+  </div>
+
+  <div id="Drive" class="tabcontent">
+    <div class="card">
+        <h3>☁️ Gestión en la Nube (Drive)</h3>
+        <p>Desde aquí controlas lo que subes y lo que recibes.</p>
+        <a href="https://drive.google.com/" target="_blank" class="btn btn-drive">📂 Abrir Mi Unidad de Drive</a>
+        <a href="https://docs.google.com/spreadsheets/" target="_blank" class="btn" style="background:#0f9d58; color:white;">📊 Ver Hojas de Notas (Excel)</a>
     </div>
   </div>
 
@@ -99,8 +106,7 @@
 
 <footer>
     <strong>Magíster Artium José Benjamín García Santa Cruz</strong><br>
-    Abogado y Notario | Economista Colegiado 19062<br>
-    Doctorando en Derecho Procesal Constitucional | Guatemala, 2026
+    U. Regional | Doctorando en Derecho | Guatemala, 2026
 </footer>
 
 </body>
