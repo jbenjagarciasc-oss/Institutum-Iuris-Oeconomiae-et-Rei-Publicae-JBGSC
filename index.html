@@ -3,18 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="mobile-web-app-capable" content="yes">
     <title>Institutum - M.A. García Santa Cruz</title>
     
     <script>
-        // ELIMINADA LA CLAVE DE INICIO - ACCESO LIBRE
-        
-        // MANTENEMOS LA CLAVE DE EXÁMENES
         function accesoExamen(url) {
             var passExamen = prompt("🔐 TOKEN DE EXAMEN REQUERIDO:");
             if (passExamen === "Examen2026") { window.location.href = url; } 
-            else { alert("Token incorrecto. El examen permanece bajo reserva."); }
+            else { alert("Token incorrecto."); }
         }
 
         function abrirCurso(evt, nombreCurso) {
@@ -27,7 +22,6 @@
             evt.currentTarget.className += " active";
         }
 
-        // FUNCIONES PARA EL DOCTORADO EDITABLE
         function guardarNota(id) {
             const nota = document.getElementById('input-'+id).value;
             localStorage.setItem('nota-doctorado-'+id, nota);
@@ -43,111 +37,103 @@
     </script>
 
     <style>
-        :root { --azul: #1a3a5f; --oro: #c5a059; --fondo: #f8f9fa; }
+        :root { --azul: #1a3a5f; --oro: #c5a059; --fondo: #f4f7f6; }
         body { font-family: 'Segoe UI', sans-serif; background: var(--fondo); margin: 0; }
-        header { background: var(--azul); color: white; padding: 30px; text-align: center; border-bottom: 5px solid var(--oro); }
+        header { background: var(--azul); color: white; padding: 40px 20px; text-align: center; border-bottom: 5px solid var(--oro); }
         
         .tab { overflow-x: auto; background: #fff; display: flex; border-bottom: 2px solid #ddd; position: sticky; top: 0; z-index: 100; }
-        .tab button { background: inherit; border: none; outline: none; cursor: pointer; padding: 15px; font-weight: bold; color: var(--azul); flex: 1; min-width: 130px; }
-        .tab button.active { border-bottom: 4px solid var(--oro); color: var(--oro); }
+        .tab button { background: inherit; border: none; outline: none; cursor: pointer; padding: 15px 25px; font-weight: bold; color: var(--azul); flex: 1; min-width: 150px; transition: 0.3s; }
+        .tab button.active { border-bottom: 4px solid var(--oro); color: var(--oro); background: #f9f9f9; }
 
-        .container { max-width: 1200px; margin: 20px auto; padding: 0 15px; }
+        .container { max-width: 1200px; margin: 30px auto; padding: 0 20px; }
         .tabcontent { display: none; animation: fadeIn 0.4s; }
         @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
 
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 15px; }
-        .card { background: white; border-radius: 15px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border-top: 5px solid var(--oro); }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 25px; }
+        .card { background: white; border-radius: 15px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 5px solid var(--oro); }
         
+        h3 { color: var(--azul); border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 0; font-size: 1.2rem; }
+        .tag { background: #eef2f7; font-size: 0.75rem; padding: 4px 10px; border-radius: 5px; color: #1a3a5f; display: inline-block; margin-bottom: 10px; font-weight: bold; }
+
         .btn { display: block; background: #fdfdfd; color: #333; text-decoration: none; padding: 12px; margin: 8px 0; border-radius: 10px; border: 1px solid #eee; font-weight: 600; text-align: center; transition: 0.3s; }
-        .btn:hover { background: var(--azul); color: white; }
+        .btn:hover { background: var(--azul); color: white; transform: translateY(-2px); }
         .btn-ex { border-left: 6px solid #d9534f; cursor: pointer; }
 
-        input.edit-doc { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; margin-bottom: 5px; font-size: 1rem; }
-        .btn-save { background: var(--oro); color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 0.8rem; }
+        input.edit-doc { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; margin-bottom: 5px; }
+        .btn-save { background: var(--oro); color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; width: 100%; margin-bottom: 10px; }
 
-        footer { text-align: center; padding: 40px; color: #777; font-size: 0.9rem; }
+        footer { text-align: center; padding: 50px; color: #666; font-size: 0.9rem; background: white; border-top: 1px solid #eee; }
     </style>
 </head>
 <body onload="cargarNotas(); document.getElementById('defaultOpen').click();">
 
 <header>
-    <h2 style="margin:0;">Institutum Iuris</h2>
-    <p style="margin:5px 0 0 0;">M.A. José Benjamín García Santa Cruz</p>
+    <h1 style="margin:0;">Universidad Regional de Guatemala</h1>
+    <h3 style="color:var(--oro); border:none; margin:5px 0;">Sede San Raymundo</h3>
+    <p style="margin:10px 0 0 0; opacity:0.9;">M.A. José Benjamín García Santa Cruz</p>
 </header>
 
 <div class="tab">
-  <button class="tablinks" onclick="abrirCurso(event, 'URegional')" id="defaultOpen">🏛️ U. Regional</button>
+  <button class="tablinks" onclick="abrirCurso(event, 'URegional')" id="defaultOpen">🏛️ Cátedras Regional</button>
   <button class="tablinks" onclick="abrirCurso(event, 'Doctorado')">🎓 Doctorado</button>
-  <button class="tablinks" onclick="abrirCurso(event, 'Herramientas')">☁️ Mi Drive/AI</button>
+  <button class="tablinks" onclick="abrirCurso(event, 'Herramientas')">☁️ Mi Drive / AI</button>
 </div>
 
 <div class="container">
 
   <div id="URegional" class="tabcontent">
     <div class="grid">
+        
         <div class="card">
-            <h3>⚖️ Seminario DyC (Derecho e Inv. Criminal)</h3>
-            <div style="max-height: 400px; overflow-y: auto; background: #f9f9f9; padding: 10px; border-radius: 8px;">
-                <a href="1%20Clase%20Seminario%20DyC.html" class="btn">1. Clase Seminario DyC</a>
-                <a href="2%20Clase%20Seminario%20DyC.html" class="btn">2. Clase Seminario DyC</a>
-                <a href="3%20Clase%20Seminario%20DyC.html" class="btn">3. Clase Seminario DyC</a>
-                <a href="4%20Clase%20Seminario%20DyC.html" class="btn">4. Clase Seminario DyC</a>
-                <a href="5%20Clase%20Seminario%20DyC.html" class="btn">5. Clase Seminario DyC</a>
-                <a href="6%20Clase%20Seminario%20DyC.html" class="btn">6. Clase Seminario DyC</a>
-                <a href="7%20Clase%20Seminario%20DyC.html" class="btn">7. Clase Seminario DyC</a>
-                <a href="8%20Clase%20Seminario%20DyC.html" class="btn">8. Clase Seminario DyC</a>
-                <a href="9%20Clase%20Seminario%20DyC.html" class="btn">9. Clase Seminario DyC</a>
-                <a href="10%20Clase%20Seminario%20DyC.html" class="btn">10. Clase Seminario DyC</a>
-                <a href="11%20Clase%20Seminario%20DyC.html" class="btn">11. Clase Seminario DyC</a>
-                <a href="12%20Clase%20Seminario%20DyC.html" class="btn">12. Clase Seminario DyC</a>
-                <a href="13%20Clase%20Seminario%20DyC.html" class="btn">13. Clase Seminario DyC</a>
-                <a href="14%20Clase%20Seminario%20DyC.html" class="btn">14. Clase Seminario DyC</a>
-            </div>
+            <span class="tag">Ciencias Jurídicas y Sociales / Investigación Criminal</span>
+            <h3>Seminario de Tesis</h3>
+            <div style="max-height: 250px; overflow-y: auto; background: #f9f9f9; padding: 10px; border-radius: 8px;">
+                <a href="1%20Clase%20Seminario%20DyC.html" class="btn">1. Contenido de Clase</a>
+                </div>
             <div style="margin-top: 15px;">
-                <div onclick="accesoExamen('Primera%20Fase%20Seminario%20DyC.html')" class="btn btn-ex">📘 Parcial 1</div>
-                <div onclick="accesoExamen('Segunda%20Fase%20Seminario%20DyC.html')" class="btn btn-ex">📗 Parcial 2</div>
+                <div onclick="accesoExamen('Primera%20Fase%20Seminario%20DyC.html')" class="btn btn-ex">📘 Evaluación Fase 1</div>
                 <div onclick="accesoExamen('Examen%20Final%20DyC.html')" class="btn btn-ex">📙 EXAMEN FINAL</div>
             </div>
         </div>
 
         <div class="card">
-            <h3>📈 Admin y Derecho Tributario</h3>
-            <p style="font-size: 0.9rem; color: #666;">Cátedras de Administración y Auditoría.</p>
-            <a href="#" class="btn">📂 Material de Apoyo General</a>
-            <div onclick="accesoExamen('examen-tributario.html')" class="btn btn-ex">📝 Evaluación Tributario</div>
+            <span class="tag">Administración de Empresas</span>
+            <h3>Seminario de Tesis Profesional</h3>
+            <p style="font-size: 0.9rem; color: #666;">Documentación y guías para el área administrativa.</p>
+            <div style="background: #f9f9f9; padding: 10px; border-radius: 8px;">
+                <a href="#" class="btn">📂 (Esperando HTML de Clase)</a>
+            </div>
+            <div onclick="accesoExamen('examen-admin.html')" class="btn btn-ex" style="margin-top:15px;">📝 Evaluación de Curso</div>
         </div>
+
+        <div class="card">
+            <span class="tag">Contaduría Pública y Auditoría</span>
+            <h3>Derecho Tributario II</h3>
+            <p style="font-size: 0.9rem; color: #666;">Legislación, fiscalización y procesos tributarios.</p>
+            <div style="background: #f9f9f9; padding: 10px; border-radius: 8px;">
+                <a href="#" class="btn">📜 (Esperando HTML de Clase)</a>
+            </div>
+            <div onclick="accesoExamen('examen-tributario.html')" class="btn btn-ex" style="margin-top:15px;">📝 Evaluación Tributaria</div>
+        </div>
+
     </div>
   </div>
 
   <div id="Doctorado" class="tabcontent">
     <div class="grid">
-        <div class="card" style="grid-column: 1 / -1;">
-            <h3>🎓 Cursos de Doctorado (Editables)</h3>
-            <p style="font-size: 0.8rem; color: #888;">Magíster, aquí puede escribir los nombres de sus cursos y se guardarán en este dispositivo.</p>
+        <div class="card" style="grid-column: 1 / -1; text-align: center;">
+            <h3>🎓 Doctorado en Derecho Procesal Constitucional</h3>
+            <p>Espacio personal para la gestión de investigación doctoral.</p>
         </div>
-        
         <div class="card">
             <input type="text" id="input-1" class="edit-doc" placeholder="Nombre del Curso 1...">
             <button onclick="guardarNota(1)" class="btn-save">💾 Guardar Nombre</button>
-            <a href="https://github.com/" target="_blank" class="btn">📂 Ver Mis Documentos</a>
+            <a href="https://github.com/" target="_blank" class="btn">📂 Mis Documentos</a>
         </div>
-
         <div class="card">
             <input type="text" id="input-2" class="edit-doc" placeholder="Nombre del Curso 2...">
             <button onclick="guardarNota(2)" class="btn-save">💾 Guardar Nombre</button>
-            <a href="https://github.com/" target="_blank" class="btn">📂 Ver Mis Documentos</a>
-        </div>
-
-        <div class="card">
-            <input type="text" id="input-3" class="edit-doc" placeholder="Nombre del Curso 3...">
-            <button onclick="guardarNota(3)" class="btn-save">💾 Guardar Nombre</button>
-            <a href="https://github.com/" target="_blank" class="btn">📂 Ver Mis Documentos</a>
-        </div>
-
-        <div class="card">
-            <input type="text" id="input-4" class="edit-doc" placeholder="Nombre del Curso 4...">
-            <button onclick="guardarNota(4)" class="btn-save">💾 Guardar Nombre</button>
-            <a href="https://github.com/" target="_blank" class="btn">📂 Ver Mis Documentos</a>
+            <a href="https://github.com/" target="_blank" class="btn">📂 Mis Documentos</a>
         </div>
     </div>
   </div>
@@ -156,11 +142,11 @@
     <div class="grid">
         <div class="card">
             <h3>🤖 Inteligencia Artificial</h3>
-            <a href="https://notebooklm.google.com/" target="_blank" class="btn" style="background:#e8f0fe; color:#1967d2;">Abrir NotebookLM</a>
+            <a href="https://notebooklm.google.com/" target="_blank" class="btn" style="background:#e8f0fe; color:#1967d2;">NotebookLM - Análisis Doctoral</a>
         </div>
         <div class="card">
-            <h3>☁️ Mi Drive</h3>
-            <a href="https://drive.google.com/" target="_blank" class="btn" style="background:#e6ffed; color:#22863a;">Abrir Google Drive</a>
+            <h3>☁️ Mi Drive Personal</h3>
+            <a href="https://drive.google.com/" target="_blank" class="btn" style="background:#e6ffed; color:#22863a;">Acceder a Archivos en la Nube</a>
         </div>
     </div>
   </div>
@@ -169,8 +155,8 @@
 
 <footer>
     <strong>Magíster Artium José Benjamín García Santa Cruz</strong><br>
-    Universidad Regional de Guatemala | Doctorando en Derecho<br>
-    Guatemala, 2026
+    Abogado y Notario | Economista Colegiado 19062<br>
+    Universidad Regional de Guatemala - Sede San Raymundo | 2026
 </footer>
 
 </body>
