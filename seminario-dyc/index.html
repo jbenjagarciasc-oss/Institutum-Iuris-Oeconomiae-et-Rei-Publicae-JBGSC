@@ -2,65 +2,174 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Institutum Iuris - J.B. García Santa Cruz</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Institutum - M.A. García Santa Cruz</title>
+    
+    <script>
+        function accesoExamen(url) {
+            var passExamen = prompt("🔐 TOKEN DE EXAMEN REQUERIDO:");
+            if (passExamen === "Examen2026") { window.location.href = url; } 
+            else { alert("Token incorrecto."); }
+        }
+
+        function abrirCurso(evt, nombreCurso) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) { tabcontent[i].style.display = "none"; }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) { tablinks[i].className = tablinks[i].className.replace(" active", ""); }
+            document.getElementById(nombreCurso).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        function guardarNota(id) {
+            const nota = document.getElementById('input-'+id).value;
+            localStorage.setItem('nota-doctorado-'+id, nota);
+            alert("Curso actualizado, Magíster.");
+        }
+
+        function cargarNotas() {
+            for(let i=1; i<=4; i++) {
+                const guardada = localStorage.getItem('nota-doctorado-'+i);
+                if(guardada) document.getElementById('input-'+i).value = guardada;
+            }
+        }
+    </script>
+
     <style>
-        body { font-family: 'Times New Roman', serif; background-color: #f0f2f5; padding: 20px; line-height: 1.6; }
-        .folder { max-width: 800px; margin: auto; background: #fff; padding: 40px; border-top: 10px solid #2c3e50; box-shadow: 0 4px 15px rgba(0,0,0,0.2); border-radius: 8px; }
-        h1 { text-align: center; color: #2c3e50; text-transform: uppercase; margin-bottom: 5px; }
-        .grid-container { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px; }
-        .section { background: #fafafa; border: 1px solid #ddd; padding: 20px; border-radius: 5px; }
-        h3 { border-bottom: 2px solid #e67e22; color: #e67e22; padding-bottom: 5px; margin-top: 0; }
-        ul { list-style: none; padding: 0; }
-        li { margin: 10px 0; border-bottom: 1px solid #eee; padding-bottom: 5px; }
-        a { text-decoration: none; color: #2980b9; font-weight: bold; display: block; }
-        a:hover { color: #e67e22; text-decoration: underline; }
-        .footer { text-align: center; margin-top: 40px; font-size: 0.85em; border-top: 1px solid #ccc; padding-top: 20px; color: #555; }
+        :root { --azul: #1a3a5f; --oro: #c5a059; --fondo: #f4f7f6; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--fondo); margin: 0; }
+        header { background: var(--azul); color: white; padding: 40px 20px; text-align: center; border-bottom: 5px solid var(--oro); }
+        
+        .tab { overflow-x: auto; background: #fff; display: flex; border-bottom: 2px solid #ddd; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .tab button { background: inherit; border: none; outline: none; cursor: pointer; padding: 15px 25px; font-weight: bold; color: var(--azul); flex: 1; min-width: 150px; transition: 0.3s; }
+        .tab button.active { border-bottom: 4px solid var(--oro); color: var(--oro); background: #f9f9f9; }
+
+        .container { max-width: 1200px; margin: 30px auto; padding: 0 20px; }
+        .tabcontent { display: none; animation: fadeIn 0.4s; }
+        @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; }
+        .card { background: white; border-radius: 15px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 5px solid var(--oro); }
+        
+        h3 { color: var(--azul); border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 0; }
+        .tag { background: #eee; font-size: 0.75rem; padding: 3px 8px; border-radius: 10px; color: #555; display: inline-block; margin-bottom: 10px; }
+
+        .btn { display: block; background: #fdfdfd; color: #333; text-decoration: none; padding: 12px; margin: 8px 0; border-radius: 10px; border: 1px solid #eee; font-weight: 600; text-align: center; transition: 0.3s; }
+        .btn:hover { background: var(--azul); color: white; transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .btn-ex { border-left: 6px solid #d9534f; cursor: pointer; background: #fffcfc; }
+
+        input.edit-doc { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; margin-bottom: 5px; font-size: 1rem; }
+        .btn-save { background: var(--oro); color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; }
+
+        footer { text-align: center; padding: 50px; color: #666; font-size: 0.9rem; background: white; border-top: 1px solid #eee; }
     </style>
 </head>
-<body>
+<body onload="cargarNotas(); document.getElementById('defaultOpen').click();">
 
-<div class="folder">
-    <h1>Institutum Iuris, Oeconomiae et Rei Publicae</h1>
-    <p style="text-align: center; font-style: italic;">Plataforma Académica del Lic. José Benjamín García Santa Cruz</p>
+<header>
+    <h1 style="margin:0;">Universidad Regional de Guatemala</h1>
+    <h3 style="color:var(--oro); border:none; margin:5px 0;">Sede San Raymundo</h3>
+    <p style="margin:10px 0 0 0; opacity:0.9;">M.A. José Benjamín García Santa Cruz</p>
+</header>
 
-    <div class="grid-container">
-        <div class="section">
-            <h3>📚 Clases Seminario DyC</h3>
-            <ul>
-                <li><a href="Seminario-DyC/1%20Clase%20Seminario%20DyC.html">1 Clase Seminario DyC</a></li>
-                <li><a href="Seminario-DyC/2%20Clase%20Seminario%20DyC.html">2 Clase Seminario DyC</a></li>
-                <li><a href="Seminario-DyC/3%20Clase%20Seminario%20DyC.html">3 Clase Seminario DyC</a></li>
-                <li><a href="Seminario-DyC/4%20Clase%20Seminario%20DyC.html">4 Clase Seminario DyC</a></li>
-                <li><a href="Seminario-DyC/5%20Clase%20Seminario%20DyC.html">5 Clase Seminario DyC</a></li>
-                <li><a href="Seminario-DyC/6%20Clase%20Seminario%20DyC.html">6 Clase Seminario DyC</a></li>
-                <li><a href="Seminario-DyC/7%20Clase%20Seminario%20DyC.html">7 Clase Seminario DyC</a></li>
-                <li><a href="Seminario-DyC/8%20Clase%20Seminario%20DyC.html">8 Clase Seminario DyC</a></li>
-                <li><a href="Seminario-DyC/9%20Clase%20Seminario%20DyC.html">9 Clase Seminario DyC</a></li>
-                <li><a href="Seminario-DyC/10%20Clase%20Seminario%20DyC.html">10 Clase Seminario DyC</a></li>
-                <li><a href="Seminario-DyC/11%20Clase%20Seminario%20DyC.html">11 Clase Seminario DyC</a></li>
-                <li><a href="Seminario-DyC/12%20Clase%20Seminario%20DyC.html">12 Clase Seminario DyC</a></li>
-                <li><a href="Seminario-DyC/13%20Clase%20Seminario%20DyC.html">13 Clase Seminario DyC</a></li>
-                <li><a href="Seminario-DyC/14%20Clase%20Seminario%20DyC.html">14 Clase Seminario DyC</a></li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h3>📝 Evaluaciones</h3>
-            <ul>
-                <li><a href="Primera%20Fase%20Seminario%20DyC.html">Primera Fase Seminario DyC</a></li>
-                <li><a href="Segunda%20Fase%20Seminario%20DyC.html">Segunda Fase Seminario DyC</a></li>
-                <li><a href="Examen%20Final%20DyC.html">Examen Final DyC</a></li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="footer">
-        <strong>José Benjamín García Santa Cruz</strong><br>
-        Abogado y Notario | Economista Col. 19062<br>
-        Magister Artium en Ciencias Jurídicas y Sociales<br>
-        Doctorando en Derecho Procesal Constitucional
-    </div>
+<div class="tab">
+  <button class="tablinks" onclick="abrirCurso(event, 'URegional')" id="defaultOpen">🏛️ Cátedras Regional</button>
+  <button class="tablinks" onclick="abrirCurso(event, 'Doctorado')">🎓 Doctorado</button>
+  <button class="tablinks" onclick="abrirCurso(event, 'Herramientas')">☁️ Mi Drive / IA</button>
 </div>
+
+<div class="container">
+
+  <div id="URegional" class="tabcontent">
+    <div class="grid">
+        
+        <div class="card">
+            <span class="tag">Derecho e Investigación Criminal</span>
+            <h3>Seminario de Tesis</h3>
+            <div style="max-height: 300px; overflow-y: auto; background: #f9f9f9; padding: 10px; border-radius: 8px;">
+                <a href="1%20Clase%20Seminario%20DyC.html" class="btn">1. Clase Seminario DyC</a>
+                <a href="2%20Clase%20Seminario%20DyC.html" class="btn">2. Clase Seminario DyC</a>
+                <a href="3%20Clase%20Seminario%20DyC.html" class="btn">3. Clase Seminario DyC</a>
+                <a href="4%20Clase%20Seminario%20DyC.html" class="btn">4. Clase Seminario DyC</a>
+                <a href="5%20Clase%20Seminario%20DyC.html" class="btn">5. Clase Seminario DyC</a>
+                <a href="6%20Clase%20Seminario%20DyC.html" class="btn">6. Clase Seminario DyC</a>
+                <a href="7%20Clase%20Seminario%20DyC.html" class="btn">7. Clase Seminario DyC</a>
+                <a href="8%20Clase%20Seminario%20DyC.html" class="btn">8. Clase Seminario DyC</a>
+                <a href="9%20Clase%20Seminario%20DyC.html" class="btn">9. Clase Seminario DyC</a>
+                <a href="10%20Clase%20Seminario%20DyC.html" class="btn">10. Clase Seminario DyC</a>
+                <a href="11%20Clase%20Seminario%20DyC.html" class="btn">11. Clase Seminario DyC</a>
+                <a href="12%20Clase%20Seminario%20DyC.html" class="btn">12. Clase Seminario DyC</a>
+                <a href="13%20Clase%20Seminario%20DyC.html" class="btn">13. Clase Seminario DyC</a>
+                <a href="14%20Clase%20Seminario%20DyC.html" class="btn">14. Clase Seminario DyC</a>
+            </div>
+            <div style="margin-top: 15px;">
+                <div onclick="accesoExamen('Primera%20Fase%20Seminario%20DyC.html')" class="btn btn-ex">📘 Evaluación Fase 1</div>
+                <div onclick="accesoExamen('Segunda%20Fase%20Seminario%20DyC.html')" class="btn btn-ex">📗 Evaluación Fase 2</div>
+                <div onclick="accesoExamen('Examen%20Final%20DyC.html')" class="btn btn-ex">📙 EXAMEN FINAL</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <span class="tag">Administración de Empresas</span>
+            <h3>Seminario Profesional</h3>
+            <p style="font-size: 0.9rem; color: #666;">Espacio para guías de investigación y proyectos empresariales.</p>
+            <a href="#" class="btn">📂 Programa del Curso</a>
+            <a href="#" class="btn">📂 Material de Clase (Nuevo)</a>
+            <div onclick="accesoExamen('examen-admin.html')" class="btn btn-ex">📝 Evaluación de Curso</div>
+        </div>
+
+        <div class="card">
+            <span class="tag">Contaduría Pública y Auditoría</span>
+            <h3>Derecho Tributario II</h3>
+            <p style="font-size: 0.9rem; color: #666;">Legislación tributaria, procesos y fiscalización.</p>
+            <a href="#" class="btn">📜 Código Tributario PDF</a>
+            <a href="#" class="btn">📂 Presentaciones de Cátedra</a>
+            <div onclick="accesoExamen('examen-tributario.html')" class="btn btn-ex">📝 Evaluación Tributaria</div>
+        </div>
+
+    </div>
+  </div>
+
+  <div id="Doctorado" class="tabcontent">
+    <div class="grid">
+        <div class="card" style="grid-column: 1 / -1;">
+            <h3>🎓 Panel de Investigación Doctoral</h3>
+            <p style="font-size: 0.85rem;">Gestione sus cursos y documentos de tesis.</p>
+        </div>
+        <div class="card">
+            <input type="text" id="input-1" class="edit-doc" placeholder="Curso 1...">
+            <button onclick="guardarNota(1)" class="btn-save">💾 Guardar</button>
+            <a href="https://github.com/" target="_blank" class="btn">📂 Documentos</a>
+        </div>
+        <div class="card">
+            <input type="text" id="input-2" class="edit-doc" placeholder="Curso 2...">
+            <button onclick="guardarNota(2)" class="btn-save">💾 Guardar</button>
+            <a href="https://github.com/" target="_blank" class="btn">📂 Documentos</a>
+        </div>
+    </div>
+  </div>
+
+  <div id="Herramientas" class="tabcontent">
+    <div class="grid">
+        <div class="card">
+            <h3>🤖 Inteligencia Artificial</h3>
+            <a href="https://notebooklm.google.com/" target="_blank" class="btn" style="background:#e8f0fe; color:#1967d2;">NotebookLM - Análisis de Tesis</a>
+        </div>
+        <div class="card">
+            <h3>☁️ Mi Drive</h3>
+            <a href="https://drive.google.com/" target="_blank" class="btn" style="background:#e6ffed; color:#22863a;">Acceder a Google Drive</a>
+        </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+    <strong>Magíster Artium José Benjamín García Santa Cruz</strong><br>
+    Abogado y Notario | Economista Colegiado 19062<br>
+    Universidad Regional de Guatemala - Sede San Raymundo | 2026
+</footer>
 
 </body>
 </html>
