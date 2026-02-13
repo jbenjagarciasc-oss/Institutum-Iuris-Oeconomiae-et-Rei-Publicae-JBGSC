@@ -1,0 +1,381 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clase 1: La Investigación como Herramienta Gerencial</title>
+<style>
+    :root {
+        --azul: #003366;
+        --rojo: #cc0000;
+        --blanco: #fff;
+        --fondo: #f0f2f5;
+        --txt: #2c3e50;
+        --azul-claro: #eef6fc;
+        --verde-exito: #28a745;
+        --alerta: #ffc107;
+    }
+    body { font-family: 'Segoe UI', serif; background: var(--fondo); color: var(--txt); line-height: 1.6; margin: 0; }
+    .main-container { max-width: 1200px; margin: 30px auto; background: var(--blanco); border-top: 8px solid var(--azul); box-shadow: 0 5px 25px rgba(0,0,0,.1); padding-bottom: 40px; }
+    header { background: linear-gradient(135deg, var(--azul) 0%, #0055a5 100%); color: var(--blanco); padding: 40px; text-align: center; }
+    header::after { content: ""; display: block; width: 60%; height: 4px; background: var(--rojo); margin: 20px auto 0; }
+    h1 { font-size: 2.5em; margin: 0; }
+    h2 { font-style: italic; font-weight: 400; opacity: .9; }
+    
+    /* SECCIONES Y SOCRÁTICO */
+    .content-section { padding: 0 40px; margin-bottom: 40px; }
+    .section-title { color: var(--azul); border-left: 5px solid var(--rojo); padding-left: 15px; font-size: 1.8em; text-transform: uppercase; font-weight: 700; margin-bottom: 20px; margin-top: 40px; display: flex; align-items: center; }
+    .section-number { background: var(--rojo); color: white; width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; margin-right: 10px; font-size: 0.6em; vertical-align: middle; }
+    
+    .socratic-box { background: #fffcfc; border: 2px solid #f2dede; padding: 25px; margin-bottom: 25px; border-radius: 8px; position: relative; }
+    .socratic-question { display: block; font-size: 1.3em; font-weight: bold; text-align: center; color: var(--rojo); margin-bottom: 15px; font-style: italic; }
+    
+    /* REGLAS DE ORO */
+    .rules-container { background: #eef6fc; border-left: 5px solid var(--azul); padding: 20px; margin-top: 20px; border-radius: 0 5px 5px 0; }
+    .rules-list { list-style: none; padding: 0; margin: 0; }
+    .rules-list li { margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #dcebf7; }
+    .rule-title { color: var(--azul); font-weight: 800; margin-right: 5px; }
+
+    /* ÁRBOL */
+    .tree-diagram-container { display: flex; flex-direction: column; align-items: center; margin: 40px 0; }
+    .tree-node { padding: 15px; color: #fff; text-align: center; width: 280px; margin: 5px; border-radius: 5px; box-shadow: 0 4px 8px rgba(0,0,0,.1); }
+    .branch { background: #cc0000; }
+    .trunk { background: #003366; width: 320px; }
+    .root { background: #5d4037; width: 300px; }
+
+    /* PROGRAMA */
+    .syllabus-container { display: grid; gap: 15px; }
+    details.syllabus-module { background: #fff; border: 1px solid #ddd; border-radius: 5px; overflow: hidden; transition: all 0.3s ease; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+    details.syllabus-module summary { padding: 15px 20px; cursor: pointer; font-weight: bold; background: linear-gradient(to right, #f8f9fa, #fff); color: var(--azul); list-style: none; display: flex; align-items: center; border-left: 6px solid var(--azul-claro); font-size: 1.1em; text-transform: uppercase; }
+    details.syllabus-module summary::before { content: "+"; margin-right: 15px; color: var(--rojo); font-size: 1.5em; line-height: 0; font-weight: bold; }
+    details.syllabus-module[open] summary { background: var(--azul); color: white; border-left: 6px solid var(--rojo); }
+    details.syllabus-module[open] summary::before { content: "-"; color: white; }
+    .module-content { padding: 25px; background-color: #fff; border-top: 1px solid #eee; }
+
+    /* BOTÓN RUTA CRÍTICA Y EVALUACIÓN */
+    .btn-ruta {
+        width: 100%;
+        padding: 20px;
+        background: linear-gradient(135deg, var(--rojo) 0%, #a00000 100%);
+        color: white;
+        border: none;
+        font-size: 1.2em;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 8px;
+        margin-top: 30px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        text-transform: uppercase;
+        transition: transform 0.2s;
+    }
+    .btn-ruta:hover { transform: scale(1.02); }
+    .ruta-content { display: none; margin-top: 15px; border: 2px solid var(--rojo); border-radius: 8px; overflow: hidden; }
+    .eval-row { display: flex; justify-content: space-between; border-bottom: 1px solid #eee; padding: 15px 20px; background: #fff; }
+    .eval-total { font-weight: bold; background: #f8d7da; color: #721c24; font-size: 1.1em; }
+    .eval-detail { font-size: 0.9em; color: #555; display: block; margin-top: 5px; }
+    .alert-zone { background: #fff3cd; color: #856404; padding: 10px; text-align: center; font-weight: bold; border-top: 1px solid #ffeeba; }
+
+    /* PRAXIS Y OTROS */
+    .exercise-wrapper { display: flex; gap: 20px; flex-wrap: wrap; }
+    .exercise-card { flex: 1; min-width: 300px; background: #fff; border: 1px solid #ddd; border-radius: 8px; }
+    .card-header { padding: 10px; color: #fff; font-weight: 700; background: var(--azul); }
+    .card-body { padding: 15px; }
+    .btn-reveal { width: 100%; padding: 10px; background: #f1f1f1; border: none; cursor: pointer; font-weight: 700; color: var(--azul); transition: 0.3s; margin-top: 5px; text-align: left; border-bottom: 1px solid #ccc; }
+    .btn-reveal:hover { background: #e2e6ea; }
+    .answer-content { display: none; padding: 15px; background: #f8f9fa; border-left: 4px solid var(--azul); margin-top: 10px; }
+    .lexicon-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; }
+    .lexicon-item { background: #f8f9fa; padding: 15px; border-left: 3px solid var(--rojo); }
+    .homework-box { background: #fff3e0; border: 1px solid #ffe0b2; padding: 20px; border-radius: 8px; margin-top: 30px; }
+    .homework-card { background: white; padding: 15px; border: 1px solid #e0e0e0; margin-bottom: 15px; border-radius: 5px; }
+    .coordinator-box { background: #e8f5e9; border: 1px solid #c8e6c9; padding: 15px; margin-top: 15px; color: #2e7d32; font-weight: bold; text-align: center;}
+    .biblio { font-size: 0.9em; color: #666; border-top: 1px solid #ddd; padding-top: 20px; margin-top: 40px; columns: 2; }
+    .quote-box { text-align: center; font-style: italic; margin-top: 40px; padding: 20px; background: #eee; border-radius: 5px; }
+</style>
+</head>
+<body>
+
+<div class="main-container">
+    <header>
+        <h1>UNIVERSIDAD REGIONAL</h1>
+        <h2>Sede San Raymundo | Admon. Empresas (9no Semestre)</h2>
+        <p>Cátedra: <strong>Magister José Benjamín García Santa Cruz</strong> | Fecha: 14/02/2026</p>
+    </header>
+
+    <!-- 1. INTRODUCCIÓN Y REGLAS DE ORO -->
+    <section class="content-section">
+        <h3 class="section-title"><span class="section-number">1</span>INTRODUCCIÓN: LA INVESTIGACIÓN COMO HERRAMIENTA GERENCIAL</h3>
+        
+        <div class="socratic-box">
+            <span class="socratic-question">"¿Toma usted decisiones millonarias basándose en la intuición (apuesta) o en la evidencia (inversión)?"</span>
+            <p>
+                Señores administradores: Bienvenidos al cierre de su formación académica. La diferencia entre un Gerente y un "jefe" es que el primero utiliza el método científico para reducir la incertidumbre. En este Seminario, transformaremos su mentalidad operativa en una mentalidad analítica y estratégica. La Tesis no es un trámite; es su primera consultoría profesional documentada.
+            </p>
+            <div class="coordinator-box">
+                ¡ATENCIÓN! Se requiere designar HOY al Coordinador(a) de la clase.<br>
+                Enlace oficial con la cátedra para asistencia y entrega de tareas.
+            </div>
+        </div>
+
+        <div class="rules-container">
+            <h4 style="color:var(--azul); margin-top:0;">LAS 5 REGLAS DE ORO DE LA CÁTEDRA (Guía de Tesis U. Regional):</h4>
+            <ul class="rules-list">
+                <li><span class="rule-title">1. CERO GERUNDIOS:</span> Prohibido el uso de "estando", "haciendo", "buscando". Denotan acción incompleta. En tesis se escribe: "se realizó", "se determinó" [Guía Tesis, p. 11].</li>
+                <li><span class="rule-title">2. CERO SUBJETIVIDAD:</span> Eliminen "yo creo", "nos parece", "sentimos". La administración es ciencia, no opinión. Solo hechos y datos sustentados.</li>
+                <li><span class="rule-title">3. CERO ADJETIVOS VAGOS:</span> Nada de "mucho", "poco", "grande", "pequeño". Usen datos métricos precisos (porcentajes, montos, cantidades) [Guía Tesis, p. 12].</li>
+                <li><span class="rule-title">4. CERO "ETCÉTERA":</span> El "etc." es la ambigüedad del ignorante. En investigación se debe ser exhaustivo o usar "entre otros" especificando la categoría [Guía Tesis, p. 11].</li>
+                <li><span class="rule-title">5. PROPIEDAD INTELECTUAL:</span> En el Marco Teórico, usted no opina; usted parafrasea o cita. Si no hay fuente, es plagio o invención [Guía Tesis, p. 12].</li>
+            </ul>
+        </div>
+    </section>
+
+    <div style="padding: 0 40px;">
+
+        <!-- 2. PROGRAMA (MÓDULOS) -->
+        <h3 class="section-title"><span class="section-number">2</span>PROGRAMA DEL CURSO (MÓDULOS)</h3>
+        <p>El curso se divide en tres grandes bloques estratégicos que cubren los 14 pasos del Reglamento:</p>
+        
+        <div class="syllabus-container">
+            <details class="syllabus-module" open>
+                <summary>BLOQUE 1: EL DIAGNÓSTICO EMPRESARIAL (CLASES 1-5)</summary>
+                <div class="module-content">
+                    <ul>
+                        <li><strong>Clase 1 (14/02):</strong> La Investigación como Herramienta Gerencial.</li>
+                        <li><strong>Clase 2 (21/02):</strong> La Idea de Negocio (El Génesis).</li>
+                        <li><strong>Clase 3 (28/02):</strong> El Planteamiento del Problema (El Diagnóstico).</li>
+                        <li><strong>Clase 4 (07/03):</strong> Justificación y Viabilidad (El ROI de la Tesis).</li>
+                        <li><strong>14/03: I PARCIAL (Evaluación Bloque 1).</strong></li>
+                        <li><strong>Clase 5 (21/03):</strong> El Marco Teórico. <em>*Tarde tiene examen, nosotros clase.</em></li>
+                    </ul>
+                </div>
+            </details>
+
+            <details class="syllabus-module">
+                <summary>BLOQUE 2: LA ESTRATEGIA METODOLÓGICA (CLASES 6-10)</summary>
+                <div class="module-content">
+                    <ul>
+                        <li><strong>Clase 6 (11/04):</strong> Hipótesis y Variables (Los KPIs).</li>
+                        <li><strong>Clase 7 (18/04):</strong> El Diseño de Investigación (El Plan de Ataque).</li>
+                        <li><strong>Clase 8 (25/04):</strong> Muestreo (Segmentación de Mercado).</li>
+                        <li><strong>02/05: II PARCIAL (Evaluación Bloque 2).</strong></li>
+                        <li><strong>Clase 9 (09/05):</strong> Recolección de Datos. <em>*Tarde tiene examen, nosotros clase.</em></li>
+                        <li><strong>Clase 10 (16/05):</strong> Procesamiento de Datos (Business Analytics).</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details class="syllabus-module">
+                <summary>BLOQUE 3: LA PROPUESTA Y CIERRE (CLASES 11-14)</summary>
+                <div class="module-content">
+                    <ul>
+                        <li><strong>Clase 11 (23/05):</strong> Análisis de Resultados (El Diagnóstico Final).</li>
+                        <li><strong>Clase 12 (30/05):</strong> Conclusiones (El Veredicto Ejecutivo).</li>
+                        <li><strong>Clase 13 (06/06):</strong> Recomendaciones y Propuesta (Plan de Negocios).</li>
+                        <li style="color:var(--rojo); font-weight:bold;">13/06: EXAMEN FINAL Y DEFENSA DEL PLAN (CLASE 14).</li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+
+        <!-- BOTÓN RUTA CRÍTICA Y EVALUACIÓN -->
+        <button class="btn-ruta" onclick="toggle('rutaCritica')">
+            📅 VER RUTA CRÍTICA Y SISTEMA DE EVALUACIÓN (CLIC AQUÍ)
+        </button>
+        
+        <div id="rutaCritica" class="ruta-content">
+            <div class="eval-row">
+                <div>
+                    <strong>I PARCIAL (14 de Marzo 2026)</strong>
+                    <span class="eval-detail">Contenido: Bloque 1</span>
+                </div>
+                <div style="text-align:right;">
+                    Zona (Asist./Tareas): 10 pts<br>
+                    Trabajo Entrega: 10 pts<br>
+                    Examen Parcial: 10 pts<br>
+                    <strong>Total: 30 Pts</strong>
+                </div>
+            </div>
+            
+            <div class="eval-row">
+                <div>
+                    <strong>II PARCIAL (02 de Mayo 2026)</strong>
+                    <span class="eval-detail">Contenido: Bloque 2</span>
+                </div>
+                <div style="text-align:right;">
+                    Zona (Asist./Tareas): 10 pts<br>
+                    Trabajo Entrega: 10 pts<br>
+                    Examen Parcial: 10 pts<br>
+                    <strong>Total: 30 Pts</strong>
+                </div>
+            </div>
+
+            <div class="eval-row" style="background:#f4f9ff;">
+                <div>
+                    <strong>EVALUACIÓN FINAL (13 de Junio 2026)</strong>
+                    <span class="eval-detail">Contenido: Bloque 3 y Protocolo Final</span>
+                </div>
+                <div style="text-align:right;">
+                    Zona Final (Asist./Tareas): 10 pts<br>
+                    Entrega Trabajo Final: 10 pts<br>
+                    Examen Final: 20 pts<br>
+                    <strong>Total: 40 Pts</strong>
+                </div>
+            </div>
+
+            <div class="eval-row eval-total">
+                <span>NOTA FINAL DEL CURSO</span>
+                <span>100 PUNTOS</span>
+            </div>
+            
+            <div class="alert-zone">
+                ⚠ REQUISITO OBLIGATORIO: ZONA MÍNIMA DE 21 PUNTOS PARA TENER DERECHO A EXAMEN FINAL [Calendario Académico].
+            </div>
+        </div>
+
+        <!-- 3. ÁRBOL DE IDEAS -->
+        <h3 class="section-title"><span class="section-number">3</span>MAPA MENTAL: ESTRUCTURA DE LA TESIS DE NEGOCIOS</h3>
+        <p>Visualice su investigación como un organismo vivo que debe dar frutos (Resultados):</p>
+        
+        <div class="tree-diagram-container">
+            <!-- Ramas -->
+            <div class="tree-node branch">
+                <strong>RAMAS (Rentabilidad/Eficiencia)</strong><br>
+                El fruto: Utilidades, Posicionamiento, Calidad.<br>
+                <small>(Lo que la empresa gana)</small>
+            </div>
+            <!-- Tronco -->
+            <div class="tree-node trunk">
+                <strong>TRONCO (Toma de Decisiones)</strong><br>
+                La gerencia basada en datos.<br>
+                <small>(Estrategia Competitiva - Porter)</small>
+            </div>
+            <!-- Raíz -->
+            <div class="tree-node root">
+                <strong>RAÍZ (Método Científico)</strong><br>
+                El sustento: Datos veraces y objetivos.<br>
+                <small>(Hernández Sampieri - Rigor)</small>
+            </div>
+        </div>
+
+        <!-- 4. PRAXIS -->
+        <h3 class="section-title"><span class="section-number">4</span>PRAXIS: EL PROBLEMA GERENCIAL</h3>
+        <p>Distinguir entre lo que "le duele" a la empresa y lo que usted debe "investigar".</p>
+        <div class="exercise-wrapper">
+            
+            <!-- CASO 1 -->
+            <div class="exercise-card">
+                <div class="card-header">CASO 1: BAJA EN VENTAS</div>
+                <div class="card-body">
+                    <p><strong>El Gerente dice:</strong> "El problema es que estamos vendiendo poco".</p>
+                    <p><strong>Análisis:</strong> Eso no es un problema de investigación, es un <strong>resultado negativo (Síntoma)</strong>.</p>
+                    <button class="btn-reveal" onclick="toggle('ans1')">VER ENFOQUE DEL INVESTIGADOR</button>
+                    <div id="ans1" class="answer-content">
+                        <p><strong>Problema de Investigación:</strong> "¿Cuáles son los factores (precio, competencia, calidad, servicio) que están provocando la disminución del 20% en el volumen de ventas durante el último trimestre?"</p>
+                        <p><em>Investigamos las causas, no el resultado.</em></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CASO 2 -->
+            <div class="exercise-card">
+                <div class="card-header">CASO 2: CLIMA LABORAL</div>
+                <div class="card-body">
+                    <p><strong>El Gerente dice:</strong> "La gente es perezosa y llega tarde".</p>
+                    <p><strong>Análisis:</strong> Juicio de valor subjetivo. No sirve para tesis.</p>
+                    <button class="btn-reveal" onclick="toggle('ans2')">VER ENFOQUE DEL INVESTIGADOR</button>
+                    <div id="ans2" class="answer-content">
+                        <p><strong>Problema de Investigación:</strong> "Determinar la correlación entre el sistema de incentivos actual y el índice de puntualidad/ausentismo del personal operativo."</p>
+                        <p><em>Pasamos de la queja al dato medible.</em></p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 5. LÉXICO -->
+        <h3 class="section-title"><span class="section-number">5</span>LÉXICO: ETIMOLOGÍA Y EPISTEMOLOGÍA</h3>
+        <div class="lexicon-grid">
+            <div class="lexicon-item">
+                <strong>1. ADMINISTRACIÓN:</strong><br>
+                Del latín <em>ad-minister</em> (hacia la subordinación/servicio). Interpretar los objetivos de la empresa y transformarlos en acción organizacional [Chiavenato].
+            </div>
+            <div class="lexicon-item">
+                <strong>2. MÉTODO:</strong><br>
+                Del griego <em>meta-odos</em> (camino hacia). Es el camino sistemático para alcanzar la verdad científica, alejándonos de la intuición [Munch].
+            </div>
+            <div class="lexicon-item">
+                <strong>3. EFICIENCIA vs. EFICACIA:</strong><br>
+                Eficiencia es "hacer las cosas correctamente" (medios/costos). Eficacia es "hacer las cosas correctas" (logro de objetivos/resultados) [Drucker/Chiavenato].
+            </div>
+            <div class="lexicon-item">
+                <strong>4. DIAGNÓSTICO:</strong><br>
+                Conocimiento a través de los signos o síntomas. Es la base de toda propuesta gerencial sensata.
+            </div>
+            <div class="lexicon-item">
+                <strong>5. TESIS:</strong><br>
+                Del griego <em>thesis</em> (posición). Proposición que se mantiene con razonamientos. En negocios, es la demostración de una solución a un problema.
+            </div>
+        </div>
+
+        <!-- 6. LABOR DOMICILIARIA -->
+        <h3 class="section-title"><span class="section-number">6</span>LABOR DOMICILIARIA: DETECCIÓN DE OPORTUNIDADES</h3>
+        <p style="text-align:center; font-style:italic;">(Entrega: Próxima clase 21/02/2026. Formato Físico).</p>
+        <div class="homework-box">
+            <p><strong>INSTRUCCIONES:</strong> Observe su entorno laboral o una empresa conocida.</p>
+            
+            <div class="homework-card">
+                <p><strong>EJERCICIO 1: LA BITÁCORA DE ERRORES</strong><br>
+                Identifique 3 situaciones que estén costando dinero o tiempo a la empresa.</p>
+                <ul>
+                    <li>Ejemplo: "Se desperdicia mucho papel", "Los clientes se quejan de la espera".</li>
+                    <li>Clasifíquelas en: Área Financiera, RRHH, Mercadeo o Producción.</li>
+                </ul>
+            </div>
+
+            <div class="homework-card">
+                <p><strong>EJERCICIO 2: EL "POR QUÉ" (JUSTIFICACIÓN INICIAL)</strong><br>
+                Elija una de las situaciones anteriores y explique en un párrafo:</p>
+                <ul>
+                    <li>¿Por qué vale la pena investigar esto?</li>
+                    <li>¿Qué ganaría la empresa si se soluciona? (Ahorro, ventas, imagen).</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- BIBLIOGRAFÍA -->
+        <h3 class="section-title"><span class="section-number">7</span>BIBLIOGRAFÍA DE LA SESIÓN</h3>
+        <div class="biblio">
+            1. Hernández Sampieri, R. (2014). <em>Metodología de la Investigación</em>. McGraw-Hill.<br>
+            2. Chiavenato, I. (2006). <em>Introducción a la Teoría General de la Administración</em>. McGraw-Hill.<br>
+            3. Porter, M. (2009). <em>Estrategia Competitiva</em>. Pirámide.<br>
+            4. Universidad Regional. (2022). <em>Guía General de Tesis</em>.<br>
+            5. Bernal, C. (2010). <em>Metodología de la Investigación</em>. Pearson.<br>
+            6. Osterwalder, A. (2011). <em>Generación de Modelos de Negocio</em>. Deusto.<br>
+            7. Drucker, P. (1999). <em>Los desafíos de la gerencia para el siglo XXI</em>. Norma.<br>
+            8. Munch, L. (2009). <em>Métodos y técnicas de investigación</em>. Trillas.<br>
+            9. Tamayo, M. (2004). <em>El proceso de la investigación científica</em>. Limusa.<br>
+            10. Universidad Regional. (2026). <em>Calendario Académico Primer Semestre</em>.
+        </div>
+
+        <!-- FRASE FINAL -->
+        <div class="quote-box">
+            "La mejor forma de predecir el futuro es crearlo."<br>
+            <strong>— Peter Drucker</strong>
+        </div>
+
+    </div>
+</div>
+
+<script>
+function toggle(id) {
+    var x = document.getElementById(id);
+    if (x.style.display === "block") {
+        x.style.display = "none";
+    } else {
+        x.style.display = "block";
+    }
+}
+</script>
+
+</body>
+</html>

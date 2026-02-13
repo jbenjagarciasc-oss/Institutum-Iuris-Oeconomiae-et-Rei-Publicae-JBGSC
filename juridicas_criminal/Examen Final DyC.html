@@ -1,0 +1,318 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen Final - Seminario de Tesis (Edición Docente)</title>
+    <style>
+        /* ESTILOS GENERALES (Formato Papel) */
+        :root {
+            --azul-inst: #003366;
+            --rojo-inst: #cc0000;
+            --negro: #000000;
+        }
+
+        body {
+            font-family: 'Times New Roman', serif;
+            background-color: #f0f0f0; /* Gris en pantalla para contraste */
+            color: #000;
+            margin: 0;
+            padding: 20px;
+            font-size: 11pt;
+        }
+
+        /* HOJA DE EXAMEN */
+        .exam-sheet {
+            background-color: white;
+            max-width: 216mm; /* Tamaño Carta */
+            margin: 0 auto;
+            padding: 20mm;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            position: relative;
+            box-sizing: border-box;
+        }
+
+        /* ENCABEZADO */
+        .header-table {
+            width: 100%;
+            border-bottom: 3px double var(--azul-inst);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .university-info { text-align: center; line-height: 1.2; }
+        h1 { font-size: 15pt; margin: 0; text-transform: uppercase; font-weight: bold; color: var(--azul-inst); }
+        h2 { font-size: 11pt; margin: 2px 0; font-weight: bold; }
+        .sub-info { font-size: 10pt; }
+
+        .score-box {
+            border: 2px solid var(--rojo-inst);
+            padding: 5px; width: 110px; text-align: center; font-weight: bold; font-size: 0.9em;
+        }
+
+        /* DATOS ESTUDIANTE */
+        .student-data { width: 100%; margin-bottom: 15px; border-collapse: collapse; font-size: 10.5pt; }
+        .student-data td { padding: 5px; border-bottom: 1px solid #999; vertical-align: bottom;}
+        .label { font-weight: bold; width: 85px; color: var(--azul-inst); }
+        
+        .degree-option { display: block; margin-bottom: 4px; }
+
+        /* SECCIONES */
+        .section-header {
+            background-color: #eee; padding: 4px 10px; font-weight: bold;
+            border-left: 5px solid var(--azul-inst); margin-top: 15px; margin-bottom: 8px;
+            text-transform: uppercase; font-size: 10.5pt; display: flex; justify-content: space-between;
+        }
+
+        /* PREGUNTAS */
+        .question-block { margin-bottom: 12px; page-break-inside: avoid; }
+        .options-list { list-style: none; padding-left: 15px; margin: 5px 0; }
+        .options-list li { margin-bottom: 3px; }
+        .square-check {
+            display: inline-block; width: 12px; height: 12px; border: 1px solid #000; margin-right: 5px;
+            vertical-align: middle;
+        }
+
+        /* CASOS PRÁCTICOS */
+        .case-table { width: 100%; border-spacing: 10px; border-collapse: separate; margin-top:10px; }
+        .case-cell { width: 50%; vertical-align: top; padding: 10px; border: 1px solid #ccc; font-size: 10pt; background-color: #fff; }
+        .case-title { text-align: center; font-weight: bold; display: block; margin-bottom: 5px; text-decoration: underline; color: var(--azul-inst); }
+        .writing-lines { border-bottom: 1px dotted #000; height: 20px; margin-top: 5px; display: block; }
+
+        /* ENTREGA DEL PLAN */
+        .task-check { 
+            border: 2px dashed var(--rojo-inst); 
+            padding: 15px; 
+            margin-top: 15px; 
+            background-color: #fffdfd; 
+        }
+
+        /* CLAVES PARA EL DOCENTE (SOLO PANTALLA) */
+        .teacher-key {
+            display: block; /* Visible por defecto en pantalla */
+            background-color: #e6f3ff;
+            border-left: 4px solid var(--rojo-inst);
+            color: #003366;
+            padding: 5px 10px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .class-ref {
+            font-weight: bold; color: var(--rojo-inst); text-transform: uppercase;
+            font-size: 0.75em; margin-right: 8px; background: white; padding: 1px 4px; border: 1px solid #ccc;
+        }
+
+        /* BOTONES FLOTANTES */
+        .controls {
+            position: fixed; top: 20px; right: 20px; z-index: 1000;
+            background: white; padding: 10px; border: 1px solid #ccc; box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        .btn {
+            display: block; width: 100%; margin-bottom: 5px; padding: 8px; 
+            background: var(--azul-inst); color: white; border: none; cursor: pointer; font-weight: bold;
+        }
+        .btn:hover { background: #002244; }
+
+        /* IMPRESIÓN LIMPIA */
+        @media print {
+            body { background: white; padding: 0; font-size: 10.5pt; -webkit-print-color-adjust: exact; }
+            .exam-sheet { box-shadow: none; margin: 0; width: 100%; padding: 0; }
+            .controls, .teacher-key { display: none !important; } /* MAGIA: Oculta respuestas y botones */
+            .section-header { background-color: #eee !important; -webkit-print-color-adjust: exact; }
+            .case-cell { border: 1px solid #000; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- CONTROLES DOCENTE -->
+<div class="controls">
+    <button class="btn" onclick="window.print()">🖨️ IMPRIMIR / PDF</button>
+    <button class="btn" onclick="toggleAnswers()">👁️ OCULTAR RESPUESTAS</button>
+</div>
+
+<div class="exam-sheet">
+    
+    <!-- ENCABEZADO -->
+    <table class="header-table">
+        <tr>
+            <td width="15%" style="text-align:center; vertical-align:middle;">
+                <div style="font-size:24pt; font-weight:bold; color:#ccc;">UR</div>
+            </td>
+            <td width="70%" class="university-info">
+                <h1>Universidad Regional de Guatemala</h1>
+                <h2>Sede San Raymundo</h2>
+                <div class="sub-info">Cátedra: <strong>Magister José Benjamín García Santa Cruz</strong></div>
+                <div class="sub-info">Curso: <strong>Seminario de Tesis</strong> | Fecha: <strong>13/06/2026</strong></div>
+            </td>
+            <td width="15%" style="vertical-align:middle;">
+                <div class="score-box">
+                    NOTA TOTAL<br><br>
+                    _______ / 40
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <!-- DATOS DEL ESTUDIANTE -->
+    <table class="student-data">
+        <tr>
+            <td class="label">Estudiante:</td>
+            <td></td>
+            <td class="label" style="width:50px;">Carné:</td>
+            <td style="width:100px;"></td>
+        </tr>
+        <tr>
+            <td class="label" style="vertical-align:top;">Carrera:</td>
+            <td colspan="3">
+                <span class="degree-option"><span class="square-check"></span> Licenciatura en Ciencias Jurídicas y Sociales</span>
+                <span class="degree-option"><span class="square-check"></span> Licenciatura en Investigación Criminal y Forense</span>
+            </td>
+        </tr>
+    </table>
+
+    <div style="font-size:10pt; font-style:italic; margin-bottom:10px; border:1px solid #ccc; padding:5px;">
+        <strong>INSTRUCCIONES:</strong> Lea detenidamente. Valor del examen escrito: 20 Puntos. Valor de entrega del Plan: 20 Puntos. Tiempo: 60 minutos.
+    </div>
+
+    <!-- SERIE I -->
+    <div class="section-header">
+        <span>SERIE I: FUNDAMENTOS METODOLÓGICOS (10 Puntos)</span>
+        <span>(2 pts c/u)</span>
+    </div>
+
+    <div class="question-block">
+        <strong>1. Según la técnica metodológica, ¿cuál es la diferencia fundamental entre "Conclusión" y "Recomendación"?</strong>
+        <ul class="options-list">
+            <li><span class="square-check"></span> a) No existe diferencia, son sinónimos.</li>
+            <li><span class="square-check"></span> b) La Conclusión es el veredicto sobre lo probado (pasado); la Recomendación es una sugerencia a futuro.</li>
+            <li><span class="square-check"></span> c) La Recomendación es obligatoria y la Conclusión opcional.</li>
+        </ul>
+        <div class="teacher-key"><span class="class-ref">CLASE 12</span> <strong>R: B.</strong> Conclusión = "Lo que es" (Veredicto). Recomendación = "Lo que debe ser" (Consejo). [Sampieri].</div>
+    </div>
+
+    <div class="question-block">
+        <strong>2. En la relación causal "La falta de capacitación (X) provoca errores en la cadena de custodia (Y)", ¿qué es X?</strong>
+        <ul class="options-list">
+            <li><span class="square-check"></span> a) Variable Dependiente (Efecto).</li>
+            <li><span class="square-check"></span> b) Variable Independiente (Causa).</li>
+            <li><span class="square-check"></span> c) Variable Interviniente.</li>
+        </ul>
+        <div class="teacher-key"><span class="class-ref">CLASE 6</span> <strong>R: B.</strong> X es la Variable Independiente (Causa) que influye en Y [Sampieri, Cap. 6].</div>
+    </div>
+
+    <div class="question-block">
+        <strong>3. ¿Qué garantiza una "Muestra Probabilística" en una investigación científica?</strong>
+        <ul class="options-list">
+            <li><span class="square-check"></span> a) Que todos los elementos tienen la misma probabilidad de ser elegidos (Generalización).</li>
+            <li><span class="square-check"></span> b) Que se elige a los sujetos más fáciles de encontrar.</li>
+            <li><span class="square-check"></span> c) Que no hay margen de error alguno.</li>
+        </ul>
+        <div class="teacher-key"><span class="class-ref">CLASE 7</span> <strong>R: A.</strong> Permite generalizar resultados y medir el error estándar [Sampieri, 175].</div>
+    </div>
+
+    <div class="question-block">
+        <strong>4. ¿Qué error lógico se comete al concluir "culpabilidad" basándose solo en una prueba de orientación (ej. Luminol)?</strong>
+        <ul class="options-list">
+            <li><span class="square-check"></span> a) Falta de motivación.</li>
+            <li><span class="square-check"></span> b) Exceso de Conclusión (viola el principio de certeza).</li>
+            <li><span class="square-check"></span> c) Error de muestreo.</li>
+        </ul>
+        <div class="teacher-key"><span class="class-ref">CLASE 12</span> <strong>R: B.</strong> Las pruebas de orientación solo dan probabilidad, no certeza [Guzmán].</div>
+    </div>
+
+    <div class="question-block">
+        <strong>5. ¿Qué es la "Definición Operacional" de una variable?</strong>
+        <ul class="options-list">
+            <li><span class="square-check"></span> a) La definición del diccionario.</li>
+            <li><span class="square-check"></span> b) El conjunto de procedimientos para medir la variable empíricamente (bajar a la realidad).</li>
+            <li><span class="square-check"></span> c) Una hipótesis nula.</li>
+        </ul>
+        <div class="teacher-key"><span class="class-ref">CLASE 6</span> <strong>R: B.</strong> Especifica qué actividades deben realizarse para medir una variable [Sampieri].</div>
+    </div>
+
+    <!-- SERIE II -->
+    <div class="section-header">
+        <span>SERIE II: RESOLUCIÓN DE CASO (10 Puntos)</span>
+    </div>
+    <div style="font-size:0.9em; margin-bottom:5px;">*Instrucción: Responda ÚNICAMENTE el caso correspondiente a su carrera.*</div>
+
+    <table class="case-table">
+        <tr>
+            <td class="case-cell">
+                <span class="case-title">CASO JURÍDICO</span>
+                <p style="margin:0; font-size:0.95em;"><strong>Situación:</strong> Usted propone reformar el Art. 264 del CPP para negar medida sustitutiva a reincidentes. La Terna objeta: <em>"Eso viola la presunción de inocencia"</em>.</p>
+                <p style="margin:5px 0 0 0; font-size:0.95em;"><strong>Pregunta:</strong> Defienda su postura basándose en la "Peligrosidad Procesal".</p>
+                <div class="writing-lines"></div><div class="writing-lines"></div><div class="writing-lines"></div>
+                
+                <div class="teacher-key">
+                    <span class="class-ref">CLASE 13</span>
+                    <strong>R:</strong> No es pena anticipada (culpabilidad), sino cautela ante el <u>Peligro de Fuga</u> objetivo que representa la reincidencia.
+                </div>
+            </td>
+            <td class="case-cell">
+                <span class="case-title">CASO FORENSE</span>
+                <p style="margin:0; font-size:0.95em;"><strong>Situación:</strong> El Fiscal le ordena embalar un arma inmediatamente. Usted nota que NO ha sido fijada fotográficamente ni planimétricamente.</p>
+                <p style="margin:5px 0 0 0; font-size:0.95em;"><strong>Pregunta:</strong> ¿Qué acción toma y bajo qué principio técnico?</p>
+                <div class="writing-lines"></div><div class="writing-lines"></div><div class="writing-lines"></div>
+
+                <div class="teacher-key">
+                    <span class="class-ref">CLASE 13</span>
+                    <strong>R:</strong> Me niego respetuosamente. Fundamento: Principio de <u>Inmutabilidad</u>. Mover sin fijar destruye la evidencia espacial [Guzmán].
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <!-- SERIE III -->
+    <div class="section-header">
+        <span>SERIE III: ENTREGA DEL PLAN DE INVESTIGACIÓN (20 Puntos)</span>
+    </div>
+    
+    <div class="task-check">
+        <table style="width:100%;">
+            <tr>
+                <td style="vertical-align:middle; width:70%;">
+                    <strong>VERIFICACIÓN DE ENTREGA DEL PROTOCOLO FINAL</strong><br>
+                    <span style="font-size:0.9em;">El estudiante entrega en este acto el documento conteniendo:</span>
+                    <ul style="font-size:0.85em; margin-top:5px; columns: 2;">
+                        <li>[ ] 1. Carátula y Título Aprobado.</li>
+                        <li>[ ] 2. Planteamiento del Problema.</li>
+                        <li>[ ] 3. Objetivos y Justificación.</li>
+                        <li>[ ] 4. Bosquejo Preliminar de Temas.</li>
+                        <li>[ ] 5. Métodos y Técnicas.</li>
+                        <li>[ ] 6. Referencias (Normas APA).</li>
+                    </ul>
+                </td>
+                <td style="vertical-align:middle; width:30%; text-align:center;">
+                    <div style="border:1px solid #000; height:60px; width:100%; margin-bottom:5px;"></div>
+                    <span style="font-size:0.8em;">Firma de Recibido (Docente)</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div style="text-align:center; margin-top:30px; font-weight:bold; font-size:0.8em; color:#555;">
+        "La investigación científica es el puente entre la duda y la verdad."
+    </div>
+
+</div>
+
+<script>
+    function toggleAnswers() {
+        var answers = document.getElementsByClassName('teacher-key');
+        for (var i = 0; i < answers.length; i++) {
+            if (answers[i].style.display === 'none' || answers[i].style.display === '') {
+                answers[i].style.display = 'block';
+            } else {
+                answers[i].style.display = 'none';
+            }
+        }
+    }
+</script>
+
+</body>
+</html>

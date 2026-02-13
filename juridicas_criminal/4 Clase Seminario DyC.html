@@ -1,0 +1,481 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seminario de Tesis - Clase 4: El Hilo Rojo (Repaso)</title>
+    <style>
+        :root {
+            --azul-inst: #003366;
+            --azul-claro: #0055a5;
+            --rojo-inst: #cc0000;
+            --rojo-oscuro: #8a0000;
+            --blanco: #ffffff;
+            --gris-fondo: #f0f2f5;
+            --texto: #2c3e50;
+            --borde-suave: 1px solid #e1e4e8;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Georgia', serif;
+            background-color: var(--gris-fondo);
+            color: var(--texto);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* CONTENEDOR PRINCIPAL */
+        .main-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            background: var(--blanco);
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            border-top: 8px solid var(--azul-inst);
+            overflow: hidden;
+        }
+
+        /* ENCABEZADO */
+        header {
+            background: linear-gradient(135deg, var(--azul-inst) 0%, var(--azul-claro) 100%);
+            color: var(--blanco);
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        header::after {
+            content: "";
+            display: block;
+            width: 60%;
+            height: 4px;
+            background-color: var(--rojo-inst);
+            margin: 20px auto 0;
+        }
+
+        h1 { margin: 0; font-size: 2.5em; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; }
+        h2 { font-family: 'Georgia', serif; font-style: italic; font-weight: normal; opacity: 0.95; margin-top: 10px; font-size: 1.4em; }
+
+        .meta-info { margin-top: 15px; font-size: 0.95em; opacity: 0.9; }
+
+        /* SECCIONES */
+        .content-section { padding: 40px; border-bottom: var(--borde-suave); }
+        
+        .section-title {
+            color: var(--azul-inst);
+            border-left: 5px solid var(--rojo-inst);
+            padding-left: 15px;
+            font-size: 1.6em;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-number {
+            background-color: var(--azul-inst);
+            color: white;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-right: 15px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        /* RETROALIMENTACIÓN */
+        .feedback-container {
+            background-color: #fff8f8;
+            border: 2px dashed var(--rojo-inst);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        .feedback-header {
+            color: var(--rojo-inst);
+            font-weight: bold;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #f5c6c6;
+            padding-bottom: 5px;
+        }
+
+        /* 1. INTRODUCCIÓN */
+        .intro-container {
+            background-color: #fffcfc;
+            border: 2px solid #f2dede;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .class-title {
+            color: var(--azul-inst);
+            font-size: 2em;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: block;
+            letter-spacing: 1px;
+            border-bottom: 2px dashed var(--rojo-inst);
+            padding-bottom: 10px;
+        }
+        .socratic-question {
+            font-size: 1.3em;
+            color: var(--rojo-inst);
+            font-weight: bold;
+            display: block;
+            margin-bottom: 15px;
+            font-family: 'Georgia', serif;
+            font-style: italic;
+        }
+        
+        /* EL HILO ROJO (CONCEPTO) */
+        .thread-box {
+            background: #eef6fc;
+            border-left: 5px solid var(--azul-inst);
+            padding: 20px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+
+        /* EL GRAN DESAFÍO (ESTILO) */
+        .challenge-container {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .challenge-header {
+            padding: 15px;
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .challenge-law .challenge-header { background: linear-gradient(to right, var(--azul-inst), var(--azul-claro)); }
+        .challenge-crim .challenge-header { background: linear-gradient(to right, var(--rojo-inst), var(--rojo-oscuro)); }
+        
+        .challenge-body { padding: 25px; }
+        
+        .case-text {
+            background: #f9f9f9;
+            padding: 15px;
+            border-left: 3px solid #666;
+            margin-bottom: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+        }
+
+        .student-task {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+        
+        .input-group {
+            border: 1px dashed #ccc;
+            padding: 10px;
+            background: #fff;
+        }
+        
+        .btn-solution {
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+        .challenge-law .btn-solution { background-color: var(--azul-inst); color: white; }
+        .challenge-law .btn-solution:hover { background-color: #002244; }
+        
+        .challenge-crim .btn-solution { background-color: var(--rojo-inst); color: white; }
+        .challenge-crim .btn-solution:hover { background-color: #a00000; }
+
+        .solution-content {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #e8f4fd; /* Azul suave por defecto */
+            border: 1px solid #b6d4fe;
+            animation: slideDown 0.5s ease-out;
+        }
+        .challenge-crim .solution-content { background-color: #fde8e8; border-color: #feb6b6; }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* EXAMEN INFO */
+        .exam-alert {
+            background-color: #fff3cd;
+            color: #856404;
+            padding: 20px;
+            border: 2px solid #ffeeba;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            margin-top: 40px;
+        }
+
+        /* BIBLIOGRAFÍA */
+        .biblio-list { list-style: decimal; padding-left: 20px; margin: 0; font-size: 0.9em; }
+        .biblio-list li { margin-bottom: 5px; }
+
+        @media (max-width: 768px) {
+            .student-task { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="main-container">
+
+    <!-- ENCABEZADO -->
+    <header>
+        <span style="background-color: var(--rojo-inst); color: white; padding: 5px 15px; border-radius: 4px; font-weight: bold; text-transform: uppercase; font-size: 0.9em;">NOVENO SEMESTRE</span>
+        <h1>Seminario de Tesis</h1>
+        <h2>Cátedra: Magister José Benjamín García Santa Cruz</h2>
+        
+        <div style="margin-top: 15px; font-weight:bold;">
+            • Licenciatura en Ciencias Jurídicas y Sociales<br>
+            • Licenciatura en Investigación Criminal y Forense
+        </div>
+
+        <div class="meta-info">
+            Universidad Regional | Sede San Raymundo | <strong>Fecha: Sábado 7 de Marzo de 2026</strong>
+        </div>
+    </header>
+
+    <!-- 1. RETROALIMENTACIÓN (SOLUCIÓN TAREA ANTERIOR) -->
+    <section class="content-section">
+        <h3 class="section-title"><span class="section-number">1</span>RETROALIMENTACIÓN: TAREA CLASE 3</h3>
+        
+        <div class="feedback-container">
+            <span class="feedback-header">CORRECCIÓN TÁCTICA: LIMPIEZA DE OBJETIVOS</span>
+            <p>Señores, la semana pasada exigí coherencia entre Pregunta y Objetivo. Revisemos los errores fatales detectados, basados en la taxonomía de Bloom y Witker.</p>
+            
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
+                <!-- Solución Derecho -->
+                <div style="background:white; padding:15px; border-left:4px solid var(--azul-inst);">
+                    <h4 style="color:var(--azul-inst); margin-top:0;">DERECHO: Verbos Muertos</h4>
+                    <p><strong>Si usted puso:</strong><br>
+                    <em style="color:#999;">"Objetivo: Conocer las leyes de tránsito..."</em> (Incorrecto. Eso lo hace en Google).</p>
+                    <p><strong>La Solución (Taxativa):</strong><br>
+                    <span style="color:var(--azul-inst); font-weight:bold;">"ANALIZAR la eficacia del Reglamento de Tránsito en la reducción de accidentes..."</span></p>
+                    <small>Fundamento: Investigar es producir conocimiento nuevo, no repetir el existente [Witker, 230].</small>
+                </div>
+
+                <!-- Solución Criminalística -->
+                <div style="background:white; padding:15px; border-left:4px solid var(--rojo-inst);">
+                    <h4 style="color:var(--rojo-inst); margin-top:0;">CRIMINALÍSTICA: Verbos Pasivos</h4>
+                    <p><strong>Si usted puso:</strong><br>
+                    <em style="color:#999;">"Objetivo: Mirar si hay huellas en el arma..."</em> (Incorrecto. Eso es una actividad, no un objetivo).</p>
+                    <p><strong>La Solución (Taxativa):</strong><br>
+                    <span style="color:var(--rojo-inst); font-weight:bold;">"DETERMINAR la presencia de rastros papilares latentes mediante reactivos químicos..."</span></p>
+                    <small>Fundamento: El perito no "mira", el perito verifica científicamente [Guzmán, 285].</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. INTRODUCCIÓN SOCRÁTICA -->
+    <section class="content-section">
+        <div class="intro-container">
+            <span class="class-title">CLASE 4: EL HILO ROJO (INTEGRACIÓN Y REPASO FINAL)</span>
+            <span class="socratic-question">"La lógica es invencible porque para vencerla, es necesario emplear la lógica misma." — Pierre Boutroux.</span>
+            <p>
+                Caballeros, Doctos: Hemos llegado a la víspera de la batalla. La próxima semana es el <strong>Primer Parcial</strong>.
+                Hoy no avanzaremos hacia terreno desconocido; hoy consolidaremos la posición. 
+                El concepto clave de hoy es la <strong>Consistencia Metodológica</strong>, o lo que yo llamo "El Hilo Rojo". 
+                Si su Título dice "Manzanas", su Problema no puede preguntar por "Peras" y su Objetivo no puede prometer "Uvas". Todo debe ser una sola línea de pensamiento inquebrantable.
+            </p>
+        </div>
+    </section>
+
+    <!-- 3. MÓDULO TÉCNICO: EL HILO ROJO -->
+    <section class="content-section">
+        <h3 class="section-title"><span class="section-number">2</span>LA COHERENCIA INTERNA DEL PLAN</h3>
+        
+        <div class="thread-box">
+            <p><strong>EL PRINCIPIO DE IDENTIDAD:</strong></p>
+            El <strong>Tema</strong> (Clase 1) define el área.<br>
+            El <strong>Problema</strong> (Clase 2) define la duda específica (Variable X vs. Variable Y).<br>
+            El <strong>Objetivo</strong> (Clase 3) promete la respuesta a esa duda.<br>
+            <br>
+            <em>Si cambia una palabra clave en uno de estos pasos, el edificio se derrumba.</em>
+        </div>
+
+        <div style="text-align:center;">
+            <svg width="600" height="150">
+                <rect x="10" y="50" width="150" height="60" fill="#003366" rx="10" />
+                <text x="85" y="85" fill="white" text-anchor="middle" font-weight="bold" font-family="sans-serif">TÍTULO</text>
+                
+                <line x1="160" y1="80" x2="210" y2="80" stroke="#cc0000" stroke-width="4" />
+                
+                <rect x="210" y="50" width="150" height="60" fill="#003366" rx="10" />
+                <text x="285" y="85" fill="white" text-anchor="middle" font-weight="bold" font-family="sans-serif">PREGUNTA</text>
+                
+                <line x1="360" y1="80" x2="410" y2="80" stroke="#cc0000" stroke-width="4" />
+                
+                <rect x="410" y="50" width="150" height="60" fill="#003366" rx="10" />
+                <text x="485" y="85" fill="white" text-anchor="middle" font-weight="bold" font-family="sans-serif">OBJETIVO</text>
+            </svg>
+            <p><small>El "Hilo Rojo" conecta estos tres elementos. No puede romperse.</small></p>
+        </div>
+    </section>
+
+    <!-- 4. EL GRAN DESAFÍO DE INTEGRACIÓN -->
+    <section class="content-section" style="background-color: #f9f9f9;">
+        <h3 class="section-title"><span class="section-number">3</span>EL GRAN DESAFÍO DE INTEGRACIÓN</h3>
+        <p>Instrucción: A continuación se presentan dos casos caóticos (uno jurídico y otro forense). Usted debe aplicar <strong>todo lo aprendido en las Clases 1, 2 y 3</strong> para ordenarlos y convertirlos en un Plan de Investigación Científica.</p>
+
+        <!-- CASO DERECHO -->
+        <div class="challenge-container challenge-law">
+            <div class="challenge-header">
+                <span>⚖️ CASO 1: LICENCIATURA EN CIENCIAS JURÍDICAS</span>
+                <span style="background:rgba(255,255,255,0.2); padding:5px; border-radius:4px;">RETO: DELIMITAR Y OBJETIVAR</span>
+            </div>
+            <div class="challenge-body">
+                <div class="case-text">
+                    <strong>SITUACIÓN PROBLEMÁTICA (EL CAOS):</strong><br>
+                    "Licenciado, fíjese que en San Raymundo la gente pide muchos préstamos 'gota a gota' y luego los prestamistas los amenazan. La Constitución prohíbe la usura (Art. 43), pero el Código Penal parece que no castiga esto muy fuerte o nadie denuncia. Yo quiero hacer mi tesis sobre que eso es injusto y que la gente sufre mucho."
+                </div>
+                
+                <div class="student-task">
+                    <div class="input-group">
+                        <strong>1. EL TÍTULO (Delimite Espacio, Tiempo y Materia):</strong>
+                        <p style="color:#777; font-style:italic;">Convierta la queja en un tema jurídico técnico...</p>
+                    </div>
+                    <div class="input-group">
+                        <strong>2. LA PREGUNTA (El Problema):</strong>
+                        <p style="color:#777; font-style:italic;">¿Qué es lo que falla? ¿La norma o la aplicación? Formule la interrogante.</p>
+                    </div>
+                    <div class="input-group">
+                        <strong>3. EL OBJETIVO GENERAL (Use un verbo taxativo):</strong>
+                        <p style="color:#777; font-style:italic;">Prometa una acción cognitiva (Analizar, Determinar...)</p>
+                    </div>
+                </div>
+
+                <button class="btn-solution" onclick="toggle('sol-law')">▼ REVELAR SOLUCIÓN SUGERIDA (DERECHO) ▼</button>
+                
+                <div id="sol-law" class="solution-content">
+                    <h4 style="margin-top:0; color:var(--azul-inst);">SOLUCIÓN TÉCNICA SUGERIDA</h4>
+                    <ul>
+                        <li><strong>TÍTULO:</strong> "Ineficacia del tipo penal de Usura frente a los préstamos informales en el Municipio de San Raymundo (2024-2025)".</li>
+                        <li><strong>PREGUNTA:</strong> ¿Por qué la tipificación actual de la Usura en el Código Penal resulta ineficaz para frenar los cobros coactivos en el sector informal de San Raymundo?</li>
+                        <li><strong>OBJETIVO GENERAL:</strong> <em>ANALIZAR</em> los factores normativos y procesales que impiden la persecución penal efectiva de la usura en los préstamos informales.</li>
+                    </ul>
+                    <p><em>Nota: Pasamos de "la gente sufre" (sentimiento) a "Ineficacia del tipo penal" (Variable Jurídica Medible).</em></p>
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+        <!-- CASO CRIMINALÍSTICA -->
+        <div class="challenge-container challenge-crim">
+            <div class="challenge-header">
+                <span>🔬 CASO 2: LICENCIATURA EN CRIMINALÍSTICA</span>
+                <span style="background:rgba(255,255,255,0.2); padding:5px; border-radius:4px;">RETO: OBSERVACIÓN Y TÉCNICA</span>
+            </div>
+            <div class="challenge-body">
+                <div class="case-text">
+                    <strong>SITUACIÓN PROBLEMÁTICA (EL CAOS):</strong><br>
+                    "Jefe, tenemos un problema. En los casos de disparos, siempre mandamos a hacer la prueba de la parafina (Guantelete), pero dicen que eso ya es viejo y da falsos positivos con cloro o fertilizantes. Quiero investigar sobre cómo mejorar eso porque meter presos a inocentes está mal."
+                </div>
+                
+                <div class="student-task">
+                    <div class="input-group">
+                        <strong>1. EL TÍTULO (Delimite la Técnica y el Fenómeno):</strong>
+                        <p style="color:#777; font-style:italic;">No hable de "inocentes", hable de fiabilidad técnica...</p>
+                    </div>
+                    <div class="input-group">
+                        <strong>2. LA PREGUNTA (El Problema):</strong>
+                        <p style="color:#777; font-style:italic;">Cuestione la validez de la prueba antigua frente a la moderna.</p>
+                    </div>
+                    <div class="input-group">
+                        <strong>3. EL OBJETIVO GENERAL (Use un verbo taxativo):</strong>
+                        <p style="color:#777; font-style:italic;">¿Qué va a hacer? ¿Comparar? ¿Evaluar?</p>
+                    </div>
+                </div>
+
+                <button class="btn-solution" onclick="toggle('sol-crim')">▼ REVELAR SOLUCIÓN SUGERIDA (CRIMINALÍSTICA) ▼</button>
+                
+                <div id="sol-crim" class="solution-content">
+                    <h4 style="margin-top:0; color:var(--rojo-inst);">SOLUCIÓN TÉCNICA SUGERIDA</h4>
+                    <ul>
+                        <li><strong>TÍTULO:</strong> "Análisis comparativo de fiabilidad entre la prueba de Rodizonato de Sodio y el Guantelete de Parafina en la detección de residuos de disparo (GSR)".</li>
+                        <li><strong>PREGUNTA:</strong> ¿Cuál es el margen de error por falsos positivos de la prueba de Parafina en comparación con la absorción atómica o Rodizonato?</li>
+                        <li><strong>OBJETIVO GENERAL:</strong> <em>COMPARAR</em> la especificidad y sensibilidad de los reactivos químicos para la detección de plomo y bario en manos de sospechosos.</li>
+                    </ul>
+                    <p><em>Nota: Pasamos de "meter presos a inocentes" (Moral) a "Margen de error por falsos positivos" (Ciencia).</em></p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- 5. ALERTA DE EXAMEN -->
+    <section class="exam-alert">
+        <h3 style="margin-top:0;">⚠️ ATENCIÓN: PRÓXIMO SÁBADO 14 DE MARZO</h3>
+        <p style="font-size:1.2em;">PRIMER EXAMEN PARCIAL (FASE I)</p>
+        <hr style="border:0; border-top:1px solid #d3b666; margin:15px 0;">
+        <p><strong>Contenido a Evaluar:</strong></p>
+        <ul style="list-style:none; padding:0;">
+            <li>✅ Diferencia entre Doxa (Opinión) y Episteme (Ciencia).</li>
+            <li>✅ Delimitación del Tema (Espacio, Tiempo, Materia).</li>
+            <li>✅ Identificación de Variables (Independiente/Dependiente).</li>
+            <li>✅ Uso de Verbos Taxativos (Analizar vs. Conocer).</li>
+            <li>✅ Bibliografía Oficial (Sampieri, Witker, Zaffaroni, Guzmán).</li>
+        </ul>
+        <p><em>"La suerte favorece a la mente preparada."</em></p>
+    </section>
+
+    <!-- 6. BIBLIOGRAFÍA -->
+    <section class="content-section">
+        <h3 class="section-title"><span class="section-number">4</span>BIBLIOGRAFÍA ACUMULADA (PARCIAL I)</h3>
+        <p>Fuentes obligatorias para el examen:</p>
+        <ul class="biblio-list">
+            <li>Hernández Sampieri, R. (2014). <em>Metodología de la investigación</em>. (El proceso cuantitativo y planteamiento).</li>
+            <li>Witker Velásquez, J. (2021). <em>Metodología de la investigación jurídica</em>. (La construcción del objeto jurídico).</li>
+            <li>Zaffaroni, E. R. (1998). <em>En busca de las penas perdidas</em>. (Deslegitimación del sistema penal y realismo).</li>
+            <li>Guzmán, C. A. (2011). <em>Manual de criminalística</em>. (El método científico en la escena del crimen).</li>
+            <li>Universidad Regional. <em>Guía General de Tesis</em> y <em>Pasos para la elaboración</em> (Normativa Institucional).</li>
+        </ul>
+    </section>
+
+    <div style="text-align:center; margin-top:40px; color:#555; font-style:italic;">
+        "Ningún ejército puede detener la fuerza de una idea a la que le ha llegado su tiempo." — Victor Hugo.
+        <br><strong>¡Éxito en el Parcial!</strong>
+    </div>
+
+</div>
+
+<script>
+    function toggle(id) {
+        var x = document.getElementById(id);
+        if (x.style.display === "block") {
+            x.style.display = "none";
+        } else {
+            x.style.display = "block";
+        }
+    }
+</script>
+
+</body>
+</html>

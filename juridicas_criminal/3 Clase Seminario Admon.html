@@ -1,0 +1,283 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clase 3: El Diagnóstico Empresarial - Admon. Empresas</title>
+<style>
+    :root {
+        --azul: #003366;
+        --rojo: #cc0000;
+        --blanco: #fff;
+        --fondo: #f0f2f5;
+        --txt: #2c3e50;
+        --azul-claro: #eef6fc;
+    }
+    body { font-family: 'Segoe UI', serif; background: var(--fondo); color: var(--txt); line-height: 1.6; margin: 0; }
+    .main-container { max-width: 1200px; margin: 30px auto; background: var(--blanco); border-top: 8px solid var(--azul); box-shadow: 0 5px 25px rgba(0,0,0,.1); padding-bottom: 40px; }
+    header { background: linear-gradient(135deg, var(--azul) 0%, #0055a5 100%); color: var(--blanco); padding: 40px; text-align: center; }
+    header::after { content: ""; display: block; width: 60%; height: 4px; background: var(--rojo); margin: 20px auto 0; }
+    h1 { font-size: 2.5em; margin: 0; }
+    h2 { font-style: italic; font-weight: 400; opacity: .9; }
+    
+    /* SECCIONES Y SOCRÁTICO */
+    .content-section { padding: 0 40px; margin-bottom: 40px; }
+    .section-title { color: var(--azul); border-left: 5px solid var(--rojo); padding-left: 15px; font-size: 1.8em; text-transform: uppercase; font-weight: 700; margin-bottom: 20px; margin-top: 40px; display: flex; align-items: center; }
+    .section-number { background: var(--rojo); color: white; width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; margin-right: 10px; font-size: 0.6em; vertical-align: middle; }
+    .socratic-box { background: #fffcfc; border: 2px solid #f2dede; padding: 25px; margin-bottom: 25px; border-radius: 8px; position: relative; }
+    .socratic-question { display: block; font-size: 1.3em; font-weight: bold; text-align: center; color: var(--rojo); margin-bottom: 15px; font-style: italic; }
+    
+    /* ÁRBOL */
+    .tree-diagram-container { display: flex; flex-direction: column; align-items: center; margin: 40px 0; }
+    .tree-node { padding: 15px; color: #fff; text-align: center; width: 280px; margin: 5px; border-radius: 5px; box-shadow: 0 4px 8px rgba(0,0,0,.1); }
+    .branch { background: #cc0000; }
+    .trunk { background: #003366; width: 320px; }
+    .root { background: #5d4037; width: 300px; }
+
+    /* PRAXIS Y BOTONES */
+    .exercise-wrapper { display: flex; gap: 20px; flex-wrap: wrap; }
+    .exercise-card { flex: 1; min-width: 300px; background: #fff; border: 1px solid #ddd; border-radius: 8px; }
+    .card-header { padding: 10px; color: #fff; font-weight: 700; background: var(--azul); }
+    .card-body { padding: 15px; }
+    .btn-reveal { width: 100%; padding: 10px; background: #f1f1f1; border: none; cursor: pointer; font-weight: 700; color: var(--azul); transition: 0.3s; margin-top: 5px; text-align: left; border-bottom: 1px solid #ccc; }
+    .btn-reveal:hover { background: #e2e6ea; }
+    .answer-content { display: none; padding: 15px; background: #f8f9fa; border-left: 4px solid var(--azul); margin-top: 10px; }
+
+    /* LÉXICO Y OTROS */
+    .lexicon-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; }
+    .lexicon-item { background: #f8f9fa; padding: 15px; border-left: 3px solid var(--rojo); }
+    .homework-box { background: #fff3e0; border: 1px solid #ffe0b2; padding: 20px; border-radius: 8px; margin-top: 30px; }
+    .homework-card { background: white; padding: 15px; border: 1px solid #e0e0e0; margin-bottom: 15px; border-radius: 5px; }
+    .biblio { font-size: 0.9em; color: #666; border-top: 1px solid #ddd; padding-top: 20px; margin-top: 40px; columns: 2; }
+    .quote-box { text-align: center; font-style: italic; margin-top: 40px; padding: 20px; background: #eee; border-radius: 5px; }
+    
+    /* PROGRAMA */
+    details.syllabus-module { background: #fff; border: 1px solid #ddd; border-radius: 5px; overflow: hidden; margin-bottom: 10px; }
+    details.syllabus-module summary { padding: 15px 20px; cursor: pointer; font-weight: bold; background: linear-gradient(to right, #f8f9fa, #fff); color: var(--azul); border-left: 6px solid var(--azul-claro); list-style: none; }
+    details.syllabus-module[open] summary { background: var(--azul); color: white; border-left: 6px solid var(--rojo); }
+    .module-content { padding: 20px; }
+</style>
+</head>
+<body>
+
+<div class="main-container">
+    <header>
+        <h1>UNIVERSIDAD REGIONAL</h1>
+        <h2>Sede San Raymundo | Admon. Empresas (9no Semestre)</h2>
+        <p>Cátedra: <strong>Magister José Benjamín García Santa Cruz</strong> | Fecha: 28/02/2026</p>
+    </header>
+
+    <!-- INTRODUCCIÓN SOCRÁTICA -->
+    <section class="content-section">
+        <h3 class="section-title"><span class="section-number">1</span>INTRODUCCIÓN: SÍNTOMAS VS. ENFERMEDAD</h3>
+        
+        <div class="socratic-box">
+            <span class="socratic-question">"Si usted tiene fiebre, ¿tomar hielo cura la infección? En la empresa ocurre lo mismo: Bajar precios no cura la falta de valor."</span>
+            <p>
+                Señores Consultores: Bienvenidos a la Clínica Empresarial. El error número uno del tesista en Administración es confundir el <strong>síntoma</strong> (lo que se ve: "bajas ventas", "alta rotación") con el <strong>problema de investigación</strong> (la causa raíz: "mala calidad", "liderazgo tóxico").
+            </p>
+            <p>
+                Como indica <strong>Chiavenato</strong>, el diagnóstico organizacional requiere profundizar. Hoy utilizaremos el <em>Árbol de Problemas</em> para no quedarnos en la superficie. Si su tesis solo ataca síntomas, será un "parche" temporal, no una solución gerencial [Chiavenato, Cap. 16; Sampieri, Cap. 3].
+            </p>
+        </div>
+    </section>
+
+    <div style="padding: 0 40px;">
+
+        <!-- 2. PROGRAMA (SYLLABUS) -->
+        <h3 class="section-title"><span class="section-number">2</span>PROGRAMA DEL BLOQUE: EL DIAGNÓSTICO</h3>
+        
+        <details class="syllabus-module">
+            <summary>CLASE 1: LA INVESTIGACIÓN COMO HERRAMIENTA (Ya vista)</summary>
+            <div class="module-content">Diferencia entre intuición y dato. La Tesis de Negocios.</div>
+        </details>
+        <details class="syllabus-module">
+            <summary>CLASE 2: LA IDEA DE NEGOCIO (Ya vista)</summary>
+            <div class="module-content">Fuentes de ideas: Oportunidades, debilidades, innovación.</div>
+        </details>
+        <details class="syllabus-module" open>
+            <summary>CLASE 3: EL PLANTEAMIENTO DEL PROBLEMA (HOY)</summary>
+            <div class="module-content">
+                <strong>Tema:</strong> El Árbol de Problemas (Causa-Efecto). Diagnóstico Empresarial.<br>
+                <strong>Herramienta:</strong> Objetivos, Preguntas y Justificación.<br>
+                <strong>Ref:</strong> Hernández Sampieri, Cap. 3.
+            </div>
+        </details>
+        <details class="syllabus-module">
+            <summary>CLASE 4: JUSTIFICACIÓN Y VIABILIDAD</summary>
+            <div class="module-content">El ROI de la Tesis. Viabilidad financiera y de acceso a datos.</div>
+        </details>
+        <details class="syllabus-module">
+            <summary>CLASE 5: EL MARCO TEÓRICO</summary>
+            <div class="module-content">Benchmarking y Teoría Administrativa (Porter, Kotler).</div>
+        </details>
+
+        <!-- 3. FEEDBACK TAREA ANTERIOR -->
+        <h3 class="section-title"><span class="section-number">3</span>FEEDBACK: DE LA CLASE ANTERIOR</h3>
+        <p>Revisión de la <em>Labor Domiciliaria: Redacción de Objetivos</em>.</p>
+        
+        <div class="exercise-wrapper">
+            <div class="exercise-card">
+                <div class="card-header">ERROR COMÚN: EL "OBJETIVO ACCIÓN"</div>
+                <div class="card-body">
+                    <p><strong>Alumno escribió:</strong> "El objetivo es <em>contratar</em> más personal para vender más".</p>
+                    <p><strong>Corrección del Magister:</strong> Eso es una acción administrativa, no un objetivo de conocimiento. En tesis no "hacemos cosas", <strong>generamos conocimiento</strong> para tomar decisiones.</p>
+                    <button class="btn-reveal" onclick="toggle('fb1')">VER REDACCIÓN CORRECTA</button>
+                    <div id="fb1" class="answer-content">
+                        <p><strong>Correcto:</strong> "<em>Determinar</em> la relación entre la fuerza de ventas actual y el cumplimiento de las metas comerciales en el periodo 2025".</p>
+                        <p>Primero investigo (determino), luego gerencio (contrato).</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="exercise-card">
+                <div class="card-header">ERROR COMÚN: PREGUNTA CERRADA</div>
+                <div class="card-body">
+                    <p><strong>Alumno escribió:</strong> "¿Es malo el clima laboral en la empresa X?"</p>
+                    <p><strong>Corrección del Magister:</strong> Se responde con Sí/No. Eso mata la investigación.</p>
+                    <button class="btn-reveal" onclick="toggle('fb2')">VER REDACCIÓN CORRECTA</button>
+                    <div id="fb2" class="answer-content">
+                        <p><strong>Correcto:</strong> "<em>¿Cuáles son los factores</em> del clima organizacional que inciden negativamente en el desempeño de los colaboradores de la empresa X?"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. ÁRBOL DE IDEAS -->
+        <h3 class="section-title"><span class="section-number">4</span>MAPA MENTAL: ESTRUCTURA DEL PLANTEAMIENTO</h3>
+        <p>Para estructurar su diagnóstico, visualice los tres componentes rectores según Sampieri (Cap. 3):</p>
+        
+        <div class="tree-diagram-container">
+            <!-- Ramas -->
+            <div class="tree-node branch">
+                <strong>3. JUSTIFICACIÓN (Ramas/Frutos)</strong><br>
+                ¿Por qué es importante? ¿A quién beneficia el estudio?<br>
+                <small>(Relevancia Social y Económica)</small>
+            </div>
+            <!-- Tronco -->
+            <div class="tree-node trunk">
+                <strong>2. PREGUNTAS (Tronco)</strong><br>
+                El "Qué" de la investigación.<br>
+                <small>¿Qué efecto tiene X sobre Y?</small>
+            </div>
+            <!-- Raíz -->
+            <div class="tree-node root">
+                <strong>1. OBJETIVOS (Raíz)</strong><br>
+                La brújula del estudio.<br>
+                <small>General y Específicos (Verbos en Infinitivo)</small>
+            </div>
+        </div>
+
+        <!-- 5. PRAXIS -->
+        <h3 class="section-title"><span class="section-number">5</span>PRAXIS: EL DIAGNÓSTICO EN ACCIÓN</h3>
+        <div class="exercise-wrapper">
+            
+            <!-- CASO RRHH -->
+            <div class="exercise-card">
+                <div class="card-header">CASO 1: RECURSOS HUMANOS (Alta Rotación)</div>
+                <div class="card-body">
+                    <p><strong>Situación:</strong> En un Call Center, el 40% del personal renuncia antes de los 3 meses. El Gerente dice "es que son jóvenes inestables".</p>
+                    <p><strong>Tarea:</strong> Redacte una <strong>Pregunta de Investigación</strong> objetiva.</p>
+                    <button class="btn-reveal" onclick="toggle('ans1')">VER RESPUESTA DEL MAGISTER</button>
+                    <div id="ans1" class="answer-content">
+                        <p><strong>Pregunta:</strong> "¿En qué medida influyen las <em>condiciones ergonómicas</em> y el <em>sistema de incentivos</em> en la tasa de rotación del personal operativo del Call Center X durante 2025?"</p>
+                        <p><em>Nota: Pasamos de culpar a los "jóvenes" a medir variables internas gestionables.</em></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CASO FINANZAS -->
+            <div class="exercise-card">
+                <div class="card-header">CASO 2: FINANZAS (Caída de Liquidez)</div>
+                <div class="card-body">
+                    <p><strong>Situación:</strong> Una empresa vende mucho pero no tiene efectivo para pagar la nómina.</p>
+                    <p><strong>Tarea:</strong> Redacte el <strong>Objetivo General</strong> para diagnosticar esto.</p>
+                    <button class="btn-reveal" onclick="toggle('ans2')">VER RESPUESTA DEL MAGISTER</button>
+                    <div id="ans2" class="answer-content">
+                        <p><strong>Objetivo General:</strong> "<em>Analizar</em> el ciclo de conversión de efectivo y su impacto en la liquidez corriente de la empresa Comercial Z durante el periodo fiscal 2024."</p>
+                        <p><em>Nota: El problema no es "vender", es "cobrar". El objetivo apunta al ciclo financiero.</em></p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 6. LÉXICO -->
+        <h3 class="section-title"><span class="section-number">6</span>LÉXICO: ETIMOLOGÍA Y EPISTEMOLOGÍA</h3>
+        <div class="lexicon-grid">
+            <div class="lexicon-item">
+                <strong>1. DIAGNÓSTICO:</strong><br>
+                Del griego <em>dia</em> (a través de) y <em>gnosis</em> (conocimiento). Conocer a través de los síntomas. Es la base de la consultoría y la tesis [Chiavenato].
+            </div>
+            <div class="lexicon-item">
+                <strong>2. CAUSALIDAD:</strong><br>
+                Relación donde una variable (Causa/Independiente) produce un efecto en otra (Efecto/Dependiente). Ej: Publicidad -> Ventas [Sampieri, Cap 5].
+            </div>
+            <div class="lexicon-item">
+                <strong>3. SINTOMATOLOGÍA:</strong><br>
+                Conjunto de señales visibles (baja producción, quejas) que alertan sobre un problema de fondo no visible [Bernal].
+            </div>
+            <div class="lexicon-item">
+                <strong>4. VARIABLE:</strong><br>
+                Propiedad que puede fluctuar y cuya variación es susceptible de medirse (Rentabilidad, Motivación, Calidad) [Sampieri, Cap 6].
+            </div>
+        </div>
+
+        <!-- 7. LABOR DOMICILIARIA -->
+        <h3 class="section-title"><span class="section-number">7</span>LABOR DOMICILIARIA: EL ÁRBOL DE SU PROBLEMA</h3>
+        <p style="text-align:center; font-style:italic;">(Entrega: Próxima clase. Formato Físico).</p>
+        <div class="homework-box">
+            <p><strong>INSTRUCCIONES:</strong> Aplique la técnica del Árbol de Problemas a su idea de tesis.</p>
+            
+            <div class="homework-card">
+                <p><strong>EJERCICIO 1: DIBUJE SU ÁRBOL</strong></p>
+                <ul>
+                    <li><strong>Tronco (Problema Central):</strong> Defina claramente el problema (Ej: "Baja rentabilidad en la línea de calzado").</li>
+                    <li><strong>Raíces (Causas):</strong> Identifique al menos 3 causas profundas (No síntomas). Use teoría (Ej: "Falta de control de inventarios", "Costos logísticos elevados").</li>
+                    <li><strong>Ramas (Efectos):</strong> ¿Qué pasa si no se resuelve? (Ej: "Pérdida de participación de mercado").</li>
+                </ul>
+            </div>
+
+            <div class="homework-card">
+                <p><strong>EJERCICIO 2: DEL ÁRBOL A LA PREGUNTA</strong></p>
+                <ul>
+                    <li>Tome la "Causa Principal" de su árbol.</li>
+                    <li>Conviértala en una Pregunta de Investigación relacionándola con el problema.</li>
+                    <li><em>Ejemplo:</em> "¿De qué manera el [Causa: Descontrol de Inventarios] incide en la [Problema: Rentabilidad] de la empresa...?"</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- BIBLIOGRAFÍA -->
+        <h3 class="section-title"><span class="section-number">8</span>BIBLIOGRAFÍA DE LA SESIÓN</h3>
+        <div class="biblio">
+            1. Hernández Sampieri, R. (2014). <em>Metodología de la Investigación</em> (Cap. 3: Planteamiento del problema). McGraw-Hill.<br>
+            2. Chiavenato, I. (2006). <em>Introducción a la Teoría General de la Administración</em> (Diagnóstico Organizacional). McGraw-Hill.<br>
+            3. Bernal, C. (2010). <em>Metodología de la Investigación</em> (El problema de investigación). Pearson.<br>
+            4. Porter, M. (2009). <em>Estrategia Competitiva</em> (Análisis del entorno). Pirámide.<br>
+            5. Osterwalder, A. (2011). <em>Generación de Modelos de Negocio</em> (Lienzo y Diagnóstico). Deusto.
+        </div>
+
+        <!-- FRASE FINAL -->
+        <div class="quote-box">
+            "No podemos resolver problemas pensando de la misma manera que cuando los creamos."<br>
+            <strong>— Albert Einstein</strong>
+        </div>
+
+    </div>
+</div>
+
+<script>
+function toggle(id) {
+    var x = document.getElementById(id);
+    if (x.style.display === "block") {
+        x.style.display = "none";
+    } else {
+        x.style.display = "block";
+    }
+}
+</script>
+
+</body>
+</html>

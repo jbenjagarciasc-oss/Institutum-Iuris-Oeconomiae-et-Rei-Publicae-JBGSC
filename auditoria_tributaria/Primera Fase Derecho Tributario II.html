@@ -1,0 +1,305 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1er Parcial | Derecho Tributario II</title>
+<style>
+    :root {
+        --ur-blue: #003366;
+        --ur-orange: #ea580c;
+        --text-dark: #1f2937;
+        --white: #ffffff;
+    }
+    body {
+        font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+        background-color: #f3f4f6;
+        color: var(--text-dark);
+        margin: 0;
+        padding: 20px;
+        line-height: 1.5;
+    }
+    .container {
+        max-width: 900px;
+        margin: 0 auto;
+        background: var(--white);
+        padding: 40px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        border-top: 8px solid var(--ur-blue);
+    }
+    
+    /* ENCABEZADO */
+    .header-grid {
+        display: grid;
+        grid-template-columns: 100px 1fr;
+        gap: 20px;
+        border-bottom: 2px solid var(--ur-orange);
+        padding-bottom: 20px;
+        margin-bottom: 30px;
+        align-items: center;
+    }
+    .logo-placeholder {
+        width: 100px;
+        height: 100px;
+        background-color: #eee;
+        border: 2px dashed #ccc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #666;
+        font-size: 0.7rem;
+        text-align: center;
+        font-weight: bold;
+    }
+    .header-text h1 { margin: 0; font-size: 1.5rem; color: var(--ur-blue); text-transform: uppercase; }
+    .header-text h2 { margin: 5px 0; font-size: 1.1rem; font-weight: normal; }
+    .header-text p { margin: 0; font-size: 0.9rem; color: #666; }
+
+    /* DATOS DEL ESTUDIANTE */
+    .student-info {
+        border: 1px solid #ccc;
+        padding: 15px;
+        margin-bottom: 30px;
+        background: #fafafa;
+    }
+    .input-line {
+        display: inline-block;
+        border-bottom: 1px solid #000;
+        width: 60%;
+        margin-left: 10px;
+    }
+
+    /* SECCIONES Y PREGUNTAS */
+    .series-title {
+        background: var(--ur-blue);
+        color: white;
+        padding: 8px 15px;
+        font-weight: bold;
+        margin-top: 30px;
+        text-transform: uppercase;
+        font-size: 0.95rem;
+    }
+    .question { margin-bottom: 20px; border-bottom: 1px dashed #e5e7eb; padding-bottom: 15px; }
+    .q-text { font-weight: bold; margin-bottom: 8px; display: block; }
+    
+    /* RESPUESTAS (SOLO VISIBLES EN PANTALLA) */
+    .solution {
+        display: none;
+        background-color: #e0f2fe;
+        border-left: 4px solid var(--ur-blue);
+        padding: 10px;
+        margin-top: 10px;
+        font-size: 0.9rem;
+        color: #0c4a6e;
+    }
+    .btn-reveal {
+        background: #e5e7eb; border: none; padding: 5px 10px;
+        cursor: pointer; font-size: 0.8rem; border-radius: 4px;
+        margin-top: 5px; color: #333;
+    }
+    .btn-reveal:hover { background: var(--ur-orange); color: white; }
+
+    /* CHECKLIST DE TRABAJO */
+    .checklist-box {
+        border: 2px solid var(--ur-blue);
+        padding: 20px;
+        margin-top: 40px;
+        page-break-inside: avoid;
+    }
+    .check-item { margin-bottom: 10px; display: flex; align-items: center; }
+    .check-box-draw {
+        width: 20px; height: 20px; border: 1px solid #000; display: inline-block; margin-right: 10px;
+    }
+
+    /* BOTONES DE ACCIÓN (NO IMPRIMIBLES) */
+    .action-bar {
+        position: fixed; top: 20px; right: 20px;
+        display: flex; gap: 10px; z-index: 1000;
+    }
+    .btn-action {
+        padding: 10px 20px; background: var(--ur-blue); color: white;
+        border: none; border-radius: 5px; cursor: pointer;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.3); font-weight: bold;
+    }
+    .btn-action.pdf { background: var(--ur-orange); }
+
+    /* REGLAS DE IMPRESIÓN (OCULTAR RESPUESTAS) */
+    @media print {
+        body { background: white; -webkit-print-color-adjust: exact; }
+        .container { box-shadow: none; border: none; width: 100%; max-width: 100%; padding: 0; margin: 0; }
+        .action-bar, .btn-reveal, .solution { display: none !important; }
+        .series-title { -webkit-print-color-adjust: exact; background: #003366 !important; color: white !important; }
+    }
+</style>
+<script>
+    function toggleSolution(id) {
+        var x = document.getElementById(id);
+        if (x.style.display === "block") { x.style.display = "none"; } 
+        else { x.style.display = "block"; }
+    }
+    function printExam() {
+        window.print();
+    }
+</script>
+</head>
+<body>
+
+<!-- BARRA DE HERRAMIENTAS (SOLO PANTALLA) -->
+<div class="action-bar">
+    <button class="btn-action pdf" onclick="printExam()">🖨️ IMPRIMIR / PDF (SIN RESPUESTAS)</button>
+</div>
+
+<div class="container">
+
+    <!-- ENCABEZADO -->
+    <div class="header-grid">
+        <div class="logo-placeholder">PEGAR LOGO U. REGIONAL</div>
+        <div class="header-text">
+            <h1>Universidad Regional de Guatemala</h1>
+            <h2>Facultad de Ciencias Económicas | Auditoría</h2>
+            <p><strong>Cátedra:</strong> Derecho Tributario II</p>
+            <p><strong>Catedrático:</strong> Magister José Benjamín García Santa Cruz</p>
+            <p><strong>Fecha:</strong> 21 de Marzo de 2026 | <strong>Valor Total:</strong> 20 Puntos</p>
+        </div>
+    </div>
+
+    <div class="student-info">
+        <p><strong>Nombre del Estudiante:</strong> <span class="input-line" style="width: 55%;"></span></p>
+        <p><strong>No. de Carné:</strong> <span class="input-line" style="width: 30%;"></span> <strong>Firma:</strong> <span class="input-line" style="width: 30%;"></span></p>
+        <p style="font-size: 0.8rem; margin-top: 10px; font-style: italic;">
+            "Juro por mi honor de auditor que he respondido este examen sin ayuda externa no autorizada."
+        </p>
+    </div>
+
+    <!-- PARTE 1: EXAMEN TEÓRICO-PRÁCTICO (10 PUNTOS) -->
+    <h3 style="text-align: center; border-bottom: 2px solid #ccc; padding-bottom: 10px;">PRIMERA PARTE: EVALUACIÓN DE CONOCIMIENTOS (10 Pts)</h3>
+
+    <!-- SERIE I -->
+    <div class="series-title">SERIE I: HERMENÉUTICA Y CONCEPTOS (4 Puntos)</div>
+    <p>Instrucción: Defina con precisión técnica los siguientes conceptos. (Cero subjetividad).</p>
+
+    <div class="question">
+        <span class="q-text">1. Según Héctor Villegas, ¿cuál es la diferencia fundamental entre TASA y PRECIO PÚBLICO? (1 Pto)</span>
+        <br><br><br>
+        <button class="btn-reveal" onclick="toggleSolution('sol1')">VER RESPUESTA DOCENTE</button>
+        <div id="sol1" class="solution">
+            <strong>Respuesta:</strong> La Tasa es <strong>coactiva</strong> (impuesta por ley) e inherente a la soberanía del Estado para servicios esenciales (ej. Justicia). El Precio Público es <strong>contractual/voluntario</strong> y se paga por servicios no inherentes que el Estado presta en igualdad con particulares. [Fuente: Villegas, p. 182].
+        </div>
+    </div>
+
+    <div class="question">
+        <span class="q-text">2. Defina "Parafiscalidad" según la doctrina explicada en clase. (1 Pto)</span>
+        <br><br><br>
+        <button class="btn-reveal" onclick="toggleSolution('sol2')">VER RESPUESTA DOCENTE</button>
+        <div id="sol2" class="solution">
+            <strong>Respuesta:</strong> Son exacciones recabadas por entes públicos o semipúblicos (no el Fisco central) para asegurar su financiamiento autónomo con fines sociales o económicos. Corren "paralelos" al presupuesto del Estado (Ej. IGSS, INTECAP). [Fuente: Villegas, p. 155].
+        </div>
+    </div>
+
+    <div class="question">
+        <span class="q-text">3. ¿Qué principio constitucional se viola si una Municipalidad cobra un "aporte" obligatorio sin que exista contraprestación directa ni ley del Congreso? (1 Pto)</span>
+        <br><br><br>
+        <button class="btn-reveal" onclick="toggleSolution('sol3')">VER RESPUESTA DOCENTE</button>
+        <div id="sol3" class="solution">
+            <strong>Respuesta:</strong> Se viola el <strong>Principio de Legalidad</strong> (Nullum tributum sine lege), contenido en el Art. 239 de la Constitución. Solo el Congreso puede decretar impuestos/arbitrios.
+        </div>
+    </div>
+
+    <div class="question">
+        <span class="q-text">4. En la interpretación de la norma tributaria (Art. 4 C.Trib.), ¿qué método debe usar el auditor para descubrir la verdadera naturaleza de una operación disfrazada? (1 Pto)</span>
+        <br><br><br>
+        <button class="btn-reveal" onclick="toggleSolution('sol4')">VER RESPUESTA DOCENTE</button>
+        <div id="sol4" class="solution">
+            <strong>Respuesta:</strong> El método de la <strong>Realidad Económica</strong>. Se debe atender a la sustancia de la operación y no a la forma jurídica que las partes le hayan dado.
+        </div>
+    </div>
+
+    <!-- SERIE II -->
+    <div class="series-title">SERIE II: PRAXIS DE AUDITORÍA (CASOS) (4 Puntos)</div>
+    <p>Instrucción: Analice los casos y dictamine si existe contingencia fiscal. Fundamente con base legal.</p>
+
+    <div class="question">
+        <span class="q-text">CASO A: EL ANTICIPO (2 Ptos)</span>
+        <p>La empresa "Constructora X" recibió un anticipo de Q.100,000 el 1 de febrero por una obra a iniciar en mayo. El contador NO emitió factura ni pagó IVA en febrero, argumentando que "la obra no ha empezado". <br><strong>Pregunta:</strong> ¿Existe ajuste fiscal? Fundamente con el momento del Hecho Generador en servicios.</p>
+        <br><br><br>
+        <button class="btn-reveal" onclick="toggleSolution('sol5')">VER RESPUESTA DOCENTE</button>
+        <div id="sol5" class="solution">
+            <strong>DICTAMEN: SÍ, PROCEDE AJUSTE.</strong> En servicios, el hecho generador del IVA ocurre con la emisión de factura O <strong>la percepción de la remuneración (pago)</strong>, lo que ocurra primero (Art. 3 Ley IVA). Al recibir el dinero, nació la obligación. Hay omisión de tributos, mora y multa.
+        </div>
+    </div>
+
+    <div class="question">
+        <span class="q-text">CASO B: LA DEFENSA DEL GERENTE (2 Ptos)</span>
+        <p>La SAT cobra una deuda de la empresa "Alpha S.A." al Sr. Juan Pérez, quien era el Gerente General cuando se generó la deuda. Él alega que "la deuda es de la empresa, no mía". <br><strong>Pregunta:</strong> ¿Procede el cobro al Gerente? ¿Bajo qué figura jurídica?</p>
+        <br><br><br>
+        <button class="btn-reveal" onclick="toggleSolution('sol6')">VER RESPUESTA DOCENTE</button>
+        <div id="sol6" class="solution">
+            <strong>DICTAMEN: SÍ PROCEDE.</strong> El Gerente es un <strong>Responsable por Representación</strong> y responde <strong>Solidariamente</strong> con su patrimonio propio por el incumplimiento de la sociedad (Cuando Existe Dolo), según los Arts. 22 y 26 del Código Tributario [Villegas, p. 488].
+        </div>
+    </div>
+
+    <!-- SERIE III -->
+    <div class="series-title">SERIE III: PLAZOS Y EXTINCIÓN (2 Puntos)</div>
+    
+    <div class="question">
+        <span class="q-text">1. ¿Cuál es el plazo de prescripción para que la SAT realice ajustes a un contribuyente inscrito que sí presenta declaraciones (aunque con errores)? (1 Pto)</span>
+        <br><br>
+        <button class="btn-reveal" onclick="toggleSolution('sol7')">VER RESPUESTA DOCENTE</button>
+        <div id="sol7" class="solution">
+            <strong>Respuesta:</strong> <strong>4 AÑOS</strong>. (Art. 47 Código Tributario).
+        </div>
+    </div>
+
+    <div class="question">
+        <span class="q-text">2. Diferencia en una línea entre "Evasión" y "Elusión". (1 Pto)</span>
+        <br><br>
+        <button class="btn-reveal" onclick="toggleSolution('sol8')">VER RESPUESTA DOCENTE</button>
+        <div id="sol8" class="solution">
+            <strong>Respuesta:</strong> La Evasión es ilegal (ocultamiento/delito), la Elusión aprovecha vacíos de ley o formas jurídicas (economía de opción) para pagar menos, aunque puede ser impugnada por la realidad económica. [Tesis USAC, p. 33].
+        </div>
+    </div>
+
+    <div style="page-break-after: always;"></div>
+
+    <!-- PARTE 2: ENTREGA DE TRABAJO (10 PUNTOS) -->
+    <h3 style="text-align: center; border-bottom: 2px solid #ccc; padding-bottom: 10px; margin-top: 40px;">SEGUNDA PARTE: LABORATORIO APLICADO (10 Pts)</h3>
+
+    <div class="checklist-box">
+        <h4 style="color: var(--ur-blue); margin-top: 0;">CONSTANCIA DE ENTREGA DE LABORATORIO (Clase 5)</h4>
+        <p><strong>Instrucción al Estudiante:</strong> Marque con una "X" los componentes que incluye su trabajo físico entregado hoy. El Catedrático validará la veracidad.</p>
+        
+        <div class="check-item">
+            <span class="check-box-draw"></span>
+            <strong>1. MATRIZ DEL AUDITOR (4 Ptos):</strong> Comparativo técnico de Hecho Generador, Base Imponible y Tipo Impositivo de IVA, ISR e ISO con citas de artículos.
+        </div>
+        
+        <div class="check-item">
+            <span class="check-box-draw"></span>
+            <strong>2. DEFENSA DE CASO (3 Ptos):</strong> Resolución del caso "Clausura de la Farmacia" fundamentado en la proporcionalidad de la sanción y la libertad de industria.
+        </div>
+        
+        <div class="check-item">
+            <span class="check-box-draw"></span>
+            <strong>3. DICCIONARIO JURÍDICO (3 Ptos):</strong> Definiciones de Devengado/Percibido, Responsable, Capacidad Contributiva, Prescripción y Parafiscalidad.
+        </div>
+
+        <br>
+        <p style="font-size: 0.8rem;">* La ausencia de cualquiera de estos puntos anula la ponderación parcial correspondiente.</p>
+        
+        <div style="margin-top: 40px; display: flex; justify-content: space-between;">
+            <div style="text-align: center;">
+                __________________________<br>
+                Firma del Estudiante
+            </div>
+            <div style="text-align: center;">
+                __________________________<br>
+                Vo.Bo. Magister García Santa Cruz
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

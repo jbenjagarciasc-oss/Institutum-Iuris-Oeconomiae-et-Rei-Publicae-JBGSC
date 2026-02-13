@@ -1,0 +1,392 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clase 5: Exenciones e Ilícitos | Derecho Tributario II</title>
+<style>
+    :root {
+        --ur-blue: #003366;
+        --ur-orange: #ea580c;
+        --ur-gray: #f3f4f6;
+        --text-dark: #1f2937;
+        --white: #ffffff;
+        --alert-red: #dc2626;
+        --alert-yellow: #fff3cd;
+        --alert-border: #ffecb5;
+    }
+    body {
+        font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+        background-color: var(--ur-gray);
+        color: var(--text-dark);
+        margin: 0;
+        padding: 20px;
+        line-height: 1.6;
+    }
+    .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        background: var(--white);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        border-radius: 8px;
+        overflow: hidden;
+        border-top: 8px solid var(--ur-blue);
+    }
+    /* ENCABEZADO */
+    header {
+        background: linear-gradient(135deg, var(--ur-blue) 0%, #004080 100%);
+        color: var(--white);
+        padding: 3rem 2rem;
+        text-align: center;
+        border-bottom: 4px solid var(--ur-orange);
+    }
+    header h1 { margin: 0; font-size: 2.2rem; text-transform: uppercase; letter-spacing: 2px; }
+    header h2 { font-family: 'Georgia', serif; font-style: italic; font-weight: normal; margin-top: 10px; opacity: 0.95; }
+    .meta-info { background: rgba(255,255,255,0.15); padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; display: inline-block; margin-bottom: 10px; }
+
+    /* SECCIONES NUMERADAS */
+    .section { padding: 40px; border-bottom: 1px solid #e5e7eb; }
+    .section-title {
+        color: var(--ur-blue);
+        font-size: 1.6rem;
+        border-left: 6px solid var(--ur-orange);
+        padding-left: 15px;
+        margin-bottom: 25px;
+        text-transform: uppercase;
+        font-weight: 800;
+        display: flex;
+        align-items: center;
+    }
+    .section-title span {
+        background: var(--ur-blue); color: white; width: 35px; height: 35px;
+        display: flex; align-items: center; justify-content: center;
+        border-radius: 50%; margin-right: 15px; font-size: 1.1rem;
+    }
+
+    /* ALERTA TÉCNICA */
+    .tech-alert {
+        background-color: var(--alert-yellow);
+        border: 1px solid var(--alert-border);
+        color: #856404;
+        padding: 15px;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+        border-left: 5px solid #ffc107;
+    }
+
+    /* BOTONES DESPLEGABLES */
+    details {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 6px;
+        margin-bottom: 15px;
+        overflow: hidden;
+    }
+    summary {
+        background: var(--ur-blue);
+        color: white;
+        padding: 15px;
+        cursor: pointer;
+        font-weight: bold;
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: background 0.3s;
+    }
+    summary:hover { background: #002a55; }
+    summary::after { content: "+"; font-size: 1.2rem; font-weight: bold; }
+    details[open] summary::after { content: "-"; color: var(--ur-orange); }
+    .content-box { padding: 20px; border-top: 3px solid var(--ur-orange); background: #fff; }
+
+    /* PRAXIS - EJERCICIOS */
+    .praxis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .case-card { border: 1px solid #ddd; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; }
+    .case-header { padding: 10px 15px; font-weight: bold; color: white; text-align: center; }
+    .bg-blue { background: var(--ur-blue); }
+    .bg-orange { background: var(--ur-orange); }
+    .case-body { padding: 20px; background: white; flex-grow: 1; }
+    
+    /* CAJA DE TAREA ESPECIAL */
+    .exam-prep-box {
+        background: #fff5f5;
+        border: 2px solid var(--alert-red);
+        border-radius: 8px;
+        padding: 30px;
+        text-align: center;
+        margin-top: 20px;
+    }
+    .exam-prep-title {
+        color: var(--alert-red);
+        font-size: 1.5rem;
+        font-weight: 800;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+    }
+
+    /* MAPA MENTAL */
+    .mind-map { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-top: 20px; }
+    .map-node {
+        flex: 1; min-width: 200px;
+        background: white; border: 2px solid var(--ur-blue);
+        border-radius: 8px; padding: 15px;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        transition: transform 0.2s;
+    }
+    .map-node strong { display: block; color: var(--ur-blue); margin-bottom: 8px; text-transform: uppercase; }
+    .map-def { font-size: 0.9rem; font-style: italic; color: #555; background: #f9f9f9; padding: 8px; border-radius: 4px; }
+
+    /* BIBLIOGRAFIA Y LISTAS */
+    .biblio-list { font-size: 0.85rem; color: #4b5563; list-style-type: none; padding-left: 0; }
+    .biblio-list li { margin-bottom: 10px; padding-left: 15px; border-left: 3px solid #ccc; }
+
+    @media (max-width: 768px) {
+        .praxis-grid { grid-template-columns: 1fr; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- ENCABEZADO -->
+    <header>
+        <div class="meta-info">SÉPTIMO SEMESTRE</div>
+        <h1>Derecho Tributario II</h1>
+        <h2>Cátedra: Magister José Benjamín García Santa Cruz</h2>
+        <div style="margin-top: 20px; font-size: 0.9rem;">
+            Licenciatura en Contaduría Pública y Auditoría<br>
+            Universidad Regional | Sede San Raymundo | Fecha: Sábado 14 de Marzo de 2026
+        </div>
+        <div style="margin-top: 25px; font-size: 1.1rem; font-style: italic; color: #fbbf24;">
+            "La exención no es un derecho natural, es una dispensa legal excepcional. Donde la ley no distingue, el auditor no exime."
+        </div>
+    </header>
+
+    <!-- 1. RESOLUCIÓN DE TAREA -->
+    <section class="section">
+        <div class="section-title"><span>1</span>RESOLUCIÓN TAREA CLASE 4 (PREPARATORIA)</div>
+        <p>Revisión técnica de los hallazgos. El auditor debe ser preciso en el "cuándo" y el "quién".</p>
+        
+        <details>
+            <summary>EJERCICIO 1: HECHOS GENERADORES DEL IVA (Arts. 3 y 4)</summary>
+            <div class="content-box">
+                <p><strong>La Clave:</strong> No basta con decir "vender". El auditor debe identificar el <em>momento</em> exacto:</p>
+                <ul>
+                    <li><strong>Ventas:</strong> Entrega del bien O emisión de factura (lo que ocurra primero).</li>
+                    <li><strong>Servicios:</strong> Prestación del servicio, pago total/parcial O facturación (lo que ocurra primero). [Fuente: Art. 4 Ley IVA; Dictamen Técnico].</li>
+                    <li><strong>Importaciones:</strong> Momento en que la póliza queda legalizada.</li>
+                </ul>
+            </div>
+        </details>
+
+        <details>
+            <summary>EJERCICIO 2: EXENCIONES (UNIVERSIDADES VS. MÉDICOS)</summary>
+            <div class="content-box">
+                <p><strong>Dictamen:</strong></p>
+                <p>1. <strong>Médicos:</strong> Están <strong>GRAVADOS</strong>. El ejercicio liberal de la profesión no está exento en la Ley del IVA, salvo que presten servicios a entidades exentas (como el IGSS) o bajo relación de dependencia.</p>
+                <p>2. <strong>Universidad Privada (Predio Baldío):</strong> <strong>EN PRINCIPIO, EXENTA.</strong> Según el Art. 88 de la Constitución, la exención es amplia. Sin embargo, jurisprudencialmente se condiciona a que el bien esté vinculado a los fines de la institución. Si el predio baldío se usa para fines ajenos (ej. alquilarlo para un circo), perdería la protección. [Fuente: Arts. 88 CPRG; Tesis USAC p. 103; Jurisprudencia CC].</p>
+            </div>
+        </details>
+    </section>
+
+    <!-- 2. MAPA MENTAL -->
+    <section class="section">
+        <div class="section-title"><span>2</span>MAPA MENTAL: LA LIBERACIÓN Y EL CASTIGO</div>
+        <p>Dos caras de la moneda: No pagar porque la ley lo permite (Exención) vs. No pagar violando la ley (Ilícito).</p>
+        <div class="mind-map">
+            <div class="map-node">
+                <strong>EXENCIÓN</strong>
+                <div class="map-def">
+                    Dispensa total o parcial del pago otorgada por ley a quien realizó el hecho generador. Neutraliza la consecuencia jurídica [Villegas, p. 339; Tesis USAC, p. 30].
+                </div>
+            </div>
+            <div class="map-node">
+                <strong>NO SUJECIÓN</strong>
+                <div class="map-def">
+                    El hecho generador no se produjo. La ley no alcanza al acto. (Ej. Venta de divisas en IVA). Diferente a la exención [Villegas, p. 341].
+                </div>
+            </div>
+            <div class="map-node">
+                <strong>INFRACCIÓN (Adm.)</strong>
+                <div class="map-def">
+                    Violación a normas tributarias (formales o sustanciales) sancionada por la Administración. Culpa o negligencia [Art. 69 C.Trib].
+                </div>
+            </div>
+            <div class="map-node">
+                <strong>DELITO (Penal)</strong>
+                <div class="map-def">
+                    Defraudación tributaria. Requiere DOLO (engaño/ardid). Sanción: Prisión. Competencia: Juez Penal [Art. 358 "A" C.Penal].
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. EXPOSICIÓN -->
+    <section class="section">
+        <div class="section-title"><span>3</span>EXPOSICIÓN: EXENCIONES Y RÉGIMEN SANCIONATORIO</div>
+        
+        <details>
+            <summary>A. TEORÍA DE LA EXENCIÓN (Villegas & Tesis USAC)</summary>
+            <div class="content-box">
+                <p>La exención es una "desconexión" entre la hipótesis legal y el mandato de pago. El hecho generador SÍ ocurre, pero la ley perdona el pago.</p>
+                <p><strong>Clasificación Constitucional (Guatemala):</strong></p>
+                <ul>
+                    <li><strong>Universidades (Art. 88 CPRG):</strong> Exención total de impuestos, arbitrios y contribuciones. <em>Matiz técnico:</em> Aplica a bienes y actividades destinadas a sus fines educativos. [Tesis USAC, p. 87].</li>
+                    <li><strong>Centros Educativos (Art. 73 CPRG):</strong> Exentos en matrículas, colegiaturas y derechos de examen. <em>Ojo Auditor:</em> Las actividades lucrativas conexas (librerías, transporte, venta de uniformes) <strong>SÍ PAGAN</strong> impuestos. [Fuente: Tesis USAC, p. 90; Ley ISR Art. 6].</li>
+                    <li><strong>Iglesias (Art. 37 CPRG):</strong> Exentas sobre bienes destinados exclusivamente al culto, educación y asistencia social. Un local comercial propiedad de la iglesia SÍ paga. [Tesis USAC, p. 100].</li>
+                </ul>
+            </div>
+        </details>
+
+        <details>
+            <summary>B. EL ILÍCITO TRIBUTARIO: INFRACCIÓN VS DELITO</summary>
+            <div class="content-box">
+                <p>El auditor debe distinguir la naturaleza de la falta:</p>
+                <p><strong>1. Infracción (Código Tributario):</strong> Sanción administrativa (multa, cierre, mora). Generalmente objetiva, aunque admite prueba de descargo.</p>
+                <p><strong>2. Delito (Código Penal):</strong> Requiere <strong>DOLO</strong> (intención de engañar, "ardid"). Ej. Doble contabilidad, facturas falsas. Se castiga con prisión y multa del 100% del impuesto omitido. [Fuente: Villegas, p. 617].</p>
+            </div>
+        </details>
+
+        <details>
+            <summary>C. SANCIONES ADMINISTRATIVAS (Art. 86 y 94 C.Trib)</summary>
+            <div class="content-box">
+                <p>Las sanciones más comunes que encontrarán en su práctica:</p>
+                <ul>
+                    <li><strong>Mora:</strong> Por pagar tarde. Interés resarcitorio + Sanción por mora.</li>
+                    <li><strong>Cierre Temporal:</strong> Por no emitir facturas. Mínimo 10 días hasta 20 días. Reemplazable por multa en casos especiales (Art. 86).</li>
+                    <li><strong>Resistencia a la acción fiscalizadora:</strong> Negar información a la SAT. Multa del 1% de ingresos brutos. (Art. 93).</li>
+                </ul>
+                <div class="tech-alert">
+                    <strong>REBAJA (Art. 94 "A"):</strong> Si el contribuyente rectifica y paga voluntariamente antes de ser notificado, tiene derecho a una rebaja del 85% de la sanción.
+                </div>
+            </div>
+        </details>
+    </section>
+
+    <!-- 4. PRAXIS: CASOS DE AUDITORÍA -->
+    <section class="section">
+        <div class="section-title"><span>4</span>PRAXIS: CASOS DE ALTO RIESGO</div>
+        <p>Instrucción: Analice si el beneficio fiscal es aplicable o si existe contingencia.</p>
+        
+        <div class="praxis-grid">
+            
+            <!-- CASO 1 -->
+            <div class="case-card">
+                <div class="case-header bg-blue">CASO 1: LA LIBRERÍA DE LA IGLESIA</div>
+                <div class="case-body">
+                    <p><strong>Hechos:</strong> Una Iglesia abre una librería y cafetería abierta al público. No paga IVA ni ISR argumentando el Art. 37 de la Constitución.</p>
+                    <p><strong>Auditoría:</strong> ¿Es correcto?</p>
+                    
+                    <details>
+                        <summary>VER DICTAMEN TÉCNICO</summary>
+                        <div class="content-box" style="border-top-color: var(--ur-blue);">
+                            <p><strong>DICTAMEN: INCORRECTO (Contingencia Fiscal).</strong></p>
+                            <p>1. <strong>Análisis:</strong> La exención del Art. 37 CPRG y Art. 6 Ley ISR se limita a rentas por razón de culto o asistencia social. Las actividades lucrativas mercantiles (venta de libros, café) no gozan de exención, aunque los fondos se usen para la iglesia.</p>
+                            <p>2. <strong>Fundamento:</strong> El párrafo final del Art. 6 de la Ley de Actualización Tributaria excluye expresamente las actividades lucrativas. [Fuente: Tesis USAC, p. 100].</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <!-- CASO 2 -->
+            <div class="case-card">
+                <div class="case-header bg-orange">CASO 2: EL ERROR ARITMÉTICO</div>
+                <div class="case-body">
+                    <p><strong>Hechos:</strong> Un contador se equivoca en una suma y declara menos IVA. La SAT amenaza con denuncia penal por "Defraudación".</p>
+                    <p><strong>Defensa:</strong> ¿Procede la vía penal?</p>
+                    
+                    <details>
+                        <summary>VER ESTRATEGIA DE DEFENSA</summary>
+                        <div class="content-box" style="border-top-color: var(--ur-orange);">
+                            <p><strong>DEFENSA: NO PROCEDE PENALMENTE.</strong></p>
+                            <p>1. <strong>Argumento:</strong> Falta el elemento "DOLO" (intención de engañar). El Código Tributario distingue entre "Error de Cálculo" y "Defraudación". Un error aritmético es una infracción administrativa, no un delito.</p>
+                            <p>2. <strong>Acción:</strong> Rectificar y pagar la diferencia más intereses. Solicitar rebaja de multa conf. Art. 94 "A".</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 5. LÉXICO TÉCNICO -->
+    <section class="section">
+        <div class="section-title"><span>5</span>LÉXICO TÉCNICO: ETIMOLOGÍA Y EPISTEMOLOGÍA</div>
+        
+        <div style="background: #f9f9f9; padding: 25px; border-radius: 8px; border-left: 5px solid var(--ur-blue);">
+            <ul style="list-style: none; padding: 0;">
+                <li style="margin-bottom: 20px; border-bottom: 1px dashed #ccc; padding-bottom: 15px;">
+                    <strong style="color: var(--ur-blue); font-size: 1.1rem;">1. EXENCIÓN</strong><br>
+                    <span style="color: var(--ur-orange); font-weight: bold;">Etimología:</span> Del latín <em>Exemptio</em> (acción de sacar, librar).<br>
+                    <span style="color: var(--text-dark); font-weight: bold;">Epistemología:</span> Situación jurídica donde, a pesar de realizarse el hecho imponible, la ley neutraliza la obligación de pago por razones de política fiscal [Villegas, p. 339].
+                </li>
+                <li style="margin-bottom: 20px; border-bottom: 1px dashed #ccc; padding-bottom: 15px;">
+                    <strong style="color: var(--ur-blue); font-size: 1.1rem;">2. NON BIS IN IDEM</strong><br>
+                    <span style="color: var(--ur-orange); font-weight: bold;">Etimología:</span> Latín: "No dos veces por lo mismo".<br>
+                    <span style="color: var(--text-dark); font-weight: bold;">Epistemología:</span> Principio que prohíbe sancionar dos veces el mismo hecho (ej. cobrar multa administrativa y pena de prisión por la misma evasión) [Art. 12 CPRG; Fuente 41].
+                </li>
+                <li style="margin-bottom: 10px;">
+                    <strong style="color: var(--ur-blue); font-size: 1.1rem;">3. MORA</strong><br>
+                    <span style="color: var(--ur-orange); font-weight: bold;">Etimología:</span> Del latín <em>Mora</em> (retraso).<br>
+                    <span style="color: var(--text-dark); font-weight: bold;">Epistemología:</span> Retraso culpable en el cumplimiento de la obligación. Genera intereses resarcitorios y sanciones [Art. 92 C.Trib].
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- 6. TAREA ESPECIAL (EXAMEN) -->
+    <section class="section" style="padding: 0; border: none;">
+        <div class="exam-prep-box">
+            <div class="exam-prep-title">🚨 LABORATORIO OBLIGATORIO (10 PUNTOS) 🚨</div>
+            <p style="font-weight: bold; font-size: 1.1rem;">FECHA DE ENTREGA: 21 DE MARZO (DÍA DEL EXAMEN)</p>
+            <p>Esta tarea es su pase de entrada al examen. "No quiero copias, quiero análisis".</p>
+            
+            <div style="text-align: left; background: white; padding: 25px; border-radius: 8px; border: 1px solid #ddd; margin-top: 20px;">
+                <p><strong>PARTE I: LA MATRIZ DEL AUDITOR (4 Pts)</strong><br>
+                Elabore una matriz comparativa técnica de los siguientes tributos, citando el Artículo legal exacto:</p>
+                <table style="width:100%; border-collapse: collapse; font-size: 0.9rem; margin-bottom: 15px;">
+                    <tr style="background:#eee;"><th>TRIBUTO</th><th>HECHO GENERADOR</th><th>BASE IMPONIBLE</th><th>TIPO IMPOSITIVO</th><th>EXENCIONES PRINCIPALES</th></tr>
+                    <tr><td>IVA (General)</td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td>ISR (Opcional Simplificado)</td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td>ISO (Solidaridad)</td><td></td><td></td><td></td><td></td></tr>
+                </table>
+
+                <p><strong>PARTE II: DEFENSA DE CASOS (3 Pts)</strong><br>
+                Resuelva el caso: <em>"La SAT cierra una farmacia por no facturar Q.25.00. El auditor alega inconstitucionalidad por violar la libertad de industria. ¿Tiene razón? Analice proporcionalidad y sanción de cierre (Art. 85-86 C.Trib)."</em></p>
+
+                <p><strong>PARTE III: DICCIONARIO JURÍDICO (3 Pts)</strong><br>
+                Defina con rigor técnico (Villegas/Código Tributario):<br>
+                1. Devengado vs Percibido.<br>
+                2. Responsable por Representación.<br>
+                3. Capacidad Contributiva.<br>
+                4. Prescripción (Plazos y Cómputo).<br>
+                5. Parafiscalidad.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. BIBLIOGRAFÍA -->
+    <section class="section">
+        <div class="section-title"><span>7</span>BIBLIOGRAFÍA PARA EL EXAMEN</div>
+        <ul class="biblio-list">
+            <li>Villegas, H. B. (2016). <em>Curso de finanzas...</em> [Caps. Exenciones e Ilícitos, pp. 339, 617].</li>
+            <li>García Zea, A. L. (Tesis USAC 2024). [Tema: Exenciones a Organizaciones no Lucrativas, pp. 87-105].</li>
+            <li>Congreso de la República. <em>Código Tributario</em>. [Arts. 66-94: Infracciones y Sanciones].</li>
+            <li>Congreso de la República. <em>Constitución Política (CPRG)</em>. [Arts. 37, 73, 88].</li>
+        </ul>
+    </section>
+
+    <footer style="text-align: center; padding: 20px; font-size: 0.9rem; color: #666; margin-top: 40px; border-top: 1px solid #ddd;">
+        <p style="font-weight: bold; color: var(--ur-blue);">"El éxito en el parcial no es suerte, es la suma de pequeños esfuerzos repetidos cada sábado."</p>
+        <p>Derecho Tributario II - Universidad Regional de Guatemala - 2026</p>
+    </footer>
+
+</div>
+
+</body>
+</html>

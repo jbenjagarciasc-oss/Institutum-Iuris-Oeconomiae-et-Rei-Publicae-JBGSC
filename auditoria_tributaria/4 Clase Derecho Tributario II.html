@@ -1,0 +1,366 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clase 4: Hecho Generador y Extinción | Derecho Tributario II</title>
+<style>
+    :root {
+        --ur-blue: #003366;
+        --ur-orange: #ea580c;
+        --ur-gray: #f3f4f6;
+        --text-dark: #1f2937;
+        --white: #ffffff;
+        --alert-yellow: #fff3cd;
+        --alert-border: #ffecb5;
+    }
+    body {
+        font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+        background-color: var(--ur-gray);
+        color: var(--text-dark);
+        margin: 0;
+        padding: 20px;
+        line-height: 1.6;
+    }
+    .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        background: var(--white);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        border-radius: 8px;
+        overflow: hidden;
+        border-top: 8px solid var(--ur-blue);
+    }
+    /* ENCABEZADO */
+    header {
+        background: linear-gradient(135deg, var(--ur-blue) 0%, #004080 100%);
+        color: var(--white);
+        padding: 3rem 2rem;
+        text-align: center;
+        border-bottom: 4px solid var(--ur-orange);
+    }
+    header h1 { margin: 0; font-size: 2.2rem; text-transform: uppercase; letter-spacing: 2px; }
+    header h2 { font-family: 'Georgia', serif; font-style: italic; font-weight: normal; margin-top: 10px; opacity: 0.95; }
+    .meta-info { background: rgba(255,255,255,0.15); padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; display: inline-block; margin-bottom: 10px; }
+
+    /* SECCIONES NUMERADAS */
+    .section { padding: 40px; border-bottom: 1px solid #e5e7eb; }
+    .section-title {
+        color: var(--ur-blue);
+        font-size: 1.6rem;
+        border-left: 6px solid var(--ur-orange);
+        padding-left: 15px;
+        margin-bottom: 25px;
+        text-transform: uppercase;
+        font-weight: 800;
+        display: flex;
+        align-items: center;
+    }
+    .section-title span {
+        background: var(--ur-blue); color: white; width: 35px; height: 35px;
+        display: flex; align-items: center; justify-content: center;
+        border-radius: 50%; margin-right: 15px; font-size: 1.1rem;
+    }
+
+    /* ALERTA TÉCNICA */
+    .tech-alert {
+        background-color: var(--alert-yellow);
+        border: 1px solid var(--alert-border);
+        color: #856404;
+        padding: 15px;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+        border-left: 5px solid #ffc107;
+    }
+
+    /* BOTONES DESPLEGABLES */
+    details {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 6px;
+        margin-bottom: 15px;
+        overflow: hidden;
+    }
+    summary {
+        background: var(--ur-blue);
+        color: white;
+        padding: 15px;
+        cursor: pointer;
+        font-weight: bold;
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: background 0.3s;
+    }
+    summary:hover { background: #002a55; }
+    summary::after { content: "+"; font-size: 1.2rem; font-weight: bold; }
+    details[open] summary::after { content: "-"; color: var(--ur-orange); }
+    .content-box { padding: 20px; border-top: 3px solid var(--ur-orange); background: #fff; }
+
+    /* MAPA MENTAL */
+    .mind-map { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-top: 20px; }
+    .map-node {
+        flex: 1; min-width: 200px;
+        background: white; border: 2px solid var(--ur-blue);
+        border-radius: 8px; padding: 15px;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        transition: transform 0.2s;
+    }
+    .map-node:hover { transform: translateY(-5px); border-color: var(--ur-orange); }
+    .map-node strong { display: block; color: var(--ur-blue); margin-bottom: 8px; text-transform: uppercase; }
+    .map-def { font-size: 0.9rem; font-style: italic; color: #555; background: #f9f9f9; padding: 8px; border-radius: 4px; }
+
+    /* PRAXIS - EJERCICIOS */
+    .praxis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .case-card { border: 1px solid #ddd; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; }
+    .case-header { padding: 10px 15px; font-weight: bold; color: white; text-align: center; }
+    .bg-blue { background: var(--ur-blue); }
+    .bg-orange { background: var(--ur-orange); }
+    .case-body { padding: 20px; background: white; flex-grow: 1; }
+    
+    /* BIBLIOGRAFIA Y TAREA */
+    .biblio-list { font-size: 0.85rem; color: #4b5563; list-style-type: none; padding-left: 0; }
+    .biblio-list li { margin-bottom: 10px; padding-left: 15px; border-left: 3px solid #ccc; }
+    .homework-box { background: var(--ur-blue); color: white; padding: 30px; text-align: center; border-radius: 0 0 8px 8px; }
+    .date-badge { background: var(--ur-orange); padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; }
+
+    @media (max-width: 768px) {
+        .praxis-grid { grid-template-columns: 1fr; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- ENCABEZADO -->
+    <header>
+        <div class="meta-info">SÉPTIMO SEMESTRE</div>
+        <h1>Derecho Tributario II</h1>
+        <h2>Cátedra: Magister José Benjamín García Santa Cruz</h2>
+        <div style="margin-top: 20px; font-size: 0.9rem;">
+            Licenciatura en Contaduría Pública y Auditoría<br>
+            Universidad Regional | Sede San Raymundo | Fecha: Sábado 7 de Marzo de 2026
+        </div>
+        <div style="margin-top: 25px; font-size: 1.1rem; font-style: italic; color: #fbbf24;">
+            "El tiempo en el derecho tributario no es oro, es vida o muerte fiscal: la diferencia entre una multa y la prescripción."
+        </div>
+    </header>
+
+    <!-- 1. RESOLUCIÓN DEL EJERCICIO DE CASA -->
+    <section class="section">
+        <div class="section-title"><span>1</span>RESOLUCIÓN TAREA CLASE 3 (SUJETOS Y MÉTODOS)</div>
+        <p>Validemos los dictámenes. El auditor que no sabe cuándo nace el impuesto, crea contingencias fatales.</p>
+        
+        <!-- Ejercicio 1 -->
+        <details>
+            <summary>EJERCICIO 1: REALIDAD ECONÓMICA VS. FORMA JURÍDICA</summary>
+            <div class="content-box">
+                <p><strong>El Caso:</strong> Una venta a plazos disfrazada de arrendamiento con opción a compra simbólica.</p>
+                <p><strong>Resolución Técnica:</strong> Se aplica el Art. 4 del Código Tributario. No es alquiler, es <strong>Venta Financiada</strong>. El contribuyente debe activar el bien y depreciarlo, no deducir las cuotas como gasto de alquiler. [Fuente: Villegas, p. 396; C.Trib Art. 4].</p>
+            </div>
+        </details>
+
+        <!-- Ejercicio 2 -->
+        <details>
+            <summary>EJERCICIO 2: RESPONSABILIDAD SOLIDARIA</summary>
+            <div class="content-box">
+                <p><strong>El Caso:</strong> ¿Responde el Gerente con sus bienes propios?</p>
+                <p><strong>Dictamen:</strong> <strong>SÍ</strong>. Pero con una condición técnica: no es automática. Responde solidariamente si administró durante el período de la deuda y no cumplió el deber de pagar teniendo fondos. [Fuente: Art. 22 C.Trib].</p>
+            </div>
+        </details>
+    </section>
+
+    <!-- 2. MAPA MENTAL -->
+    <section class="section">
+        <div class="section-title"><span>2</span>MAPA MENTAL: ANATOMÍA DEL HECHO GENERADOR</div>
+        <p>Según el Artículo 31 del Código Tributario, el Hecho Generador es el "presupuesto establecido por la ley".</p>
+        <div class="mind-map">
+            <div class="map-node">
+                <strong>ASPECTO MATERIAL</strong>
+                <div class="map-def">
+                    ¿Qué se grava? El acto, negocio o situación económica descrita (Ej. Vender, Ganar renta, Importar).
+                </div>
+            </div>
+            <div class="map-node">
+                <strong>ASPECTO PERSONAL</strong>
+                <div class="map-def">
+                    ¿Quién realiza el hecho? El vínculo entre el sujeto pasivo y el presupuesto legal.
+                </div>
+            </div>
+            <div class="map-node">
+                <strong>ASPECTO ESPACIAL</strong>
+                <div class="map-def">
+                    ¿Dónde ocurre? Territorio donde la ley tiene potestad (Principio de Territorialidad/Fuente).
+                </div>
+            </div>
+            <div class="map-node">
+                <strong>ASPECTO TEMPORAL</strong>
+                <div class="map-def">
+                    ¿Cuándo nace la obligación? Momento exacto de la configuración (Devengado/Percibido/Realizado).
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. EXPOSICIÓN DE LA CLASE -->
+    <section class="section">
+        <div class="section-title"><span>3</span>EXPOSICIÓN: EL TIEMPO EN EL DERECHO TRIBUTARIO</div>
+        
+        <details>
+            <summary>A. EL NACIMIENTO DE LA OBLIGACIÓN (IVA)</summary>
+            <div class="content-box">
+                <p>El Art. 3 de la Ley del IVA (Dec. 27-92) define los hechos. Pero el Art. 4 define <strong>CUÁNDO</strong> se paga. Esto es crítico para el auditor:</p>
+                <ul>
+                    <li><strong>Venta de Bienes:</strong> En la fecha de emisión de factura, entrega del bien o acto equivalente (lo que ocurra primero). [Fuente 117].</li>
+                    <li><strong>Servicios (Ojo Auditor):</strong> En la fecha de emisión de factura, <strong>la prestación del servicio</strong>, o la percepción del pago (total o parcial), <em>lo que ocurra primero</em>. [Fuente 117].</li>
+                    <li><strong>Importaciones:</strong> Cuando la póliza queda legalizada (definitiva).</li>
+                </ul>
+                <div class="tech-alert">
+                    <strong>⚠ AJUSTE TÉCNICO:</strong> En servicios, aunque no haya factura ni cobro, si el servicio ya se <strong>prestó</strong>, nació el débito fiscal.
+                </div>
+            </div>
+        </details>
+
+        <details>
+            <summary>B. EXTINCIÓN DE LA FACULTAD: LA PRESCRIPCIÓN</summary>
+            <div class="content-box">
+                <p>El transcurso del tiempo extingue la facultad de la SAT para determinar y cobrar, pero no necesariamente la obligación natural.</p>
+                <p><strong>Plazos (Art. 47 Código Tributario):</strong></p>
+                <ul>
+                    <li><strong>4 Años:</strong> Para contribuyentes inscritos.</li>
+                    <li><strong>8 Años:</strong> Para no inscritos o quienes no se registraron. [Fuente 32, 33].</li>
+                </ul>
+                <p><strong>Cómputo (Art. 49):</strong> El plazo no corre desde el fin del año, sino <strong>a partir de la fecha de vencimiento</strong> de la obligación de presentar la declaración. [Fuente 33].</p>
+            </div>
+        </details>
+
+        <details>
+            <summary>C. INTERRUPCIÓN VS SUSPENSIÓN</summary>
+            <div class="content-box">
+                <p>Es vital diferenciar para el cómputo de plazos (Art. 50 C.Trib):</p>
+                <ul>
+                    <li><strong>Interrupción:</strong> Borra el tiempo transcurrido. El conteo vuelve a cero (Ej. Notificación de audiencia, pago parcial, reconocimiento de deuda). [Fuente 34].</li>
+                    <li><strong>Suspensión:</strong> Pausa el reloj. Al terminar la causa, el tiempo sigue corriendo donde se quedó (Ej. Proceso contencioso administrativo, amparo). [Fuente 61].</li>
+                </ul>
+            </div>
+        </details>
+    </section>
+
+    <!-- 4. EJERCICIOS COMPLETOS (AUDITORÍA) -->
+    <section class="section">
+        <div class="section-title"><span>4</span>PRAXIS DE AUDITORÍA: DEFENSA TÉCNICA</div>
+        <p>Instrucción: Utilice la Ley del IVA y el Código Tributario para resolver.</p>
+        
+        <div class="praxis-grid">
+            
+            <!-- CASO 1 -->
+            <div class="case-card">
+                <div class="case-header bg-blue">CASO 1: EL ANTICIPO SIN FACTURA</div>
+                <div class="case-body">
+                    <p><strong>Situación:</strong> Una constructora recibe hoy el 50% de anticipo por una obra que iniciará en 6 meses. El contador no emite factura "porque no hay avance físico".</p>
+                    <p><strong>Auditoría:</strong> ¿Existe contingencia fiscal en el IVA?</p>
+                    
+                    <details>
+                        <summary>VER DICTAMEN TÉCNICO</summary>
+                        <div class="content-box" style="border-top-color: var(--ur-blue);">
+                            <p><strong>DICTAMEN: SÍ, HAY CONTINGENCIA.</strong></p>
+                            <p>1. <strong>Base Legal:</strong> Art. 4 Ley del IVA.</p>
+                            <p>2. <strong>Análisis:</strong> En servicios, el hecho generador se perfecciona con el <strong>pago (total o parcial)</strong>, la prestación, o la factura, lo que ocurra primero. Al recibir el dinero, nació la obligación tributaria por ese monto.</p>
+                            <p>3. <strong>Acción:</strong> Debe facturar el anticipo inmediatamente.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <!-- CASO 2 -->
+            <div class="case-card">
+                <div class="case-header bg-orange">CASO 2: LA DEUDA "ETERNA"</div>
+                <div class="case-body">
+                    <p><strong>Situación:</strong> La SAT notifica hoy (Marzo 2026) un ajuste por ISR Anual del año 2018. El contribuyente es inscrito y presentó declaración en Marzo 2019.</p>
+                    <p><strong>Defensa:</strong> ¿Debe pagar o prescribió?</p>
+                    
+                    <details>
+                        <summary>VER ESTRATEGIA DE DEFENSA</summary>
+                        <div class="content-box" style="border-top-color: var(--ur-orange);">
+                            <p><strong>ESTRATEGIA: EXCEPCIÓN DE PRESCRIPCIÓN.</strong></p>
+                            <p>1. <strong>Cómputo:</strong> El plazo de 4 años inició el día siguiente del vencimiento de la declaración (Marzo 2019). [Fuente 33].</p>
+                            <p>2. <strong>Cálculo:</strong> De Marzo 2019 a Marzo 2026 han pasado 7 años. La facultad de la SAT para determinar la obligación se extinguió (Art. 47 C.Trib).</p>
+                            <p>3. <strong>Advertencia:</strong> Verifique que no haya habido notificación previa que <em>interrumpiera</em> el plazo.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 5. LÉXICO TÉCNICO -->
+    <section class="section">
+        <div class="section-title"><span>5</span>LÉXICO TÉCNICO: ETIMOLOGÍA Y EPISTEMOLOGÍA</div>
+        
+        <div style="background: #f9f9f9; padding: 25px; border-radius: 8px; border-left: 5px solid var(--ur-blue);">
+            <ul style="list-style: none; padding: 0;">
+                
+                <li style="margin-bottom: 20px; border-bottom: 1px dashed #ccc; padding-bottom: 15px;">
+                    <strong style="color: var(--ur-blue); font-size: 1.1rem;">1. DEVENGADO</strong><br>
+                    <span style="color: var(--ur-orange); font-weight: bold;">Etimología:</span> Del latín <em>De-Vindicare</em> (reclamar derecho).<br>
+                    <span style="color: var(--text-dark); font-weight: bold;">Epistemología:</span> Reconocimiento de la operación cuando nace el derecho jurídico al cobro, independientemente del flujo de efectivo. Su aplicación depende del régimen de ISR (Lucrativo vs Opcional). [Fuente 202].
+                </li>
+
+                <li style="margin-bottom: 20px; border-bottom: 1px dashed #ccc; padding-bottom: 15px;">
+                    <strong style="color: var(--ur-blue); font-size: 1.1rem;">2. PRESCRIPCIÓN</strong><br>
+                    <span style="color: var(--ur-orange); font-weight: bold;">Etimología:</span> Del latín <em>Praescriptio</em> (escribir al principio).<br>
+                    <span style="color: var(--text-dark); font-weight: bold;">Epistemología:</span> Extinción de la acción y facultad de la Administración Tributaria para determinar la obligación y exigir el pago por el transcurso del tiempo [Art. 47 C.Trib; Fuente 31].
+                </li>
+
+                <li style="margin-bottom: 10px;">
+                    <strong style="color: var(--ur-blue); font-size: 1.1rem;">3. PERCIBIDO</strong><br>
+                    <span style="color: var(--ur-orange); font-weight: bold;">Etimología:</span> Del latín <em>Per-cipere</em> (tomar posesión).<br>
+                    <span style="color: var(--text-dark); font-weight: bold;">Epistemología:</span> Criterio de imputación basado en el ingreso efectivo de los fondos o su puesta a disposición [Fuente 168].
+                </li>
+
+            </ul>
+        </div>
+    </section>
+
+    <!-- 6. EJERCICIOS DOMICILIARES -->
+    <section class="section" style="border-bottom: none;">
+        <div class="homework-box">
+            <h3 style="margin-top:0;">6. LABOR DOMICILIARIA: PREPARACIÓN PRIMER PARCIAL</h3>
+            <span class="date-badge">EXAMEN: 21 DE MARZO</span>
+            
+            <div style="text-align: left; margin-top: 20px; background: rgba(255,255,255,0.1); padding: 20px; border-radius: 8px;">
+                <p><strong>1. Matriz de Hechos Generadores:</strong> Elabore una tabla comparativa del momento exacto del nacimiento de la obligación tributaria para: a) Venta de Bienes (IVA), b) Servicios (IVA), c) Importaciones (IVA). Cite el Art. 4 de la Ley del IVA.</p>
+                <p><strong>2. Análisis de Exenciones (Art. 8 IVA):</strong> Determine si un Médico que tiene su clínica privada debe facturar con IVA. Compare con el caso de un Hospital Nacional. [Fuente 122].</p>
+                <p><strong>3. Lectura Obligatoria:</strong> Lea los Artículos 66 a 90 del Código Tributario (Ilícito Tributario e Infracciones) para la próxima clase sobre sanciones.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. BIBLIOGRAFÍA -->
+    <section class="section">
+        <div class="section-title"><span>7</span>BIBLIOGRAFÍA DE LA CLASE</div>
+        <ul class="biblio-list">
+            <li>Jarach, Dino. (1996). <em>Finanzas Públicas y Derecho Tributario</em>. [Tema: Hecho Imponible, p. 383].</li>
+            <li>Villegas, Héctor B. (2016). <em>Curso de finanzas...</em> [Tema: Extinción y Prescripción, p. 300].</li>
+            <li>Congreso de la República de Guatemala. <em>Decreto 27-92: Ley del IVA</em>. [Arts. 3 y 4: Hecho Generador y Fecha de Pago].</li>
+            <li>Congreso de la República de Guatemala. <em>Decreto 6-91: Código Tributario</em>. [Arts. 31, 47-50: Prescripción].</li>
+            <li>Congreso de la República de Guatemala. <em>Decreto 10-2012: Ley de Actualización Tributaria</em>. [ISR].</li>
+        </ul>
+    </section>
+
+    <footer style="text-align: center; padding: 20px; font-size: 0.9rem; color: #666; margin-top: 40px; border-top: 1px solid #ddd;">
+        <p style="font-weight: bold; color: var(--ur-blue);">"Donde la ley no distingue, no le es dable distinguir al auditor."</p>
+        <p>Derecho Tributario II - Universidad Regional de Guatemala - 2026</p>
+    </footer>
+
+</div>
+
+</body>
+</html>

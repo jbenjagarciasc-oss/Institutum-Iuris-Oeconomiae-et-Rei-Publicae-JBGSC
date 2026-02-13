@@ -1,0 +1,359 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clase 3: Interpretación y Sujetos | Derecho Tributario II</title>
+<style>
+    :root {
+        --ur-blue: #003366;
+        --ur-orange: #ea580c;
+        --ur-gray: #f3f4f6;
+        --text-dark: #1f2937;
+        --white: #ffffff;
+        --alert-yellow: #fff3cd;
+        --alert-border: #ffecb5;
+    }
+    body {
+        font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+        background-color: var(--ur-gray);
+        color: var(--text-dark);
+        margin: 0;
+        padding: 20px;
+        line-height: 1.6;
+    }
+    .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        background: var(--white);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        border-radius: 8px;
+        overflow: hidden;
+        border-top: 8px solid var(--ur-blue);
+    }
+    /* ENCABEZADO */
+    header {
+        background: linear-gradient(135deg, var(--ur-blue) 0%, #004080 100%);
+        color: var(--white);
+        padding: 3rem 2rem;
+        text-align: center;
+        border-bottom: 4px solid var(--ur-orange);
+    }
+    header h1 { margin: 0; font-size: 2.2rem; text-transform: uppercase; letter-spacing: 2px; }
+    header h2 { font-family: 'Georgia', serif; font-style: italic; font-weight: normal; margin-top: 10px; opacity: 0.95; }
+    .meta-info { background: rgba(255,255,255,0.15); padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; display: inline-block; margin-bottom: 10px; }
+
+    /* SECCIONES NUMERADAS */
+    .section { padding: 40px; border-bottom: 1px solid #e5e7eb; }
+    .section-title {
+        color: var(--ur-blue);
+        font-size: 1.6rem;
+        border-left: 6px solid var(--ur-orange);
+        padding-left: 15px;
+        margin-bottom: 25px;
+        text-transform: uppercase;
+        font-weight: 800;
+        display: flex;
+        align-items: center;
+    }
+    .section-title span {
+        background: var(--ur-blue); color: white; width: 35px; height: 35px;
+        display: flex; align-items: center; justify-content: center;
+        border-radius: 50%; margin-right: 15px; font-size: 1.1rem;
+    }
+
+    /* ALERTA TÉCNICA */
+    .tech-alert {
+        background-color: var(--alert-yellow);
+        border: 1px solid var(--alert-border);
+        color: #856404;
+        padding: 15px;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+        border-left: 5px solid #ffc107;
+    }
+
+    /* BOTONES DESPLEGABLES (SUMMARY/DETAILS) */
+    details {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 6px;
+        margin-bottom: 15px;
+        overflow: hidden;
+    }
+    summary {
+        background: var(--ur-blue);
+        color: white;
+        padding: 15px;
+        cursor: pointer;
+        font-weight: bold;
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: background 0.3s;
+    }
+    summary:hover { background: #002a55; }
+    summary::after { content: "+"; font-size: 1.2rem; font-weight: bold; }
+    details[open] summary::after { content: "-"; color: var(--ur-orange); }
+    .content-box { padding: 20px; border-top: 3px solid var(--ur-orange); background: #fff; }
+
+    /* MAPA MENTAL */
+    .mind-map { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-top: 20px; }
+    .map-node {
+        flex: 1; min-width: 200px;
+        background: white; border: 2px solid var(--ur-blue);
+        border-radius: 8px; padding: 15px;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        transition: transform 0.2s;
+    }
+    .map-node:hover { transform: translateY(-5px); border-color: var(--ur-orange); }
+    .map-node strong { display: block; color: var(--ur-blue); margin-bottom: 8px; text-transform: uppercase; }
+    .map-def { font-size: 0.9rem; font-style: italic; color: #555; background: #f9f9f9; padding: 8px; border-radius: 4px; }
+
+    /* PRAXIS - EJERCICIOS */
+    .praxis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .case-card { border: 1px solid #ddd; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; }
+    .case-header { padding: 10px 15px; font-weight: bold; color: white; text-align: center; }
+    .bg-blue { background: var(--ur-blue); }
+    .bg-orange { background: var(--ur-orange); }
+    .case-body { padding: 20px; background: white; flex-grow: 1; }
+    
+    /* BIBLIOGRAFIA Y TAREA */
+    .biblio-list { font-size: 0.85rem; color: #4b5563; list-style-type: none; padding-left: 0; }
+    .biblio-list li { margin-bottom: 10px; padding-left: 15px; border-left: 3px solid #ccc; }
+    .homework-box { background: var(--ur-blue); color: white; padding: 30px; text-align: center; border-radius: 0 0 8px 8px; }
+    .date-badge { background: var(--ur-orange); padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; }
+
+    @media (max-width: 768px) {
+        .praxis-grid { grid-template-columns: 1fr; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- ENCABEZADO -->
+    <header>
+        <div class="meta-info">SÉPTIMO SEMESTRE</div>
+        <h1>Derecho Tributario II</h1>
+        <h2>Cátedra: Magister José Benjamín García Santa Cruz</h2>
+        <div style="margin-top: 20px; font-size: 0.9rem;">
+            Licenciatura en Contaduría Pública y Auditoría<br>
+            Universidad Regional | Sede San Raymundo | Fecha: Sábado 28 de Febrero de 2026
+        </div>
+        <div style="margin-top: 25px; font-size: 1.1rem; font-style: italic; color: #fbbf24;">
+            "La forma jurídica no puede servir de disfraz para ocultar la realidad económica ante el Fisco." — Dino Jarach
+        </div>
+    </header>
+
+    <!-- 1. RESOLUCIÓN DEL EJERCICIO DE CASA -->
+    <section class="section">
+        <div class="section-title"><span>1</span>RESOLUCIÓN TAREA CLASE 2 (AUDITORÍA APLICADA)</div>
+        <p>A continuación, la solución técnica a los retos planteados. Verifiquen sus papeles de trabajo.</p>
+        
+        <!-- Ejercicio 1 -->
+        <details>
+            <summary>EJERCICIO 1: SIMULACIÓN VS. DEFRAUDACIÓN</summary>
+            <div class="content-box">
+                <p><strong>El Reto:</strong> Diferenciar "Simulación" de "Defraudación".</p>
+                <p><strong>Resolución Técnica:</strong></p>
+                <p>La <strong>Simulación</strong> es el <em>medio o ardid</em> (crear un acto jurídico aparente para ocultar la realidad) para evadir; la <strong>Defraudación</strong> es el <em>resultado</em> delictivo (dejar de pagar el tributo mediante engaño). [Fuente: Art. 358 "A" Código Penal; Villegas, p. 686].</p>
+            </div>
+        </details>
+
+        <!-- Ejercicio 2 -->
+        <details>
+            <summary>EJERCICIO 2: CASO IGSS (PARAFISCALIDAD)</summary>
+            <div class="content-box">
+                <p><strong>El Caso:</strong> Clasificar la cuota patronal al IGSS.</p>
+                <p><strong>Resolución Técnica:</strong></p>
+                <p>Es una <strong>CONTRIBUCIÓN PARAFISCAL</strong> (o de Seguridad Social). No ingresa al Fondo Común, sino a un ente autónomo con fines de previsión social.</p>
+                <p><em>Fundamento de Alto Nivel:</em> Tiene su base en el <strong>Art. 100 de la Constitución Política de la República</strong> (Seguridad Social) y en la Ley Orgánica del IGSS.</p>
+            </div>
+        </details>
+    </section>
+
+    <!-- 2. MAPA MENTAL -->
+    <section class="section">
+        <div class="section-title"><span>2</span>MAPA MENTAL: SUJETOS E INTERPRETACIÓN</div>
+        <p>Estructura de la Relación Jurídica Tributaria Sustantiva.</p>
+        <div class="mind-map">
+            <div class="map-node">
+                <strong>LA OBLIGACIÓN TRIBUTARIA</strong>
+                <div class="map-def">
+                    Vínculo jurídico personal entre el Estado y los sujetos pasivos [Art. 14 C.Trib].
+                </div>
+            </div>
+            <div class="map-node">
+                <strong>SUJETO ACTIVO</strong>
+                <div class="map-def">
+                    El Estado o ente público acreedor del tributo (SAT, Municipalidades) [Art. 17 C.Trib].
+                </div>
+            </div>
+            <div class="map-node">
+                <strong>SUJETO PASIVO</strong>
+                <div class="map-def">
+                    El obligado al cumplimiento. Se divide en: Contribuyente (Deuda propia) y Responsable (Deuda ajena) [Art. 18 C.Trib].
+                </div>
+            </div>
+            <div class="map-node">
+                <strong>HERMENÉUTICA</strong>
+                <div class="map-def">
+                    Interpretación conforme a la realidad económica del hecho generador [Art. 4 C.Trib].
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. EXPOSICIÓN DE LA CLASE -->
+    <section class="section">
+        <div class="section-title"><span>3</span>EXPOSICIÓN: LA DEFENSA Y EL ATAQUE FISCAL</div>
+        
+        <details>
+            <summary>A. INTERPRETACIÓN: REALIDAD ECONÓMICA VS ANALOGÍA</summary>
+            <div class="content-box">
+                <div class="tech-alert">
+                    <strong>⚠ PRECISIÓN TÉCNICA:</strong> No confundan "Analogía" con "Realidad Económica".
+                    <br>- La <strong>Analogía</strong> (crear tributos o sujetos por semejanza) está <strong>PROHIBIDA</strong> para crear obligaciones (Art. 5 C.Trib).
+                    <br>- La <strong>Realidad Económica</strong> (Art. 4 C.Trib) es un método de interpretación para descubrir la verdadera naturaleza del hecho, ignorando las formas jurídicas inadecuadas.
+                </div>
+                <p><strong>El Problema:</strong> Los contribuyentes suelen disfrazar sus operaciones. Ejemplo: Llaman "Donación" a una "Venta".</p>
+                <p><strong>La Solución (Art. 4 C.Trib):</strong> Se debe atender a la naturaleza jurídica real del hecho generador, prescindiendo de la forma que las partes le den.</p>
+            </div>
+        </details>
+
+        <details>
+            <summary>B. SUJETOS PASIVOS: ¿QUIÉN PAGA LA CUENTA?</summary>
+            <div class="content-box">
+                <p>Es vital distinguir para determinar a quién embargar:</p>
+                <ul>
+                    <li><strong>Contribuyente:</strong> Es el realizador del hecho generador. Tiene la capacidad contributiva (Ej. El dueño del inmueble en el IUSI). [Villegas, p. 445].</li>
+                    <li><strong>Responsable (Por deuda ajena):</strong> No realizó el hecho generador, pero la ley le ordena pagar (Ej. Gerente).</li>
+                </ul>
+            </div>
+        </details>
+
+        <details>
+            <summary>C. LA SOLIDARIDAD TRIBUTARIA (Art. 25)</summary>
+            <div class="content-box">
+                <p>La solidaridad fiscal permite a la SAT cobrar la <strong>totalidad</strong> de la deuda a cualquiera de los obligados. El cumplimiento de un deudor libera a los demás frente al Fisco.</p>
+                <p><em>Principio:</em> El Fisco no divide la cobranza; busca el patrimonio más solvente para asegurar la recaudación [Fuente: Villegas, p. 466].</p>
+            </div>
+        </details>
+    </section>
+
+    <!-- 4. EJERCICIOS COMPLETOS (AUDITORÍA) -->
+    <section class="section">
+        <div class="section-title"><span>4</span>PRAXIS DE AUDITORÍA: CASOS DE CAMPO</div>
+        <p>Instrucción: Aplique el Código Tributario y la Doctrina de la Realidad Económica.</p>
+        
+        <div class="praxis-grid">
+            
+            <!-- CASO 1 -->
+            <div class="case-card">
+                <div class="case-header bg-blue">CASO 1: EL CONTRATO DISFRAZADO</div>
+                <div class="case-body">
+                    <p><strong>Situación:</strong> La empresa "A" firma un contrato de "Arrendamiento con opción a compra" de maquinaria. Sin embargo, la opción de compra es obligatoria y simbólica (Q.1.00). "A" deduce las cuotas como alquiler (gasto 100%).</p>
+                    <p><strong>Auditoría:</strong> ¿Es un arrendamiento o una venta a plazos?</p>
+                    
+                    <details>
+                        <summary>VER DICTAMEN TÉCNICO</summary>
+                        <div class="content-box" style="border-top-color: var(--ur-blue);">
+                            <p><strong>DICTAMEN: ES UNA VENTA A PLAZOS.</strong></p>
+                            <p>1. <strong>Interpretación (Art. 4 C.Trib):</strong> Aplicando la interpretación conforme a la <strong>naturaleza jurídica real</strong> (Realidad Económica), la operación es una venta financiada, no un alquiler.</p>
+                            <p>2. <strong>Ajuste:</strong> Se debe reclasificar. No es gasto deducible totalmente. Es activo fijo sujeto a depreciación.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <!-- CASO 2 -->
+            <div class="case-card">
+                <div class="case-header bg-orange">CASO 2: LA RESPONSABILIDAD DEL GERENTE</div>
+                <div class="case-body">
+                    <p><strong>Situación:</strong> La SAT cobra una deuda de la sociedad "El Éxito, S.A." al Sr. Pérez (Gerente). Pérez dice: "Cobren a la S.A., no es mi deuda".</p>
+                    <p><strong>Pregunta:</strong> ¿Procede el cobro al patrimonio personal del Gerente?</p>
+                    
+                    <details>
+                        <summary>VER DICTAMEN TÉCNICO</summary>
+                        <div class="content-box" style="border-top-color: var(--ur-orange);">
+                            <p><strong>DICTAMEN: SÍ, COMO RESPONSABLE SOLIDARIO.</strong></p>
+                            <p>1. <strong>Fundamento:</strong> Arts. 22 y 26 del Código Tributario.</p>
+                            <p>2. <strong>Condición:</strong> El Sr. Pérez responde solidariamente con su patrimonio si la sociedad no paga y si él actuó como representante en el período de la deuda, incumpliendo su deber de enterar los tributos.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 5. LÉXICO TÉCNICO -->
+    <section class="section">
+        <div class="section-title"><span>5</span>LÉXICO TÉCNICO: ETIMOLOGÍA Y EPISTEMOLOGÍA</div>
+        
+        <div style="background: #f9f9f9; padding: 25px; border-radius: 8px; border-left: 5px solid var(--ur-blue);">
+            <ul style="list-style: none; padding: 0;">
+                
+                <li style="margin-bottom: 20px; border-bottom: 1px dashed #ccc; padding-bottom: 15px;">
+                    <strong style="color: var(--ur-blue); font-size: 1.1rem;">1. HERMENÉUTICA</strong><br>
+                    <span style="color: var(--ur-orange); font-weight: bold;">Etimología:</span> Del griego <em>Hermeneutikos</em> (arte de interpretar).<br>
+                    <span style="color: var(--text-dark); font-weight: bold;">Epistemología:</span> Ciencia de interpretar la norma para descubrir su verdadero sentido y alcance (ratio legis), superando la literalidad cuando esta permite el fraude [Art. 4 C.Trib].
+                </li>
+
+                <li style="margin-bottom: 20px; border-bottom: 1px dashed #ccc; padding-bottom: 15px;">
+                    <strong style="color: var(--ur-blue); font-size: 1.1rem;">2. SOLIDARIDAD</strong><br>
+                    <span style="color: var(--ur-orange); font-weight: bold;">Etimología:</span> Del latín <em>Solidus</em> (entero, todo).<br>
+                    <span style="color: var(--text-dark); font-weight: bold;">Epistemología:</span> Vínculo jurídico que permite exigir a cualquiera de los deudores el pago íntegro de la deuda. En materia fiscal, es la herramienta de cobro contra administradores [Villegas, p. 466].
+                </li>
+
+                <li style="margin-bottom: 10px;">
+                    <strong style="color: var(--ur-blue); font-size: 1.1rem;">3. SUJETO PASIVO</strong><br>
+                    <span style="color: var(--ur-orange); font-weight: bold;">Etimología:</span> Del latín <em>Subiectus</em> (sometido).<br>
+                    <span style="color: var(--text-dark); font-weight: bold;">Epistemología:</span> Persona obligada al cumplimiento de la prestación pecuniaria, sea como contribuyente (deudor principal) o responsable (garante/sustituto) [Art. 18 C.Trib].
+                </li>
+
+            </ul>
+        </div>
+    </section>
+
+    <!-- 6. EJERCICIOS DOMICILIARES -->
+    <section class="section" style="border-bottom: none;">
+        <div class="homework-box">
+            <h3 style="margin-top:0;">6. LABOR DOMICILIARIA: RUMBO AL HECHO GENERADOR</h3>
+            <span class="date-badge">ENTREGA: CLASE 4 (7 MARZO)</span>
+            
+            <div style="text-align: left; margin-top: 20px; background: rgba(255,255,255,0.1); padding: 20px; border-radius: 8px;">
+                <p><strong>1. Investigación Forense:</strong> Busque en la Ley del IVA (Dec. 27-92) el Artículo 3. Liste los momentos exactos en que se genera el débito fiscal (Hecho Generador) en venta de bienes y servicios.</p>
+                <p><strong>2. Análisis de Caso:</strong> Un médico emite factura por "Honorarios Profesionales" sin IVA. ¿Está correcto? Fundamente con Ley del IVA (Exenciones Art. 7 y 8).</p>
+                <p><strong>3. Lectura Obligatoria:</strong> Villegas, Capítulo sobre "Extinción de la Obligación Tributaria". Enfóquese en la <strong>Prescripción</strong>.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. BIBLIOGRAFÍA -->
+    <section class="section">
+        <div class="section-title"><span>7</span>BIBLIOGRAFÍA DE LA CLASE</div>
+        <ul class="biblio-list">
+            <li>Villegas, Héctor B. (2016). <em>Curso de finanzas, derecho financiero y tributario</em> (10ª ed.). Astrea. [Temas: Interpretación y Sujetos].</li>
+            <li>Congreso de la República de Guatemala. (1991). <em>Decreto Número 6-91: Código Tributario</em>. [Arts. 4, 5, 14, 17, 18, 22, 26].</li>
+            <li>Congreso de la República de Guatemala. <em>Constitución Política de la República</em>. [Art. 100: Seguridad Social].</li>
+            <li>Congreso de la República de Guatemala. <em>Código Penal</em>. [Art. 358 "A": Defraudación].</li>
+        </ul>
+    </section>
+
+    <footer style="text-align: center; padding: 20px; font-size: 0.9rem; color: #666; margin-top: 40px; border-top: 1px solid #ddd;">
+        <p style="font-weight: bold; color: var(--ur-blue);">"No hay nada seguro en esta vida, salvo la muerte y los impuestos." — Benjamin Franklin</p>
+        <p>Derecho Tributario II - Universidad Regional de Guatemala - 2026</p>
+    </footer>
+
+</div>
+
+</body>
+</html>

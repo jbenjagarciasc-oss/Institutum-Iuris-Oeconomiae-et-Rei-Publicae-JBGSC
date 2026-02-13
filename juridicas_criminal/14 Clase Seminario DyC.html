@@ -1,0 +1,382 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seminario de Tesis - Clase 14: Cierre y Plan Final</title>
+    <style>
+        :root {
+            --azul-inst: #003366;
+            --azul-claro: #0055a5;
+            --rojo-inst: #cc0000;
+            --blanco: #ffffff;
+            --gris-fondo: #f0f2f5;
+            --texto: #2c3e50;
+            --borde-suave: 1px solid #e1e4e8;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Georgia', serif;
+            background-color: var(--gris-fondo);
+            color: var(--texto);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* CONTENEDOR PRINCIPAL */
+        .main-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            background: var(--blanco);
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            border-top: 8px solid var(--azul-inst);
+            overflow: hidden;
+        }
+
+        /* ENCABEZADO */
+        header {
+            background: linear-gradient(135deg, var(--azul-inst) 0%, var(--azul-claro) 100%);
+            color: var(--blanco);
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        header::after {
+            content: "";
+            display: block;
+            width: 60%;
+            height: 4px;
+            background-color: var(--rojo-inst);
+            margin: 20px auto 0;
+        }
+
+        h1 { margin: 0; font-size: 2.5em; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; }
+        h2 { font-family: 'Georgia', serif; font-style: italic; font-weight: normal; opacity: 0.95; margin-top: 10px; font-size: 1.4em; }
+
+        .meta-info { margin-top: 15px; font-size: 0.95em; opacity: 0.9; }
+
+        /* SECCIONES */
+        .content-section { padding: 40px; border-bottom: var(--borde-suave); }
+        
+        .section-title {
+            color: var(--azul-inst);
+            border-left: 5px solid var(--rojo-inst);
+            padding-left: 15px;
+            font-size: 1.6em;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-number {
+            background-color: var(--azul-inst);
+            color: white;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-right: 15px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        /* 1. INTRODUCCIÓN */
+        .intro-container {
+            background-color: #fffcfc;
+            border: 2px solid #f2dede;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .class-title {
+            color: var(--azul-inst);
+            font-size: 2em;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: block;
+            letter-spacing: 1px;
+            border-bottom: 2px dashed var(--rojo-inst);
+            padding-bottom: 10px;
+        }
+        .socratic-question {
+            font-size: 1.3em;
+            color: var(--rojo-inst);
+            font-weight: bold;
+            display: block;
+            margin-bottom: 15px;
+            font-family: 'Georgia', serif;
+            font-style: italic;
+        }
+        
+        /* 2. ARBOL DE IDEAS */
+        .tree-diagram-container { display: flex; flex-direction: column; align-items: center; margin: 20px 0; }
+        .tree-node {
+            padding: 15px; border-radius: 8px; color: white; text-align: center; width: 80%; margin: 5px 0;
+            position: relative; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s;
+        }
+        .branches-row { display: flex; justify-content: space-between; width: 90%; gap: 15px; }
+        .branch-law { background: linear-gradient(135deg, var(--azul-inst), var(--azul-claro)); width: 48%; }
+        .branch-crim { background: linear-gradient(135deg, var(--rojo-inst), #e63946); width: 48%; }
+        .trunk { background: linear-gradient(135deg, #2c3e50, #4a6fa5); width: 60%; margin-top: 10px; }
+        .root { background: linear-gradient(135deg, #5d4037, #795548); border-top: 5px solid #8d6e63; width: 60%; }
+
+        /* 3. TABLA COMPARATIVA */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+        }
+        .comparison-table th {
+            background-color: var(--azul-inst);
+            color: white;
+            padding: 15px;
+            text-transform: uppercase;
+        }
+        .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 15px;
+            vertical-align: top;
+        }
+        .concept-cell { font-weight: bold; background-color: #f9f9f9; width: 20%; color: var(--azul-inst); }
+
+        /* 4. PRAXIS */
+        .exercise-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .exercise-card { background: #fff; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; }
+        .card-header { padding: 15px; color: white; font-weight: bold; text-transform: uppercase; }
+        .header-law { background-color: var(--azul-inst); }
+        .header-crim { background-color: var(--rojo-inst); }
+        .card-body { padding: 20px; flex-grow: 1; }
+        .btn-reveal {
+            width: 100%; padding: 12px; background: #f1f1f1; border: none; cursor: pointer; font-weight: bold;
+            color: var(--azul-inst); transition: 0.3s; margin-top: 10px; border-top: 1px solid #ddd;
+        }
+        .btn-reveal:hover { background: #e0e0e0; color: var(--rojo-inst); }
+        .answer-content { display: none; padding: 15px; background: #f8f9fa; border-top: 1px solid #ddd; border-left: 4px solid var(--azul-inst); }
+
+        /* 5. TAREA IMPORTANTE */
+        .homework-section { 
+            border: 3px solid var(--azul-inst); 
+            background-color: #eef6fc; 
+            padding: 25px; 
+            border-radius: 10px;
+            position: relative;
+        }
+        .homework-badge {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background-color: var(--rojo-inst);
+            color: white;
+            padding: 5px 15px;
+            font-weight: bold;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        /* 6. BIBLIOGRAFÍA */
+        .biblio-list { list-style: decimal; padding-left: 20px; margin: 0; font-size: 0.9em; }
+        .biblio-list li { margin-bottom: 5px; }
+
+        @media (max-width: 768px) {
+            .exercise-wrapper, .branches-row, .comparison-table th, .comparison-table td { display: block; width: 100%; box-sizing: border-box; }
+            .branch-law, .branch-crim, .trunk, .root { width: 90%; margin-bottom: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="main-container">
+
+    <!-- ENCABEZADO -->
+    <header>
+        <span style="background-color: var(--rojo-inst); color: white; padding: 5px 15px; border-radius: 4px; font-weight: bold; text-transform: uppercase; font-size: 0.9em;">NOVENO SEMESTRE</span>
+        <h1>Seminario de Tesis</h1>
+        <h2>Cátedra: Magister José Benjamín García Santa Cruz</h2>
+        
+        <div style="margin-top: 15px; font-weight:bold;">
+            • Licenciatura en Ciencias Jurídicas y Sociales<br>
+            • Licenciatura en Investigación Criminal y Forense
+        </div>
+
+        <div class="meta-info">
+            Universidad Regional | Sede San Raymundo | <strong>Fecha: Sábado 6 de Junio de 2026</strong>
+        </div>
+    </header>
+
+    <!-- 1. INTRODUCCIÓN SOCRÁTICA -->
+    <section class="content-section">
+        <div class="intro-container">
+            <span class="class-title">CLASE 14: EL PLAN DE INVESTIGACIÓN Y EL ÚLTIMO CONSEJO</span>
+            <span class="socratic-question">"El mapa no es el territorio, pero sin mapa mueren en la selva. Hoy terminamos de dibujar el mapa (Plan) para que mañana puedan conquistar el territorio (Tesis)."</span>
+            <p>
+                Damas y Caballeros, hemos llegado al final del Seminario.
+                No les pediré imposibles. Nadie redacta una Tesis completa en un semestre; eso sería una estafa académica. Lo que deben entregar para aprobar este curso es el <strong>PLAN DE INVESTIGACIÓN (PROTOCOLO)</strong> [Fuente 280].
+                Este documento es la brújula. Contiene el Problema, los Objetivos, la Metodología y, como ejercicio de visión, sus <strong>Conclusiones y Recomendaciones Tentativas</strong>. Si el Plan está bien hecho, la Tesis se escribe sola.
+            </p>
+        </div>
+    </section>
+
+    <!-- 2. MAPA MENTAL -->
+    <section class="content-section">
+        <h3 class="section-title"><span class="section-number">1</span>ÁRBOL DE IDEAS: EL PLAN FINAL</h3>
+        
+        <div class="tree-diagram-container">
+            <!-- Ramas -->
+            <div class="branches-row">
+                <div class="tree-node branch-law">
+                    <strong>EL PROTOCOLO JURÍDICO</strong><br>
+                    <span style="font-size:0.9em">Planteamiento Normativo + Bosquejo de Temas (Índice) + Proyecciones.</span>
+                </div>
+                <div class="tree-node branch-crim">
+                    <strong>EL PROTOCOLO FORENSE</strong><br>
+                    <span style="font-size:0.9em">Planteamiento Fáctico + Diseño de Campo + Resultados Esperados.</span>
+                </div>
+            </div>
+            
+            <!-- Tronco -->
+            <div class="tree-node trunk">
+                <strong>EL CONTENIDO DEL EXAMEN FINAL</strong><br>
+                Entrega del Documento "Plan de Investigación" (No la Tesis completa).
+            </div>
+
+            <!-- Raíz -->
+            <div class="tree-node root">
+                <strong>LA MÍSTICA (CLASE 14)</strong><br>
+                La técnica sin ética es peligrosa.
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. DESARROLLO TÉCNICO -->
+    <section class="content-section" style="background-color: #fdfdfd;">
+        <h3 class="section-title"><span class="section-number">2</span>DIFERENCIA VITAL: PLAN VS. TESIS</h3>
+        <p>Es crucial que entiendan qué se evalúa hoy. No confundan los planos de la casa con la casa construida.</p>
+        
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>ELEMENTO</th>
+                    <th>PLAN DE INVESTIGACIÓN (LO QUE ENTREGAN AHORA)</th>
+                    <th>INFORME FINAL DE TESIS (LO QUE HARÁN DESPUÉS)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="concept-cell">TIEMPO VERBAL</td>
+                    <td><strong>Futuro:</strong> "Se analizará", "Se pretende demostrar".</td>
+                    <td><strong>Pasado:</strong> "Se analizó", "Se demostró".</td>
+                </tr>
+                <tr>
+                    <td class="concept-cell">MARCO TEÓRICO</td>
+                    <td><strong>Bosquejo de Temas:</strong> Solo el índice detallado de los capítulos que piensan desarrollar (Temario).</td>
+                    <td><strong>Desarrollo Capitular:</strong> Cientos de páginas con citas, doctrina y análisis jurisprudencial.</td>
+                </tr>
+                <tr>
+                    <td class="concept-cell">CONCLUSIONES</td>
+                    <td><strong>Tentativas (Supuestos):</strong> "Se espera concluir que..." (Hipótesis proyectada).</td>
+                    <td><strong>Definitivas (Hallazgos):</strong> "Se concluye que..." (Verdad probada).</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- 4. PRAXIS: DEFENSA DEL PLAN -->
+    <section class="content-section">
+        <h3 class="section-title"><span class="section-number">3</span>PRAXIS: SIMULACRO DE DEFENSA DEL PLAN</h3>
+        <p><em>Instrucción: Defienda la VIABILIDAD de su Plan ante un asesor escéptico.</em></p>
+        
+        <div class="exercise-wrapper">
+            <!-- Caso Derecho -->
+            <div class="exercise-card">
+                <div class="card-header header-law">TERNA JURÍDICA</div>
+                <div class="card-body">
+                    <p><strong>Pregunta del Asesor:</strong> "Estudiante, usted propone reformar la Constitución en su Plan. ¿No es eso demasiado ambicioso para una tesis de licenciatura? ¿Cómo piensa hacerlo viable?"</p>
+                    <button class="btn-reveal" onclick="toggle('resp1')">Revelar Defensa del Plan</button>
+                    <div id="resp1" class="answer-content">
+                        <strong>Defensa Técnica:</strong> "Honorable asesor, mi Plan no pretende realizar la reforma política (que corresponde al Congreso), sino demostrar la <em>necesidad jurídica</em> de la misma. Mi viabilidad se sustenta en el análisis dogmático de la antinomia existente, no en la recolección de firmas. El alcance es académico-propositivo."
+                    </div>
+                </div>
+            </div>
+
+            <!-- Caso Criminalística -->
+            <div class="exercise-card">
+                <div class="card-header header-crim">TERNA FORENSE</div>
+                <div class="card-body">
+                    <p><strong>Pregunta del Asesor:</strong> "Usted planea analizar patrones de manchas de sangre. ¿Tiene acceso a un laboratorio de luminol y reactivos caros? Su presupuesto parece irreal."</p>
+                    <button class="btn-reveal" onclick="toggle('resp2')">Revelar Defensa del Plan</button>
+                    <div id="resp2" class="answer-content">
+                        <strong>Defensa Técnica:</strong> "Estimado maestro, el Plan especifica que el estudio es <em>retrospectivo</em> basado en expedientes fotográficos ya existentes en el MP, no experimental en vivo. Por tanto, no requiero comprar reactivos, sino autorización para acceso a archivos, lo cual hace el presupuesto perfectamente viable."
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. TAREA FINAL (EL EXAMEN) -->
+    <section class="content-section">
+        <div class="homework-section">
+            <div class="homework-badge">EXAMEN FINAL (30 PUNTOS)</div>
+            <h3 style="color:var(--azul-inst); margin-top:0;">ENTREGA DEL PLAN DE INVESTIGACIÓN</h3>
+            <p>Para el examen final (Sábado 13 de Junio), deben subir un solo PDF que contenga:</p>
+            <ol>
+                <li><strong>Carátula Oficial.</strong></li>
+                <li><strong>Planteamiento del Problema:</strong> (Definición, Delimitación, Pregunta).</li>
+                <li><strong>Justificación y Objetivos.</strong></li>
+                <li><strong>Hipótesis y Variables</strong> (Con sus definiciones conceptuales).</li>
+                <li><strong>Bosquejo Preliminar de Temas:</strong> El índice propuesto para su Marco Teórico (No el desarrollo).</li>
+                <li><strong>Métodos y Técnicas:</strong> Qué instrumentos usarán.</li>
+                <li><strong>Cronograma y Presupuesto:</strong> (Lo que trabajaron en Clase 9).</li>
+                <li><strong>Conclusiones y Recomendaciones Tentativas:</strong> ¿Qué esperan encontrar?</li>
+                <li><strong>Propuesta Preliminar:</strong> (Anteproyecto de Ley o Manual Técnico).</li>
+            </ol>
+            <p><em>"Este documento es su pase de abordar hacia la graduación."</em></p>
+        </div>
+    </section>
+
+    <!-- 6. DESPEDIDA (MENSAJE EMOTIVO) -->
+    <section class="content-section">
+        <h3 class="section-title"><span class="section-number">4</span>EL ÚLTIMO CONSEJO: LA MÍSTICA</h3>
+        
+        <div style="background: linear-gradient(135deg, #001a33 0%, var(--azul-inst) 100%); color: white; padding: 40px; border-radius: 8px; box-shadow: 0 10px 20px rgba(0,0,0,0.3); text-align: justify; line-height: 1.8;">
+            <h2 style="text-align:center; color:#fff; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom:20px; margin-bottom:20px;">A MIS COLEGAS, LOS FUTUROS LICENCIADOS</h2>
+            
+            <p>Hemos llegado al final. Han aprendido la técnica, los márgenes y las normas APA. Pero la técnica sin ética es peligrosa. Cuando crucen esa puerta con su título bajo el brazo, la realidad los golpeará. Se encontrarán con un sistema diseñado, a veces, para que nada cambie.</p>
+
+            <p><strong>A LOS JURISTAS:</strong><br>
+            Como nos enseñó el maestro Zaffaroni, el poder punitivo suele ser cobarde; atrapa al vulnerable y protege al poderoso. Ustedes no están llamados a ser simples aplicadores de códigos. <span style="color:#ffcccc; font-weight:bold;">Su misión es ser el dique de contención contra la arbitrariedad.</span> No permitan que el expediente les haga olvidar que detrás de cada folio hay un ser humano que sufre. Si la ley es injusta, luchen por el Derecho; pero si el Derecho entra en conflicto con la Justicia, luchen siempre por la Justicia.</p>
+
+            <p><strong>A LOS CRIMINALISTAS Y FORENSES:</strong><br>
+            Como dirían los maestros Guzmán y Raffo, <em>"el tiempo que pasa es la verdad que huye"</em>. Ustedes tienen una tarea sagrada: hacer hablar a quienes han sido silenciados. La sociedad intentará corromper su mirada. Les pedirán que no vean lo evidente. Pero recuerden: <span style="color:#ffcccc; font-weight:bold;">La ciencia no tiene partido, no tiene dueño y no miente.</span> Un indicio bien procesado es un grito de verdad en medio del ruido. Su lealtad es con la evidencia.</p>
+
+            <div style="text-align:center; margin-top:30px; font-style:italic; font-size:1.1em; border-top: 1px solid rgba(255,255,255,0.3); padding-top:20px;">
+                "La libertad, Sancho, es uno de los más preciosos dones que a los hombres dieron los cielos; con ella no pueden igualarse los tesoros que encierra la tierra ni el mar encubre; por la libertad, así como por la honra, se puede y debe aventurar la vida."<br><br>
+                <strong>Vayan y hagan que la Universidad Regional se sienta orgullosa.</strong><br>
+                Fue un honor ser su Comandante en esta batalla académica.
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<script>
+    function toggle(id) {
+        var x = document.getElementById(id);
+        if (x.style.display === "block") {
+            x.style.display = "none";
+        } else {
+            x.style.display = "block";
+        }
+    }
+</script>
+
+</body>
+</html>

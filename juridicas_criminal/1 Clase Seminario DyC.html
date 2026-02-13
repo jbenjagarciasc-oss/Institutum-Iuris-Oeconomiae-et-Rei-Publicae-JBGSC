@@ -1,0 +1,467 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seminario de Tesis - Clase 1: Estrategia Gerencial</title>
+    <style>
+        /* ESTILOS INSTITUCIONALES (AZUL/ROJO/BLANCO) */
+        :root {
+            --azul-inst: #003366;
+            --azul-claro: #0055a5;
+            --rojo-inst: #cc0000;
+            --blanco: #ffffff;
+            --gris-fondo: #f0f2f5;
+            --texto: #2c3e50;
+            --borde-suave: 1px solid #e1e4e8;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Georgia', serif;
+            background-color: var(--gris-fondo);
+            color: var(--texto);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            background: var(--blanco);
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            border-top: 8px solid var(--azul-inst);
+            overflow: hidden;
+        }
+
+        /* ENCABEZADO */
+        header {
+            background: linear-gradient(135deg, var(--azul-inst) 0%, var(--azul-claro) 100%);
+            color: var(--blanco);
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+        }
+        header::after {
+            content: ""; display: block; width: 60%; height: 4px; background-color: var(--rojo-inst); margin: 20px auto 0;
+        }
+        h1 { margin: 0; font-size: 2.5em; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; }
+        h2 { font-family: 'Georgia', serif; font-style: italic; font-weight: normal; opacity: 0.95; margin-top: 10px; font-size: 1.4em; }
+        .meta-info { margin-top: 15px; font-size: 0.95em; opacity: 0.9; }
+
+        /* SECCIONES */
+        .content-section { padding: 40px; border-bottom: var(--borde-suave); }
+        .section-title {
+            color: var(--azul-inst); border-left: 5px solid var(--rojo-inst); padding-left: 15px;
+            font-size: 1.6em; margin-bottom: 30px; text-transform: uppercase; font-weight: bold; display: flex; align-items: center;
+        }
+        .section-number {
+            background-color: var(--azul-inst); color: white; width: 35px; height: 35px;
+            display: flex; align-items: center; justify-content: center; border-radius: 50%;
+            margin-right: 15px; font-size: 0.8em; font-weight: bold;
+        }
+
+        /* INTRODUCCIÓN */
+        .intro-container { background-color: #fffcfc; border: 2px solid #f2dede; padding: 30px; border-radius: 8px; text-align: center; }
+        .class-title { color: var(--azul-inst); font-size: 1.8em; font-weight: 800; text-transform: uppercase; margin-bottom: 20px; display: block; border-bottom: 2px dashed var(--rojo-inst); padding-bottom: 10px; }
+        .socratic-question { font-size: 1.3em; color: var(--rojo-inst); font-weight: bold; display: block; margin-bottom: 15px; font-style: italic; }
+        
+        /* BOTÓN DE COORDINADOR */
+        .coordinator-btn {
+            background-color: var(--azul-inst); color: white; border: none; padding: 12px 25px;
+            font-size: 1em; font-weight: bold; border-radius: 5px; cursor: pointer; transition: background 0.3s;
+            margin-top: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: block; margin: 20px auto; width: 80%;
+        }
+        .coordinator-btn:hover { background-color: var(--rojo-inst); }
+
+        /* REGLAS DE ORO */
+        .golden-box {
+            background-color: #fffbfb; border-left: 6px solid var(--rojo-inst);
+            padding: 20px; margin: 20px auto; width: 90%; text-align: left;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .golden-title { color: var(--rojo-inst); font-weight: bold; display: block; margin-bottom: 10px; font-size: 1.1em; border-bottom: 1px solid #eee; }
+        .rule-item { margin-bottom: 8px; padding-left: 20px; position: relative; font-size: 0.95em; }
+        .rule-item::before { content: "⚠️"; position: absolute; left: -2px; }
+
+        /* RUTA CRÍTICA (ESTILO TABLA DETALLADA) */
+        .btn-ruta {
+            background: linear-gradient(90deg, #2c3e50, #4ca1af); color: white; border: none; padding: 15px;
+            font-size: 1.1em; font-weight: bold; cursor: pointer; border-radius: 5px; width: 100%;
+            margin-bottom: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); transition: 0.3s;
+            border-left: 5px solid var(--rojo-inst); text-transform: uppercase;
+        }
+        .btn-ruta:hover { transform: scale(1.01); background: linear-gradient(90deg, var(--azul-inst), var(--azul-claro)); }
+        
+        .ruta-content {
+            display: none; background: #eef6fc; padding: 15px; border: 2px solid var(--azul-inst);
+            border-radius: 8px; margin-bottom: 20px; text-align: left;
+        }
+        .grading-table { width: 100%; border-collapse: collapse; font-size: 0.9em; background: white; }
+        .grading-table th { background: var(--azul-inst); color: white; padding: 10px; text-align: left; border: 1px solid #ccc; }
+        .grading-table td { border: 1px solid #ddd; padding: 10px; vertical-align: top; }
+        .total-row { background-color: #ffebeb; font-weight: bold; color: var(--rojo-inst); text-align: center; }
+        .topic-list { margin: 0; padding-left: 15px; font-size: 0.9em; color: #444; }
+
+        /* PROGRAMA ACORDEÓN */
+        .syllabus-container { display: grid; gap: 15px; margin-bottom: 30px; }
+        details.syllabus-module { background: #fff; border: 1px solid #ddd; border-radius: 5px; overflow: hidden; }
+        details.syllabus-module summary {
+            padding: 15px 20px; cursor: pointer; font-weight: bold; background: linear-gradient(to right, #f8f9fa, #fff);
+            color: var(--azul-inst); border-left: 6px solid var(--azul-claro); font-size: 1.1em;
+        }
+        details.syllabus-module[open] summary { background: var(--azul-inst); color: white; border-left: 6px solid var(--rojo-inst); }
+        .module-content { padding: 25px; background-color: #fff; border-top: 1px solid #eee; }
+        .topic-block { margin-bottom: 15px; border-left: 4px solid #ddd; padding-left: 15px; }
+        .topic-header { font-weight: bold; color: var(--azul-inst); font-size: 1em; display: block; }
+        .topic-detail { font-size: 0.9em; color: #444; }
+
+        /* ÁRBOL DE IDEAS */
+        .tree-diagram-container { display: flex; flex-direction: column; align-items: center; margin: 20px 0; }
+        .tree-node { padding: 15px; border-radius: 8px; color: white; text-align: center; width: 80%; margin: 5px 0; position: relative; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .branches-row { display: flex; justify-content: space-between; width: 90%; gap: 15px; }
+        .branch-admin { background: linear-gradient(135deg, var(--azul-inst), var(--azul-claro)); width: 48%; }
+        .branch-fin { background: linear-gradient(135deg, var(--rojo-inst), #c0392b); width: 48%; }
+        .trunk { background: linear-gradient(135deg, #2c3e50, #4a6fa5); width: 60%; margin-top: 10px; }
+        .root { background: linear-gradient(135deg, #5d4037, #795548); border-top: 5px solid #8d6e63; width: 60%; }
+
+        /* PRAXIS */
+        .exercise-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .exercise-card { background: #fff; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; }
+        .card-header { padding: 15px; color: white; font-weight: bold; text-transform: uppercase; }
+        .header-admin { background-color: var(--azul-inst); }
+        .header-fin { background-color: var(--rojo-inst); }
+        .card-body { padding: 20px; flex-grow: 1; }
+        .btn-reveal {
+            width: 100%; padding: 12px; background: #f1f1f1; border: none; cursor: pointer; font-weight: bold;
+            color: var(--azul-inst); margin-top: 10px; border-top: 1px solid #ddd; transition: 0.3s;
+        }
+        .btn-reveal:hover { background: #e0e0e0; color: var(--rojo-inst); }
+        .answer-content { display: none; padding: 15px; background: #f8f9fa; border-top: 1px solid #ddd; border-left: 4px solid var(--azul-inst); }
+
+        /* LÉXICO Y TAREA */
+        .vocab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; }
+        .vocab-card { background: #fff; border: 1px solid #ddd; padding: 15px; border-top: 3px solid var(--azul-claro); }
+        .vocab-term { color: var(--azul-inst); font-weight: bold; font-size:1.1em; display: block; margin-bottom: 5px; border-bottom: 1px dashed #ccc;}
+        .etym-section { font-style: italic; color: var(--rojo-inst); font-size: 0.9em; display: block; }
+        .epist-section { font-size: 0.95em; color: #444; display: block; }
+        .homework-section { border: 2px dashed var(--azul-inst); background-color: #fcfcfc; padding: 25px; border-radius: 10px; margin-top: 30px; }
+
+        /* BIBLIOGRAFÍA */
+        .biblio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 0.85em; }
+        .biblio-col h4 { color: var(--azul-inst); border-bottom: 2px solid var(--rojo-inst); padding-bottom: 5px; margin-top:0;}
+        .biblio-list { list-style: none; padding-left: 0; margin: 0; }
+        .biblio-list li { margin-bottom: 5px; padding-left: 15px; text-indent: -15px; }
+
+        @media (max-width: 768px) {
+            .exercise-wrapper, .biblio-grid, .branches-row { grid-template-columns: 1fr; display: flex; flex-direction: column; }
+            .branch-admin, .branch-fin, .trunk, .root { width: 90%; margin-bottom: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="main-container">
+
+    <!-- ENCABEZADO -->
+    <header>
+        <span style="background-color: var(--rojo-inst); color: white; padding: 5px 15px; border-radius: 4px; font-weight: bold; text-transform: uppercase; font-size: 0.9em;">NOVENO SEMESTRE</span>
+        <h1>Seminario de Tesis</h1>
+        <h2>Cátedra: Magister José Benjamín García Santa Cruz</h2>
+        <div style="margin-top: 15px; font-weight:bold;">• Licenciatura en Administración de Empresas</div>
+        <div class="meta-info">Universidad Regional | Sede San Raymundo | <strong>Clase 1</strong></div>
+    </header>
+
+    <!-- 1. INTRODUCCIÓN, RUTA CRÍTICA Y REGLAS -->
+    <section class="content-section">
+        <div class="intro-container">
+            <span class="class-title">CLASE 1: FUNDAMENTOS Y ESTRATEGIA (EL PLAN INTEGRAL)</span>
+            <span class="socratic-question">"¿Vienen ustedes a opinar (Doxa) o a demostrar (Episteme)? Un gerente que decide sin datos es solo una persona más con una opinión."</span>
+            <p>Señores Administradores: Bienvenidos. Nuestra estrategia será <em>Ne Ultra Petita</em> (más allá de lo pedido): en este Seminario construiremos el <strong>Anteproyecto Completo</strong>. Antes de iniciar, definamos las reglas financieras y académicas del curso.</p>
+            
+            <!-- BOTÓN RUTA CRÍTICA CON TEMARIO ESPECÍFICO -->
+            <button class="btn-ruta" onclick="toggle('rutaCritica')">💰 VER RUTA CRÍTICA Y TEMARIO DE EXÁMENES (100 PTS)</button>
+            <div id="rutaCritica" class="ruta-content">
+                <table class="grading-table">
+                    <thead>
+                        <tr>
+                            <th width="20%">FASE</th>
+                            <th width="60%">CONTENIDO Y EVALUACIÓN</th>
+                            <th width="20%">VALOR</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>I PARCIAL</strong></td>
+                            <td>
+                                <strong>Temas a Evaluar:</strong><br>
+                                <ul class="topic-list">
+                                    <li>Planteamiento del Problema.</li>
+                                    <li>Preguntas de Investigación.</li>
+                                    <li>Objetivos (Generales y Específicos).</li>
+                                </ul>
+                                <hr style="border:0; border-top:1px dashed #ccc; margin:5px 0;">
+                                <strong>Desglose:</strong> Asistencia (10) + Entrega Avance (10) + Examen (10).
+                            </td>
+                            <td><strong>30 Pts</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>II PARCIAL</strong></td>
+                            <td>
+                                <strong>Temas a Evaluar:</strong><br>
+                                <ul class="topic-list">
+                                    <li>Justificación.</li>
+                                    <li>Hipótesis.</li>
+                                    <li>Marco Teórico Preliminar.</li>
+                                </ul>
+                                <hr style="border:0; border-top:1px dashed #ccc; margin:5px 0;">
+                                <strong>Desglose:</strong> Asistencia (10) + Entrega Avance (10) + Examen (10).
+                            </td>
+                            <td><strong>30 Pts</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>FINAL</strong></td>
+                            <td>
+                                <strong>Temas a Evaluar:</strong><br>
+                                <ul class="topic-list">
+                                    <li>Metodología.</li>
+                                    <li>Cronograma y Presupuesto.</li>
+                                    <li>Defensa del Plan Completo.</li>
+                                </ul>
+                                <hr style="border:0; border-top:1px dashed #ccc; margin:5px 0;">
+                                <strong>Desglose:</strong> Asistencia (10) + Entrega Plan Final (10) + Examen (20).
+                            </td>
+                            <td><strong>40 Pts</strong></td>
+                        </tr>
+                        <tr class="total-row">
+                            <td colspan="2" style="text-align:right;">TOTAL ACUMULADO:</td>
+                            <td>100 Pts</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- LAS 5 REGLAS DE ORO -->
+            <div class="golden-box">
+                <span class="golden-title">LAS 5 REGLAS DE ORO DE LA CÁTEDRA (Guía Tesis U.R.)</span>
+                <div class="rule-item"><strong>1. CERO GERUNDIOS:</strong> Prohibido "estando", "haciendo". En tesis se escribe: "se realizó", "se determinó" [Guía, p. 11].</div>
+                <div class="rule-item"><strong>2. CERO SUBJETIVIDAD:</strong> Eliminen "yo creo", "nos parece". La administración es ciencia, no opinión.</div>
+                <div class="rule-item"><strong>3. CERO ADJETIVOS VAGOS:</strong> Nada de "mucho", "poco". Usen datos métricos precisos (%, montos) [Guía, p. 12].</div>
+                <div class="rule-item"><strong>4. CERO "ETCÉTERA":</strong> Ambigüedad del ignorante. Sea exhaustivo o use "entre otros". [Guía, p. 11].</div>
+                <div class="rule-item"><strong>5. PROPIEDAD INTELECTUAL:</strong> En el Marco Teórico, usted no opina; usted parafrasea o cita. Si no hay fuente, es plagio [Guía, p. 12].</div>
+            </div>
+
+            <button class="coordinator-btn" onclick="alert('El Coordinador(a) es el enlace oficial. Proceda a la elección.')">
+                DESIGNACIÓN DEL COORDINADOR DE CLASE
+            </button>
+        </div>
+    </section>
+
+    <!-- 2. PROGRAMA (TEMARIO ADAPTADO A ADMIN) -->
+    <section class="content-section" style="background-color: #fdfdfd;">
+        <h3 class="section-title"><span class="section-number">2</span>PROGRAMA: LA CONSTRUCCIÓN DEL PLAN DE NEGOCIOS</h3>
+        <p>Cumpliendo estrictamente con la Unidad 4 del Programa Oficial.</p>
+        
+        <div class="syllabus-container">
+            <details class="syllabus-module" open>
+                <summary>MÓDULO I: GÉNESIS (LA IDEA DE NEGOCIO)</summary>
+                <div class="module-content">
+                    <div class="topic-block">
+                        <span class="topic-header">De la Necesidad a la Oportunidad</span>
+                        <div class="topic-detail">Administración: Interrogar al Mercado (¿Es rentable?).</div>
+                        <div class="topic-detail">Finanzas: Interrogar a los Estados Financieros (¿Es eficiente?).</div>
+                    </div>
+                </div>
+            </details>
+
+            <details class="syllabus-module">
+                <summary>MÓDULO II: EL PROBLEMA (DIAGNÓSTICO)</summary>
+                <div class="module-content">
+                    <div class="topic-block">
+                        <span class="topic-header">Planteamiento y Delimitación</span>
+                        <div class="topic-detail">Definición del objeto (Acotamiento espacial/temporal/sectorial).</div>
+                        <div class="topic-detail">Preguntas de Investigación y Objetivos (Gerenciales).</div>
+                    </div>
+                </div>
+            </details>
+
+            <details class="syllabus-module">
+                <summary>MÓDULO III: JUSTIFICACIÓN E HIPÓTESIS</summary>
+                <div class="module-content">
+                    <div class="topic-block">
+                        <span class="topic-header">La Defensa del Proyecto</span>
+                        <div class="topic-detail">Justificación: ¿Por qué invertir en esto? (Económica, Estratégica).</div>
+                        <div class="topic-detail">Hipótesis: La respuesta tentativa y sus variables (KPIs).</div>
+                    </div>
+                </div>
+            </details>
+
+            <details class="syllabus-module">
+                <summary style="background:var(--azul-inst); color:white;">MÓDULO IV: CIERRE DEL PLAN INTEGRAL</summary>
+                <div class="module-content" style="border: 2px solid var(--azul-inst);">
+                    <div class="topic-block">
+                        <span class="topic-header">1. Marco Metodológico</span>
+                        <div class="topic-detail">Métodos (Inductivo, Deductivo, Analítico).</div>
+                    </div>
+                    <div class="topic-block">
+                        <span class="topic-header">2. Cronograma y Presupuesto</span>
+                        <div class="topic-detail">Planificación del tiempo (Gantt) y Recursos (Costos de inversión).</div>
+                    </div>
+                </div>
+            </details>
+        </div>
+    </section>
+
+    <!-- 3. ÁRBOL DE IDEAS (NEGOCIOS) -->
+    <section class="content-section">
+        <h3 class="section-title"><span class="section-number">3</span>MAPA MENTAL: LÓGICA DE NEGOCIOS</h3>
+        <div class="tree-diagram-container">
+            <div class="branches-row">
+                <div class="tree-node branch-admin">
+                    <strong>RENTABILIDAD / EFICIENCIA</strong><br>
+                    <span style="font-size:0.9em">Maximizar utilidades / Optimizar procesos.</span>
+                </div>
+                <div class="tree-node branch-fin">
+                    <strong>TOMA DE DECISIONES</strong><br>
+                    <span style="font-size:0.9em">Basada en Datos (Investigación) vs. Intuición.</span>
+                </div>
+            </div>
+            <div class="tree-node trunk">
+                <strong>EL MÉTODO CIENTÍFICO</strong><br>
+                (Diagnóstico > Hipótesis > Estrategia)
+            </div>
+            <div class="tree-node root">
+                <strong>TESIS DE NEGOCIOS</strong><br>
+                Consultoría para resolver un problema real.
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. PRAXIS GERENCIAL -->
+    <section class="content-section" style="background-color: #f8f9fa;">
+        <h3 class="section-title"><span class="section-number">4</span>PRAXIS: SÍNTOMA VS. PROBLEMA REAL</h3>
+        <div class="exercise-wrapper">
+            <div class="exercise-card">
+                <div class="card-header header-admin">CASO MARKETING / VENTAS</div>
+                <div class="card-body">
+                    <p><strong>Situación:</strong> El Gerente reporta: "Las ventas bajaron un 20% este trimestre".</p>
+                    <p><strong>Pregunta:</strong> ¿Es esto el Problema de Investigación?</p>
+                    <button class="btn-reveal" onclick="toggle('resp1')">Revelar Enfoque Técnico</button>
+                    <div id="resp1" class="answer-content">
+                        <strong>R:</strong> No. La baja es el <em>Síntoma</em> (Efecto). El <strong>Problema</strong> es la Causa desconocida: "¿Qué factores del Marketing Mix (Precio, Plaza, Producto) incidieron en la disminución?".
+                    </div>
+                </div>
+            </div>
+            <div class="exercise-card">
+                <div class="card-header header-fin">CASO CLIMA LABORAL</div>
+                <div class="card-body">
+                    <p><strong>Situación:</strong> Hay alta rotación. El jefe dice: "Creo que se van porque pagan poco y etc."</p>
+                    <p><strong>Error:</strong> Aplique las Reglas de Oro.</p>
+                    <button class="btn-reveal" onclick="toggle('resp2')">Revelar Corrección</button>
+                    <div id="resp2" class="answer-content">
+                        <strong>Errores:</strong> "Creo" (Subjetividad), "Poco" (Vago), "Etc" (Ambigüedad).<br>
+                        <strong>Correcto:</strong> "El índice de rotación es del 15% mensual. Se determinará si la variable 'Compensación' es la causa."
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. LÉXICO -->
+    <section class="content-section">
+        <h3 class="section-title"><span class="section-number">5</span>LÉXICO: ETIMOLOGÍA Y EPISTEMOLOGÍA</h3>
+        <div class="vocab-grid">
+            <div class="vocab-card">
+                <span class="vocab-term">Episteme</span>
+                <div class="etym-section">Etimología: Del griego (saber).</div>
+                <div class="epist-section">Conocimiento justificado y verdadero (Datos/Ciencia), opuesto a la Doxa (Opinión/Intuición).</div>
+            </div>
+            <div class="vocab-card">
+                <span class="vocab-term">Mayéutica</span>
+                <div class="etym-section">Etimología: Del griego (dar a luz).</div>
+                <div class="epist-section">Método socrático de interrogar (como un Consultor) para encontrar la verdad oculta tras el síntoma.</div>
+            </div>
+            <div class="vocab-card">
+                <span class="vocab-term">Plan de Investigación</span>
+                <div class="etym-section">Definición Técnica:</div>
+                <div class="epist-section">Documento que planifica sistemáticamente qué, cómo, cuándo y con qué recursos se realizará el estudio.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. TAREA -->
+    <section class="homework-section">
+        <h3 class="section-title"><span class="section-number">6</span>LABOR DOMICILIARIA: EL TEMA DE TESIS</h3>
+        <p><strong>Objetivo:</strong> Definir formalmente su TEMA y PROBLEMA DE NEGOCIO. <br><strong>Entrega: Próxima Sesión </strong></p>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
+            <div>
+                <h4 style="color:var(--azul-inst);">Área de Estrategia / Mercado</h4>
+                <p><strong>Instrucción:</strong> Transforme una idea vaga ("Vender más") en un tema delimitado por: 1) Empresa/Sector, 2) Periodo y 3) Variable Estratégica.</p>
+            </div>
+            <div>
+                <h4 style="color:var(--rojo-inst);">Área de Finanzas / Procesos</h4>
+                <p><strong>Instrucción:</strong> No basta con "ahorrar". Defina qué proceso optimizará o qué indicador financiero analizará (ROI, ROE, Liquidez).</p>
+            </div>
+        </div>
+        <div style="text-align:center; margin-top:15px; font-style:italic; font-size:0.9em;">
+            "Investigar es ver lo que todo el mundo ha visto, y pensar lo que nadie más ha pensado."
+        </div>
+    </section>
+
+    <!-- 7. BIBLIOGRAFÍA COMPLETA -->
+    <section class="content-section">
+        <h3 class="section-title"><span class="section-number">7</span>ACERVO BIBLIOGRÁFICO INTEGRAL (24 FUENTES)</h3>
+        <div class="biblio-grid">
+            <div class="biblio-col">
+                <h4>I. Metodología y Normativa Institucional</h4>
+                <ul class="biblio-list">
+                    <li>1. Universidad Regional. <em>Programa de Estudio: Seminario de Tesis</em>.</li>
+                    <li>2. Universidad Regional. <em>Calendario Académico 2026 (Jornada Sábado)</em>.</li>
+                    <li>3. Universidad Regional. <em>Pasos para la elaboración de la Tesis de Grado</em>.</li>
+                    <li>4. Universidad Regional (2022). <em>Guía General para Elaboración de Tesis de Grado</em>.</li>
+                    <li>5. Universidad Regional. <em>Formato de Tesis</em>.</li>
+                    <li>6. Universidad Regional. <em>Pensum de Estudios</em>.</li>
+                    <li>7. Hernández Sampieri, R. et al. (2014). <em>Metodología de la investigación</em>.</li>
+                    <li>8. Bunge, M. (2001). <em>La ciencia. Su método y su filosofía</em>.</li>
+                    <li>9. Tamayo y Tamayo, M. <em>El proceso de la investigación científica</em>.</li>
+                    <li>10. Méndez, C. <em>Metodología: Diseño y desarrollo del proceso de investigación</em>.</li>
+                    <li>11. Bernal, C. <em>Metodología de la investigación para administración y economía</em>.</li>
+                    <li>12. (Referencia). Normas APA (6ª y 7ª Ed.).</li>
+                </ul>
+            </div>
+            <div class="biblio-col">
+                <h4>II. Administración, Finanzas y Estrategia</h4>
+                <ul class="biblio-list" start="13">
+                    <li>13. Chiavenato, I. <em>Administración de Recursos Humanos</em>.</li>
+                    <li>14. Chiavenato, I. <em>Introducción a la Teoría General de la Administración</em>.</li>
+                    <li>15. Kotler, P. & Armstrong, G. <em>Fundamentos de Marketing</em>.</li>
+                    <li>16. Porter, M. <em>Estrategia Competitiva</em>.</li>
+                    <li>17. Robbins, S. <em>Comportamiento Organizacional</em>.</li>
+                    <li>18. Baca Urbina, G. <em>Evaluación de Proyectos</em>.</li>
+                    <li>19. Drucker, P. <em>La Gerencia</em>.</li>
+                    <li>20. Gitman, L. <em>Principios de Administración Financiera</em>.</li>
+                    <li>21. Koontz, H. & Weihrich, H. <em>Administración: Una perspectiva global</em>.</li>
+                    <li>22. Stanton, W. <em>Fundamentos de Marketing</em>.</li>
+                    <li>23. Senge, P. <em>La Quinta Disciplina</em>.</li>
+                    <li>24. Kaplan, R. & Norton, D. <em>El Cuadro de Mando Integral (BSC)</em>.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<script>
+    function toggle(id) {
+        var x = document.getElementById(id);
+        if (x.style.display === "block") {
+            x.style.display = "none";
+        } else {
+            x.style.display = "block";
+        }
+    }
+</script>
+
+</body>
+</html>
