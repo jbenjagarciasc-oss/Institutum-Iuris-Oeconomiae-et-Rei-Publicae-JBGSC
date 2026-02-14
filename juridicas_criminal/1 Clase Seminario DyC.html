@@ -103,6 +103,7 @@
         .grading-table td { border: 1px solid #ddd; padding: 10px; vertical-align: top; }
         .total-row { background-color: #ffebeb; font-weight: bold; color: var(--rojo-inst); text-align: center; }
         .topic-list { margin: 0; padding-left: 15px; font-size: 0.9em; color: #444; }
+        .date-badge { background: var(--rojo-inst); color: white; padding: 2px 6px; border-radius: 4px; font-size: 0.85em; font-weight: bold; display: inline-block; margin-bottom: 5px; }
 
         /* PROGRAMA ACORDEÓN */
         .syllabus-container { display: grid; gap: 15px; margin-bottom: 30px; }
@@ -176,7 +177,7 @@
         </div>
 
         <div class="meta-info">
-            Universidad Regional | Sede San Raymundo | <strong>Clase 1</strong>
+            Universidad Regional | Sede San Raymundo | <strong>Fecha: Sábado 14 de Febrero de 2026</strong>
         </div>
     </header>
 
@@ -190,20 +191,23 @@
                 Nuestra estrategia será <em>Ne Ultra Petita</em> (más allá de lo pedido): en este Seminario no haremos un simple borrador; construiremos el <strong>Anteproyecto Completo</strong> con todos sus componentes.
             </p>
             
-            <!-- BOTÓN RUTA CRÍTICA CON TEMARIO ESPECÍFICO -->
+            <!-- BOTÓN RUTA CRÍTICA CON TEMARIO Y FECHAS ESPECÍFICAS -->
             <button class="btn-ruta" onclick="toggle('rutaCritica')">💰 VER RUTA CRÍTICA Y TEMARIO DE EXÁMENES (100 PTS)</button>
             <div id="rutaCritica" class="ruta-content">
                 <table class="grading-table">
                     <thead>
                         <tr>
-                            <th width="20%">FASE</th>
-                            <th width="60%">CONTENIDO Y EVALUACIÓN</th>
+                            <th width="20%">FASE / FECHA</th>
+                            <th width="60%">CONTENIDO TEMÁTICO DE LA EVALUACIÓN</th>
                             <th width="20%">VALOR</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><strong>I PARCIAL</strong></td>
+                            <td>
+                                <strong>I PARCIAL</strong><br>
+                                <span class="date-badge">14 de Marzo</span>
+                            </td>
                             <td>
                                 <strong>Temas a Evaluar:</strong><br>
                                 <ul class="topic-list">
@@ -217,7 +221,10 @@
                             <td><strong>30 Pts</strong></td>
                         </tr>
                         <tr>
-                            <td><strong>II PARCIAL</strong></td>
+                            <td>
+                                <strong>II PARCIAL</strong><br>
+                                <span class="date-badge">2 de Mayo</span>
+                            </td>
                             <td>
                                 <strong>Temas a Evaluar:</strong><br>
                                 <ul class="topic-list">
@@ -231,7 +238,10 @@
                             <td><strong>30 Pts</strong></td>
                         </tr>
                         <tr>
-                            <td><strong>FINAL</strong></td>
+                            <td>
+                                <strong>FINAL</strong><br>
+                                <span class="date-badge">13 de Junio</span>
+                            </td>
                             <td>
                                 <strong>Temas a Evaluar:</strong><br>
                                 <ul class="topic-list">
@@ -240,7 +250,7 @@
                                     <li>Defensa del Plan Completo.</li>
                                 </ul>
                                 <hr style="border:0; border-top:1px dashed #ccc; margin:5px 0;">
-                                <strong>Desglose:</strong> Asistencia (10) + Entrega Plan Final (10) + Examen (20).
+                                <strong>Desglose:</strong> Asistencia (10) + Entrega Plan Final el día del examen (10) + Examen (20).
                             </td>
                             <td><strong>40 Pts</strong></td>
                         </tr>
@@ -250,6 +260,7 @@
                         </tr>
                     </tbody>
                 </table>
+                <div style="font-size:0.8em; margin-top:5px; font-style:italic;">* Fechas basadas en Calendario Académico 2026 (Jornada Sábado) [Fuente 8, 10, 11].</div>
             </div>
 
             <!-- LAS 5 REGLAS DE ORO -->
@@ -363,7 +374,7 @@
                     <p><strong>Pregunta:</strong> ¿Es válido según Zaffaroni?</p>
                     <button class="btn-reveal" onclick="toggle('resp1')">Revelar Respuesta</button>
                     <div id="resp1" class="answer-content">
-                        <strong>Respuesta:</strong> No. Viola el principio de legalidad. El Derecho Penal es contención del poder punitivo, no expansión (Zaffaroni).
+                        <strong>Respuesta:</strong> No. Viola el principio de legalidad. El Derecho Penal es contención del poder punitivo, no expansión [Fuente 18, 19].
                     </div>
                 </div>
             </div>
@@ -376,7 +387,7 @@
                     <p><strong>Pregunta:</strong> ¿Es correcto según Guzmán?</p>
                     <button class="btn-reveal" onclick="toggle('resp2')">Revelar Respuesta</button>
                     <div id="resp2" class="answer-content">
-                        <strong>Respuesta:</strong> No. Se contaminan estrías (balística) y posible ADN/huellas. Se altera la evidencia irremediablemente.
+                        <strong>Respuesta:</strong> No. Se contaminan estrías (balística) y posible ADN. Se altera la evidencia irremediablemente [Fuente 13].
                     </div>
                 </div>
             </div>
