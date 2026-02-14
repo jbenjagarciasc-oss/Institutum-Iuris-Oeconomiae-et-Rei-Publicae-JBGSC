@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seminario de Tesis - Clase 1: Estrategia Gerencial</title>
+    <title>Seminario de Tesis - Clase 1: Derecho y Criminalística</title>
     <style>
         /* ESTILOS INSTITUCIONALES (AZUL/ROJO/BLANCO) */
         :root {
@@ -121,8 +121,8 @@
         .tree-diagram-container { display: flex; flex-direction: column; align-items: center; margin: 20px 0; }
         .tree-node { padding: 15px; border-radius: 8px; color: white; text-align: center; width: 80%; margin: 5px 0; position: relative; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
         .branches-row { display: flex; justify-content: space-between; width: 90%; gap: 15px; }
-        .branch-admin { background: linear-gradient(135deg, var(--azul-inst), var(--azul-claro)); width: 48%; }
-        .branch-fin { background: linear-gradient(135deg, var(--rojo-inst), #c0392b); width: 48%; }
+        .branch-law { background: linear-gradient(135deg, var(--azul-inst), var(--azul-claro)); width: 48%; }
+        .branch-crim { background: linear-gradient(135deg, var(--rojo-inst), #e63946); width: 48%; }
         .trunk { background: linear-gradient(135deg, #2c3e50, #4a6fa5); width: 60%; margin-top: 10px; }
         .root { background: linear-gradient(135deg, #5d4037, #795548); border-top: 5px solid #8d6e63; width: 60%; }
 
@@ -130,8 +130,8 @@
         .exercise-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         .exercise-card { background: #fff; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; }
         .card-header { padding: 15px; color: white; font-weight: bold; text-transform: uppercase; }
-        .header-admin { background-color: var(--azul-inst); }
-        .header-fin { background-color: var(--rojo-inst); }
+        .header-law { background-color: var(--azul-inst); }
+        .header-crim { background-color: var(--rojo-inst); }
         .card-body { padding: 20px; flex-grow: 1; }
         .btn-reveal {
             width: 100%; padding: 12px; background: #f1f1f1; border: none; cursor: pointer; font-weight: bold;
@@ -156,7 +156,7 @@
 
         @media (max-width: 768px) {
             .exercise-wrapper, .biblio-grid, .branches-row { grid-template-columns: 1fr; display: flex; flex-direction: column; }
-            .branch-admin, .branch-fin, .trunk, .root { width: 90%; margin-bottom: 10px; }
+            .branch-law, .branch-crim, .trunk, .root { width: 90%; margin-bottom: 10px; }
         }
     </style>
 </head>
@@ -169,16 +169,26 @@
         <span style="background-color: var(--rojo-inst); color: white; padding: 5px 15px; border-radius: 4px; font-weight: bold; text-transform: uppercase; font-size: 0.9em;">NOVENO SEMESTRE</span>
         <h1>Seminario de Tesis</h1>
         <h2>Cátedra: Magister José Benjamín García Santa Cruz</h2>
-        <div style="margin-top: 15px; font-weight:bold;">• Licenciatura en Administración de Empresas</div>
-        <div class="meta-info">Universidad Regional | Sede San Raymundo | <strong>Clase 1</strong></div>
+        
+        <div style="margin-top: 15px; font-weight:bold;">
+            • Licenciatura en Ciencias Jurídicas y Sociales<br>
+            • Licenciatura en Investigación Criminal y Forense
+        </div>
+
+        <div class="meta-info">
+            Universidad Regional | Sede San Raymundo | <strong>Clase 1</strong>
+        </div>
     </header>
 
     <!-- 1. INTRODUCCIÓN, RUTA CRÍTICA Y REGLAS -->
     <section class="content-section">
         <div class="intro-container">
             <span class="class-title">CLASE 1: FUNDAMENTOS Y ESTRATEGIA (EL PLAN INTEGRAL)</span>
-            <span class="socratic-question">"¿Vienen ustedes a opinar (Doxa) o a demostrar (Episteme)? Un gerente que decide sin datos es solo una persona más con una opinión."</span>
-            <p>Señores Administradores: Bienvenidos. Nuestra estrategia será <em>Ne Ultra Petita</em> (más allá de lo pedido): en este Seminario construiremos el <strong>Anteproyecto Completo</strong>. Antes de iniciar, definamos las reglas financieras y académicas del curso.</p>
+            <span class="socratic-question">¿Vienen ustedes a opinar (Doxa) o a demostrar (Episteme)? La ciencia no es democracia de opiniones, es aristocracia de pruebas.</span>
+            <p>
+                Señores estudiantes: El reglamento nos indica que el Plan se aprueba en el <strong>Paso 2 (Propedéutico)</strong>, pero la Unidad 4 del Programa Oficial nos exige "Exponer el diseño del plan de tesis" completo.
+                Nuestra estrategia será <em>Ne Ultra Petita</em> (más allá de lo pedido): en este Seminario no haremos un simple borrador; construiremos el <strong>Anteproyecto Completo</strong> con todos sus componentes.
+            </p>
             
             <!-- BOTÓN RUTA CRÍTICA CON TEMARIO ESPECÍFICO -->
             <button class="btn-ruta" onclick="toggle('rutaCritica')">💰 VER RUTA CRÍTICA Y TEMARIO DE EXÁMENES (100 PTS)</button>
@@ -246,8 +256,8 @@
             <div class="golden-box">
                 <span class="golden-title">LAS 5 REGLAS DE ORO DE LA CÁTEDRA (Guía Tesis U.R.)</span>
                 <div class="rule-item"><strong>1. CERO GERUNDIOS:</strong> Prohibido "estando", "haciendo". En tesis se escribe: "se realizó", "se determinó" [Guía, p. 11].</div>
-                <div class="rule-item"><strong>2. CERO SUBJETIVIDAD:</strong> Eliminen "yo creo", "nos parece". La administración es ciencia, no opinión.</div>
-                <div class="rule-item"><strong>3. CERO ADJETIVOS VAGOS:</strong> Nada de "mucho", "poco". Usen datos métricos precisos (%, montos) [Guía, p. 12].</div>
+                <div class="rule-item"><strong>2. CERO SUBJETIVIDAD:</strong> Eliminen "yo creo", "nos parece". Solo hechos y datos sustentados.</div>
+                <div class="rule-item"><strong>3. CERO ADJETIVOS VAGOS:</strong> Nada de "mucho", "poco". Usen datos métricos. [Guía, p. 12].</div>
                 <div class="rule-item"><strong>4. CERO "ETCÉTERA":</strong> Ambigüedad del ignorante. Sea exhaustivo o use "entre otros". [Guía, p. 11].</div>
                 <div class="rule-item"><strong>5. PROPIEDAD INTELECTUAL:</strong> En el Marco Teórico, usted no opina; usted parafrasea o cita. Si no hay fuente, es plagio [Guía, p. 12].</div>
             </div>
@@ -258,45 +268,48 @@
         </div>
     </section>
 
-    <!-- 2. PROGRAMA (TEMARIO ADAPTADO A ADMIN) -->
+    <!-- 2. PROGRAMA DEL CURSO -->
     <section class="content-section" style="background-color: #fdfdfd;">
-        <h3 class="section-title"><span class="section-number">2</span>PROGRAMA: LA CONSTRUCCIÓN DEL PLAN DE NEGOCIOS</h3>
-        <p>Cumpliendo estrictamente con la Unidad 4 del Programa Oficial.</p>
+        <h3 class="section-title"><span class="section-number">2</span>PROGRAMA: LA CONSTRUCCIÓN DEL PLAN INTEGRAL</h3>
         
         <div class="syllabus-container">
+            <!-- MÓDULO I -->
             <details class="syllabus-module" open>
-                <summary>MÓDULO I: GÉNESIS (LA IDEA DE NEGOCIO)</summary>
+                <summary>MÓDULO I: GÉNESIS (LA IDEA Y EL TEMA)</summary>
                 <div class="module-content">
                     <div class="topic-block">
-                        <span class="topic-header">De la Necesidad a la Oportunidad</span>
-                        <div class="topic-detail">Administración: Interrogar al Mercado (¿Es rentable?).</div>
-                        <div class="topic-detail">Finanzas: Interrogar a los Estados Financieros (¿Es eficiente?).</div>
+                        <span class="topic-header">De la Duda a la Pregunta</span>
+                        <div class="topic-detail">Derecho: Interrogar a la norma (¿Vigente o eficaz?).</div>
+                        <div class="topic-detail">Forense: Interrogar a la evidencia (¿Real o sembrada?).</div>
                     </div>
                 </div>
             </details>
 
+            <!-- MÓDULO II -->
             <details class="syllabus-module">
-                <summary>MÓDULO II: EL PROBLEMA (DIAGNÓSTICO)</summary>
+                <summary>MÓDULO II: EL PROBLEMA (NÚCLEO)</summary>
                 <div class="module-content">
                     <div class="topic-block">
                         <span class="topic-header">Planteamiento y Delimitación</span>
-                        <div class="topic-detail">Definición del objeto (Acotamiento espacial/temporal/sectorial).</div>
-                        <div class="topic-detail">Preguntas de Investigación y Objetivos (Gerenciales).</div>
+                        <div class="topic-detail">Definición del objeto (Acotamiento espacial/temporal).</div>
+                        <div class="topic-detail">Preguntas de Investigación y Objetivos (Taxativos).</div>
                     </div>
                 </div>
             </details>
 
+            <!-- MÓDULO III -->
             <details class="syllabus-module">
                 <summary>MÓDULO III: JUSTIFICACIÓN E HIPÓTESIS</summary>
                 <div class="module-content">
                     <div class="topic-block">
-                        <span class="topic-header">La Defensa del Proyecto</span>
-                        <div class="topic-detail">Justificación: ¿Por qué invertir en esto? (Económica, Estratégica).</div>
-                        <div class="topic-detail">Hipótesis: La respuesta tentativa y sus variables (KPIs).</div>
+                        <span class="topic-header">La Defensa y la Apuesta</span>
+                        <div class="topic-detail">Justificación: ¿Por qué es importante? (Social, Jurídica, Académica).</div>
+                        <div class="topic-detail">Hipótesis: La respuesta tentativa y sus variables.</div>
                     </div>
                 </div>
             </details>
 
+            <!-- MÓDULO IV -->
             <details class="syllabus-module">
                 <summary style="background:var(--azul-inst); color:white;">MÓDULO IV: CIERRE DEL PLAN INTEGRAL</summary>
                 <div class="module-content" style="border: 2px solid var(--azul-inst);">
@@ -306,62 +319,64 @@
                     </div>
                     <div class="topic-block">
                         <span class="topic-header">2. Cronograma y Presupuesto</span>
-                        <div class="topic-detail">Planificación del tiempo (Gantt) y Recursos (Costos de inversión).</div>
+                        <div class="topic-detail">Planificación del tiempo (Gantt) y Recursos (Costos).</div>
                     </div>
                 </div>
             </details>
         </div>
     </section>
 
-    <!-- 3. ÁRBOL DE IDEAS (NEGOCIOS) -->
+    <!-- 3. ÁRBOL DE IDEAS (JURÍDICO/FORENSE) -->
     <section class="content-section">
-        <h3 class="section-title"><span class="section-number">3</span>MAPA MENTAL: LÓGICA DE NEGOCIOS</h3>
+        <h3 class="section-title"><span class="section-number">3</span>ÁRBOL DE IDEAS: ESTRUCTURA LÓGICA</h3>
         <div class="tree-diagram-container">
             <div class="branches-row">
-                <div class="tree-node branch-admin">
-                    <strong>RENTABILIDAD / EFICIENCIA</strong><br>
-                    <span style="font-size:0.9em">Maximizar utilidades / Optimizar procesos.</span>
+                <div class="tree-node branch-law">
+                    <strong>DERECHO</strong><br>
+                    <span style="font-size:0.9em">Lógica Deóntica / Norma<br>(Zaffaroni: Contención del Poder)</span>
                 </div>
-                <div class="tree-node branch-fin">
-                    <strong>TOMA DE DECISIONES</strong><br>
-                    <span style="font-size:0.9em">Basada en Datos (Investigación) vs. Intuición.</span>
+                <div class="tree-node branch-crim">
+                    <strong>CRIMINALÍSTICA</strong><br>
+                    <span style="font-size:0.9em">Evidencia Física / Ciencia<br>(Guzmán: Verificación)</span>
                 </div>
             </div>
             <div class="tree-node trunk">
                 <strong>EL MÉTODO CIENTÍFICO</strong><br>
-                (Diagnóstico > Hipótesis > Estrategia)
+                (Pasos 1-14 del Reglamento)
             </div>
             <div class="tree-node root">
-                <strong>TESIS DE NEGOCIOS</strong><br>
-                Consultoría para resolver un problema real.
+                <strong>TESIS DE GRADO</strong><br>
+                Demostración de una verdad jurídica o fáctica.
             </div>
         </div>
     </section>
 
-    <!-- 4. PRAXIS GERENCIAL -->
+    <!-- 4. PRAXIS (JURÍDICO/FORENSE) -->
     <section class="content-section" style="background-color: #f8f9fa;">
-        <h3 class="section-title"><span class="section-number">4</span>PRAXIS: SÍNTOMA VS. PROBLEMA REAL</h3>
+        <h3 class="section-title"><span class="section-number">4</span>PRAXIS: APLICACIÓN TÉCNICA</h3>
         <div class="exercise-wrapper">
+            <!-- CASO DERECHO -->
             <div class="exercise-card">
-                <div class="card-header header-admin">CASO MARKETING / VENTAS</div>
+                <div class="card-header header-law">I. LÓGICA JURÍDICA</div>
                 <div class="card-body">
-                    <p><strong>Situación:</strong> El Gerente reporta: "Las ventas bajaron un 20% este trimestre".</p>
-                    <p><strong>Pregunta:</strong> ¿Es esto el Problema de Investigación?</p>
-                    <button class="btn-reveal" onclick="toggle('resp1')">Revelar Enfoque Técnico</button>
+                    <p><strong>Caso:</strong> Un juez aplica pena por analogía ante un vacío legal, alegando "defensa social".</p>
+                    <p><strong>Pregunta:</strong> ¿Es válido según Zaffaroni?</p>
+                    <button class="btn-reveal" onclick="toggle('resp1')">Revelar Respuesta</button>
                     <div id="resp1" class="answer-content">
-                        <strong>R:</strong> No. La baja es el <em>Síntoma</em> (Efecto). El <strong>Problema</strong> es la Causa desconocida: "¿Qué factores del Marketing Mix (Precio, Plaza, Producto) incidieron en la disminución?".
+                        <strong>Respuesta:</strong> No. Viola el principio de legalidad. El Derecho Penal es contención del poder punitivo, no expansión (Zaffaroni).
                     </div>
                 </div>
             </div>
+
+            <!-- CASO CRIMINALÍSTICA -->
             <div class="exercise-card">
-                <div class="card-header header-fin">CASO CLIMA LABORAL</div>
+                <div class="card-header header-crim">II. EVIDENCIA FÍSICA</div>
                 <div class="card-body">
-                    <p><strong>Situación:</strong> Hay alta rotación. El jefe dice: "Creo que se van porque pagan poco y etc."</p>
-                    <p><strong>Error:</strong> Aplique las Reglas de Oro.</p>
-                    <button class="btn-reveal" onclick="toggle('resp2')">Revelar Corrección</button>
+                    <p><strong>Caso:</strong> Se introduce un lápiz en el cañón de un arma para levantarla.</p>
+                    <p><strong>Pregunta:</strong> ¿Es correcto según Guzmán?</p>
+                    <button class="btn-reveal" onclick="toggle('resp2')">Revelar Respuesta</button>
                     <div id="resp2" class="answer-content">
-                        <strong>Errores:</strong> "Creo" (Subjetividad), "Poco" (Vago), "Etc" (Ambigüedad).<br>
-                        <strong>Correcto:</strong> "El índice de rotación es del 15% mensual. Se determinará si la variable 'Compensación' es la causa."
+                        <strong>Respuesta:</strong> No. Se contaminan estrías (balística) y posible ADN/huellas. Se altera la evidencia irremediablemente.
                     </div>
                 </div>
             </div>
@@ -375,37 +390,37 @@
             <div class="vocab-card">
                 <span class="vocab-term">Episteme</span>
                 <div class="etym-section">Etimología: Del griego (saber).</div>
-                <div class="epist-section">Conocimiento justificado y verdadero (Datos/Ciencia), opuesto a la Doxa (Opinión/Intuición).</div>
+                <div class="epist-section">Conocimiento justificado y verdadero (Ciencia), opuesto a la Doxa (Opinión).</div>
             </div>
             <div class="vocab-card">
                 <span class="vocab-term">Mayéutica</span>
                 <div class="etym-section">Etimología: Del griego (dar a luz).</div>
-                <div class="epist-section">Método socrático de interrogar (como un Consultor) para encontrar la verdad oculta tras el síntoma.</div>
+                <div class="epist-section">Método socrático de interrogar para encontrar la verdad oculta tras la duda.</div>
             </div>
             <div class="vocab-card">
                 <span class="vocab-term">Plan de Investigación</span>
-                <div class="etym-section">Definición Técnica:</div>
-                <div class="epist-section">Documento que planifica sistemáticamente qué, cómo, cuándo y con qué recursos se realizará el estudio.</div>
+                <div class="etym-section">Definición Técnica (Unit 4):</div>
+                <div class="epist-section">Documento que planifica sistemáticamente qué, cómo, cuándo y con qué se investigará.</div>
             </div>
         </div>
     </section>
 
     <!-- 6. TAREA -->
     <section class="homework-section">
-        <h3 class="section-title"><span class="section-number">6</span>LABOR DOMICILIARIA: EL TEMA DE TESIS</h3>
-        <p><strong>Objetivo:</strong> Definir formalmente su TEMA y PROBLEMA DE NEGOCIO. <br><strong>Entrega: Próxima Sesión </strong></p>
+        <h3 class="section-title"><span class="section-number">6</span>LABOR DOMICILIARIA: INICIO DEL PLAN DE INVESTIGACIÓN</h3>
+        <p><strong>Objetivo:</strong> Que ambas carreras definan formalmente su TEMA y PROBLEMA. <br><strong>Entrega: Próxima Sesión</strong></p>
         <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
             <div>
-                <h4 style="color:var(--azul-inst);">Área de Estrategia / Mercado</h4>
-                <p><strong>Instrucción:</strong> Transforme una idea vaga ("Vender más") en un tema delimitado por: 1) Empresa/Sector, 2) Periodo y 3) Variable Estratégica.</p>
+                <h4 style="color:var(--azul-inst);">Derecho: El Acotamiento Normativo</h4>
+                <p><strong>Instrucción:</strong> Transforme una idea vaga ("Los robos", "El divorcio") en un tema delimitado por: 1) Espacio, 2) Tiempo y 3) Materia Jurídica.</p>
             </div>
             <div>
-                <h4 style="color:var(--rojo-inst);">Área de Finanzas / Procesos</h4>
-                <p><strong>Instrucción:</strong> No basta con "ahorrar". Defina qué proceso optimizará o qué indicador financiero analizará (ROI, ROE, Liquidez).</p>
+                <h4 style="color:var(--rojo-inst);">Criminalística: El Acotamiento Fáctico</h4>
+                <p><strong>Instrucción:</strong> No basta con "observar". Defina qué fenómeno físico o químico va a investigar (Ej. "Eficacia del reactivo X en huellas latentes").</p>
             </div>
         </div>
         <div style="text-align:center; margin-top:15px; font-style:italic; font-size:0.9em;">
-            "Investigar es ver lo que todo el mundo ha visto, y pensar lo que nadie más ha pensado."
+            "Ambas ramas deben marchar de la mano: una define la ley, la otra prueba el hecho."
         </div>
     </section>
 
@@ -423,28 +438,28 @@
                     <li>5. Universidad Regional. <em>Formato de Tesis</em>.</li>
                     <li>6. Universidad Regional. <em>Pensum de Estudios</em>.</li>
                     <li>7. Hernández Sampieri, R. et al. (2014). <em>Metodología de la investigación</em>.</li>
-                    <li>8. Bunge, M. (2001). <em>La ciencia. Su método y su filosofía</em>.</li>
-                    <li>9. Tamayo y Tamayo, M. <em>El proceso de la investigación científica</em>.</li>
-                    <li>10. Méndez, C. <em>Metodología: Diseño y desarrollo del proceso de investigación</em>.</li>
-                    <li>11. Bernal, C. <em>Metodología de la investigación para administración y economía</em>.</li>
-                    <li>12. (Referencia). Normas APA (6ª y 7ª Ed.).</li>
+                    <li>8. Witker Velásquez, J. (2021). <em>Metodología de la investigación jurídica</em>.</li>
+                    <li>9. Bunge, M. (2001). <em>La ciencia. Su método y su filosofía</em>.</li>
+                    <li>10. Álvarez Undurraga, G. (2002). <em>Metodología de la investigación jurídica</em>.</li>
+                    <li>11. Cabanellas, G. (1993). <em>Diccionario Jurídico Elemental</em>.</li>
+                    <li>12. (Referencia). Normas APA (6ª Ed.).</li>
                 </ul>
             </div>
             <div class="biblio-col">
-                <h4>II. Administración, Finanzas y Estrategia</h4>
+                <h4>II. Ciencias Forenses, Penales y Argumentación</h4>
                 <ul class="biblio-list" start="13">
-                    <li>13. Chiavenato, I. <em>Administración de Recursos Humanos</em>.</li>
-                    <li>14. Chiavenato, I. <em>Introducción a la Teoría General de la Administración</em>.</li>
-                    <li>15. Kotler, P. & Armstrong, G. <em>Fundamentos de Marketing</em>.</li>
-                    <li>16. Porter, M. <em>Estrategia Competitiva</em>.</li>
-                    <li>17. Robbins, S. <em>Comportamiento Organizacional</em>.</li>
-                    <li>18. Baca Urbina, G. <em>Evaluación de Proyectos</em>.</li>
-                    <li>19. Drucker, P. <em>La Gerencia</em>.</li>
-                    <li>20. Gitman, L. <em>Principios de Administración Financiera</em>.</li>
-                    <li>21. Koontz, H. & Weihrich, H. <em>Administración: Una perspectiva global</em>.</li>
-                    <li>22. Stanton, W. <em>Fundamentos de Marketing</em>.</li>
-                    <li>23. Senge, P. <em>La Quinta Disciplina</em>.</li>
-                    <li>24. Kaplan, R. & Norton, D. <em>El Cuadro de Mando Integral (BSC)</em>.</li>
+                    <li>13. Guzmán, C. A. (2011). <em>Manual de criminalística</em>.</li>
+                    <li>14. Montiel Sosa, J. (2003). <em>Criminalística. Tomo 1</em>.</li>
+                    <li>15. Montiel Sosa, J. (2003). <em>Criminalística. Tomo 2</em>.</li>
+                    <li>16. Montiel Sosa, J. (2003). <em>Criminalística. Tomo 3</em>.</li>
+                    <li>17. Raffo, O. H. (2016). <em>La muerte violenta</em>.</li>
+                    <li>18. Zaffaroni, E. R. (2007). <em>Manual de Derecho Penal. Parte General</em>.</li>
+                    <li>19. Zaffaroni, E. R. (1998). <em>En busca de las penas perdidas</em>.</li>
+                    <li>20. Zaffaroni, E. R. (2006). <em>El enemigo en el derecho penal</em>.</li>
+                    <li>21. Atienza, M. (2013). <em>Curso de argumentación jurídica</em>.</li>
+                    <li>22. Vigo, R. L. (2017). <em>La interpretación jurídica</em>.</li>
+                    <li>23. Carbonell, F. (2022). <em>Interpretación y razonamiento judicial</em>.</li>
+                    <li>24. Cervantes Saavedra, M. <em>El ingenioso hidalgo Don Quijote de la Mancha</em> (Ref. Literaria).</li>
                 </ul>
             </div>
         </div>
