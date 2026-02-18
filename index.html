@@ -12,6 +12,7 @@ header { background:#1a3a5f; color:white; text-align:center; padding:25px; }
 .card { background:white; padding:25px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.1); }
 .btn { display:block; margin-top:10px; padding:12px; text-decoration:none; background:#1a3a5f; color:white; border-radius:6px; text-align:center; }
 .btn-disabled { background:#cccccc; color:#666; cursor:not-allowed; }
+h3 { margin-top:30px; }
 </style>
 </head>
 
@@ -29,61 +30,6 @@ header { background:#1a3a5f; color:white; text-align:center; padding:25px; }
 <script>
 
 // Fechas DOMINGO de publicación (15 clases reales)
-const fechasPublicacion = [
-"2026-02-15",
-"2026-02-22",
-"2026-03-01",
-"2026-03-08",
-"2026-03-15",
-"2026-03-29",
-"2026-04-12",
-"2026-04-19",
-"2026-04-26",
-"2026-05-03",
-"2026-05-17",
-"2026-05-24",
-"2026-05-31",
-"2026-06-07",
-"2026-06-14"
-];
-
-function formatearFecha(fechaISO){
-    const opciones = { day: 'numeric', month: 'long' };
-    return new Date(fechaISO).toLocaleDateString('es-ES', opciones);
-}
-
-window.addEventListener("load", function(){
-
-    const hoy = new Date();
-    const contenedor = document.getElementById("clases");
-
-    for(let i=0; i<fechasPublicacion.length; i++){
-
-        const numeroClase = i + 1;
-        const fecha = new Date(fechasPublicacion[i]);
-
-        let boton = document.createElement("a");
-        boton.classList.add("btn");
-
-        if(hoy >= fecha){
-            boton.href = `auditoria_tributaria/${numeroClase}%20Clase%20Derecho%20Tributario%20II.html`;
-            boton.textContent = `📜 Clase ${numeroClase} – Disponible`;
-        } else {
-            boton.classList.add("btn-disabled");
-            boton.textContent = `📜 Clase ${numeroClase} – Disponible domingo ${formatearFecha(fechasPublicacion[i])}`;
-        }
-
-        contenedor.appendChild(boton);
-    }
-
-});
-
-</script>
-
-</body>
-<script>
-
-// Fechas DOMINGO de publicación
 const fechasPublicacion = [
 "2026-02-15",
 "2026-02-22",
@@ -142,5 +88,8 @@ window.addEventListener("load", function(){
     `;
 
 });
+
 </script>
+
+</body>
 </html>
