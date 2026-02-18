@@ -5,19 +5,46 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Institutum Iuris Oeconomiae et Rei Publicae</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Herr+Von+Muellerhoff&family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
+
 <style>
 /* --- ESTILOS GENERALES --- */
 body {
     font-family: 'Segoe UI', sans-serif;
     margin: 0;
     background: #f4f6f9;
+    overflow-x: hidden; /* Evita scroll horizontal */
+    position: relative; /* Necesario para las citas de fondo */
 }
+
+/* --- ESTILOS PARA LAS CITAS DE FONDO (MARCA DE AGUA) --- */
+.bg-quote {
+    position: fixed; /* Se quedan fijas aunque bajes con el mouse */
+    font-family: 'Herr Von Muellerhoff', cursive;
+    color: #1a3a5f;
+    opacity: 0.05; /* Muy transparentes para no molestar */
+    z-index: -1; /* Se van al fondo, detrás de todo */
+    pointer-events: none; /* No se pueden seleccionar */
+    line-height: 1;
+    white-space: nowrap;
+}
+
+/* Posiciones específicas para cada frase */
+.q1 { top: 5%; left: -5%; font-size: 6rem; transform: rotate(-10deg); }
+.q2 { top: 20%; right: -5%; font-size: 8rem; transform: rotate(15deg); }
+.q3 { bottom: 10%; left: 2%; font-size: 5rem; transform: rotate(5deg); }
+.q4 { top: 50%; right: 10%; font-size: 4rem; transform: rotate(-5deg); }
+.q5 { bottom: 30%; left: 15%; font-size: 7rem; opacity: 0.03; }
 
 header {
     background: linear-gradient(135deg, #1a3a5f, #2c5c8a);
     color: white;
     text-align: center;
     padding: 60px 20px;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
 header h1 {
@@ -29,6 +56,8 @@ header h1 {
 header p {
     margin-top: 10px;
     opacity: 0.9;
+    font-style: italic;
+    font-family: 'Times New Roman', serif; /* Un toque más clásico para el subtítulo */
 }
 
 .container {
@@ -39,12 +68,13 @@ header p {
 
 /* --- PERFIL BIO --- */
 .bio {
-    background: white;
+    background: rgba(255, 255, 255, 0.95); /* Un poco transparente para ver fondo sutilmente */
     padding: 40px;
     border-radius: 14px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.08);
     margin-bottom: 50px;
     line-height: 1.7;
+    backdrop-filter: blur(5px); /* Efecto vidrio esmerilado */
 }
 
 .profile {
@@ -68,6 +98,8 @@ header p {
 .profile-text h2 {
     margin-top: 0;
     color: #1a3a5f;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
 }
 
 /* --- GRID DE BOTONES DESPLEGABLES --- */
@@ -77,14 +109,14 @@ header p {
     gap: 30px;
 }
 
-/* La tarjeta ahora es un contenedor interactivo */
 .category-card {
-    background: white;
+    background: rgba(255, 255, 255, 0.95);
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 6px 15px rgba(0,0,0,0.08);
     transition: 0.3s;
-    cursor: pointer; /* Manito para indicar clic */
+    cursor: pointer;
+    backdrop-filter: blur(5px);
 }
 
 .category-card:hover {
@@ -102,7 +134,6 @@ header p {
 .category-header {
     padding: 20px;
     text-align: center;
-    background: white;
     position: relative;
 }
 
@@ -112,7 +143,6 @@ header p {
     font-size: 1.3rem;
 }
 
-/* Flechita indicadora */
 .arrow {
     font-size: 12px;
     color: #888;
@@ -122,19 +152,17 @@ header p {
 
 /* --- MENÚ OCULTO (CLASES) --- */
 .menu-content {
-    display: none; /* OCULTO POR DEFECTO */
+    display: none;
     background: #f8f9fa;
     padding: 15px;
     border-top: 1px solid #ddd;
     animation: fadeIn 0.3s ease-in-out;
 }
 
-/* Clase para mostrar el menú cuando se activa */
 .menu-content.active {
     display: block;
 }
 
-/* Links individuales */
 .class-link {
     display: block;
     background: white;
@@ -151,7 +179,7 @@ header p {
 
 .class-link:hover {
     background: #eef2f6;
-    padding-left: 20px; /* Efecto de desplazamiento */
+    padding-left: 20px;
 }
 
 @keyframes fadeIn {
@@ -164,11 +192,15 @@ footer {
     padding: 25px;
     color: #777;
     margin-top: 40px;
+    position: relative;
+    z-index: 1;
 }
 </style>
 </head>
 
 <body>
+
+<div class="bg-quote q1">Sapere aude</div> <div class="bg-quote q2">Iustitia est constans et perpetua voluntas</div> <div class="bg-quote q3">Panta Rhei</div> <div class="bg-quote q4">Amor Fati</div> <div class="bg-quote q5">Lex Orandi, Lex Credendi</div>
 
 <header>
     <h1>Institutum Iuris Oeconomiae et Rei Publicae</h1>
@@ -195,7 +227,7 @@ footer {
     <div class="grid">
 
         <div class="category-card" onclick="toggleMenu('menu-docencia')">
-            <img src="docencia.png" alt="Docencia Universitaria" class="category-img">
+            <img src="docencia.jpg" alt="Docencia Universitaria" class="category-img">
             
             <div class="category-header">
                 <h3>Docencia Universitaria</h3>
@@ -203,24 +235,20 @@ footer {
             </div>
 
             <div id="menu-docencia" class="menu-content">
-                
                 <a class="class-link" href="auditoria_tributaria/index.html" onclick="event.stopPropagation()">
                     📘 Derecho Tributario II
                 </a>
-
                 <a class="class-link" href="administracion/index.html" onclick="event.stopPropagation()">
                     📊 Seminario Administración
                 </a>
-
                 <a class="class-link" href="juridicas_criminal/index.html" onclick="event.stopPropagation()">
                     ⚖️ Seminario Jurídicas Criminal
                 </a>
-
             </div>
         </div>
 
         <div class="category-card" onclick="toggleMenu('menu-filo')">
-            <img src="filo.png" alt="Schola Iuris et Philosophiae" class="category-img">
+            <img src="filo.jpg" alt="Schola Iuris et Philosophiae" class="category-img">
             
             <div class="category-header">
                 <h3>Schola Iuris et Philosophiae</h3>
@@ -228,11 +256,9 @@ footer {
             </div>
 
             <div id="menu-filo" class="menu-content">
-                
                 <a class="class-link" href="#" onclick="event.stopPropagation()">
                     🏛️ Biblioteca Virtual (Próximamente)
                 </a>
-
             </div>
         </div>
 
@@ -246,10 +272,7 @@ footer {
 
 <script>
     function toggleMenu(menuId) {
-        // Busca el elemento por su ID
         var menu = document.getElementById(menuId);
-        
-        // Si tiene la clase "active", se la quita. Si no la tiene, se la pone.
         if (menu.classList.contains('active')) {
             menu.classList.remove('active');
         } else {
