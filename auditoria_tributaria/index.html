@@ -4,16 +4,19 @@
 <meta charset="UTF-8">
 <title>Derecho Tributario II</title>
 <style>
-body{font-family:Arial;background:#f4f6f9;padding:40px;}
-.btn{display:block;margin:10px 0;padding:12px;background:#1a3a5f;color:white;text-decoration:none;border-radius:6px;}
+body{font-family:'Segoe UI',sans-serif;background:#f4f6f9;padding:40px;}
+h2{color:#1a3a5f;}
+.btn{display:block;margin:10px 0;padding:14px;background:#1a3a5f;color:white;text-decoration:none;border-radius:8px;}
+.btn:hover{background:#2c5c8a;}
 .btn-disabled{background:#ccc;color:#666;cursor:not-allowed;}
+.section{margin-top:30px;}
 </style>
 </head>
 <body>
 
-<h2>Derecho Tributario II</h2>
+<h2>📘 Derecho Tributario II</h2>
 
-<div id="clases"></div>
+<div id="contenido"></div>
 
 <script>
 
@@ -22,13 +25,24 @@ const fechasPublicacion = [
 "2026-02-22",
 "2026-03-01",
 "2026-03-08",
-"2026-03-15"
+"2026-03-15",
+"2026-03-29",
+"2026-04-12",
+"2026-04-19",
+"2026-04-26",
+"2026-05-03",
+"2026-05-17",
+"2026-05-24",
+"2026-05-31",
+"2026-06-07",
+"2026-06-14"
 ];
 
 window.addEventListener("load", function(){
 
     const hoy = new Date();
-    let contenido = "";
+    let disponibles = "";
+    let proximas = "";
 
     for(let i=0;i<fechasPublicacion.length;i++){
 
@@ -36,13 +50,16 @@ window.addEventListener("load", function(){
         const fecha = new Date(fechasPublicacion[i]);
 
         if(hoy >= fecha){
-            contenido += `<a class="btn" href="${numero}%20Clase%20Derecho%20Tributario%20II.html">Clase ${numero}</a>`;
+            disponibles += `<a class="btn" href="${numero}%20Clase%20Derecho%20Tributario%20II.html">Clase ${numero}</a>`;
         } else {
-            contenido += `<div class="btn btn-disabled">Clase ${numero} – Próximamente</div>`;
+            proximas += `<div class="btn btn-disabled">Clase ${numero} – Próximamente</div>`;
         }
     }
 
-    document.getElementById("clases").innerHTML = contenido;
+    document.getElementById("contenido").innerHTML = `
+        <div class="section"><h3>Disponibles</h3>${disponibles}</div>
+        <div class="section"><h3>Próximamente</h3>${proximas}</div>
+    `;
 });
 
 </script>
