@@ -83,8 +83,7 @@ window.addEventListener("load", function(){
 </body>
 <script>
 
-document.addEventListener("DOMContentLoaded", function(){
-
+// Fechas DOMINGO de publicación
 const fechasPublicacion = [
 "2026-02-15",
 "2026-02-22",
@@ -103,31 +102,45 @@ const fechasPublicacion = [
 "2026-06-14"
 ];
 
-const nombreArchivo = window.location.pathname.split("/").pop();
-const match = nombreArchivo.match(/^(\d+)/);
-
-if (match) {
-
-    const numeroClase = parseInt(match[1]);
-
-    const hoy = new Date();
-    const hoySoloFecha = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate());
-
-    const partes = fechasPublicacion[numeroClase - 1].split("-");
-    const fechaPublicacion = new Date(partes[0], partes[1]-1, partes[2]);
-
-    if (hoySoloFecha < fechaPublicacion) {
-
-        document.body.innerHTML = `
-            <div style="font-family:Arial; text-align:center; margin-top:120px;">
-                <h2>🔒 Clase ${numeroClase} no disponible</h2>
-                <p>Disponible el domingo ${fechaPublicacion.toLocaleDateString('es-ES',{day:'numeric', month:'long'})}.</p>
-            </div>
-        `;
-    }
+function formatearFecha(fechaISO){
+    const opciones = { day: 'numeric', month: 'long' };
+    return new Date(fechaISO).toLocaleDateString('es-ES', opciones);
 }
 
-});
+window.addEventListener("load", function(){
 
+    const hoy = new Date();
+    const disponibles = [];
+    const proximas = [];
+
+    for(let i=0; i<fechasPublicacion.length; i++){
+
+        const numeroClase = i + 1;
+        const fecha = new Date(fechasPublicacion[i]);
+
+        if(hoy >= fecha){
+            disponibles.push(`
+                <a class="btn" href="auditoria_tributaria/${numeroClase}%20Clase%20Derecho%20Tributario%20II.html">
+                📜 Clase ${numeroClase}
+                </a>
+            `);
+        } else {
+            proximas.push(`
+                <a class="btn btn-disabled">
+                🔒 Clase ${numeroClase} – Disponible domingo ${formatearFecha(fechasPublicacion[i])}
+                </a>
+            `);
+        }
+    }
+
+    document.getElementById("clases").innerHTML = `
+        <h3>📚 Clases Disponibles</h3>
+        ${disponibles.join("")}
+        <br><br>
+        <h3>🔒 Próximas Clases</h3>
+        ${proximas.join("")}
+    `;
+
+});
 </script>
 </html>
