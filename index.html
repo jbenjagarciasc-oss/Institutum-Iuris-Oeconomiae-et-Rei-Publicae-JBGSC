@@ -6,30 +6,117 @@
 <title>Derecho Tributario II</title>
 
 <style>
-body { font-family: Arial, sans-serif; background:#f4f6f9; margin:0; }
-header { background:#1a3a5f; color:white; text-align:center; padding:25px; }
-.container { padding:30px; }
-.card { background:white; padding:25px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.1); }
-.btn { display:block; margin-top:10px; padding:12px; text-decoration:none; background:#1a3a5f; color:white; border-radius:6px; text-align:center; }
-.btn-disabled { background:#cccccc; color:#666; cursor:not-allowed; }
-h3 { margin-top:30px; }
+
+:root{
+    --azul-institucional:#1a3a5f;
+    --azul-claro:#2c5c8a;
+    --verde:#1e7e34;
+    --gris:#6c757d;
+    --fondo:#f4f6f9;
+}
+
+body{
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: var(--fondo);
+    margin:0;
+}
+
+header{
+    background: linear-gradient(135deg,var(--azul-institucional),var(--azul-claro));
+    color:white;
+    text-align:center;
+    padding:40px 20px;
+}
+
+header h1{
+    margin:0;
+    font-size:28px;
+    letter-spacing:1px;
+}
+
+header p{
+    margin-top:8px;
+    opacity:0.9;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+    padding:40px 20px;
+}
+
+.section-title{
+    margin-top:30px;
+    margin-bottom:15px;
+    font-size:20px;
+    color:var(--azul-institucional);
+    border-left:5px solid var(--azul-institucional);
+    padding-left:10px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fill,minmax(250px,1fr));
+    gap:15px;
+}
+
+.card-btn{
+    display:block;
+    padding:18px;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:600;
+    transition: all 0.3s ease;
+    box-shadow:0 4px 10px rgba(0,0,0,0.08);
+}
+
+.disponible{
+    background:white;
+    color:var(--azul-institucional);
+    border-left:6px solid var(--verde);
+}
+
+.disponible:hover{
+    transform:translateY(-3px);
+    box-shadow:0 6px 15px rgba(0,0,0,0.15);
+}
+
+.bloqueada{
+    background:#e9ecef;
+    color:var(--gris);
+    cursor:not-allowed;
+}
+
+footer{
+    text-align:center;
+    padding:20px;
+    font-size:13px;
+    color:#888;
+}
+
 </style>
 </head>
 
 <body>
 
 <header>
-<h2>Derecho Tributario II</h2>
-<p>Clases disponibles progresivamente (domingo siguiente a clase)</p>
+<h1>Derecho Tributario II</h1>
+<p>Acceso progresivo – Publicación cada domingo</p>
 </header>
 
 <div class="container">
-<div class="card" id="clases"></div>
+
+<div id="contenido"></div>
+
 </div>
+
+<footer>
+Institutum Iuris Oeconomiae et Rei Publicae – JBGSC
+</footer>
 
 <script>
 
-// Fechas DOMINGO de publicación
+// Fechas de publicación
 const fechasPublicacion = [
 "2026-02-15",
 "2026-02-22",
@@ -56,8 +143,8 @@ function formatearFecha(fechaISO){
 window.addEventListener("load", function(){
 
     const hoy = new Date();
-    const disponibles = [];
-    const proximas = [];
+    let disponibles = [];
+    let proximas = [];
 
     for(let i=0; i<fechasPublicacion.length; i++){
 
@@ -66,25 +153,35 @@ window.addEventListener("load", function(){
 
         if(hoy >= fecha){
             disponibles.push(`
-                <a class="btn" href="auditoria_tributaria/${numeroClase}%20Clase%20Derecho%20Tributario%20II.html">
-                📜 Clase ${numeroClase}
+                <a class="card-btn disponible" href="auditoria_tributaria/${numeroClase}%20Clase%20Derecho%20Tributario%20II.html">
+                📘 Clase ${numeroClase}<br>
+                <small>Disponible</small>
                 </a>
             `);
         } else {
             proximas.push(`
-                <a class="btn btn-disabled">
-                🔒 Clase ${numeroClase} – Disponible domingo ${formatearFecha(fechasPublicacion[i])}
-                </a>
+                <div class="card-btn bloqueada">
+                🔒 Clase ${numeroClase}<br>
+                <small>Disponible domingo ${formatearFecha(fechasPublicacion[i])}</small>
+                </div>
             `);
         }
     }
 
-    document.getElementById("clases").innerHTML = `
-        <h3>📚 Clases Disponibles</h3>
-        ${disponibles.join("")}
-        <br><br>
-        <h3>🔒 Próximas Clases</h3>
-        ${proximas.join("")}
+    document.getElementById("contenido").innerHTML = `
+        <div>
+            <div class="section-title">📚 Clases Disponibles</div>
+            <div class="grid">
+                ${disponibles.join("")}
+            </div>
+        </div>
+
+        <div>
+            <div class="section-title">🔒 Próximas Clases</div>
+            <div class="grid">
+                ${proximas.join("")}
+            </div>
+        </div>
     `;
 
 });
