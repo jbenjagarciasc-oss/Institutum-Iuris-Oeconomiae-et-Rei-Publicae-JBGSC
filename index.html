@@ -3,140 +3,77 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aula Virtual - Lic. Soto</title>
+<title>Derecho Tributario II</title>
 
 <style>
-body {
-    font-family: Arial, sans-serif;
-    background: #f4f6f9;
-    margin: 0;
-    padding: 0;
-}
-
-header {
-    background: #0a1f44;
-    color: white;
-    text-align: center;
-    padding: 20px;
-}
-
-.container {
-    padding: 30px;
-}
-
-.card {
-    background: white;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
-}
-
-.tag {
-    background: #007bff;
-    color: white;
-    padding: 4px 8px;
-    border-radius: 5px;
-    font-size: 0.75rem;
-}
-
-.btn {
-    display: block;
-    margin-top: 10px;
-    padding: 10px;
-    text-decoration: none;
-    background: #0a1f44;
-    color: white;
-    border-radius: 5px;
-    text-align: center;
-    cursor: pointer;
-}
-
-.btn-ex {
-    background: #c82333;
-}
+body { font-family: Arial, sans-serif; background:#f4f6f9; margin:0; }
+header { background:#1a3a5f; color:white; text-align:center; padding:25px; }
+.container { padding:30px; }
+.card { background:white; padding:25px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.1); }
+.btn { display:block; margin-top:10px; padding:12px; text-decoration:none; background:#1a3a5f; color:white; border-radius:6px; text-align:center; }
+.btn-disabled { background:#cccccc; color:#666; cursor:not-allowed; }
 </style>
 </head>
 
 <body>
 
 <header>
-<h1>📚 Aula Virtual</h1>
-<p>Lic. Soto</p>
+<h2>Derecho Tributario II</h2>
+<p>Clases disponibles progresivamente (domingo siguiente a clase)</p>
 </header>
 
 <div class="container">
-
-<div class="card">
-    <span class="tag">Contaduría Pública y Auditoría</span>
-    <h3>Derecho Tributario II</h3>
-    <p style="font-size: 0.85rem; color: #666;">
-        Legislación y procesos tributarios.
-    </p>
-
-    <a href="auditoria_tributaria/clase1.html" class="btn">
-        📜 Clase 1 – Introducción
-    </a>
-
-    <a href="auditoria_tributaria/clase2.html"
-       class="btn"
-       id="clase2"
-       style="display:none;">
-        📜 Clase 2 – Hecho Generador
-    </a>
-
-    <a href="auditoria_tributaria/clase3.html"
-       class="btn"
-       id="clase3"
-       style="display:none;">
-        📜 Clase 3 – Determinación
-    </a>
-
-    <a href="auditoria_tributaria/clase4.html"
-       class="btn"
-       id="clase4"
-       style="display:none;">
-        📜 Clase 4 – Fiscalización
-    </a>
-
-    <div onclick="accesoExamen('auditoria_tributaria/examen-tributario.html')"
-         class="btn btn-ex"
-         style="margin-top:15px;">
-         📝 Evaluación
-    </div>
-</div>
-
+<div class="card" id="clases"></div>
 </div>
 
 <script>
 
-function accesoExamen(url) {
-    var pass = prompt("🔐 TOKEN DE EXAMEN REQUERIDO:");
-    if (pass === "Examen2026") {
-        window.location.href = url;
-    } else {
-        alert("Acceso denegado.");
-    }
+// Fechas DOMINGO de publicación (15 clases reales)
+const fechasPublicacion = [
+"2026-02-15",
+"2026-02-22",
+"2026-03-01",
+"2026-03-08",
+"2026-03-15",
+"2026-03-29",
+"2026-04-12",
+"2026-04-19",
+"2026-04-26",
+"2026-05-03",
+"2026-05-17",
+"2026-05-24",
+"2026-05-31",
+"2026-06-07",
+"2026-06-14"
+];
+
+function formatearFecha(fechaISO){
+    const opciones = { day: 'numeric', month: 'long' };
+    return new Date(fechaISO).toLocaleDateString('es-ES', opciones);
 }
 
-window.addEventListener("load", function() {
+window.addEventListener("load", function(){
 
-    var hoy = new Date();
+    const hoy = new Date();
+    const contenedor = document.getElementById("clases");
 
-    var fechaClase2 = new Date("2026-03-01");
-    var fechaClase3 = new Date("2026-03-08");
-    var fechaClase4 = new Date("2026-03-15");
+    for(let i=0; i<fechasPublicacion.length; i++){
 
-    if (hoy >= fechaClase2) {
-        document.getElementById("clase2").style.display = "block";
-    }
+        const numeroClase = i + 1;
+        const fecha = new Date(fechasPublicacion[i]);
 
-    if (hoy >= fechaClase3) {
-        document.getElementById("clase3").style.display = "block";
-    }
+        let boton = document.createElement("a");
+        boton.classList.add("btn");
 
-    if (hoy >= fechaClase4) {
-        document.getElementById("clase4").style.display = "block";
+        if(hoy >= fecha){
+            boton.href = `auditoria_tributaria/${numeroClase}%20Clase%20Derecho%20Tributario%20II.html`;
+            boton.textContent = `📜 Clase ${numeroClase} – Disponible`;
+        } else {
+            boton.classList.add("btn-disabled");
+            boton.textContent = `📜 Clase ${numeroClase} – Disponible domingo ${formatearFecha(fechasPublicacion[i])}`;
+        }
+
+        contenedor.appendChild(boton);
     }
 
 });
