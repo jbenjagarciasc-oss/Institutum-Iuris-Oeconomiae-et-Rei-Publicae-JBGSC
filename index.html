@@ -81,17 +81,43 @@ window.addEventListener("load", function(){
 </script>
 
 </body>
-    <script>
-const fechaPublicacion = new Date("2026-02-15");
+ <script>
+
+// Fechas DOMINGO de publicación (15 clases)
+const fechasPublicacion = [
+"2026-02-15",
+"2026-02-22",
+"2026-03-01",
+"2026-03-08",
+"2026-03-15",
+"2026-03-29",
+"2026-04-12",
+"2026-04-19",
+"2026-04-26",
+"2026-05-03",
+"2026-05-17",
+"2026-05-24",
+"2026-05-31",
+"2026-06-07",
+"2026-06-14"
+];
+
+// Detectar número de clase desde el nombre del archivo
+const nombreArchivo = window.location.pathname.split("/").pop();
+const numeroClase = parseInt(nombreArchivo);
+
+// Fecha correspondiente a esta clase
+const fechaPublicacion = new Date(fechasPublicacion[numeroClase - 1]);
 const hoy = new Date();
 
 if (hoy < fechaPublicacion) {
     document.body.innerHTML = `
         <div style="font-family:Arial; text-align:center; margin-top:100px;">
-            <h2>🔒 Clase no disponible</h2>
-            <p>Esta clase estará disponible el domingo 15 de febrero.</p>
+            <h2>🔒 Clase ${numeroClase} no disponible</h2>
+            <p>Esta clase estará disponible el domingo ${fechaPublicacion.toLocaleDateString('es-ES',{day:'numeric', month:'long'})}.</p>
         </div>
     `;
 }
+
 </script>
 </html>
