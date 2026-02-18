@@ -3,119 +3,145 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portal Académico</title>
+<title>Institutum Iuris Oeconomiae et Rei Publicae</title>
 
 <style>
-
 body{
-margin:0;
-font-family:Segoe UI, sans-serif;
-background:#f4f6f9;
+    font-family:'Segoe UI',sans-serif;
+    margin:0;
+    background:#f4f6f9;
 }
 
 header{
-background:#1a3a5f;
-color:white;
-text-align:center;
-padding:60px 20px;
+    background:linear-gradient(135deg,#1a3a5f,#2c5c8a);
+    color:white;
+    text-align:center;
+    padding:60px 20px;
 }
 
 header h1{
-margin:0;
-font-size:2.5rem;
+    margin:0;
+    font-size:30px;
+    letter-spacing:1px;
 }
 
 header p{
-margin-top:10px;
-font-size:1.2rem;
-opacity:0.9;
+    margin-top:10px;
+    opacity:0.9;
 }
 
 .container{
-max-width:1000px;
-margin:60px auto;
-padding:0 20px;
+    max-width:1000px;
+    margin:auto;
+    padding:40px 20px;
+}
+
+.bio{
+    background:white;
+    padding:40px;
+    border-radius:14px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.08);
+    margin-bottom:50px;
+    line-height:1.7;
+}
+
+.profile{
+    display:flex;
+    flex-wrap:wrap;
+    gap:30px;
+    align-items:center;
+}
+
+.profile img{
+    width:220px;
+    border-radius:12px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.15);
+}
+
+.profile-text{
+    flex:1;
+}
+
+.profile-text h2{
+    margin-top:0;
+    color:#1a3a5f;
 }
 
 .grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-gap:40px;
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+    gap:20px;
 }
 
 .card{
-position:relative;
-height:250px;
-border-radius:18px;
-overflow:hidden;
-text-decoration:none;
-color:white;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:1.6rem;
-font-weight:700;
-text-align:center;
-transition:0.4s;
-box-shadow:0 10px 25px rgba(0,0,0,0.15);
-}
-
-.card::before{
-content:"";
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.55);
-z-index:1;
-}
-
-.card span{
-position:relative;
-z-index:2;
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    text-decoration:none;
+    color:#1a3a5f;
+    font-weight:600;
+    box-shadow:0 6px 15px rgba(0,0,0,0.08);
+    transition:0.3s;
 }
 
 .card:hover{
-transform:translateY(-10px);
-box-shadow:0 18px 35px rgba(0,0,0,0.25);
-}
-
-.docencia{
-background:url('img/docencia.jpg') center/cover no-repeat;
-}
-
-.schola{
-background:url('img/filo.jpg') center/cover no-repeat;
+    transform:translateY(-6px);
+    box-shadow:0 12px 28px rgba(0,0,0,0.15);
 }
 
 footer{
-text-align:center;
-padding:30px;
-font-size:0.9rem;
-color:#777;
+    text-align:center;
+    padding:25px;
+    color:#777;
 }
-
 </style>
 </head>
 
 <body>
 
 <header>
-<h1>Portal Académico</h1>
-<p>Spatium Studii, Investigationis et Dialogi</p>
+<h1>Institutum Iuris Oeconomiae et Rei Publicae</h1>
+<p>Per dialogum ad veritatem</p>
 </header>
 
 <div class="container">
 
+<div class="bio">
+<div class="profile">
+
+<img src="perfil.jpeg" alt="Director Académico">
+
+<div class="profile-text">
+<h2>Dirección Académica</h2>
+
+<p>
+Economista, abogado y notario. Maestro en Ciencias Jurídicas y Sociales, con pensum cerrado en Maestría en Administración Financiera. Actualmente doctorando en Derecho Procesal Constitucional.
+</p>
+
+<p>
+Mi visión de la enseñanza se nutre de la tradición filosófica occidental: desde el tránsito del mito al logos en los presocráticos —con Thales y Heráclito— pasando por la dialéctica de Sócrates y la sistematicidad de Aristóteles, hasta la ética del deber en Kant, la historicidad del espíritu en Hegel, la crítica radical de Nietzsche y la conciencia del absurdo en Camus.
+</p>
+
+<p>
+Desde el tránsito del mito al logos hasta la crítica moderna de la razón, la filosofía nos ha enseñado que pensar es un acto de valentía. Bajo esa premisa, la técnica socrática orienta mi labor docente: el conocimiento no se transmite, se conquista mediante el diálogo. El derecho exige precisión técnica, pero también profundidad filosófica; solo así puede trascender la literalidad normativa y convertirse en herramienta de justicia.
+</p>
+
+</div>
+</div>
+</div>
+
 <div class="grid">
 
-<a class="card docencia" href="docencia_universitaria/index.html">
-<span>🎓 Docencia Universitaria</span>
+<a class="card" href="auditoria_tributaria/index.html">
+📘 Derecho Tributario II
 </a>
 
-<a class="card schola" href="schola_iuris_et_philosophiae/index.html">
-<span>🧠 Schola Iuris et Philosophiae</span>
+<a class="card" href="administracion/index.html">
+📊 Seminario Administración
+</a>
+
+<a class="card" href="juridicas_criminal/index.html">
+⚖️ Seminario Jurídicas Criminal
 </a>
 
 </div>
@@ -123,7 +149,7 @@ color:#777;
 </div>
 
 <footer>
-© 2026 Espacio Académico Personal
+JBGSC – Formación Jurídica, Económica y Constitucional
 </footer>
 
 </body>
