@@ -81,4 +81,17 @@ window.addEventListener("load", function(){
 </script>
 
 </body>
+    <script>
+const fechaPublicacion = new Date("2026-02-15");
+const hoy = new Date();
+
+if (hoy < fechaPublicacion) {
+    document.body.innerHTML = `
+        <div style="font-family:Arial; text-align:center; margin-top:100px;">
+            <h2>🔒 Clase no disponible</h2>
+            <p>Esta clase estará disponible el domingo 15 de febrero.</p>
+        </div>
+    `;
+}
+</script>
 </html>
