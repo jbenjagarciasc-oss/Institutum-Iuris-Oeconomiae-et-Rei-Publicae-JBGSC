@@ -109,25 +109,21 @@ const match = nombreArchivo.match(/^(\d+)/);
 if (match) {
 
     const numeroClase = parseInt(match[1]);
-    const fechaPublicacion = new Date(fechasPublicacion[numeroClase - 1]);
+
     const hoy = new Date();
+    const hoySoloFecha = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate());
 
-    if (hoy < fechaPublicacion) {
+    const partes = fechasPublicacion[numeroClase - 1].split("-");
+    const fechaPublicacion = new Date(partes[0], partes[1]-1, partes[2]);
 
-        document.body.innerHTML = "";
-        document.body.style.background = "#f4f6f9";
+    if (hoySoloFecha < fechaPublicacion) {
 
-        const contenedor = document.createElement("div");
-        contenedor.style.fontFamily = "Arial";
-        contenedor.style.textAlign = "center";
-        contenedor.style.marginTop = "120px";
-
-        contenedor.innerHTML = `
-            <h2>🔒 Clase ${numeroClase} no disponible</h2>
-            <p>Disponible el domingo ${fechaPublicacion.toLocaleDateString('es-ES',{day:'numeric', month:'long'})}.</p>
+        document.body.innerHTML = `
+            <div style="font-family:Arial; text-align:center; margin-top:120px;">
+                <h2>🔒 Clase ${numeroClase} no disponible</h2>
+                <p>Disponible el domingo ${fechaPublicacion.toLocaleDateString('es-ES',{day:'numeric', month:'long'})}.</p>
+            </div>
         `;
-
-        document.body.appendChild(contenedor);
     }
 }
 
