@@ -1,119 +1,147 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Institutum Iuris - M.A. García Santa Cruz</title>
-    <style>
-        :root { --azul: #1a3a5f; --oro: #c5a059; --fondo: #f4f7f6; }
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: var(--fondo); margin: 0; color: #333; }
-        header { background: var(--azul); color: white; padding: 40px 20px; text-align: center; border-bottom: 5px solid var(--oro); box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        .tab { overflow-x: auto; background: #fff; display: flex; justify-content: center; border-bottom: 2px solid #ddd; position: sticky; top: 0; z-index: 100; }
-        .tab button { background: inherit; border: none; outline: none; cursor: pointer; padding: 15px 25px; font-weight: bold; color: var(--azul); flex: 1; min-width: 150px; transition: 0.3s; }
-        .tab button.active { border-bottom: 4px solid var(--oro); color: var(--oro); background: #f9f9f9; }
-        .container { max-width: 1200px; margin: 30px auto; padding: 0 20px; }
-        .tabcontent { display: none; animation: fadeIn 0.4s; }
-        @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 25px; }
-        .card { background: white; border-radius: 15px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 5px solid var(--oro); }
-        h3 { color: var(--azul); border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 0; font-size: 1.1rem; }
-        .tag { background: #eef2f7; font-size: 0.7rem; padding: 4px 10px; border-radius: 5px; color: var(--azul); display: inline-block; margin-bottom: 10px; font-weight: bold; text-transform: uppercase; }
-        .btn { display: block; background: #fdfdfd; color: #333; text-decoration: none; padding: 12px; margin: 8px 0; border-radius: 10px; border: 1px solid #eee; font-weight: 600; text-align: center; transition: 0.3s; }
-        .btn:hover { background: var(--azul); color: white; transform: translateY(-2px); }
-        .btn-ex { border-left: 6px solid #d9534f; background: #fffcfc; }
-        footer { text-align: center; padding: 50px; color: #666; font-size: 0.9rem; background: white; border-top: 1px solid #eee; margin-top: 40px; }
-    </style>
-    <script>
-        function accesoExamen(url) {
-            var pass = prompt("🔐 TOKEN DE EXAMEN REQUERIDO:");
-            if (pass === "Examen2026") { window.location.href = url; } 
-            else { alert("Acceso denegado."); }
-        }
-        function abrirCurso(evt, nombre) {
-            var i, tc, tl;
-            tc = document.getElementsByClassName("tabcontent");
-            for (i = 0; i < tc.length; i++) tc[i].style.display = "none";
-            tl = document.getElementsByClassName("tablinks");
-            for (i = 0; i < tl.length; i++) tl[i].className = tl[i].className.replace(" active", "");
-            document.getElementById(nombre).style.display = "block";
-            evt.currentTarget.className += " active";
-        }
-    </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aula Virtual - Lic. Soto</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: #0a1f44;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+.container {
+    padding: 30px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+}
+
+.tag {
+    background: #007bff;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-size: 0.75rem;
+}
+
+.btn {
+    display: block;
+    margin-top: 10px;
+    padding: 10px;
+    text-decoration: none;
+    background: #0a1f44;
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.btn-ex {
+    background: #c82333;
+}
+</style>
 </head>
-<body onload="document.getElementById('defaultOpen').click();">
+
+<body>
 
 <header>
-    <h1 style="margin:0;">Universidad Regional de Guatemala</h1>
-    <h3 style="color:var(--oro); margin:5px 0; font-weight: normal;">Sede San Raymundo</h3>
-    <p style="margin:10px 0 0 0; opacity:0.9;">M.A. José Benjamín García Santa Cruz</p>
+<h1>📚 Aula Virtual</h1>
+<p>Lic. Soto</p>
 </header>
 
-<div class="tab">
-  <button class="tablinks" onclick="abrirCurso(event, 'Regional')" id="defaultOpen">🏛️ Cátedras U. Regional</button>
-  <button class="tablinks" onclick="abrirCurso(event, 'Doctorado')">🎓 Doctorado</button>
-  <button class="tablinks" onclick="abrirCurso(event, 'Herramientas')">☁️ Herramientas / AI</button>
-</div>
-
 <div class="container">
-    <div id="Regional" class="tabcontent">
-        <div class="grid">
-            <div class="card">
-                <span class="tag">CC.JJ. y Sociales / Inv. Criminal</span>
-                <h3>Seminario de Tesis</h3>
-                <div style="max-height: 200px; overflow-y: auto; background: #f9f9f9; padding: 10px; border-radius: 8px;">
-                    <a href="1%20Clase%20Seminario%20DyC.html" class="btn">📂 Contenido de Clase</a>
-                </div>
-                <div style="margin-top: 15px;">
-                    <div onclick="accesoExamen('Primera%20Fase%20Seminario%20DyC.html')" class="btn btn-ex">📘 Evaluación Fase 1</div>
-                    <div onclick="accesoExamen('Examen%20Final%20DyC.html')" class="btn btn-ex">📙 EXAMEN FINAL</div>
-                </div>
-            </div>
 
-            <div class="card">
-                <span class="tag">Administración de Empresas</span>
-                <h3>Seminario de Tesis Profesional</h3>
-                <p style="font-size: 0.85rem; color: #666;">Documentación y guías para el área administrativa.</p>
-                <a href="#" class="btn">📂 (Próximamente)</a>
-                <div onclick="accesoExamen('examen-admin.html')" class="btn btn-ex" style="margin-top:15px;">📝 Evaluación</div>
-            </div>
+<div class="card">
+    <span class="tag">Contaduría Pública y Auditoría</span>
+    <h3>Derecho Tributario II</h3>
+    <p style="font-size: 0.85rem; color: #666;">
+        Legislación y procesos tributarios.
+    </p>
 
-            <div class="card">
-                <span class="tag">Contaduría Pública y Auditoría</span>
-                <h3>Derecho Tributario II</h3>
-                <p style="font-size: 0.85rem; color: #666;">Legislación y procesos tributarios.</p>
-                <a href="#" class="btn">📜 (Próximamente)</a>
-                <div onclick="accesoExamen('examen-tributario.html')" class="btn btn-ex" style="margin-top:15px;">📝 Evaluación</div>
-            </div>
-        </div>
-    </div>
+    <a href="auditoria_tributaria/clase1.html" class="btn">
+        📜 Clase 1 – Introducción
+    </a>
 
-    <div id="Doctorado" class="tabcontent">
-        <div class="card" style="text-align: center;">
-            <h3>🎓 Doctorado en Derecho Procesal Constitucional</h3>
-            <p>Espacio para la gestión de investigación doctoral.</p>
-            <a href="https://github.com/" target="_blank" class="btn">➕ Gestionar Archivos Doctoral</a>
-        </div>
-    </div>
+    <a href="auditoria_tributaria/clase2.html"
+       class="btn"
+       id="clase2"
+       style="display:none;">
+        📜 Clase 2 – Hecho Generador
+    </a>
 
-    <div id="Herramientas" class="tabcontent">
-        <div class="grid">
-            <div class="card">
-                <h3>🤖 Inteligencia Artificial</h3>
-                <a href="https://notebooklm.google.com/" target="_blank" class="btn" style="background:#e8f0fe; color:#1967d2;">Abrir NotebookLM</a>
-            </div>
-            <div class="card">
-                <h3>☁️ Almacenamiento</h3>
-                <a href="https://drive.google.com/" target="_blank" class="btn" style="background:#e6ffed; color:#22863a;">Ir a Google Drive</a>
-            </div>
-        </div>
+    <a href="auditoria_tributaria/clase3.html"
+       class="btn"
+       id="clase3"
+       style="display:none;">
+        📜 Clase 3 – Determinación
+    </a>
+
+    <a href="auditoria_tributaria/clase4.html"
+       class="btn"
+       id="clase4"
+       style="display:none;">
+        📜 Clase 4 – Fiscalización
+    </a>
+
+    <div onclick="accesoExamen('auditoria_tributaria/examen-tributario.html')"
+         class="btn btn-ex"
+         style="margin-top:15px;">
+         📝 Evaluación
     </div>
 </div>
 
-<footer>
-    <strong>Magíster Artium José Benjamín García Santa Cruz</strong><br>
-    Abogado y Notario | Economista Colegiado 19062<br>
-    Guatemala, 2026
-</footer>
+</div>
+
+<script>
+
+function accesoExamen(url) {
+    var pass = prompt("🔐 TOKEN DE EXAMEN REQUERIDO:");
+    if (pass === "Examen2026") {
+        window.location.href = url;
+    } else {
+        alert("Acceso denegado.");
+    }
+}
+
+window.addEventListener("load", function() {
+
+    var hoy = new Date();
+
+    var fechaClase2 = new Date("2026-03-01");
+    var fechaClase3 = new Date("2026-03-08");
+    var fechaClase4 = new Date("2026-03-15");
+
+    if (hoy >= fechaClase2) {
+        document.getElementById("clase2").style.display = "block";
+    }
+
+    if (hoy >= fechaClase3) {
+        document.getElementById("clase3").style.display = "block";
+    }
+
+    if (hoy >= fechaClase4) {
+        document.getElementById("clase4").style.display = "block";
+    }
+
+});
+
+</script>
 
 </body>
 </html>
