@@ -3,13 +3,49 @@
 <head>
 <meta charset="UTF-8">
 <title>Derecho Tributario II</title>
+<style>
+body{font-family:Arial;background:#f4f6f9;padding:40px;}
+.btn{display:block;margin:10px 0;padding:12px;background:#1a3a5f;color:white;text-decoration:none;border-radius:6px;}
+.btn-disabled{background:#ccc;color:#666;cursor:not-allowed;}
+</style>
 </head>
 <body>
+
 <h2>Derecho Tributario II</h2>
 
-<a href="1%20Clase%20Derecho%20Tributario%20II.html">Clase 1</a>
-<a href="2%20Clase%20Derecho%20Tributario%20II.html">Clase 2</a>
+<div id="clases"></div>
+
+<script>
+
+const fechasPublicacion = [
+"2026-02-15",
+"2026-02-22",
+"2026-03-01",
+"2026-03-08",
+"2026-03-15"
+];
+
+window.addEventListener("load", function(){
+
+    const hoy = new Date();
+    let contenido = "";
+
+    for(let i=0;i<fechasPublicacion.length;i++){
+
+        const numero = i+1;
+        const fecha = new Date(fechasPublicacion[i]);
+
+        if(hoy >= fecha){
+            contenido += `<a class="btn" href="${numero}%20Clase%20Derecho%20Tributario%20II.html">Clase ${numero}</a>`;
+        } else {
+            contenido += `<div class="btn btn-disabled">Clase ${numero} – Próximamente</div>`;
+        }
+    }
+
+    document.getElementById("clases").innerHTML = contenido;
+});
+
+</script>
 
 </body>
 </html>
-
