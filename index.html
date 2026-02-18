@@ -83,7 +83,8 @@ window.addEventListener("load", function(){
 </body>
 <script>
 
-// Fechas DOMINGO de publicación
+document.addEventListener("DOMContentLoaded", function(){
+
 const fechasPublicacion = [
 "2026-02-15",
 "2026-02-22",
@@ -102,25 +103,35 @@ const fechasPublicacion = [
 "2026-06-14"
 ];
 
-// Obtener nombre del archivo
 const nombreArchivo = window.location.pathname.split("/").pop();
-
-// Extraer número al inicio (ej: "5 Clase...")
 const match = nombreArchivo.match(/^(\d+)/);
 
 if (match) {
+
     const numeroClase = parseInt(match[1]);
     const fechaPublicacion = new Date(fechasPublicacion[numeroClase - 1]);
     const hoy = new Date();
 
     if (hoy < fechaPublicacion) {
-        document.body.innerHTML = `
-            <div style="font-family:Arial; text-align:center; margin-top:100px;">
-                <h2>🔒 Clase ${numeroClase} no disponible</h2>
-                <p>Esta clase estará disponible el domingo ${fechaPublicacion.toLocaleDateString('es-ES',{day:'numeric', month:'long'})}.</p>
-            </div>
+
+        document.body.innerHTML = "";
+        document.body.style.background = "#f4f6f9";
+
+        const contenedor = document.createElement("div");
+        contenedor.style.fontFamily = "Arial";
+        contenedor.style.textAlign = "center";
+        contenedor.style.marginTop = "120px";
+
+        contenedor.innerHTML = `
+            <h2>🔒 Clase ${numeroClase} no disponible</h2>
+            <p>Disponible el domingo ${fechaPublicacion.toLocaleDateString('es-ES',{day:'numeric', month:'long'})}.</p>
         `;
+
+        document.body.appendChild(contenedor);
     }
 }
+
+});
+
 </script>
 </html>
