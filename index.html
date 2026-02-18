@@ -16,13 +16,55 @@ header{
     background:linear-gradient(135deg,#1a3a5f,#2c5c8a);
     color:white;
     text-align:center;
-    padding:50px 20px;
+    padding:60px 20px;
+}
+
+header h1{
+    margin:0;
+    font-size:30px;
+    letter-spacing:1px;
+}
+
+header p{
+    margin-top:10px;
+    opacity:0.9;
 }
 
 .container{
     max-width:1000px;
     margin:auto;
     padding:40px 20px;
+}
+
+.bio{
+    background:white;
+    padding:40px;
+    border-radius:14px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.08);
+    margin-bottom:50px;
+    line-height:1.7;
+}
+
+.profile{
+    display:flex;
+    flex-wrap:wrap;
+    gap:30px;
+    align-items:center;
+}
+
+.profile img{
+    width:220px;
+    border-radius:12px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.15);
+}
+
+.profile-text{
+    flex:1;
+}
+
+.profile-text h2{
+    margin-top:0;
+    color:#1a3a5f;
 }
 
 .grid{
@@ -43,14 +85,14 @@ header{
 }
 
 .card:hover{
-    transform:translateY(-5px);
-    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+    transform:translateY(-6px);
+    box-shadow:0 12px 28px rgba(0,0,0,0.15);
 }
 
 footer{
     text-align:center;
-    padding:20px;
-    color:#888;
+    padding:25px;
+    color:#777;
 }
 </style>
 </head>
@@ -59,10 +101,34 @@ footer{
 
 <header>
 <h1>Institutum Iuris Oeconomiae et Rei Publicae</h1>
-<p>Plataforma Académica Oficial</p>
+<p>Per dialogum ad veritatem</p>
 </header>
 
 <div class="container">
+
+<div class="bio">
+<div class="profile">
+
+<img src="img/perfil.jpg" alt="Director Académico">
+
+<div class="profile-text">
+<h2>Dirección Académica</h2>
+
+<p>
+Economista, abogado y notario. Maestro en Ciencias Jurídicas y Sociales, con pensum cerrado en Maestría en Administración Financiera. Actualmente doctorando en Derecho Procesal Constitucional.
+</p>
+
+<p>
+Mi visión de la enseñanza se nutre de la tradición filosófica occidental: desde el tránsito del mito al logos en los presocráticos —con Thales y Heráclito— pasando por la dialéctica de Sócrates y la sistematicidad de Aristóteles, hasta la ética del deber en Kant, la historicidad del espíritu en Hegel, la crítica radical de Nietzsche y la conciencia del absurdo en Camus.
+</p>
+
+<p>
+Desde el tránsito del mito al logos hasta la crítica moderna de la razón, la filosofía nos ha enseñado que pensar es un acto de valentía. Bajo esa premisa, la técnica socrática orienta mi labor docente: el conocimiento no se transmite, se conquista mediante el diálogo. El derecho exige precisión técnica, pero también profundidad filosófica; solo así puede trascender la literalidad normativa y convertirse en herramienta de justicia.
+</p>
+
+</div>
+</div>
+</div>
 
 <div class="grid">
 
@@ -83,7 +149,7 @@ footer{
 </div>
 
 <footer>
-JBGSC – Educación Jurídica y Económica
+JBGSC – Formación Jurídica, Económica y Constitucional
 </footer>
 
 </body>
