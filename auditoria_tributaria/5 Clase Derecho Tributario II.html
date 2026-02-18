@@ -389,4 +389,53 @@
 </div>
 
 </body>
+    <script>
+
+document.addEventListener("DOMContentLoaded", function(){
+
+const fechasPublicacion = [
+"2026-02-15",
+"2026-02-22",
+"2026-03-01",
+"2026-03-08",
+"2026-03-15",
+"2026-03-29",
+"2026-04-12",
+"2026-04-19",
+"2026-04-26",
+"2026-05-03",
+"2026-05-17",
+"2026-05-24",
+"2026-05-31",
+"2026-06-07",
+"2026-06-14"
+];
+
+const nombreArchivo = window.location.pathname.split("/").pop();
+const match = nombreArchivo.match(/^(\d+)/);
+
+if (match) {
+
+    const numeroClase = parseInt(match[1]);
+
+    const hoy = new Date();
+    const hoySoloFecha = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate());
+
+    const partes = fechasPublicacion[numeroClase - 1].split("-");
+    const fechaPublicacion = new Date(partes[0], partes[1]-1, partes[2]);
+
+    if (hoySoloFecha < fechaPublicacion) {
+
+        document.body.innerHTML = `
+            <div style="font-family:Arial; text-align:center; margin-top:120px;">
+                <h2>🔒 Clase ${numeroClase} no disponible</h2>
+                <p>Disponible el domingo ${fechaPublicacion.toLocaleDateString('es-ES',{day:'numeric', month:'long'})}.</p>
+            </div>
+        `;
+    }
+}
+
+});
+
+</script>
 </html>
