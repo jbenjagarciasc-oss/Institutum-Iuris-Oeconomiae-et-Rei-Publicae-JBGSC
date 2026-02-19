@@ -1,0 +1,464 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clase 1: Fundamentos Constitucionales y Clasificación | Derecho Tributario II</title>
+<style>
+    :root {
+        --ur-blue: #003366;
+        --ur-orange: #ea580c;
+        --ur-gray: #f3f4f6;
+        --text-dark: #1f2937;
+        --white: #ffffff;
+        --alert-yellow: #fff3cd;
+        --alert-border: #ffecb5;
+    }
+    body {
+        font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+        background-color: var(--ur-gray);
+        color: var(--text-dark);
+        margin: 0;
+        padding: 20px;
+        line-height: 1.6;
+    }
+    .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        background: var(--white);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        border-radius: 8px;
+        overflow: hidden;
+        border-top: 8px solid var(--ur-blue);
+    }
+    /* ENCABEZADO */
+    header {
+        background: linear-gradient(135deg, var(--ur-blue) 0%, #004080 100%);
+        color: var(--white);
+        padding: 3rem 2rem;
+        text-align: center;
+        border-bottom: 4px solid var(--ur-orange);
+    }
+    header h1 { margin: 0; font-size: 2.2rem; text-transform: uppercase; letter-spacing: 2px; }
+    header h2 { font-family: 'Georgia', serif; font-style: italic; font-weight: normal; margin-top: 10px; opacity: 0.95; }
+    .meta-info { background: rgba(255,255,255,0.15); padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; display: inline-block; margin-bottom: 10px; }
+
+    /* SECCIONES NUMERADAS */
+    .section { padding: 40px; border-bottom: 1px solid #e5e7eb; }
+    .section-title {
+        color: var(--ur-blue);
+        font-size: 1.6rem;
+        border-left: 6px solid var(--ur-orange);
+        padding-left: 15px;
+        margin-bottom: 25px;
+        text-transform: uppercase;
+        font-weight: 800;
+        display: flex;
+        align-items: center;
+    }
+    .section-title span {
+        background: var(--ur-blue); color: white; width: 35px; height: 35px;
+        display: flex; align-items: center; justify-content: center;
+        border-radius: 50%; margin-right: 15px; font-size: 1.1rem;
+    }
+
+    /* NOTAS TÉCNICAS (ALERTAS) */
+    .tech-note {
+        background-color: var(--alert-yellow);
+        border: 1px solid var(--alert-border);
+        padding: 15px;
+        border-radius: 6px;
+        margin-bottom: 20px;
+        font-size: 0.9rem;
+        border-left: 4px solid #ffc107;
+        color: #856404;
+    }
+    .tech-note strong { text-transform: uppercase; display: block; margin-bottom: 5px;}
+
+    /* REGLAS */
+    .rules-box { background: #fff7ed; border: 1px solid #fdba74; padding: 25px; border-radius: 8px; }
+    .rule-item { margin-bottom: 15px; padding-left: 15px; border-left: 4px solid var(--ur-orange); }
+    .rule-item strong { color: var(--ur-blue); display: block; font-size: 1.05rem; margin-bottom: 5px; }
+
+    /* MÓDULOS DESPLEGABLES */
+    details {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 6px;
+        margin-bottom: 10px;
+        overflow: hidden;
+    }
+    summary {
+        background: var(--ur-blue);
+        color: white;
+        padding: 15px;
+        cursor: pointer;
+        font-weight: bold;
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    summary::after { content: "+"; font-size: 1.2rem; }
+    details[open] summary::after { content: "-"; }
+    .module-content { padding: 20px; color: #4b5563; }
+
+    /* MAPA MENTAL */
+    .mind-map { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-top: 20px; }
+    .map-node {
+        flex: 1; min-width: 250px;
+        background: white; border: 2px solid var(--ur-blue);
+        border-radius: 8px; padding: 15px;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        transition: transform 0.2s;
+    }
+    .map-node:hover { transform: translateY(-5px); border-color: var(--ur-orange); }
+    .map-node strong { display: block; color: var(--ur-blue); margin-bottom: 8px; text-transform: uppercase; }
+    .map-def { font-size: 0.9rem; font-style: italic; color: #555; background: #f9f9f9; padding: 8px; border-radius: 4px; }
+
+    /* PRAXIS - EJERCICIOS */
+    .praxis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .case-card { border: 1px solid #ddd; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; }
+    .case-header { padding: 10px 15px; font-weight: bold; color: white; text-align: center; }
+    .bg-blue { background: var(--ur-blue); }
+    .bg-orange { background: var(--ur-orange); }
+    .case-body { padding: 20px; background: white; flex-grow: 1; }
+    .solution { display: none; margin-top: 15px; padding: 10px; background: #eff6ff; border-left: 4px solid var(--ur-blue); font-size: 0.9rem; }
+    
+    /* BOTON VER RESPUESTA */
+    .btn-reveal {
+        background: #e5e7eb; border: none; width: 100%; padding: 10px;
+        cursor: pointer; font-weight: bold; color: var(--text-dark); margin-top: 15px;
+        transition: background 0.3s; border-radius: 4px;
+    }
+    .btn-reveal:hover { background: var(--ur-orange); color: white; }
+
+    /* TABLA EVALUACIONES */
+    .exam-table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.95rem; }
+    .exam-table th { background-color: var(--ur-blue); color: white; padding: 12px; text-align: left; }
+    .exam-table td { border: 1px solid #e2e8f0; padding: 10px; }
+    .exam-table tr:nth-child(even) { background-color: #f8fafc; }
+    .exam-date { color: var(--ur-orange); font-weight: bold; }
+
+    /* BIBLIOGRAFIA */
+    .biblio-list { font-size: 0.85rem; color: #4b5563; }
+    .biblio-list li { margin-bottom: 8px; }
+    .homework-box { background: var(--ur-blue); color: white; padding: 30px; text-align: center; border-radius: 0 0 8px 8px; }
+    .date-badge { background: var(--ur-orange); padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; }
+
+    @media (max-width: 768px) {
+        .praxis-grid, .biblio-list { grid-template-columns: 1fr; columns: 1; }
+    }
+
+</style>
+<script>
+    function toggleSolution(id) {
+        var x = document.getElementById(id);
+        if (x.style.display === "block") { x.style.display = "none"; } 
+        else { x.style.display = "block"; }
+    }
+</script>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- ENCABEZADO -->
+    <header>
+        <div class="meta-info">SÉPTIMO SEMESTRE</div>
+        <h1>Derecho Tributario II</h1>
+        <h2>Cátedra: Magister José Benjamín García Santa Cruz</h2>
+        <div style="margin-top: 20px; font-size: 0.9rem;">
+            Licenciatura en Contaduría Pública y Auditoría<br>
+            Universidad Regional | Sede San Raymundo | Fecha: Sábado 7 de Febrero de 2026
+        </div>
+    </header>
+
+    <!-- 1. INTRODUCCIÓN -->
+    <section class="section">
+        <div class="section-title"><span>1</span>INTRODUCCIÓN: DE LA INTUICIÓN A LA CIENCIA</div>
+        <p>
+            Futuros colegas profesionales, ¿vienen ustedes a opinar (Doxa) sobre impuestos o a demostrar técnicamente (Episteme) la legalidad del tributo? La auditoría fiscal no es democracia de opiniones, es aristocracia de pruebas y fundamentos legales.
+        </p>
+        <p>
+            Según nuestro programa oficial, este curso une la teoría económica con la estructura jurídica. No quiero "creencias" sobre si un impuesto es justo o no; quiero artículos del Código Tributario y definiciones de la Doctrina.
+        </p>
+
+        <!-- COORDINADOR -->
+        <div style="text-align:center; margin: 30px 0; padding: 15px; background: #eef2ff; border: 1px dashed var(--ur-blue); border-radius: 6px; color: var(--ur-blue);">
+            <strong>★ DESIGNACIÓN DEL COORDINADOR DE CLASE ★</strong><br>
+            <span style="font-size: 0.9rem;">(Acto administrativo inmediato para enlace académico)</span>
+        </div>
+
+        <h3 style="color: var(--ur-blue);">LAS 5 REGLAS DE ORO DE LA CÁTEDRA (Adaptación Fiscal)</h3>
+        <div class="rules-box">
+            <div class="rule-item">
+                <strong>1. CERO GERUNDIOS (Precisión Técnica):</strong>
+                Prohibido el lenguaje vago. En auditoría se habla con precisión: "se determinó", "se liquidó", "se verificó".
+            </div>
+            <div class="rule-item">
+                <strong>2. CERO SUBJETIVIDAD (Objetividad Legal):</strong>
+                Eliminen "yo creo", "es injusto". La auditoría es ciencia basada en evidencia. Solo hechos probados y datos sustentados.
+            </div>
+            <div class="rule-item">
+                <strong>3. CERO ADJETIVOS VAGOS (Cuantificación):</strong>
+                Nada de "impuestos altos". Usen datos métricos precisos: "Alícuota del 12%", "Multa del 100%".
+            </div>
+            <div class="rule-item">
+                <strong>4. CERO "ETCÉTERA" (Principio de Legalidad):</strong>
+                En materia tributaria rige la estricta legalidad. Las listas de hechos generadores son taxativas.
+            </div>
+            <div class="rule-item">
+                <strong>5. PROPIEDAD INTELECTUAL (Fundamento Doctrinario):</strong>
+                En sus dictámenes, usted no opina; usted cita la Ley o la Doctrina (Villegas, Jarach).
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. PROGRAMA DEL CURSO (MÓDULOS) -->
+    <section class="section">
+        <div class="section-title"><span>2</span>PROGRAMA DEL CURSO Y RUTA CRÍTICA</div>
+        <p>Estructura alineada al Programa Oficial de la Universidad Regional.</p>
+
+        <details>
+            <summary>MÓDULO I: TEORÍA GENERAL DE LA TRIBUTACIÓN (Unidad 1)</summary>
+            <div class="module-content">
+                <p><strong>Objetivo:</strong> Conocer la naturaleza del tributo y sus especies.</p>
+                <ul>
+                    <li>Concepto y Naturaleza del Tributo (Villegas/Jarach).</li>
+                    <li>Clasificación Legal en Guatemala: Impuestos, Arbitrios y Contribuciones (Dec. 6-91).</li>
+                    <li>Poder Tributario y sus límites constitucionales (Principios de Legalidad y Capacidad de Pago).</li>
+                </ul>
+            </div>
+        </details>
+
+        <details>
+            <summary>MÓDULO II: RELACIÓN JURÍDICO-TRIBUTARIA (Unidad 2)</summary>
+            <div class="module-content">
+                <p><strong>Objetivo:</strong> Identificar los elementos de la obligación sustantiva.</p>
+                <ul>
+                    <li>El Hecho Generador: El presupuesto legal (Art. 31 C.Trib).</li>
+                    <li>Sujetos: Activo (Estado) y Pasivo (Contribuyente/Responsable).</li>
+                    <li>Exenciones y beneficios fiscales (Doctrina y Ley).</li>
+                </ul>
+            </div>
+        </details>
+
+        <details>
+            <summary>MÓDULO III: EXTINCIÓN Y EL ILÍCITO TRIBUTARIO (Unidad 3)</summary>
+            <div class="module-content">
+                <p><strong>Objetivo:</strong> Manejar las formas de pago y evitar sanciones.</p>
+                <ul>
+                    <li>Formas de extinción: Pago, Prescripción, Compensación, Condonación.</li>
+                    <li>Ilícito Tributario: Infracciones, Sanciones, Evasión y Defraudación.</li>
+                </ul>
+            </div>
+        </details>
+
+        <br>
+        <h3 style="color: var(--ur-orange); border-bottom: 2px solid var(--ur-blue); padding-bottom: 10px;">RUTA CRÍTICA DE EVALUACIONES (2026)</h3>
+        <table class="exam-table">
+            <thead>
+                <tr>
+                    <th>EVENTO</th>
+                    <th>FECHA CRÍTICA</th>
+                    <th>COBERTURA</th>
+                    <th>PONDERACIÓN</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>PRIMER PARCIAL</strong></td>
+                    <td class="exam-date">21 DE MARZO</td>
+                    <td>Clases 1 a 6</td>
+                    <td>20 Puntos (10 Examen + 10 Trabajo)</td>
+                </tr>
+                <tr>
+                    <td><em>Feriado (Semana Santa)</em></td>
+                    <td><em>4 de Abril</em></td>
+                    <td><em>Sábado de Gloria (Sin Clase)</em></td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td><strong>SEGUNDO PARCIAL</strong></td>
+                    <td class="exam-date">9 DE MAYO</td>
+                    <td>Clases 7 a 11</td>
+                    <td>20 Puntos (10 Examen + 10 Trabajo)</td>
+                </tr>
+                <tr>
+                    <td><strong>EXAMEN FINAL</strong></td>
+                    <td class="exam-date">20 DE JUNIO</td>
+                    <td>Clases 12 a 15 (Acumulativo)</td>
+                    <td>40 Puntos (20 Examen + 20 Trabajo)</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- 3. MAPA MENTAL -->
+    <section class="section">
+        <div class="section-title"><span>3</span>MAPA MENTAL: ESTRUCTURA JURÍDICA</div>
+        
+        <!-- ADVERTENCIA TÉCNICA MOVIDA AQUÍ PARA MAYOR IMPACTO CONTEXTUAL -->
+        <div class="tech-note">
+            <strong>⚠ ADVERTENCIA TÉCNICA (AUDITORÍA):</strong>
+            El auditor debe distinguir entre DOCTRINA y LEY POSITIVA. En los libros de Villegas leerán sobre "Tasas", pero en el <strong>Código Tributario de Guatemala (Decreto 6-91, Art. 10)</strong> las clases de tributos son taxativamente: Impuestos, Arbitrios, Contribuciones Especiales y por Mejoras. La "Tasa" no aparece como categoría autónoma en el Código, aunque sí en la doctrina y leyes municipales.
+        </div>
+
+        <div class="mind-map">
+            <div class="map-node">
+                <strong>FINANZAS PÚBLICAS</strong>
+                <div class="map-def">
+                    El Género (Actividad del Estado para obtener ingresos y realizar gastos) [Villegas].
+                </div>
+            </div>
+            <div class="map-node">
+                <strong>DERECHO TRIBUTARIO</strong>
+                <div class="map-def">
+                    La Especie (Normas que regulan la relación fisco-contribuyente).
+                </div>
+            </div>
+            <div class="map-node">
+                <strong>ESPECIES (DOCTRINA)</strong>
+                <div class="map-def">
+                    Impuestos, Tasas y Contribuciones [Villegas].
+                </div>
+            </div>
+            <div class="map-node">
+                <strong>ESPECIES (LEY GT)</strong>
+                <div class="map-def">
+                    Impuestos, Arbitrios y Contribuciones [Dec. 6-91, Art. 10].
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. PRAXIS: DIALÉCTICA Y CONTRADICCIÓN -->
+    <section class="section">
+        <div class="section-title"><span>4</span>PRAXIS: DIALÉCTICA Y CONTRADICCIÓN</div>
+        <p>Instrucción: Aplicaremos la dialéctica (Pretensión Fiscal vs Defensa) para encontrar la síntesis jurídica.</p>
+        <div class="praxis-grid">
+            
+            <!-- CASO 1 -->
+            <div class="case-card">
+                <div class="case-header bg-blue">CASO 1: EL COBRO MUNICIPAL</div>
+                <div class="case-body">
+                    <p><strong>Tesis (Municipalidad):</strong> Cobra Q.50.00 a todos los vecinos por "limpieza del aire", alegando que es una Tasa por servicio.</p>
+                    <p><strong>Antítesis (Defensa):</strong> No hay contraprestación individualizada. Es un cobro general obligatorio.</p>
+                    <p><em>Pregunta Técnica: ¿Cuál es la naturaleza jurídica real del cobro?</em></p>
+                    <button class="btn-reveal" onclick="toggleSolution('sol1')">VER SÍNTESIS TÉCNICA ▼</button>
+                    <div id="sol1" class="solution">
+                        <strong>ES UN ARBITRIO ILEGAL.</strong>
+                        <br>Al ser un cobro general, obligatorio y sin contraprestación individualizada, NO es una Tasa (doctrina). Jurídicamente encuadra como <strong>ARBITRIO</strong> (según el Art. 12 del Código Tributario).
+                        <br><em>Ilegalidad:</em> Al ser materialmente un Arbitrio, su creación compete exclusivamente al Congreso de la República (Art. 239 Constitución). Si lo creó el Concejo Municipal, es inconstitucional por carecer de fundamento legal suficiente.
+                    </div>
+                </div>
+            </div>
+
+            <!-- CASO 2 -->
+            <div class="case-card">
+                <div class="case-header bg-orange">CASO 2: PRINCIPIO DE LEGALIDAD</div>
+                <div class="case-body">
+                    <p><strong>Tesis (Ejecutivo):</strong> Decreta un "Aporte Solidario" por emergencia mediante Acuerdo Gubernativo, definiendo quién paga y cuánto.</p>
+                    <p><strong>Antítesis (Contribuyente):</strong> Alega inconstitucionalidad por violación a la Reserva de Ley.</p>
+                    <p><em>Pregunta: ¿Qué elementos específicos se violaron?</em></p>
+                    <button class="btn-reveal" onclick="toggleSolution('sol2')">VER SÍNTESIS TÉCNICA ▼</button>
+                    <div id="sol2" class="solution">
+                        <strong>VIOLACIÓN AL ART. 239 CPRG (RESERVA DE LEY).</strong>
+                        <br>No basta decir "es ilegal". Se violó la reserva de ley en sus aspectos esenciales. Solo el Congreso puede decretar:
+                        <br>1. El <strong>Hecho Generador</strong> (causa).
+                        <br>2. Las <strong>Exenciones</strong>.
+                        <br>3. El <strong>Sujeto Pasivo</strong> (quién paga).
+                        <br>4. La <strong>Base Imponible</strong> y el <strong>Tipo Impositivo</strong> (cuánto paga).
+                        <br>Un Acuerdo Gubernativo es jerárquicamente inferior y no puede crear estos elementos.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 5. ACERVO BIBLIOGRÁFICO -->
+    <section class="section">
+        <div class="section-title"><span>5</span>ACERVO BIBLIOGRÁFICO INTEGRAL</div>
+        <div class="rules-box" style="background-color: #f0f4ff; border-color: var(--ur-blue);">
+            <p style="margin-top: 0; font-weight: bold; color: var(--ur-blue);">FUENTES PRIMARIAS (NORMATIVA):</p>
+            <ul class="biblio-list">
+                <li><strong>Constitución Política de la República de Guatemala.</strong> Asamblea Nacional Constituyente (1985). [Arts. 37, 239, 243, 255].</li>
+                <li><strong>Decreto Número 6-91.</strong> Código Tributario del Congreso de la República de Guatemala (1991). [Arts. 10-14, 31, 66-94].</li>
+                <li><strong>Decreto Número 12-2002.</strong> Código Municipal del Congreso de la República de Guatemala (2002). [Arts. 35, 72, 100: Tasas].</li>
+                <li><strong>Decreto Número 10-2012.</strong> Ley de Actualización Tributaria (ISR) del Congreso de la República de Guatemala (2012).</li>
+                <li><strong>Decreto Número 27-92.</strong> Ley del Impuesto al Valor Agregado (IVA) del Congreso de la República de Guatemala (1992).</li>
+            </ul>
+            
+            <p style="margin-top: 20px; font-weight: bold; color: var(--ur-blue);">FUENTES DOCTRINARIAS (TEORÍA):</p>
+            <ul class="biblio-list">
+                <li><strong>Villegas, Héctor Belisario.</strong> (2016). <em>Curso de finanzas, derecho financiero y tributario</em> (10ª ed.). Buenos Aires: Astrea. [Texto Guía: Teoría General].</li>
+                <li><strong>Jarach, Dino.</strong> (1996). <em>Finanzas Públicas y Derecho Tributario</em>. Buenos Aires: Abeledo-Perrot. [Teoría del Hecho Imponible].</li>
+                <li><strong>García Zea, Arlen Luisamanda.</strong> (2024). <em>La fluctuación tributaria por las organizaciones no lucrativas sobre los beneficios de exoneraciones de impuestos que regula el ordenamiento jurídico guatemalteco</em> (Tesis de Maestría). Universidad de San Carlos de Guatemala (USAC). [Contexto Nacional].</li>
+                <li><strong>Corte de Constitucionalidad de Guatemala.</strong> <em>Expedientes Acumulados 2843-2014</em>. [Jurisprudencia sobre Tasas vs. Arbitrios].</li>
+            </ul>
+
+            <p style="margin-top: 20px; font-weight: bold; color: var(--ur-blue);">CRITERIOS INSTITUCIONALES (SAT):</p>
+            <ul class="biblio-list">
+                <li><strong>SAT.</strong> (2023). <em>Criterio Tributario Institucional No. 01-2023</em>. "Pagos recibidos por anticipado para servicios futuros y la emisión de factura".</li>
+                <li><strong>SAT.</strong> (2023). <em>Criterio Tributario Institucional No. 02-2023</em>. "Acreditamiento del ISO pagado en forma extemporánea".</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- 6. LÉXICO TÉCNICO -->
+    <section class="section">
+        <div class="section-title"><span>6</span>LÉXICO TÉCNICO: ETIMOLOGÍA Y EPISTEMOLOGÍA</div>
+        
+        <div style="background: #f9f9f9; padding: 25px; border-radius: 8px; border-left: 5px solid var(--ur-blue);">
+            <ul style="list-style: none; padding: 0;">
+                
+                <li style="margin-bottom: 20px; border-bottom: 1px dashed #ccc; padding-bottom: 15px;">
+                    <strong style="color: var(--ur-blue); font-size: 1.1rem;">1. HECHO GENERADOR</strong><br>
+                    <span style="color: var(--ur-orange); font-weight: bold;">Etimología:</span> <em>Factum</em> (hecho) + <em>Generare</em> (crear).<br>
+                    <span style="color: var(--text-dark); font-weight: bold;">Definición Legal (Art. 31 C.Trib):</span> "Hecho generador o hecho imponible es el <strong>presupuesto establecido por la ley</strong>, para tipificar el tributo y cuya realización origina el nacimiento de la obligación tributaria". (Es un presupuesto normativo, no solo económico).
+                </li>
+
+                <li style="margin-bottom: 20px; border-bottom: 1px dashed #ccc; padding-bottom: 15px;">
+                    <strong style="color: var(--ur-blue); font-size: 1.1rem;">2. ARBITRIO (vs. TASA)</strong><br>
+                    <span style="color: var(--ur-orange); font-weight: bold;">Etimología:</span> <em>Arbitrium</em> (facultad de decidir).<br>
+                    <span style="color: var(--text-dark); font-weight: bold;">Definición Legal (Art. 12 C.Trib):</span> "Arbitrio es el impuesto decretado por ley a favor de una o varias municipalidades". (Nótese: La ley guatemalteca usa 'Arbitrio' donde la doctrina a veces confunde con 'Tasa' o 'Impuesto local').
+                </li>
+
+                <li style="margin-bottom: 20px; border-bottom: 1px dashed #ccc; padding-bottom: 15px;">
+                    <strong style="color: var(--ur-blue); font-size: 1.1rem;">3. TRIBUTO</strong><br>
+                    <span style="color: var(--ur-orange); font-weight: bold;">Etimología:</span> <em>Tributum</em> (reparto entre tribus).<br>
+                    <span style="color: var(--text-dark); font-weight: bold;">Epistemología:</span> Prestaciones comúnmente en dinero que el Estado exige en ejercicio de su poder tributario, con el objeto de obtener recursos para el cumplimiento de sus fines (Art. 9 C.Trib).
+                </li>
+
+            </ul>
+        </div>
+    </section>
+
+    <!-- 7. TAREA -->
+    <section class="section" style="padding: 0; border: none;">
+        <div class="homework-box">
+            <h3 style="margin-top:0;">7. LABOR DOMICILIARIA: TAREA APLICADA</h3>
+            <span class="date-badge">ENTREGA: 14 DE FEBRERO</span>
+            
+            <div style="text-align: left; margin-top: 20px; background: rgba(255,255,255,0.1); padding: 20px; border-radius: 8px;">
+                <p><strong>1. Lectura Técnica:</strong> Lea el Art. 10 del Código Tributario y compárelo con la clasificación de Villegas (Págs. 119-145). Identifique qué categoría falta en la ley guatemalteca.</p>
+                <p><strong>2. Cuadro Sinóptico:</strong> Diferencie <strong>IMPUESTO, ARBITRIO y CONTRIBUCIÓN ESPECIAL</strong> según los artículos 11, 12 y 13 del Decreto 6-91.</p>
+                <p><strong>3. Análisis de Caso:</strong> Investigue si el "Boleto de Ornato" es técnicamente una Tasa (pago por servicio) o un Arbitrio (impuesto municipal). Fundamente con la Ley de Arbitrio de Ornato Municipal.</p>
+            </div>
+            
+            <p style="margin-top: 20px; font-style: italic; opacity: 0.8;">"El desconocimiento de la ley no exime de su cumplimiento, pero el conocimiento te ahorra multas."</p>
+        </div>
+    </section>
+
+    <footer style="text-align: center; padding: 20px; font-size: 0.8rem; color: #666;">
+        Derecho Tributario II - Universidad Regional de Guatemala - 2026
+    </footer>
+
+</div>
+
+</body>
+</html>
