@@ -14,37 +14,67 @@
 body {
     font-family: 'Segoe UI', sans-serif;
     margin: 0;
-    background: #f4f6f9;
-    overflow-x: hidden; /* Evita scroll horizontal */
-    position: relative; /* Necesario para las citas de fondo */
+    background: #f0f2f5; /* Un gris muy suave de fondo base */
+    overflow-x: hidden;
+    position: relative;
 }
 
-/* --- ESTILOS PARA LAS CITAS DE FONDO (MARCA DE AGUA) --- */
-.bg-quote {
-    position: fixed; /* Se quedan fijas aunque bajes con el mouse */
+/* --- CONTENEDOR DE CITAS (EL FONDO TUPIDO) --- */
+#background-quotes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Se va al fondo */
+    overflow: hidden;
+    pointer-events: none; /* Para que no interfiera con los clics */
+}
+
+/* Estilo común para todas las frases */
+.quote {
+    position: absolute;
     font-family: 'Herr Von Muellerhoff', cursive;
     color: #1a3a5f;
-    opacity: 0.05; /* Muy transparentes para no molestar */
-    z-index: -1; /* Se van al fondo, detrás de todo */
-    pointer-events: none; /* No se pueden seleccionar */
-    line-height: 1;
+    opacity: 0.12; /* AHORA SE VEN MÁS (antes 0.05) */
     white-space: nowrap;
+    user-select: none;
 }
 
-/* Posiciones específicas para cada frase */
-.q1 { top: 5%; left: -5%; font-size: 6rem; transform: rotate(-10deg); }
-.q2 { top: 20%; right: -5%; font-size: 8rem; transform: rotate(15deg); }
-.q3 { bottom: 10%; left: 2%; font-size: 5rem; transform: rotate(5deg); }
-.q4 { top: 50%; right: 10%; font-size: 4rem; transform: rotate(-5deg); }
-.q5 { bottom: 30%; left: 15%; font-size: 7rem; opacity: 0.03; }
+/* --- DISTRIBUCIÓN DE FRASES (TUPIDO) --- */
+/* Izquierda */
+.q1 { top: 2%; left: -2%; font-size: 4rem; transform: rotate(-15deg); }
+.q2 { top: 20%; left: 5%; font-size: 2.5rem; transform: rotate(5deg); }
+.q3 { top: 40%; left: -5%; font-size: 5rem; transform: rotate(-10deg); }
+.q4 { bottom: 30%; left: 2%; font-size: 3rem; transform: rotate(10deg); }
+.q5 { bottom: 5%; left: -2%; font-size: 6rem; transform: rotate(-5deg); }
 
+/* Centro (Fondo general) */
+.q6 { top: 15%; left: 40%; font-size: 3.5rem; transform: rotate(-5deg); opacity: 0.08; }
+.q7 { bottom: 20%; left: 35%; font-size: 4rem; transform: rotate(5deg); opacity: 0.08; }
+.q8 { top: 50%; left: 50%; font-size: 8rem; transform: translate(-50%, -50%) rotate(-15deg); opacity: 0.05; }
+
+/* Derecha */
+.q9 { top: 5%; right: -2%; font-size: 5rem; transform: rotate(10deg); }
+.q10 { top: 25%; right: 10%; font-size: 3rem; transform: rotate(-5deg); }
+.q11 { top: 45%; right: -5%; font-size: 4rem; transform: rotate(15deg); }
+.q12 { bottom: 35%; right: 5%; font-size: 2.5rem; transform: rotate(-10deg); }
+.q13 { bottom: 2%; right: -2%; font-size: 5rem; transform: rotate(5deg); }
+
+/* Frases extra para rellenar huecos */
+.q14 { top: 60%; right: 20%; font-size: 2rem; transform: rotate(20deg); }
+.q15 { top: 10%; left: 20%; font-size: 2rem; transform: rotate(-20deg); }
+
+
+/* --- HEADER --- */
 header {
     background: linear-gradient(135deg, #1a3a5f, #2c5c8a);
     color: white;
     text-align: center;
     padding: 60px 20px;
-    position: relative;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    position: relative;
+    z-index: 1;
 }
 
 header h1 {
@@ -57,24 +87,27 @@ header p {
     margin-top: 10px;
     opacity: 0.9;
     font-style: italic;
-    font-family: 'Times New Roman', serif; /* Un toque más clásico para el subtítulo */
+    font-family: 'Times New Roman', serif;
 }
 
 .container {
     max-width: 1000px;
     margin: auto;
     padding: 40px 20px;
+    position: relative;
+    z-index: 1;
 }
 
-/* --- PERFIL BIO --- */
+/* --- BIO --- */
 .bio {
-    background: rgba(255, 255, 255, 0.95); /* Un poco transparente para ver fondo sutilmente */
+    background: rgba(255, 255, 255, 0.92); /* Fondo blanco casi sólido para leer bien */
     padding: 40px;
     border-radius: 14px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.08);
     margin-bottom: 50px;
     line-height: 1.7;
-    backdrop-filter: blur(5px); /* Efecto vidrio esmerilado */
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255,255,255,0.5);
 }
 
 .profile {
@@ -102,7 +135,7 @@ header p {
     padding-bottom: 10px;
 }
 
-/* --- GRID DE BOTONES DESPLEGABLES --- */
+/* --- GRID DE TARJETAS --- */
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -134,7 +167,6 @@ header p {
 .category-header {
     padding: 20px;
     text-align: center;
-    position: relative;
 }
 
 .category-header h3 {
@@ -150,7 +182,7 @@ header p {
     display: block;
 }
 
-/* --- MENÚ OCULTO (CLASES) --- */
+/* --- MENÚ DESPLEGABLE --- */
 .menu-content {
     display: none;
     background: #f8f9fa;
@@ -194,13 +226,35 @@ footer {
     margin-top: 40px;
     position: relative;
     z-index: 1;
+    background: rgba(255,255,255,0.8); /* Fondo suave para leer el footer */
 }
 </style>
 </head>
 
 <body>
 
-<div class="bg-quote q1">Sapere aude</div> <div class="bg-quote q2">Iustitia est constans et perpetua voluntas</div> <div class="bg-quote q3">Panta Rhei</div> <div class="bg-quote q4">Amor Fati</div> <div class="bg-quote q5">Lex Orandi, Lex Credendi</div>
+<div id="background-quotes">
+    <div class="quote q1">Sapere aude</div>
+    <div class="quote q14">El cielo estrellado sobre mí...</div>
+    
+    <div class="quote q2">Amor Fati</div>
+    <div class="quote q9">Dios ha muerto</div>
+    <div class="quote q12">Lo que no me mata...</div>
+    
+    <div class="quote q3">Todo lo real es racional</div>
+    <div class="quote q10">El búho de Minerva...</div>
+    
+    <div class="quote q4">La banalidad del mal</div>
+    <div class="quote q11">Nadie tiene el derecho de obedecer</div>
+    
+    <div class="quote q5">Iustitia est constans</div>
+    <div class="quote q8">Pacta Sunt Servanda</div>
+    <div class="quote q13">Dura lex, sed lex</div>
+    
+    <div class="quote q6">Cogito, ergo sum</div>
+    <div class="quote q7">Panta Rhei</div>
+    <div class="quote q15">Conócete a ti mismo</div>
+</div>
 
 <header>
     <h1>Institutum Iuris Oeconomiae et Rei Publicae</h1>
@@ -227,13 +281,11 @@ footer {
     <div class="grid">
 
         <div class="category-card" onclick="toggleMenu('menu-docencia')">
-            <img src="docencia.png" alt="Docencia Universitaria" class="category-img">
-            
+            <img src="docencia.jpg" alt="Docencia Universitaria" class="category-img">
             <div class="category-header">
                 <h3>Docencia Universitaria</h3>
-                <span class="arrow">▼ Clic para ver cursos</span>
+                <span class="arrow">▼ Clic para desplegar cursos</span>
             </div>
-
             <div id="menu-docencia" class="menu-content">
                 <a class="class-link" href="auditoria_tributaria/index.html" onclick="event.stopPropagation()">
                     📘 Derecho Tributario II
@@ -248,13 +300,11 @@ footer {
         </div>
 
         <div class="category-card" onclick="toggleMenu('menu-filo')">
-            <img src="filo.png" alt="Schola Iuris et Philosophiae" class="category-img">
-            
+            <img src="filo.jpg" alt="Schola Iuris et Philosophiae" class="category-img">
             <div class="category-header">
                 <h3>Schola Iuris et Philosophiae</h3>
-                <span class="arrow">▼ Clic para ver contenido</span>
+                <span class="arrow">▼ Clic para desplegar contenido</span>
             </div>
-
             <div id="menu-filo" class="menu-content">
                 <a class="class-link" href="#" onclick="event.stopPropagation()">
                     🏛️ Biblioteca Virtual (Próximamente)
