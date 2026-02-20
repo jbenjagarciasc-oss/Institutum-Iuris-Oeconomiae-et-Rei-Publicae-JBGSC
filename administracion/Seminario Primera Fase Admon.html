@@ -1,0 +1,409 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Primer Parcial - Seminario de Tesis Admon</title>
+<style>
+    /* VARIABLES GLOBALES */
+    :root {
+        --azul: #003366;
+        --rojo: #cc0000;
+        --blanco: #fff;
+        --txt: #2c3e50;
+        --fondo: #f0f2f5;
+    }
+    
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe UI', Arial, sans-serif;
+        color: var(--txt);
+        line-height: 1.3; 
+        background-color: var(--fondo);
+        margin: 0;
+        padding: 10px;
+        font-size: 11pt; 
+    }
+
+    /* PANEL GERENCIAL (NO SE IMPRIME) */
+    .control-panel {
+        max-width: 850px;
+        margin: 0 auto 10px auto;
+        background: #eef6fc;
+        border: 2px solid var(--azul);
+        border-radius: 5px;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        font-size: 0.9em;
+    }
+    .btn {
+        padding: 8px 12px;
+        border: none;
+        border-radius: 4px;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 0.85em;
+        transition: transform 0.2s;
+        text-transform: uppercase;
+    }
+    .btn:hover { transform: scale(1.02); }
+    .btn-estudiante { background: #28a745; color: white; }
+    .btn-catedratico { background: var(--azul); color: white; }
+    .btn-pdf { background: var(--rojo); color: white; }
+
+    /* CONTENEDOR DEL EXAMEN */
+    .exam-container {
+        max-width: 850px;
+        margin: 0 auto;
+        background: var(--blanco);
+        padding: 20px 30px; 
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        border-top: 6px solid var(--azul);
+    }
+
+    /* ENCABEZADO OPTIMIZADO */
+    .header-table {
+        width: 100%;
+        margin-bottom: 10px;
+        border-bottom: 2px solid var(--azul);
+        padding-bottom: 5px;
+    }
+    .header-table td { vertical-align: middle; }
+    .logo-placeholder {
+        font-size: 20px;
+        font-weight: bold;
+        color: var(--azul);
+        text-align: center;
+        border: 2px solid var(--azul);
+        padding: 5px;
+        width: 80px;
+    }
+    .header-titles { text-align: center; }
+    .header-titles h1 { margin: 0; font-size: 1.3em; color: var(--azul); }
+    .header-titles h2 { margin: 2px 0; font-size: 1em; font-weight: normal; }
+    .header-titles p { margin: 0; font-size: 0.85em; }
+    .grade-box {
+        border: 2px solid var(--txt);
+        padding: 5px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 0.9em;
+        width: 100px;
+        background: white;
+    }
+
+    /* DATOS DEL ESTUDIANTE */
+    .student-info { width: 100%; border-collapse: collapse; margin-bottom: 15px; font-size: 0.95em; }
+    .student-info td { padding: 4px 0; border-bottom: 1px solid #999; }
+
+    /* SECCIONES DEL EXAMEN */
+    .section-header {
+        background-color: #f1f1f1;
+        border-left: 5px solid var(--azul);
+        padding: 5px 10px;
+        font-weight: bold;
+        margin: 15px 0 8px 0;
+        font-size: 1em;
+        display: flex;
+        justify-content: space-between;
+    }
+    .instruction { font-style: italic; font-size: 0.85em; margin-bottom: 8px; color: #555; }
+
+    /* PREGUNTAS OPCIÓN MÚLTIPLE */
+    .question { margin-bottom: 5px; font-weight: 600; font-size: 0.95em; page-break-inside: avoid; }
+    .options { list-style: none; padding-left: 0; margin-top: 2px; margin-bottom: 10px; page-break-inside: avoid; }
+    .options li { margin-bottom: 4px; font-weight: normal; display: flex; align-items: flex-start; font-size: 0.9em; }
+    .square {
+        width: 14px;
+        height: 14px;
+        border: 2px solid #000;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 8px;
+        margin-top: 2px;
+        flex-shrink: 0;
+        font-weight: bold;
+        color: var(--rojo);
+        background-color: white;
+        font-size: 12px;
+    }
+
+    /* REDACCIÓN TÉCNICA Y LÍNEAS EN BLANCO */
+    .writing-box { border: 1px solid #ccc; padding: 10px; background: #fafafa; margin-bottom: 10px; page-break-inside: avoid; }
+    .student-blank { width: 100%; display: block; }
+    .lines {
+        border-bottom: 1px solid #000 !important; 
+        margin-top: 25px; 
+        width: 100%;
+        height: 5px; 
+    }
+    
+    /* VISTA DE RESPUESTAS */
+    .teacher-answer {
+        display: none;
+        color: var(--rojo);
+        font-weight: bold;
+        font-style: italic;
+        margin-top: 10px;
+        padding: 5px;
+        background: #ffebeb;
+        border-left: 4px solid var(--rojo);
+        font-size: 0.9em;
+    }
+
+    /* ANÁLISIS DE ERROR */
+    .cases-container { display: flex; gap: 10px; margin-bottom: 10px; page-break-inside: avoid; }
+    .case-box { flex: 1; border: 1px solid #ccc; padding: 10px; background: white; font-size: 0.9em; }
+    .case-box h4 { text-align: center; margin: 0 0 5px 0; text-decoration: underline; color: var(--azul); font-size: 1em; }
+    .case-box p { margin: 3px 0; }
+
+    /* RECEPCIÓN DE TRABAJO */
+    .reception-box {
+        border: 2px dashed #333;
+        padding: 10px 15px;
+        margin-top: 10px;
+        position: relative;
+        background: white;
+        page-break-inside: avoid;
+    }
+    .checklist { list-style: none; padding: 0; margin-top: 5px; margin-bottom: 0; }
+    .checklist li { margin-bottom: 3px; display: flex; align-items: center; font-size: 0.85em; }
+    .score-zone {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        border: 2px solid #000;
+        padding: 5px 15px;
+        text-align: center;
+        font-weight: bold;
+        background: white;
+        font-size: 0.9em;
+    }
+
+    /* FIRMA */
+    .signature-section { margin-top: 25px; text-align: center; page-break-inside: avoid; }
+    .signature-line { width: 250px; border-top: 1px solid #000; margin: 0 auto 5px auto; }
+
+    /* ESTILOS EXCLUSIVOS PARA IMPRESIÓN / PDF (FORZAR 2 PÁGINAS) */
+    @media print {
+        @page { margin: 1.5cm; } 
+        .control-panel { display: none !important; }
+        body { background-color: white; padding: 0; font-size: 10.5pt; }
+        .exam-container { box-shadow: none; border-top: none; padding: 0; max-width: 100%; }
+        .section-header { border-left: 5px solid #000 !important; background-color: #f1f1f1 !important; margin: 10px 0 5px 0; }
+        .reception-box { border-color: #000 !important; }
+        .square { border-color: #000 !important; }
+        .writing-box { background-color: transparent !important; }
+        /* Forzar salto de página en la sección III */
+        .page-break-print { page-break-before: always; }
+    }
+</style>
+</head>
+<body>
+
+<!-- PANEL GERENCIAL -->
+<div class="control-panel no-print">
+    <div>
+        <strong>MODO ACTUAL:</strong> <span id="modo-texto" style="color:var(--azul); font-weight:bold;">VISTA ESTUDIANTE</span>
+    </div>
+    <div style="display: flex; gap: 8px;">
+        <button class="btn btn-estudiante" onclick="setView('student')">👨‍🎓 Ver Estudiante</button>
+        <button class="btn btn-catedratico" onclick="setView('teacher')">👨‍🏫 Ver Clave</button>
+        <button class="btn btn-pdf" onclick="window.print()">🖨 IMPRIMIR A 2 PÁGINAS</button>
+    </div>
+</div>
+
+<div class="exam-container">
+    
+    <!-- ENCABEZADO -->
+    <table class="header-table">
+        <tr>
+            <td style="width: 12%;">
+                <div class="logo-placeholder">UR</div>
+            </td>
+            <td style="width: 73%;" class="header-titles">
+                <h1>UNIVERSIDAD REGIONAL DE GUATEMALA</h1>
+                <h2>Sede San Raymundo | Licenciatura en Administración de Empresas</h2>
+                <p>Cátedra: <strong>Magister José Benjamín García Santa Cruz</strong> | Ciclo: Noveno</p>
+                <p>Curso: <strong>Seminario de Tesis</strong> | Fecha: 14 de Marzo de 2026</p>
+            </td>
+            <td style="width: 15%; text-align: right;">
+                <div class="grade-box">NOTA ___ / 20</div>
+            </td>
+        </tr>
+    </table>
+
+    <!-- DATOS DEL ESTUDIANTE -->
+    <table class="student-info">
+        <tr>
+            <td style="width: 70%;"><strong>Estudiante:</strong> </td>
+            <td style="width: 30%;"><strong>Carné:</strong> </td>
+        </tr>
+    </table>
+
+    <!-- SECCIÓN I -->
+    <div class="section-header">
+        <span>I. DISCRIMINACIÓN METODOLÓGICA GERENCIAL</span>
+        <span>(4 PUNTOS)</span>
+    </div>
+    <div class="instruction">Instrucción: Seleccione con una "X" la única opción correcta. (Valor: 1 pto c/u).</div>
+
+    <div class="question">1. Un error común al redactar Objetivos de tesis es confundirlos con "actividades corporativas". ¿Cuál es un OBJETIVO real de investigación?</div>
+    <ul class="options">
+        <li><span class="square"></span> a) "Diseñar e implementar un nuevo manual de ventas para ganar más dinero."</li>
+        <li><span class="square"></span> b) "Ayudar a los empleados a sentirse mejor y que la empresa sea más bonita."</li>
+        <li><span class="square correct-mark"></span> c) "Determinar los factores logísticos que inciden en el volumen de devoluciones."</li>
+    </ul>
+
+    <div class="question">2. ¿Cuál de las siguientes Preguntas de Investigación está CORRECTAMENTE DELIMITADA?</div>
+    <ul class="options">
+        <li><span class="square"></span> a) "¿Por qué quiebran tantas empresas pequeñas en nuestro país?"</li>
+        <li><span class="square correct-mark"></span> b) "¿Cuál es el impacto del sistema de incentivos en la rotación del área de ventas de Comercial X (2025)?"</li>
+        <li><span class="square"></span> c) "¿Es bueno o malo el marketing digital para que los negocios vendan mucho?"</li>
+    </ul>
+
+    <div class="question">3. En la Justificación, si argumenta que la solución de su tesis "incrementará la utilidad y reducirá costos", ¿qué criterio usa?</div>
+    <ul class="options">
+        <li><span class="square correct-mark"></span> a) Conveniencia o Retorno de Inversión (ROI) práctico.</li>
+        <li><span class="square"></span> b) Valor Epistemológico.</li>
+        <li><span class="square"></span> c) Utilidad Metodológica Cualitativa.</li>
+    </ul>
+
+    <div class="question">4. La "Viabilidad" técnica de su investigación en finanzas se ve seriamente amenazada si:</div>
+    <ul class="options">
+        <li><span class="square"></span> a) Su idea nace del "Motor de Necesidad" de una empresa.</li>
+        <li><span class="square correct-mark"></span> b) No cuenta con acceso autorizado a los Estados Financieros de la empresa.</li>
+        <li><span class="square"></span> c) Aplica el esquema causa-efecto del árbol de problemas.</li>
+    </ul>
+
+    <!-- SECCIÓN II -->
+    <div class="section-header">
+        <span>II. REDACCIÓN TÉCNICA (SÍNTOMA VS. ENFERMEDAD)</span>
+        <span>(3 PUNTOS)</span>
+    </div>
+    <div class="instruction">Instrucción: El siguiente es un deseo subjetivo de un "jefe". REESCRÍBALO como un "Objetivo de Investigación" (Regla de Oro: Verbo en infinitivo + delimitar variable + sin adjetivos vagos ni gerundios).</div>
+
+    <div class="writing-box">
+        <strong>OBJETIVO INCORRECTO:</strong> "Quiero hacer que mi personal de bodega ya no sea tan perezoso y trabaje rápido."<br>
+        <strong>SU REDACCIÓN TÉCNICA (CORREGIDA):</strong>
+        
+        <div class="student-blank">
+            <div class="lines"></div>
+            <div class="lines"></div>
+        </div>
+        
+        <div class="teacher-answer">
+            RESPUESTA ESPERADA: "Determinar los factores motivacionales y de clima organizacional que inciden en el índice de productividad del personal de bodega durante el periodo 2026."
+        </div>
+    </div>
+
+    <br><br> <!-- Las dos líneas solicitadas -->
+
+    <!-- SECCIÓN III CON SALTO DE PÁGINA OBLIGATORIO AL IMPRIMIR -->
+    <div class="section-header page-break-print">
+        <span>III. ANÁLISIS DE ERROR EN EL PLANTEAMIENTO</span>
+        <span>(3 PUNTOS)</span>
+    </div>
+    <div class="instruction">Instrucción: Analice los casos y explique POR QUÉ el planteamiento es metodológicamente incorrecto para una tesis.</div>
+
+    <div class="cases-container">
+        <!-- CASO 1 -->
+        <div class="case-box">
+            <h4>CASO DE MERCADEO</h4>
+            <p><strong>Planteamiento:</strong> "¿Haremos que la campaña sea más bonita para que a la gente le guste mucho?"</p>
+            <p><strong>Error:</strong> ¿Qué regla viola aquí?</p>
+            
+            <div class="student-blank">
+                <div class="lines"></div>
+                <div class="lines"></div>
+                <div class="lines"></div>
+            </div>
+            
+            <div class="teacher-answer">
+                R// Viola la regla de Cero Subjetividad y uso de Adjetivos Vagos ("bonita", "guste mucho"). Un problema no se evalúa por gustos estéticos sino por métricas duras (retorno, alcance, posicionamiento).
+            </div>
+        </div>
+        
+        <!-- CASO 2 -->
+        <div class="case-box">
+            <h4>CASO FINANCIERO</h4>
+            <p><strong>Diagnóstico:</strong> "El problema central (Tronco) de la empresa es que no hay dinero en caja."</p>
+            <p><strong>Error:</strong> ¿Qué falla metodológica hay aquí?</p>
+            
+            <div class="student-blank">
+                <div class="lines"></div>
+                <div class="lines"></div>
+                <div class="lines"></div>
+            </div>
+
+            <div class="teacher-answer">
+                R// Confunde el SÍNTOMA (Ramas/Efecto) con el PROBLEMA REAL (Tronco/Enfermedad). La falta de liquidez es el efecto de una falla de fondo (ej. malas políticas de crédito o baja rotación).
+            </div>
+        </div>
+    </div>
+
+    <!-- SECCIÓN IV -->
+    <div class="section-header" style="background-color: #eef6fc; border-color: var(--rojo);">
+        <span style="color: var(--rojo);">IV. RECEPCIÓN DE TRABAJO DE ZONA (FASE 1)</span>
+        <span style="color: var(--rojo);">(10 PUNTOS)</span>
+    </div>
+    
+    <div class="reception-box">
+        <div class="score-zone">PUNTEO<br>____ / 10</div>
+        <strong>ENTREGA DE PROYECTO: "PLAN DE INVESTIGACIÓN INICIAL"</strong><br>
+        <span class="instruction">Verificación de entrega física del documento impreso correspondiente a Módulo I (Clases 1-4).</span>
+        
+        <strong style="display:block; margin-top:8px; font-size: 0.9em;">Check-list de Elementos Evaluados:</strong>
+        <ul class="checklist">
+            <li><span class="square"></span> 1. <strong>TEMA:</strong> Delimitado, sin gerundios ni adjetivos vagos.</li>
+            <li><span class="square"></span> 2. <strong>PLANTEAMIENTO:</strong> Aislamiento de Causa (Enfermedad) y Efecto (Síntoma).</li>
+            <li><span class="square"></span> 3. <strong>PREGUNTAS:</strong> 1 Central y 3 Específicas correlacionadas.</li>
+            <li><span class="square"></span> 4. <strong>OBJETIVOS:</strong> 1 General y 3 Específicos. Uso estricto de infinitivos.</li>
+            <li><span class="square"></span> 5. <strong>JUSTIFICACIÓN Y VIABILIDAD:</strong> Argumento de rentabilidad (ROI) y acceso a datos.</li>
+        </ul>
+    </div>
+
+    <!-- FIRMA ESTUDIANTE -->
+    <div class="signature-section">
+        <div class="signature-line"></div>
+        <p style="font-size: 0.85em; font-weight: bold; margin:0;">"FIRMA DE CONFORMIDAD DEL ESTUDIANTE"</p>
+    </div>
+
+</div>
+
+<!-- SCRIPT DEL PANEL GERENCIAL -->
+<script>
+function setView(type) {
+    var answers = document.querySelectorAll('.teacher-answer');
+    var blanks = document.querySelectorAll('.student-blank');
+    var marks = document.querySelectorAll('.correct-mark');
+    var modeText = document.getElementById('modo-texto');
+
+    if(type === 'teacher') {
+        answers.forEach(el => el.style.display = 'block');
+        blanks.forEach(el => el.style.display = 'none');
+        marks.forEach(el => el.innerHTML = 'X');
+        modeText.innerHTML = 'CLAVE MAGISTER (CON RESPUESTAS)';
+        modeText.style.color = '#cc0000';
+    } else {
+        answers.forEach(el => el.style.display = 'none');
+        blanks.forEach(el => el.style.display = 'block');
+        marks.forEach(el => el.innerHTML = '');
+        modeText.innerHTML = 'VISTA ESTUDIANTE (EN BLANCO)';
+        modeText.style.color = '#003366';
+    }
+}
+</script>
+
+</body>
+</html>
