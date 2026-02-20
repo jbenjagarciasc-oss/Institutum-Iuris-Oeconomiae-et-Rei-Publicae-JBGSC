@@ -1,0 +1,279 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clase 2: La Idea de Negocio - Admon. Empresas</title>
+<style>
+    :root {
+        --azul: #003366;
+        --rojo: #cc0000;
+        --blanco: #fff;
+        --fondo: #f0f2f5;
+        --txt: #2c3e50;
+        --azul-claro: #eef6fc;
+        --verde-exito: #28a745;
+        --alerta: #ffc107;
+    }
+    body { font-family: 'Segoe UI', serif; background: var(--fondo); color: var(--txt); line-height: 1.6; margin: 0; }
+    .main-container { max-width: 1200px; margin: 30px auto; background: var(--blanco); border-top: 8px solid var(--azul); box-shadow: 0 5px 25px rgba(0,0,0,.1); padding-bottom: 40px; }
+    header { background: linear-gradient(135deg, var(--azul) 0%, #0055a5 100%); color: var(--blanco); padding: 40px; text-align: center; }
+    header::after { content: ""; display: block; width: 60%; height: 4px; background: var(--rojo); margin: 20px auto 0; }
+    h1 { font-size: 2.5em; margin: 0; }
+    h2 { font-style: italic; font-weight: 400; opacity: .9; }
+    
+    /* SECCIONES Y SOCRÁTICO */
+    .content-section { padding: 0 40px; margin-bottom: 40px; }
+    .section-title { color: var(--azul); border-left: 5px solid var(--rojo); padding-left: 15px; font-size: 1.8em; text-transform: uppercase; font-weight: 700; margin-bottom: 20px; margin-top: 40px; display: flex; align-items: center; }
+    .section-number { background: var(--rojo); color: white; width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; margin-right: 10px; font-size: 0.6em; vertical-align: middle; }
+    
+    .socratic-box { background: #fffcfc; border: 2px solid #f2dede; padding: 25px; margin-bottom: 25px; border-radius: 8px; position: relative; }
+    .socratic-question { display: block; font-size: 1.3em; font-weight: bold; text-align: center; color: var(--rojo); margin-bottom: 15px; font-style: italic; }
+    
+    /* ÁRBOL */
+    .tree-diagram-container { display: flex; flex-direction: column; align-items: center; margin: 40px 0; }
+    .tree-node { padding: 15px; color: #fff; text-align: center; width: 280px; margin: 5px; border-radius: 5px; box-shadow: 0 4px 8px rgba(0,0,0,.1); }
+    .branch { background: #cc0000; }
+    .trunk { background: #003366; width: 320px; }
+    .root { background: #5d4037; width: 300px; }
+
+    /* PROGRAMA */
+    details.syllabus-module { background: #fff; border: 1px solid #ddd; border-radius: 5px; overflow: hidden; margin-bottom: 10px; }
+    details.syllabus-module summary { padding: 15px 20px; cursor: pointer; font-weight: bold; background: linear-gradient(to right, #f8f9fa, #fff); color: var(--azul); border-left: 6px solid var(--azul-claro); list-style: none; text-transform: uppercase;}
+    details.syllabus-module[open] summary { background: var(--azul); color: white; border-left: 6px solid var(--rojo); }
+    .module-content { padding: 20px; }
+
+    /* PRAXIS Y OTROS */
+    .exercise-wrapper { display: flex; gap: 20px; flex-wrap: wrap; }
+    .exercise-card { flex: 1; min-width: 300px; background: #fff; border: 1px solid #ddd; border-radius: 8px; }
+    .card-header { padding: 10px; color: #fff; font-weight: 700; background: var(--azul); }
+    .card-body { padding: 15px; }
+    .btn-reveal { width: 100%; padding: 10px; background: #f1f1f1; border: none; cursor: pointer; font-weight: 700; color: var(--azul); transition: 0.3s; margin-top: 5px; text-align: left; border-bottom: 1px solid #ccc; }
+    .btn-reveal:hover { background: #e2e6ea; }
+    .answer-content { display: none; padding: 15px; background: #f8f9fa; border-left: 4px solid var(--azul); margin-top: 10px; }
+    
+    .lexicon-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; }
+    .lexicon-item { background: #f8f9fa; padding: 15px; border-left: 3px solid var(--rojo); }
+    
+    .homework-box { background: #fff3e0; border: 1px solid #ffe0b2; padding: 20px; border-radius: 8px; margin-top: 30px; }
+    .homework-card { background: white; padding: 15px; border: 1px solid #e0e0e0; margin-bottom: 15px; border-radius: 5px; }
+    
+    .feedback-box { background: #e8f5e9; border-left: 5px solid #28a745; padding: 15px; margin-bottom: 20px; }
+    .biblio { font-size: 0.9em; color: #666; border-top: 1px solid #ddd; padding-top: 20px; margin-top: 40px; columns: 2; }
+    .quote-box { text-align: center; font-style: italic; margin-top: 40px; padding: 20px; background: #eee; border-radius: 5px; }
+</style>
+</head>
+<body>
+
+<div class="main-container">
+    <header>
+        <h1>UNIVERSIDAD REGIONAL</h1>
+        <h2>Sede San Raymundo | Admon. Empresas (9no Semestre)</h2>
+        <p>Cátedra: <strong>Magister José Benjamín García Santa Cruz</strong> | Fecha: 21/02/2026</p>
+    </header>
+
+    <!-- INTRODUCCIÓN SOCRÁTICA -->
+    <section class="content-section">
+        <h3 class="section-title"><span class="section-number">1</span>INTRODUCCIÓN: DE LA IMAGINACIÓN A LA RENTABILIDAD</h3>
+        
+        <div class="socratic-box">
+            <span class="socratic-question">"¿Una idea millonaria surge por inspiración divina o por la observación disciplinada de las deficiencias del mercado?"</span>
+            <p>
+                Señores futuros Gerentes: Toda investigación, al igual que todo negocio exitoso, nace de una <strong>IDEA</strong>. Sin embargo, en el mundo de los negocios corporativos, una idea no es simplemente una ocurrencia creativa; es la detección sistemática de una debilidad interna, una oportunidad de mercado o un vacío de conocimiento. Hoy dejaremos de ver problemas para empezar a ver <em>nichos de investigación y rentabilidad</em>.
+            </p>
+        </div>
+    </section>
+
+    <div style="padding: 0 40px;">
+
+        <!-- 1. RESOLUCIÓN DE LA TAREA ANTERIOR (FEEDBACK) -->
+        <h3 class="section-title"><span class="section-number">2</span>RESOLUCIÓN DE LA TAREA ANTERIOR (FEEDBACK)</h3>
+        <p>Revisemos las entregas de su labor domiciliaria de la Clase 1. La instrucción fue clara: <strong>Ejercicio 1</strong>, identificar 3 situaciones de pérdida de tiempo/dinero; <strong>Ejercicio 2</strong>, elegir UNA de esas situaciones y justificar el "por qué" estudiarla aplicando nuestras Reglas de Oro.</p>
+        
+        <div class="exercise-wrapper">
+            <!-- Caso de Feedback 1 -->
+            <div class="exercise-card">
+                <div class="card-header">FEEDBACK EJERCICIO 1: LA BITÁCORA DE ERRORES</div>
+                <div class="card-body">
+                    <p><strong>El Alumno documentó:</strong><br> 
+                    1. Se desperdicia mucho papel en la oficina (RRHH).<br>
+                    2. Los clientes se quejan de la espera en las cajas (Mercadeo).<br>
+                    3. Faltan repuestos en la maquinaria (Producción).</p>
+                    <p><strong>Análisis del Magister:</strong> Las observaciones son válidas empíricamente, pero su redacción es puramente operativa ("queja", "desperdicio"). Un Gerente busca el problema de fondo.</p>
+                    <button class="btn-reveal" onclick="toggle('feed1')">VER ENFOQUE GERENCIAL (CORRECCIÓN)</button>
+                    <div id="feed1" class="answer-content">
+                        <p><strong>Enfoque del Investigador/Gerente (Tomando el punto 2):</strong> "Existe una inadecuada logística de servicio al cliente que genera un <strong>cuello de botella</strong> en el área de cajas."</p>
+                        <p><em>Lección: Pasamos de una simple queja a un proceso sistémico susceptible de ser medido y mejorado.</em></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Caso de Feedback 2 -->
+            <div class="exercise-card">
+                <div class="card-header">FEEDBACK EJERCICIO 2: EL "POR QUÉ" (JUSTIFICACIÓN)</div>
+                <div class="card-body">
+                    <p><strong>El Alumno documentó (Sobre el problema de las cajas):</strong><br> 
+                    "Vale la pena investigar la espera en caja para que la empresa sea mejor, los clientes no se enojen y la tienda se vea más bonita."</p>
+                    <p><strong>Análisis del Magister:</strong> ¡Violación flagrante a las Reglas de Oro #2 y #3! "Mejor", "no se enojen" y "más bonita" son juicios de valor subjetivos y extremadamente vagos. Carece de visión financiera.</p>
+                    <button class="btn-reveal" onclick="toggle('feed2')">VER JUSTIFICACIÓN CIENTÍFICA (CORRECCIÓN)</button>
+                    <div id="feed2" class="answer-content">
+                        <p><strong>Enfoque del Investigador/Gerente:</strong> "El estudio se justifica porque los cuellos de botella en el área de cajas impactan negativamente la percepción de calidad del servicio. Solucionar esto reducirá el índice de abandono de compras e incrementará el volumen de facturación diaria, impactando directamente en la utilidad bruta de la empresa."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. TEMA DE LA SESIÓN -->
+        <h3 class="section-title"><span class="section-number">3</span>AGENDA DE HOY</h3>
+        <details class="syllabus-module" open>
+            <summary>CLASE 2: LA IDEA DE NEGOCIO (EL GÉNESIS)</summary>
+            <div class="module-content">
+                <strong>Tema Central:</strong> Motores y fuentes de ideas para la Tesis de Negocios.<br>
+                <strong>Ref. Bibliográfica:</strong> Hernández Sampieri (Cap. 2). Fuentes de ideas y oportunidades de mercado.
+            </div>
+        </details>
+
+        <!-- 3. MAPA MENTAL / ÁRBOL -->
+        <h3 class="section-title"><span class="section-number">4</span>MAPA MENTAL: LOS MOTORES DE LA IDEA</h3>
+        <p>Las investigaciones se originan en ideas, sin importar el paradigma que fundamente nuestro estudio. En Administración, esas ideas nacen de 4 motores principales:</p>
+        
+        <div class="tree-diagram-container">
+            <!-- Ramas -->
+            <div style="display:flex; gap:10px;">
+                <div class="tree-node branch" style="width: 140px;">
+                    <strong>HUECOS DE CONOCIMIENTO</strong><br>
+                    <small>Falta teoría en un área local (ej. e-commerce rural)</small>
+                </div>
+                <div class="tree-node branch" style="width: 140px;">
+                    <strong>INNOVACIÓN</strong><br>
+                    <small>Mejorar procesos drásticamente (ej. Reingeniería)</small>
+                </div>
+            </div>
+            <!-- Tronco -->
+            <div class="tree-node trunk">
+                <strong>LOS MOTORES (Fuentes de Ideas)</strong><br>
+                <small>Observación, experiencia, lectura corporativa</small>
+            </div>
+            <!-- Raíz -->
+            <div class="tree-node root" style="background:#5d4037; border-bottom: 4px solid #ff9800;">
+                <strong>1. OPORTUNIDAD (Mercado)</strong><br>
+                <strong>2. NECESIDAD (Debilidad Interna)</strong><br>
+                <small>El punto de partida del Consultor</small>
+            </div>
+        </div>
+
+        <!-- 4. PRAXIS -->
+        <h3 class="section-title"><span class="section-number">5</span>PRAXIS: DETECTANDO LA IDEA DE INVESTIGACIÓN</h3>
+        <p>La habilidad del investigador de negocios es adaptar su lente de observación dependiendo del tamaño y la naturaleza de la entidad.</p>
+        <div class="exercise-wrapper">
+            
+            <!-- CASO PyME -->
+            <div class="exercise-card">
+                <div class="card-header">CASO 1: LA PyME LOCAL (Motor: Necesidad)</div>
+                <div class="card-body">
+                    <p><strong>Contexto:</strong> Una panadería familiar en San Raymundo lleva 20 años operando. Últimamente han bajado sus ventas porque abrieron dos supermercados cerca.</p>
+                    <p><strong>Tarea:</strong> Haga un "brainstorming" rápido. ¿Cuál debería ser la IDEA central de investigación para su tesis si escoge esta empresa?</p>
+                    <button class="btn-reveal" onclick="toggle('ans1')">VER ANÁLISIS DEL MAGISTER</button>
+                    <div id="ans1" class="answer-content">
+                        <p><strong>Idea de Investigación:</strong> "Estrategias de diferenciación competitiva y fidelización de clientes frente a la entrada de grandes superficies corporativas."</p>
+                        <p><em>Justificación:</em> La PyME no puede competir por "costos/precios" contra un supermercado (economía de escala). Debe investigarse el <strong>valor agregado</strong> (calidad, servicio personalizado, tradición).</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CASO CORPORACIÓN -->
+            <div class="exercise-card">
+                <div class="card-header">CASO 2: LA CORPORACIÓN (Motor: Innovación)</div>
+                <div class="card-body">
+                    <p><strong>Contexto:</strong> Una transnacional de telecomunicaciones tiene miles de reclamos en servicio al cliente presencial, saturando sus agencias locales.</p>
+                    <p><strong>Tarea:</strong> Identifique la IDEA de investigación aplicando el motor de la "Oportunidad Tecnológica" (Innovación).</p>
+                    <button class="btn-reveal" onclick="toggle('ans2')">VER ANÁLISIS DEL MAGISTER</button>
+                    <div id="ans2" class="answer-content">
+                        <p><strong>Idea de Investigación:</strong> "Impacto de la migración a plataformas de auto-servicio <em>(E-business / Inteligencia Artificial)</em> en la reducción de costos operativos y la satisfacción del usuario."</p>
+                        <p><em>Justificación:</em> En una corporación, el problema físico (agencias llenas) es una oportunidad para investigar la digitalización de la cadena de valor y reingeniería de procesos.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 5. LÉXICO -->
+        <h3 class="section-title"><span class="section-number">6</span>LÉXICO: ETIMOLOGÍA Y EPISTEMOLOGÍA</h3>
+        <div class="lexicon-grid">
+            <div class="lexicon-item">
+                <strong>1. IDEA DE INVESTIGACIÓN:</strong><br>
+                Representa el primer acercamiento a la realidad que se investigará o a los fenómenos, eventos y ambientes para estudiar.
+            </div>
+            <div class="lexicon-item">
+                <strong>2. OPORTUNIDAD:</strong><br>
+                Del latín <em>opportunitas</em> (conducir hacia el puerto). Circunstancia favorable o momento adecuado que el mercado ofrece y la empresa debe aprovechar.
+            </div>
+            <div class="lexicon-item">
+                <strong>3. INNOVACIÓN:</strong><br>
+                Del latín <em>innovare</em> (hacer nuevo). No es solo "inventar", sino aplicar comercialmente una idea que modifica elementos ya existentes mejorando el modelo de negocio.
+            </div>
+            <div class="lexicon-item">
+                <strong>4. ESTRATEGIA COMPETITIVA:</strong><br>
+                Definición de acciones defensivas u ofensivas para crear una posición defendible en una industria (Liderazgo en costos, Diferenciación o Enfoque).
+            </div>
+        </div>
+
+        <!-- 6. LABOR DOMICILIARIA -->
+        <h3 class="section-title"><span class="section-number">7</span>LABOR DOMICILIARIA: GENERACIÓN DE SU IDEA</h3>
+        <p style="text-align:center; font-style:italic;">(Entrega: Próxima clase 28/02/2026. Formato Físico. Cero subjetividad).</p>
+        <div class="homework-box">
+            <p><strong>INSTRUCCIONES:</strong> Es momento de definir el rumbo de su Tesis de Grado. Aplique los motores de ideas a su realidad profesional o a una empresa a la que tenga acceso.</p>
+            
+            <div class="homework-card">
+                <p><strong>EJERCICIO 1: LLUVIA DE IDEAS ESTRUCTURADA</strong><br>
+                Redacte 3 posibles IDEAS de investigación basándose en los motores vistos hoy:</p>
+                <ul>
+                    <li><strong>Idea 1 (Motor de Necesidad):</strong> Un problema grave que esté costando dinero o clientes en una empresa específica.</li>
+                    <li><strong>Idea 2 (Motor de Oportunidad):</strong> Un nicho de mercado abandonado o un nuevo perfil de cliente que la empresa no está atendiendo.</li>
+                    <li><strong>Idea 3 (Motor de Innovación):</strong> Un proceso antiguo que podría mejorarse drásticamente con nueva tecnología o estructura organizativa.</li>
+                </ul>
+            </div>
+
+            <div class="homework-card">
+                <p><strong>EJERCICIO 2: FILTRO DE VIABILIDAD Y SELECCIÓN</strong><br>
+                Seleccione la mejor de las 3 ideas anteriores y responda de forma ejecutiva (1 párrafo):</p>
+                <ul>
+                    <li>¿Por qué escogió esta idea?</li>
+                    <li>¿Tiene acceso real a los datos numéricos y al personal de esa empresa para realizar su tesis de forma cuantitativa? (Viabilidad de campo).</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 7. BIBLIOGRAFÍA -->
+        <h3 class="section-title"><span class="section-number">8</span>BIBLIOGRAFÍA DE LA SESIÓN</h3>
+        <div class="biblio">
+            1. Hernández Sampieri, R. (2014). <em>Metodología de la Investigación</em> (Cap. 2: Nacimiento de un proyecto de investigación). McGraw-Hill.<br>
+            2. Osterwalder, A. (2011). <em>Generación de Modelos de Negocio</em> (Cap. Patrones: La Larga Cola y Plataformas Multilaterales). Deusto.<br>
+            3. Porter, M. (2009). <em>Estrategia Competitiva</em> (Análisis del entorno). Pirámide.<br>
+            4. Chiavenato, I. (2006). <em>Introducción a la Teoría General de la Administración</em> (Cap. 19: En busca de la competitividad). McGraw-Hill.<br>
+            5. Universidad Regional. (2022). <em>Guía General de Tesis</em>.
+        </div>
+
+        <!-- FRASE FINAL -->
+        <div class="quote-box">
+            "Las investigaciones se originan de ideas, sin importar qué tipo de paradigma fundamente nuestro estudio ni el enfoque que habremos de seguir."<br>
+            <strong>— Roberto Hernández Sampieri</strong>
+        </div>
+
+    </div>
+</div>
+
+<script>
+function toggle(id) {
+    var x = document.getElementById(id);
+    if (x.style.display === "block") {
+        x.style.display = "none";
+    } else {
+        x.style.display = "block";
+    }
+}
+</script>
+
+</body>
+</html>
